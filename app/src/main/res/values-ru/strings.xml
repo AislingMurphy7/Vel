@@ -19,4 +19,8 @@
                         \n-Запустите двигатель автомобиля. \n-Перейдите к настройкам на Android-устройстве: Настройки > Bluetooth > Имя адаптера > Паровые устройства.
                         \n-Naviagte для настроек в приложении: Настройки > Выберите имя адаптера из списка.</string>
     <string name="next1">следующий</string>
+
+    <string name="help">Помогите</string>
+    <string name="settings">настройки</string>
+    <string name="lang">язык</string>
 </resources>

@@ -19,4 +19,8 @@
                         \n-Starta bilmotorn. \n-Navigera till inställningar på Android-enhet: Inställningar > Bluetooth > Adapternamn > Par enheter.
                         \n-Naviagte till inställningar inom app: Inställningar > Välj adapternamn från lista.</string>
     <string name="next1">Nästa</string>
+
+    <string name="help">Hjälp</string>
+    <string name="settings">Inställningar</string>
+    <string name="lang">Språk</string>
 </resources>

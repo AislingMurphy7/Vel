@@ -19,5 +19,9 @@
                         \n-Starten Sie den Automotor. \n-Navigieren Sie zu Einstellungen auf dem Android-Gerät: Einstellungen > Bluetooth > Adaptername > Geräte verbinden.
                         \n-Navigieren zu den Einstellungen in der App: Einstellungen > Wählen Sie den Adapternamen aus der Liste.</string>
     <string name="next1">Nächster</string>
+
+    <string name="Help">Hilfe</string>
+    <string name="settings">Einstellungen</string>
+    <string name="lang">Sprache</string>
 </resources>
 

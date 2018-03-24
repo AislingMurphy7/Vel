@@ -19,4 +19,8 @@
                         \n-Arrancar el motor del automóvil. \n-Navegue a la configuración en el dispositivo Android: Configuración > Bluetooth > Nombre del adaptador > Emparejar dispositivos.
                         \n-Navegue a la configuración dentro de la aplicación: Configuración > Seleccione el nombre del adaptador de la lista.</string>
     <string name="next1">Siguiente</string>
+
+    <string name="help">Ayuda</string>
+    <string name="settings">Configuraciones</string>
+    <string name="lang">Idioma</string>
 </resources>

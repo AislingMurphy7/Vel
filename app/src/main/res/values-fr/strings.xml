@@ -19,4 +19,8 @@
                         \n-Démarrer le moteur de la voiture. \n-Accédez aux paramètres sur l\'\appareil Android: Paramètres > Bluetooth > Nom de l\'\adaptateur > Paires d\'\appareils.
                          \n-Naviagte vers les paramètres de l\'\application: Paramètres > Sélectionner le nom de l\'\adaptateur dans la liste.</string>
     <string name="next1">Prochain</string>
+
+    <string name="help">Aidez-moi</string>
+    <string name="settings">Paramètres</string>
+    <string name="lang">La langue</string>
 </resources>
