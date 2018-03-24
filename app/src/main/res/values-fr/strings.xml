@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VéL</string>
+
+    <string name="Pick">Veuillez sélectionner votre langue ...</string>
+
+    <string name="warn">ATTENTION</string>
+    <string name="NoUse">S\'\il vous plaît ne pas utiliser cette application pendant la conduite. \nSeulement utiliser cette application pendant que le véhicule est stationné</string>
+    <string name="Agree">Je suis d\'\accord</string>
+    <string name="Disagree"> Je ne suis pas d\'\accord</string>
+
+    <string name="OBD">Voiture Complète OBD-II</string>
+    <string name="cars">-US véhicules fabriqués après 1996. \n-EU véhicules fabriqués après 2004. \n-JAP véhicules fabriqués après 2005</string>
+    <string name="ELM">Adaptateur ELM 327 \n\n-Emplacement dans le véhicule</string>
+    <string name="next">Prochain</string>
+
+    <string name="ElmSet">Configuration ELM327</string>
+    <string name="instruct">-Plug adaptateur dans le port OBD-II 16 broches. \n-Assurez-vous que la lumière verte clignote sur l\'\adaptateur.
+                        \n-Démarrer le moteur de la voiture. \n-Accédez aux paramètres sur l\'\appareil Android: Paramètres > Bluetooth > Nom de l\'\adaptateur > Paires d\'\appareils.
+                         \n-Naviagte vers les paramètres de l\'\application: Paramètres > Sélectionner le nom de l\'\adaptateur dans la liste.</string>
+    <string name="next1">Prochain</string>
+</resources>

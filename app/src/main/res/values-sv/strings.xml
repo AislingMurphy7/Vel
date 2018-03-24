@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VéL</string>
+
+    <string name="Pick">Var god välj ditt språk...</string>
+
+    <string name="warn">VARNING</string>
+    <string name="NoUse">Använd inte den här applikationen under körning. \nEnnu använd den här applikationen när fordonet är parkerat</string>
+    <string name="Agree">Jag håller med</string>
+    <string name="Disagree">Jag håller inte med</string>
+
+    <string name="OBD">OBD-II-kompatibel bil</string>
+    <string name="cars">-US fordon tillverkad efter 1996. \n-EU fordon tillverkad efter 2004. \n-JAP fordon tillverkad efter 2005</string>
+    <string name="ELM">ELM 327 Adapter \n\nPlats inom fordonet</string>
+    <string name="next">Nästa</string>
+
+    <string name="ElmSet">ELM327 Setup</string>
+    <string name="instruct">-Plappadapter till OBD-II 16-polig port. \n-Se till att grönt ljus blinkar på adaptern.
+                        \n-Starta bilmotorn. \n-Navigera till inställningar på Android-enhet: Inställningar > Bluetooth > Adapternamn > Par enheter.
+                        \n-Naviagte till inställningar inom app: Inställningar > Välj adapternamn från lista.</string>
+    <string name="next1">Nästa</string>
+</resources>

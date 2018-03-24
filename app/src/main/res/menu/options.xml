@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Settings"
+        android:id="@+id/action_settings"
+        app:showAsAction="never" >
+    </item>
+
+    <item android:title="Language"
+        android:id="@+id/action_Language"
+        app:showAsAction="never" >
+    </item>
+
+    <item android:title="Help"
+        android:id="@+id/action_help"
+        app:showAsAction="never" >
+    </item>
+
+
+
+</menu>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">VéL</string>
+
+    <string name="Pick">Please select your language...</string>
+
+    <string name="warn">WARNING</string>
+    <string name="NoUse">Please do not use this application whilst driving.\nOnly use this application whilst vehicle is parked</string>
+    <string name="Agree">I Agree</string>
+    <string name="Disagree">I Disagree</string>
+
+    <string name="OBD">OBD-II Complient Car</string>
+    <string name="cars">-US vehicles manufactured after 1996. \n-EU vehicles manufactured after 2004. \n-JAP vehicles manufactured after 2005</string>
+    <string name="ELM">ELM 327 Adapter \n\n-Location within vehicle</string>
+    <string name="next">Next</string>
+
+    <string name="ElmSet">ELM327 Setup</string>
+    <string name="instruct">-Plug adapter into OBD-II 16-pin port. \n-Ensure green light flashes on adapter.
+                        \n-Start car engine. \n-Navigate to settings on Android device: Settings > Bluetooth > Adapter Name > Pair devices.
+                        \n-Naviagte to settings within app: Settings > Select adapter name from list.</string>
+    <string name="next1">Next</string>
+</resources>
