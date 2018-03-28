@@ -85,4 +85,5 @@ public class Agreements extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

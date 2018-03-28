@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class VehicleSpec extends AppCompatActivity
 {
     String[] manufact={ "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti", "Cadillac", "Chevrolet", "Chrysler", "Citroen", "Corvette", "DAF", "Dacia", "Daewoo", "Daihatsu",
@@ -43,6 +46,7 @@ public class VehicleSpec extends AppCompatActivity
         actv2.setThreshold(1);
         actv3.setAdapter(adapter1);
         actv3.setThreshold(1);
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
