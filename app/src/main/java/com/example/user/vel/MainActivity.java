@@ -32,9 +32,10 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         //Executes the loadLocale() function
         loadLocale();
+        //Sets the layout according to the XML file
         setContentView(R.layout.activity_main);
 
-        //
+        //XML variables
         ImageView vel = (ImageView)findViewById(R.id.vel) ;
         TextView text = (TextView) findViewById(R.id.text);
         ListView listView = (ListView)findViewById(R.id.Lang);

@@ -28,14 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
         android:ems="10"
-        android:inputType="number"/>
-
-    <AutoCompleteTextView
-        android:id="@+id/auto3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="65dp"
-        android:ems="10"
-        android:inputType="numberDecimal"/>
+        android:inputType="text"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

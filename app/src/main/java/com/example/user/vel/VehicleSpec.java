@@ -16,43 +16,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class VehicleSpec extends AppCompatActivity
 {
-   /* String[] manufact={ "Alfa Romeo", "Aston Martin", "Audi", "Bentley", "BMW", "Bugatti", "Cadillac", "Chevrolet", "Chrysler", "Citroen", "Corvette", "DAF", "Dacia", "Daewoo", "Daihatsu",
-            "Dodge", "Ferrari", "Fiat", "Ford", "Honda", "Hummer", "Hyundai", "Jaguar", "Jeep", "KIA", "Koenigsegg", "Lada", "Lamborghini", "Lancia", "Land Rover", "Lexus", "Lotus",
-            "Maserati", "Mazda", "McLaren", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Noble", "Opel", "Peugeot", "Pontiac", "Porsche", "Renault", "Rolls-Royce", "Rover", "Saab",
-            "Seat", "Skoda", "Smart", "Subaru", "Suzuki", "Toyota", "Vauxhall", "Volkswagen", "Volvo"};
-
-    String[] model={ "golf"};
-
-    String[] year={"2001, 2002"};
-
-    String[] engine={"1.6"};*/
-
-   private DatabaseReference dbref;
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_spec);
-
-       final AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.auto);
-        /*AutoCompleteTextView actv1 = (AutoCompleteTextView) findViewById(R.id.auto1);
-        AutoCompleteTextView actv2 = (AutoCompleteTextView) findViewById(R.id.auto2);
-        AutoCompleteTextView actv3 = (AutoCompleteTextView) findViewById(R.id.auto3); */
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1);
-       /* ArrayAdapter adapter1 = new ArrayAdapter(this, android.R.layout.simple_list_item_1, model);
-        ArrayAdapter adapter2 = new ArrayAdapter(this, android.R.layout.simple_list_item_1, year);
-        ArrayAdapter adapter3 = new ArrayAdapter(this, android.R.layout.simple_list_item_1, engine);
-*/
-        actv.setAdapter(adapter);
-        actv.setThreshold(1);
-        /*actv1.setAdapter(adapter1);
-        actv1.setThreshold(1);
-        actv2.setAdapter(adapter1);
-        actv2.setThreshold(1);
-        actv3.setAdapter(adapter1);
-        actv3.setThreshold(1); */
 
         //FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -66,14 +37,65 @@ public class VehicleSpec extends AppCompatActivity
 
         FirebaseApp app = FirebaseApp.getInstance("secondary");
         FirebaseDatabase database2 = FirebaseDatabase.getInstance(app);
-        DatabaseReference dbref = database2.getReference().child("Make");
-        dbref.addValueEventListener(new ValueEventListener() {
+        DatabaseReference dbref = database2.getReference();
+        DatabaseReference dbref2 = database2.getReference();
+        DatabaseReference dbref3 = database2.getReference();
+        dbref.child("Cars").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                String Make = dataSnapshot.getValue().toString();
-                actv.setText(Make);
+                final List<String> Cars = new ArrayList<String>();
+                for ( DataSnapshot suggestionSnap : dataSnapshot.getChildren())
+                {
+                    String suggestion = suggestionSnap.child("Make").getValue(String.class);
+                    Cars.add(suggestion);
+                }
 
+                AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.auto);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
+                actv.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        dbref2.child("Cars").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> Cars = new ArrayList<String>();
+                for ( DataSnapshot suggestionSnap : dataSnapshot.getChildren())
+                {
+                    String suggestion = suggestionSnap.child("Model").getValue(String.class);
+                    Cars.add(suggestion);
+                }
+
+                AutoCompleteTextView actv1 = (AutoCompleteTextView) findViewById(R.id.auto1);
+                ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
+                actv1.setAdapter(adapter1);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        dbref3.child("Cars").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final List<String> Cars = new ArrayList<String>();
+                for (DataSnapshot suggestionSnap : dataSnapshot.getChildren()) {
+                    String suggestion = suggestionSnap.child("Engine Size").getValue(String.class);
+                    Cars.add(suggestion);
+                }
+
+                AutoCompleteTextView actv2 = (AutoCompleteTextView) findViewById(R.id.auto2);
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
+                actv2.setAdapter(adapter2);
             }
 
             @Override
