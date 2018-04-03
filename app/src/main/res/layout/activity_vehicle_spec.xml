@@ -6,23 +6,26 @@
     android:layout_height="match_parent"
     tools:context="com.example.user.vel.VehicleSpec">
 
-    <AutoCompleteTextView
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rec_view"/>
+
+    <TextView
         android:id="@+id/auto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
-        android:ems="10"
         android:inputType="text"/>
 
-    <AutoCompleteTextView
+    <TextView
         android:id="@+id/auto1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="65dp"
-        android:ems="10"
         android:inputType="text"/>
 
-    <AutoCompleteTextView
+    <TextView
         android:id="@+id/auto2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

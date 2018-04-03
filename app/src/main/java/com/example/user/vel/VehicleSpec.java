@@ -7,50 +7,82 @@ package com.example.user.vel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VehicleSpec extends AppCompatActivity
 {
+    RecyclerView recview;
+    MyAdapter adpt;
+    List<MyDataset> listdata;
+    FirebaseDatabase FDB;
+    DatabaseReference DBR;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
         setContentView(R.layout.activity_vehicle_spec);
 
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        recview = (RecyclerView)findViewById(R.id.rec_view);
 
-        //
+        recview.setHasFixedSize(true);
+        RecyclerView.LayoutManager LM = new LinearLayoutManager(getApplicationContext());
+        recview.setLayoutManager(LM);
+        recview.setItemAnimator(new DefaultItemAnimator());
+        recview.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayoutManager.VERTICAL));
+
+        listdata = new ArrayList<>();
+        adpt = new MyAdapter(listdata);
+
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setApplicationId("com.example.user.vel")
                 .setApiKey("AIzaSyBvBtL81H7aiUK90c3QfVccoU1CowKrmAA")
                 .setDatabaseUrl("https://finalyearproject-vel1-aac42.firebaseio.com/")
                 .build();
 
-        //
         FirebaseApp.initializeApp(this, options, "secondary");
 
-        //
         FirebaseApp app = FirebaseApp.getInstance("secondary");
+        FDB = FirebaseDatabase.getInstance(app);
+        GetDataFirebase();
+
+        /*FirebaseOptions options = new FirebaseOptions.Builder()
+                .setApplicationId("com.example.user.vel")
+                .setApiKey("AIzaSyBvBtL81H7aiUK90c3QfVccoU1CowKrmAA")
+                .setDatabaseUrl("https://finalyearproject-vel1-aac42.firebaseio.com/")
+                .build();
+
+        FirebaseApp.initializeApp(this, options, "secondary");
+
+       /* FirebaseApp app = FirebaseApp.getInstance("secondary");
         FirebaseDatabase database2 = FirebaseDatabase.getInstance(app);
+        GetDataFirebase();
+        /*
         DatabaseReference dbref = database2.getReference();
         DatabaseReference dbref2 = database2.getReference();
-        DatabaseReference dbref3 = database2.getReference();
+        DatabaseReference dbref3 = database2.getReference(); */
 
-        //
+        /*
         dbref.child("Cars").addValueEventListener(new ValueEventListener()
         {
             public void onDataChange(DataSnapshot dataSnapshot)
@@ -65,7 +97,7 @@ public class VehicleSpec extends AppCompatActivity
                 }//End For()
 
                 //XML TextView variable
-                AutoCompleteTextView actv = (AutoCompleteTextView) findViewById(R.id.auto);
+                TextView actv = (TextView) findViewById(R.id.auto);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
                 actv.setAdapter(adapter);
 
@@ -92,7 +124,7 @@ public class VehicleSpec extends AppCompatActivity
                 }//End for()
 
                 //XML TextView variable
-                AutoCompleteTextView actv1 = (AutoCompleteTextView) findViewById(R.id.auto1);
+                TextView actv1 = (TextView) findViewById(R.id.auto1);
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
                 actv1.setAdapter(adapter1);
 
@@ -119,7 +151,7 @@ public class VehicleSpec extends AppCompatActivity
                 }//End for()
 
                 //XML TextView variable
-                AutoCompleteTextView actv2 = (AutoCompleteTextView) findViewById(R.id.auto2);
+                TextView actv2 = (TextView) findViewById(R.id.auto2);
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
                 actv2.setAdapter(adapter2);
 
@@ -130,9 +162,82 @@ public class VehicleSpec extends AppCompatActivity
 
             }//End onCancelled()
 
-        });//End dbref3 ValueEventListener()
+        });//End dbref3 ValueEventListener()*/
 
     }//End onCreate()
+
+    void GetDataFirebase(){
+        DBR = FDB.getReference("Cars");
+
+        DBR.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                MyDataset data = dataSnapshot.getValue(MyDataset.class);
+                listdata.add(data);
+                recview.setAdapter(adpt);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>
+    {
+        List<MyDataset> listArray;
+        public MyAdapter(List<MyDataset> List){
+            this.listArray = List;
+        }
+
+        @Override
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview, parent,false);
+
+            return new MyViewHolder(view);
+        }
+
+
+        @Override
+        public void onBindViewHolder(MyViewHolder holder, int position)
+        {
+            MyDataset data = listArray.get(position);
+
+            holder.mytext.setText(data.getmake());
+        }
+
+        public class MyViewHolder extends RecyclerView.ViewHolder
+        {
+            TextView mytext;
+
+            public MyViewHolder(View itemView) {
+                super(itemView);
+
+                mytext = (TextView)itemView.findViewById(R.id.textview);
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return listArray.size();
+        }
+    }
 
     //Function creates the dropdown toolbar menu
     public boolean onCreateOptionsMenu(Menu menu)
