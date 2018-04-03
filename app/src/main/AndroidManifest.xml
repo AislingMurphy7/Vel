@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.user.vel">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -23,7 +23,8 @@
         <activity android:name=".Settings" />
         <activity android:name=".SetupELM" />
         <activity android:name=".UserHelp" />
-        <activity android:name=".VehicleSpec"></activity>
+        <activity android:name=".VehicleSpec" />
+        <activity android:name=".Graphview"></activity>
     </application>
 
 </manifest>

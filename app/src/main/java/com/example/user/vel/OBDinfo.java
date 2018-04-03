@@ -4,6 +4,8 @@
 package com.example.user.vel;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -29,6 +31,8 @@ public class OBDinfo extends AppCompatActivity
         TextView text2 = (TextView) findViewById(R.id.text2);
         Button next = (Button) findViewById(R.id.bt1);
         ProgressBar progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        //Changes colour of progressbar
+        progressbar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         //Setting the progress bar to 50% fill
         progressbar.setProgress(50);
 

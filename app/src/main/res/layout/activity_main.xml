@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:background="@drawable/gradient_background"
     tools:context="com.example.user.vel.MainActivity">
 
     <ImageView
@@ -19,11 +25,11 @@
 
     <TextView
         android:id="@+id/text"
-        android:layout_margin="20dp"
-        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Pick"/>
+        android:layout_margin="20dp"
+        android:text="@string/Pick"
+        android:textSize="20dp" />
 
     <ListView
         android:id="@+id/Lang"

@@ -4,6 +4,8 @@
 package com.example.user.vel;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -28,6 +30,8 @@ public class SetupELM extends AppCompatActivity
         TextView text1 = (TextView) findViewById(R.id.text1);
         Button next = (Button) findViewById(R.id.bt1);
         ProgressBar progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        //Changes colour of progressbar
+        progressbar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         //Setting the progress bar to 95% fill
         progressbar.setProgress(95);
 
@@ -37,7 +41,7 @@ public class SetupELM extends AppCompatActivity
             //The application moves to the following screen
             public void onClick(View view)
             {
-                Intent intent = new Intent(SetupELM.this, VehicleSpec.class);
+                Intent intent = new Intent(SetupELM.this, Graphview.class);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
