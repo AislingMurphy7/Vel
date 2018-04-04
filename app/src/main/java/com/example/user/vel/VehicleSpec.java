@@ -56,7 +56,6 @@ public class VehicleSpec extends AppCompatActivity
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setApplicationId("com.example.user.vel")
-                .setApiKey("AIzaSyBvBtL81H7aiUK90c3QfVccoU1CowKrmAA")
                 .setDatabaseUrl("https://finalyearproject-vel1-aac42.firebaseio.com/")
                 .build();
 
