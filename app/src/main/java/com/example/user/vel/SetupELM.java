@@ -41,7 +41,7 @@ public class SetupELM extends AppCompatActivity
             //The application moves to the following screen
             public void onClick(View view)
             {
-                Intent intent = new Intent(SetupELM.this, Graphview.class);
+                Intent intent = new Intent(SetupELM.this, VehicleSpec.class);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
@@ -62,7 +62,7 @@ public class SetupELM extends AppCompatActivity
         //If the settings option is selected, user will be re-directed to setting screen
         if (id == R.id.action_settings)
         {
-            Intent intent = new Intent(SetupELM.this, Settings.class);
+            Intent intent = new Intent(SetupELM.this, SettingsActivity.class);
             startActivity(intent);
         }//End if()
 

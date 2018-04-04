@@ -80,7 +80,7 @@ public class Agreements extends AppCompatActivity
         //If the settings option is selected, user will be re-directed to setting screen
         if (id == R.id.action_settings)
         {
-            Intent intent = new Intent(Agreements.this, Settings.class);
+            Intent intent = new Intent(Agreements.this, SettingsActivity.class);
             startActivity(intent);
 
         }//End if

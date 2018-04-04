@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.firebase.client.Firebase;
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.Locale;
 
 public class MainActivity extends Activity
@@ -27,6 +30,9 @@ public class MainActivity extends Activity
     //NAMES Array holds the languages the user can select from
     String[] NAMES = {"English", "French", "Spanish", "German", "Swedish", "Russian"};
 
+    //Declare analytics object variable
+    private FirebaseAnalytics mFBAnalytics;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,9 @@ public class MainActivity extends Activity
         loadLocale();
         //Sets the layout according to the XML file
         setContentView(R.layout.activity_main);
+
+        //Initialize the analytics package
+        mFBAnalytics = FirebaseAnalytics.getInstance(this);
 
         //XML variables
         ImageView vel = (ImageView)findViewById(R.id.vel) ;

@@ -60,10 +60,10 @@ public class VehicleSpec extends AppCompatActivity
                 .setDatabaseUrl("https://finalyearproject-vel1-aac42.firebaseio.com/")
                 .build();
 
-        FirebaseApp.initializeApp(this, options, "secondary");
+        //FirebaseApp.initializeApp(this, options, "secondary");
 
-        FirebaseApp app = FirebaseApp.getInstance("secondary");
-        FDB = FirebaseDatabase.getInstance(app);
+        //FirebaseApp app = FirebaseApp.getInstance("secondary");
+        FDB = FirebaseDatabase.getInstance();
         GetDataFirebase();
 
         /*FirebaseOptions options = new FirebaseOptions.Builder()
@@ -71,9 +71,7 @@ public class VehicleSpec extends AppCompatActivity
                 .setApiKey("AIzaSyBvBtL81H7aiUK90c3QfVccoU1CowKrmAA")
                 .setDatabaseUrl("https://finalyearproject-vel1-aac42.firebaseio.com/")
                 .build();
-
         FirebaseApp.initializeApp(this, options, "secondary");
-
        /* FirebaseApp app = FirebaseApp.getInstance("secondary");
         FirebaseDatabase database2 = FirebaseDatabase.getInstance(app);
         GetDataFirebase();
@@ -88,80 +86,59 @@ public class VehicleSpec extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 final List<String> Cars = new ArrayList<String>();
-
                 for ( DataSnapshot suggestionSnap : dataSnapshot.getChildren() )
                 {
                     String suggestion = suggestionSnap.child("Make").getValue(String.class);
                     Cars.add(suggestion);
-
                 }//End For()
-
                 //XML TextView variable
                 TextView actv = (TextView) findViewById(R.id.auto);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
                 actv.setAdapter(adapter);
-
             }//End onDataChange()
-
             public void onCancelled(DatabaseError databaseError)
             {
-
             }//End onCancelled()
-
         });//End dbref ValueEventListener()
-
         //
         dbref2.child("Cars").addValueEventListener(new ValueEventListener()
         {
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 final List<String> Cars = new ArrayList<String>();
-
                 for ( DataSnapshot suggestionSnap : dataSnapshot.getChildren() )
                 {
                     String suggestion = suggestionSnap.child("Model").getValue(String.class);
                     Cars.add(suggestion);
                 }//End for()
-
                 //XML TextView variable
                 TextView actv1 = (TextView) findViewById(R.id.auto1);
                 ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
                 actv1.setAdapter(adapter1);
-
             }//End onDataChange()
-
             public void onCancelled(DatabaseError databaseError)
             {
-
             }//End onCancelled()
-
         });//End dbref2 ValueEventListener()
-
         //
         dbref3.child("Cars").addValueEventListener(new ValueEventListener()
         {
             public void onDataChange(DataSnapshot dataSnapshot)
             {
                 final List<String> Cars = new ArrayList<String>();
-
                 for (DataSnapshot suggestionSnap : dataSnapshot.getChildren())
                 {
                     String suggestion = suggestionSnap.child("Engine Size").getValue(String.class);
                     Cars.add(suggestion);
                 }//End for()
-
                 //XML TextView variable
                 TextView actv2 = (TextView) findViewById(R.id.auto2);
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(VehicleSpec.this, android.R.layout.simple_list_item_1, Cars);
                 actv2.setAdapter(adapter2);
-
             }//End onDataChange()
-
             public void onCancelled(DatabaseError databaseError)
             {
-
             }//End onCancelled()
-
         });//End dbref3 ValueEventListener()*/
 
     }//End onCreate()
@@ -255,7 +232,7 @@ public class VehicleSpec extends AppCompatActivity
         //If the settings option is selected, user will be re-directed to setting screen
         if (id == R.id.action_settings)
         {
-            Intent intent = new Intent(VehicleSpec.this, Settings.class);
+            Intent intent = new Intent(VehicleSpec.this, SettingsActivity.class);
             startActivity(intent);
 
         }//End if()

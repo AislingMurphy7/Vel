@@ -24,7 +24,11 @@
         <activity android:name=".SetupELM" />
         <activity android:name=".UserHelp" />
         <activity android:name=".VehicleSpec" />
-        <activity android:name=".Graphview"></activity>
+        <activity android:name=".Graphview" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity android:name=".MyAdapter"></activity>
     </application>
 
 </manifest>
