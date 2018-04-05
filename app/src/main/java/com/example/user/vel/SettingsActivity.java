@@ -4,9 +4,6 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -19,11 +16,11 @@ import android.support.v7.app.ActionBar;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
-import android.text.Layout;
 import android.text.TextUtils;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -137,7 +134,45 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-    }
+        }
+
+        public boolean onCreateOptionsMenu(Menu menu)
+        {
+            getMenuInflater().inflate(R.menu.options, menu);
+            return super.onCreateOptionsMenu(menu);
+
+        }//End onCreateOptionMenu()
+
+        //If one of the options from the dropdown menu is selected the following will occur
+        public boolean onOptionsItemSelected(MenuItem item)
+        {
+            //Variable to hold id of selected menu option
+            int id = item.getItemId();
+            //If the settings option is selected, user will be re-directed to setting screen
+            if (id == R.id.action_settings)
+            {
+                Toast.makeText(SettingsActivity.this, "You are already in 'Settings'", Toast.LENGTH_LONG).show();
+
+            }//End if
+
+            //If the language option is selected, user will be re-directed to language screen
+            if (id == R.id.action_Language)
+            {
+                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }//End if
+
+            //If the help option is selected, user will be re-directed to help screen
+            if (id == R.id.action_help)
+            {
+                Intent intent = new Intent(SettingsActivity.this, UserHelp.class);
+                startActivity(intent);
+            }//End if
+
+            return super.onOptionsItemSelected(item);
+        }//End onOptionsItemSelected()
+
 
     /**
      * {@inheritDoc}

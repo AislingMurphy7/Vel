@@ -20,7 +20,6 @@
         </activity>
         <activity android:name=".Agreements" />
         <activity android:name=".OBDinfo" />
-        <activity android:name=".Settings" />
         <activity android:name=".SetupELM" />
         <activity android:name=".UserHelp" />
         <activity android:name=".VehicleSpec" />
@@ -28,7 +27,6 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings" />
-        <activity android:name=".MyAdapter"></activity>
     </application>
 
 </manifest>

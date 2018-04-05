@@ -1,9 +1,5 @@
 <resources>
 
-    <string name="action_settings">Settings</string>
-
-    <string name="firebase_location" translatable="false">https://finalyearproject-vel1-aac42.firebaseio.com/</string>
-
     <string name="app_name">VéL</string>
 
     <string name="Pick">Please select your language...</string>
