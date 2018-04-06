@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="imagedesc">Логотип приложения</string>
+    <string name="listimagelang">Флаги языков</string>
+
+    <string name="listCusTextV">Textview</string>
+
     <string name="app_name">VéL</string>
 
-    <string name="Pick">Выберите свой язык...</string>
+    <string name="Pick">Выберите свой язык:</string>
 
     <string name="warn">ПРЕДУПРЕЖДЕНИЕ</string>
     <string name="NoUse">Пожалуйста, не используйте это приложение во время вождения. \nИспользуйте это приложение только при парковке автомобиля</string>

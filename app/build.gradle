@@ -33,10 +33,4 @@ dependencies {
     implementation files('libs/GraphView-4.2.1.jar')
 }
 
-
-
-
-
-
-
 apply plugin: 'com.google.gms.google-services'

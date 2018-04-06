@@ -1,6 +1,8 @@
-/*This class displays an information screen informing the user
-* important information concerning the OBD protocol. Once the user
-* has finished reading they can then progress to the next screen*/
+/*
+This class displays an information screen informing the user
+important information concerning the OBD protocol. Once the user
+has finished reading they can then progress to the next screen
+*/
 package com.example.user.vel;
 
 import android.content.Intent;
@@ -12,9 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class OBDinfo extends AppCompatActivity
 {
@@ -26,11 +26,8 @@ public class OBDinfo extends AppCompatActivity
         setContentView(R.layout.activity_obdinfo);
 
         //XML variables
-        ImageView vel = (ImageView) findViewById(R.id.vel);
-        TextView text1 = (TextView) findViewById(R.id.text1);
-        TextView text2 = (TextView) findViewById(R.id.text2);
-        Button next = (Button) findViewById(R.id.bt1);
-        ProgressBar progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        Button next = findViewById(R.id.bt1);
+        ProgressBar progressbar = findViewById(R.id.progressbar);
         //Changes colour of progressbar
         progressbar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         //Setting the progress bar to 50% fill
@@ -66,23 +63,21 @@ public class OBDinfo extends AppCompatActivity
         {
             Intent intent = new Intent(OBDinfo.this, SettingsActivity.class);
             startActivity(intent);
-
-        }//End if
+        }//End if()
 
         //If the language option is selected, user will be re-directed to language screen
         if (id == R.id.action_Language)
         {
             Intent intent = new Intent(OBDinfo.this, MainActivity.class);
             startActivity(intent);
-
-        }//End if
+        }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
         if (id == R.id.action_help)
         {
             Intent intent = new Intent(OBDinfo.this, UserHelp.class);
             startActivity(intent);
-        }//End if
+        }//End if()
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()

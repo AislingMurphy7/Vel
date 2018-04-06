@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    tools:context="com.example.user.vel.UserHelp">
+    tools:context="com.example.user.vel.Volks"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background">
+
+    <ListView
+        android:id="@+id/listviewvolks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
 
 </android.support.constraint.ConstraintLayout>

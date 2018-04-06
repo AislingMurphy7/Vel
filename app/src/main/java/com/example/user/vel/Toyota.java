@@ -1,12 +1,12 @@
 /*
-
-
+This class contains the data which was read from the firebase database for only the Toyota vehicles.
+This class displays a listview with the models of Toyota.
  */
 package com.example.user.vel;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,26 +22,27 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class VehicleSpec extends AppCompatActivity
-{
+public class Toyota extends AppCompatActivity {
+
+    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        //Sets layout according to XML file
-        setContentView(R.layout.activity_vehicle_spec);
+        //Sets the layout according to the XML file
+        setContentView(R.layout.activity_toyota);
 
         //XML variable
-        ListView listView2 = findViewById(R.id.listview2);
+        final ListView listViewToy = findViewById(R.id.listviewToy);
 
         /*Database variable is getting the connection to the firebase database via google-services
-        JSON file and making reference to the child of "Make"*/
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Make");
+        JSON file and making reference to the child of "ModelToy"*/
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("ModelToy");
 
         //Holds the valuse gathered from firebase
-        final ArrayList<String> carlist = new ArrayList<>();
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, carlist);
+        final ArrayList<String> modellistToy = new ArrayList<>();
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, modellistToy);
         //Set the ArrayAdapter to the listview
-        listView2.setAdapter(arrayAdapter);
+        listViewToy.setAdapter(arrayAdapter);
 
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
@@ -53,7 +54,7 @@ public class VehicleSpec extends AppCompatActivity
                 String value = dataSnapshot.getValue(String.class);
 
                 //Add the info retrieved from datasnapshot into the ArrayList
-                carlist.add(value);
+                modellistToy.add(value);
                 //Will refresh app when the data changes in the database
                 arrayAdapter.notifyDataSetChanged();
             }//End onChildAdded()
@@ -79,8 +80,7 @@ public class VehicleSpec extends AppCompatActivity
             }//End onCancelled()
         });//End addChildEventListener()
 
-        //When the user clicks on any option on the ListView the following will occur
-        listView2.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        listViewToy.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
@@ -88,42 +88,28 @@ public class VehicleSpec extends AppCompatActivity
                 if(i == 0)
                 {
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(VehicleSpec.this, Audi.class);
+                    Intent intent = new Intent(Toyota.this, TESTER.class);
                     startActivity(intent);
                 }//End if()
                 //If option(i) is equal to the second row
                 else if(i == 1)
                 {
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(VehicleSpec.this, Volks.class);
+                    Intent intent = new Intent(Toyota.this, TESTER.class);
                     startActivity(intent);
                 }//End if()
                 //If option(i) is equal to the third row
                 else if(i == 2)
                 {
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(VehicleSpec.this, Ford.class);
+                    Intent intent = new Intent(Toyota.this, TESTER.class);
                     startActivity(intent);
                 }//End if()
                 //If option(i) is equal to the fourth row
                 else if(i == 3)
                 {
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(VehicleSpec.this, BMW.class);
-                    startActivity(intent);
-                }//End if()
-                //If option(i) is equal to the fifth row
-                else if(i == 4)
-                {
-                    //The app will change from current screen to next screen
-                    Intent intent = new Intent(VehicleSpec.this, Renault.class);
-                    startActivity(intent);
-                }//End if()
-                //If option(i) is equal to the sixth row
-                else if(i == 5)
-                {
-                    //The app will change from current screen to next screen
-                    Intent intent = new Intent(VehicleSpec.this, Toyota.class);
+                    Intent intent = new Intent(Toyota.this, TESTER.class);
                     startActivity(intent);
                 }//End if()
             }
@@ -145,24 +131,26 @@ public class VehicleSpec extends AppCompatActivity
         //If the settings option is selected, user will be re-directed to setting screen
         if (id == R.id.action_settings)
         {
-            Intent intent = new Intent(VehicleSpec.this, SettingsActivity.class);
+            Intent intent = new Intent(Toyota.this, SettingsActivity.class);
             startActivity(intent);
+
         }//End if()
 
         //If the language option is selected, user will be re-directed to language screen
         if (id == R.id.action_Language)
         {
-            Intent intent = new Intent(VehicleSpec.this, MainActivity.class);
+            Intent intent = new Intent(Toyota.this, MainActivity.class);
             startActivity(intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
         if (id == R.id.action_help)
         {
-            Intent intent = new Intent(VehicleSpec.this, UserHelp.class);
+            Intent intent = new Intent(Toyota.this, UserHelp.class);
             startActivity(intent);
         }//End if()
 
         return super.onOptionsItemSelected(item);
+
     }//End onOptionsItemSelected()
-}//End VehicleSpec()
+}//End Toyota()

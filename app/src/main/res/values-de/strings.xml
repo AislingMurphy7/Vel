@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="imagedesc">Anwendungslogo</string>
+    <string name="listimagelang">Sprachflaggen</string>
+
+    <string name="listCusTextV">Textvorschau</string>
+
     <string name="app_name">VéL</string>
 
-    <string name="Pick">Bitte wählen Sie Ihre Sprache...</string>
+    <string name="Pick">Bitte wählen Sie Ihre Sprache:</string>
 
     <string name="warn">WARNUNG</string>
     <string name="NoUse">Bitte verwenden Sie diese Anwendung nicht während der Fahrt. \nVerwenden Sie diese Anwendung nur, wenn das Fahrzeug geparkt ist</string>

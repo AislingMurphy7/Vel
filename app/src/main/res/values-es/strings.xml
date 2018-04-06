@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="imagedesc">Logotipo de aplicación</string>
+    <string name="listimagelang">Banderas de idiomas</string>
+
+    <string name="listCusTextV">Vista de texto</string>
+
     <string name="app_name">VéL</string>
 
-    <string name="Pick">Por favor seleccione su idioma ...</string>
+    <string name="Pick">Por favor seleccione su idioma:</string>
 
     <string name="warn">ADVERTENCIA</string>
     <string name="NoUse">No use esta aplicación mientras conduce. \nSólo use esta aplicación mientras el vehículo está estacionado</string>

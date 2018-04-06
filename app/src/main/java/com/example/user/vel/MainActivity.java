@@ -1,7 +1,9 @@
-/*This class is the Main Activity of the VéL Android app
-* This class displays a ListView containing languages which
-* the user can select from to change the following screens to
-* the language they have chosen*/
+/*
+This class is the Main Activity of the VéL Android app
+This class displays a ListView containing languages which
+the user can select from to change the following screens to
+the language they have chosen
+*/
 package com.example.user.vel;
 
 import android.app.Activity;
@@ -17,8 +19,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.firebase.analytics.FirebaseAnalytics;
-
 import java.util.Locale;
 
 public class MainActivity extends Activity
@@ -29,9 +29,6 @@ public class MainActivity extends Activity
     //NAMES Array holds the languages the user can select from
     String[] NAMES = {"English", "French", "Spanish", "German", "Swedish", "Russian"};
 
-    //Declare analytics object variable
-    private FirebaseAnalytics mFBAnalytics;
-
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -40,13 +37,8 @@ public class MainActivity extends Activity
         //Sets the layout according to the XML file
         setContentView(R.layout.activity_main);
 
-        //Initialize the analytics package
-        mFBAnalytics = FirebaseAnalytics.getInstance(this);
-
-        //XML variables
-        ImageView vel = (ImageView)findViewById(R.id.vel) ;
-        TextView text = (TextView) findViewById(R.id.text);
-        ListView listView = (ListView)findViewById(R.id.Lang);
+        //XML variable
+        ListView listView = findViewById(R.id.Lang);
 
         //
         CustomAdpater customadapter = new CustomAdpater();
@@ -65,7 +57,7 @@ public class MainActivity extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(MainActivity.this, Agreements.class);
                     startActivity(intent);
-                }
+                }//End if()
                 //If option(i) is equal to the second row
                 else if(i == 1)
                 {
@@ -74,7 +66,7 @@ public class MainActivity extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(MainActivity.this, Agreements.class);
                     startActivity(intent);
-                }
+                }//End if()
                 //If option(i) is equal to the third row
                 else if(i == 2)
                 {
@@ -83,7 +75,7 @@ public class MainActivity extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(MainActivity.this, Agreements.class);
                     startActivity(intent);
-                }
+                }//End if()
                 //If option(i) is equal to the fourth row
                 else if(i == 3)
                 {
@@ -92,7 +84,7 @@ public class MainActivity extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(MainActivity.this, Agreements.class);
                     startActivity(intent);
-                }
+                }//End if()
                 //If option(i) is equal to the fifth row
                 else if(i == 4)
                 {
@@ -101,7 +93,7 @@ public class MainActivity extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(MainActivity.this, Agreements.class);
                     startActivity(intent);
-                }
+                }//End if()
                 //If option(i) is equal to the sixth row
                 else if(i == 5)
                 {
@@ -110,10 +102,10 @@ public class MainActivity extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(MainActivity.this, Agreements.class);
                     startActivity(intent);
-                }
-            }
-        });
-    }
+                }//End if()
+            }//End onItemClick()
+        });//End setOnItemClickListener()
+    }//End onCreate()
 
     //
     private void setLocale(String lang)
@@ -127,7 +119,7 @@ public class MainActivity extends Activity
         SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
         editor.putString("My_Lang", lang);
         editor.apply();
-    }
+    }//End setLocale()
 
     //
     public void loadLocale()
@@ -135,7 +127,7 @@ public class MainActivity extends Activity
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = prefs.getString("My_Lang", "");
         setLocale(language);
-    }
+    }//End loadLocale()
 
     //
     class CustomAdpater extends BaseAdapter
@@ -143,31 +135,31 @@ public class MainActivity extends Activity
         public int getCount()
         {
             return IMAGES.length;
-        }
+        }//End getCount()
 
         public Object getItem(int i)
         {
             return null;
-        }
+        }//End getItem()
 
         public long getItemId(int i)
         {
             return 0;
-        }
+        }//End getItemId
 
         //
         public View getView(int i, View view, ViewGroup viewGroup)
         {
             view = getLayoutInflater().inflate(R.layout.custom_layout_lang,null);
 
-            ImageView imageView=(ImageView)view.findViewById(R.id.imageView);
-            TextView textViewLang=(TextView)view.findViewById(R.id.textViewLang);
+            ImageView imageView= view.findViewById(R.id.imageView);
+            TextView textViewLang= view.findViewById(R.id.textViewLang);
 
             imageView.setImageResource(IMAGES[i]);
             textViewLang.setText(NAMES[i]);
 
             return view;
-        }
-    }
-}
+        }//End getView()
+    }//End CustomAdapter()
+}//End MainActivity()
 

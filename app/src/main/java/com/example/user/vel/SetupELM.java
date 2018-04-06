@@ -1,6 +1,8 @@
-/*This class displays an information screen informing the user
-* important information concerning the ELM-327 device. Once the user
-* has finished reading they can then progress to the next screen*/
+/*
+This class displays an information screen informing the user
+important information concerning the ELM-327 device. Once the user
+has finished reading they can then progress to the next screen
+*/
 package com.example.user.vel;
 
 import android.content.Intent;
@@ -12,9 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 public class SetupELM extends AppCompatActivity
 {
@@ -25,11 +25,8 @@ public class SetupELM extends AppCompatActivity
         setContentView(R.layout.activity_setup_elm);
 
         //XML variables
-        ImageView vel = (ImageView) findViewById(R.id.vel);
-        TextView text = (TextView) findViewById(R.id.text);
-        TextView text1 = (TextView) findViewById(R.id.text1);
-        Button next = (Button) findViewById(R.id.bt1);
-        ProgressBar progressbar = (ProgressBar) findViewById(R.id.progressbar);
+        Button next = findViewById(R.id.bt1);
+        ProgressBar progressbar = findViewById(R.id.progressbar);
         //Changes colour of progressbar
         progressbar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         //Setting the progress bar to 95% fill
@@ -81,5 +78,6 @@ public class SetupELM extends AppCompatActivity
         }//End if()
 
         return super.onOptionsItemSelected(item);
+
     }//End onOptionsItemSelected()
 }//End OBDinfo()

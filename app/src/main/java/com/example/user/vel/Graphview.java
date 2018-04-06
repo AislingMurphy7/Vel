@@ -1,3 +1,6 @@
+/*
+
+ */
 package com.example.user.vel;
 
 import android.content.Intent;
@@ -10,9 +13,10 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-public class Graphview extends AppCompatActivity {
+public class Graphview extends AppCompatActivity
+{
 
-    //Declarin LineGrapheSeries of type Datapoint
+    //Declare LineGrapheSeries of type Datapoint
     LineGraphSeries<DataPoint> series;
 
     protected void onCreate(Bundle savedInstanceState)
@@ -27,8 +31,9 @@ public class Graphview extends AppCompatActivity {
         x = -5.0;
 
         //XML variables
-        GraphView graph = (GraphView) findViewById(R.id.graph);
-        series = new LineGraphSeries<DataPoint>();
+        GraphView graph = findViewById(R.id.graph);
+        series = new LineGraphSeries<>();
+
         //For loop to loop through & store DataPoints
         for(int i = 0; i<500; i++)
         {
@@ -37,6 +42,7 @@ public class Graphview extends AppCompatActivity {
             y = Math.sin(x);
             series.appendData(new DataPoint(x, y), true, 500);
         }//End For()
+
         graph.addSeries(series);
     }//End onCreate()
 
@@ -74,5 +80,6 @@ public class Graphview extends AppCompatActivity {
         }//End if()
 
         return super.onOptionsItemSelected(item);
+
     }//End onOptionsItemSelected()
-}
+}//End Graphview()

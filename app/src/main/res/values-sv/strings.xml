@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <string name="imagedesc">Applikationslogotyp</string>
+    <string name="listimagelang">Language Flags</string>
+
+    <string name="listCusTextV">Textview</string>
+
     <string name="app_name">VéL</string>
 
-    <string name="Pick">Var god välj ditt språk...</string>
+    <string name="Pick">Var god välj ditt språk:</string>
 
     <string name="warn">VARNING</string>
     <string name="NoUse">Använd inte den här applikationen under körning. \nEnnu använd den här applikationen när fordonet är parkerat</string>

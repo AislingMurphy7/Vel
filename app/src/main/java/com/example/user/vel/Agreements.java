@@ -10,8 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 public class Agreements extends AppCompatActivity
 {
@@ -22,15 +20,8 @@ public class Agreements extends AppCompatActivity
         setContentView(R.layout.activity_agreements);
 
         //XML Button variables
-        Button agree =  (Button) findViewById(R.id.agree);
-        Button disagree = (Button) findViewById(R.id.disagree);
-
-        //ImageView for the VéL logo
-        ImageView vel = (ImageView) findViewById(R.id.vel);
-
-        //XMLTextView variables
-        TextView text = (TextView) findViewById(R.id.text);
-        TextView text2 = (TextView) findViewById(R.id.text2);
+        Button agree =  findViewById(R.id.agree);
+        Button disagree = findViewById(R.id.disagree);
 
         //If user clicks the 'Disagree' button
         disagree.setOnClickListener(new View.OnClickListener()
@@ -83,7 +74,7 @@ public class Agreements extends AppCompatActivity
             Intent intent = new Intent(Agreements.this, SettingsActivity.class);
             startActivity(intent);
 
-        }//End if
+        }//End if()
 
         //If the language option is selected, user will be re-directed to language screen
         if (id == R.id.action_Language)
@@ -91,7 +82,7 @@ public class Agreements extends AppCompatActivity
             Intent intent = new Intent(Agreements.this, MainActivity.class);
             startActivity(intent);
 
-        }//End if
+        }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
         if (id == R.id.action_help)
@@ -99,7 +90,7 @@ public class Agreements extends AppCompatActivity
             Intent intent = new Intent(Agreements.this, UserHelp.class);
             startActivity(intent);
 
-        }//End if
+        }//End if()
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
