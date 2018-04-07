@@ -33,7 +33,7 @@
         <activity android:name=".BMW" />
         <activity android:name=".Renault" />
         <activity android:name=".Toyota" />
-        <activity android:name=".TESTER"></activity>
+        <activity android:name=".TESTER" />
     </application>
 
 </manifest>

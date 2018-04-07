@@ -9,7 +9,6 @@
     android:paddingBottom="20dp"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
-    android:paddingTop="20dp"
     tools:context="com.example.user.vel.Agreements">
 
     <ImageView
@@ -25,23 +24,28 @@
         android:layout_gravity="center"/>
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:text="@string/warn" />
+        android:paddingRight="20dp"
+        android:text="@string/warn"
+        android:textSize="20sp"/>
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:text="@string/NoUse"/>
 
     <Button
+        android:textColor="@color/black"
         android:id="@+id/agree"
         android:layout_below="@+id/text2"
         android:layout_width="match_parent"
@@ -51,6 +55,7 @@
         android:text="@string/Agree"/>
 
     <Button
+        android:textColor="@color/black"
         android:id="@+id/disagree"
         android:layout_below="@+id/agree"
         android:layout_width="match_parent"

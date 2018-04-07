@@ -8,25 +8,30 @@
 
     <string name="app_name">VéL</string>
 
-    <string name="Pick">Veuillez sélectionner votre langue:</string>
+    <string name="Pick"><b><u>Veuillez sélectionner votre langue:</u></b></string>
 
-    <string name="warn">ATTENTION</string>
+    <string name="warn"><b><u>ATTENTION</u></b></string>
     <string name="NoUse">S\'\il vous plaît ne pas utiliser cette application pendant la conduite. \nSeulement utiliser cette application pendant que le véhicule est stationné</string>
     <string name="Agree">Je suis d\'\accord</string>
     <string name="Disagree"> Je ne suis pas d\'\accord</string>
 
-    <string name="OBD">Voiture Complète OBD-II</string>
-    <string name="cars">-US véhicules fabriqués après 1996. \n-EU véhicules fabriqués après 2004. \n-JAP véhicules fabriqués après 2005</string>
-    <string name="ELM">Adaptateur ELM 327 \n\n-Emplacement dans le véhicule</string>
+    <string name="OBD"><b><u>Voiture Complète OBD-II</u></b></string>
+    <string name="cars"><b>•</b>US véhicules fabriqués après 1996. \n\n<b>•</b>EU véhicules fabriqués après 2004. \n\n<b>•</b>JAP véhicules fabriqués après 2005</string>
+    <string name="ELM"><b><u>Adaptateur ELM-327</u></b> \n\n<b>•</b>Emplacement dans le véhicule</string>
     <string name="next">Prochain</string>
 
-    <string name="ElmSet">Configuration ELM327</string>
-    <string name="instruct">-Plug adaptateur dans le port OBD-II 16 broches. \n-Assurez-vous que la lumière verte clignote sur l\'\adaptateur.
-                        \n-Démarrer le moteur de la voiture. \n-Accédez aux paramètres sur l\'\appareil Android: Paramètres > Bluetooth > Nom de l\'\adaptateur > Paires d\'\appareils.
-                         \n-Naviagte vers les paramètres de l\'\application: Paramètres > Sélectionner le nom de l\'\adaptateur dans la liste.</string>
+    <string name="ElmSet"><b><u>Configuration ELM-327</u></b></string>
+    <string name="instruct"><b><u><i>Étape 1</i></u></b> \nPlug adaptateur dans le port OBD-II 16 broches. \n\n<b><u><i>Étape 2</i></u></b> \nAssurez-vous que la lumière verte clignote sur l\'\adaptateur.
+                        \n\n<b><u><i>Étape 3</i></u></b> \nDémarrer le moteur de la voiture. \n\n<b><u><i>Étape 4</i></u></b> \nAccédez aux paramètres sur l\'\appareil Android: Paramètres > Bluetooth > Nom de l\'\adaptateur > Paires d\'\appareils.
+                         \n\n<b><u><i>Étape 5</i></u></b> \nAccédez vers les paramètres de l\'\application: Paramètres > Sélectionner le nom de l\'\adaptateur dans la liste.</string>
     <string name="next1">Prochain</string>
+
+    <string name="CarChoice"><b>Veuillez sélectionner un fabricant de véhicule: </b></string>
+
+    <string name="ModelChoice"><b>Veuillez sélectionner le modèle de véhicule: </b></string>
 
     <string name="help">Aidez-moi</string>
     <string name="settings">Paramètres</string>
     <string name="lang">La langue</string>
+    <string name="exit">Sortie</string>
 </resources>

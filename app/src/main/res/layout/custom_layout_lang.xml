@@ -18,6 +18,7 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:id="@+id/textViewLang"
         android:layout_width="wrap_content"

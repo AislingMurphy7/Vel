@@ -40,7 +40,7 @@ public class Volks extends AppCompatActivity
 
         //Holds the valuse gathered from firebase
         final ArrayList<String> modellistVolks = new ArrayList<>();
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, modellistVolks);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.itemview, modellistVolks);
         //Set the ArrayAdapter to the listview
         listViewvolks.setAdapter(arrayAdapter);
 
@@ -147,6 +147,17 @@ public class Volks extends AppCompatActivity
         {
             Intent intent = new Intent(Volks.this, UserHelp.class);
             startActivity(intent);
+        }//End if()
+
+        //If the exit option is selected, the app will close
+        if (id == R.id.action_exit)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+            System.exit(0);
         }//End if()
 
         return super.onOptionsItemSelected(item);

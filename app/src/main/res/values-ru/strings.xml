@@ -8,25 +8,30 @@
 
     <string name="app_name">VéL</string>
 
-    <string name="Pick">Выберите свой язык:</string>
+    <string name="Pick"><b><u>Выберите свой язык:</u></b></string>
 
-    <string name="warn">ПРЕДУПРЕЖДЕНИЕ</string>
+    <string name="warn"><b><u>ПРЕДУПРЕЖДЕНИЕ</u></b></string>
     <string name="NoUse">Пожалуйста, не используйте это приложение во время вождения. \nИспользуйте это приложение только при парковке автомобиля</string>
     <string name="Agree">Согласен</string>
     <string name="Disagree">Я не согласен</string>
 
-    <string name="OBD">Совместимый автомобиль OBD-II</string>
-    <string name="cars">-US, изготовленные после 1996 года. Автомобили \n-EU, выпущенные после 2004 года. \n-JAP-транспортные средства, выпущенные после 2005 года</string>
-    <string name="ELM">Адаптер ELM 327 \n\n-Расположение внутри автомобиля</string>
+    <string name="OBD"><b><u>Совместимый автомобиль OBD-II</u></b></string>
+    <string name="cars"><b>•</b>US, изготовленные после 1996 года. Автомобили \n\n<b>•</b>EU, выпущенные после 2004 года. \n\n<b>•</b>JAP-транспортные средства, выпущенные после 2005 года</string>
+    <string name="ELM"><b><u>Адаптер ELM-327</u></b> \n\n<b>•</b>Расположение внутри автомобиля</string>
     <string name="next">следующий</string>
 
-    <string name="ElmSet">Настройка ELM327</string>
-    <string name="instruct">-Plug адаптер в 16-контактный порт OBD-II. \n-Убедитесь, что зеленый индикатор мигает на адаптере.
-                        \n-Запустите двигатель автомобиля. \n-Перейдите к настройкам на Android-устройстве: Настройки > Bluetooth > Имя адаптера > Паровые устройства.
-                        \n-Naviagte для настроек в приложении: Настройки > Выберите имя адаптера из списка.</string>
+    <string name="ElmSet"><b><u>Настройка ELM-327</u></b></string>
+    <string name="instruct"><b><u><i>Шаг 1</i></u></b> \nадаптер в 16-контактный порт OBD-II. \n\n<b><u><i>Шаг 2</i></u></b> \nУбедитесь, что зеленый индикатор мигает на адаптере.
+                        \n\n<b><u><i>Шаг 3</i></u></b> \nЗапустите двигатель автомобиля. \n\n<b><u><i>Шаг 4</i></u></b> \nПерейдите к настройкам на Android-устройстве: Настройки > Bluetooth > Имя адаптера > Паровые устройства.
+                        \n\n<b><u><i>Шаг 5</i></u></b> \nПерейдите для настроек в приложении: Настройки > Выберите имя адаптера из списка.</string>
     <string name="next1">следующий</string>
+
+    <string name="CarChoice"><b>Выберите производителя транспортного средства: </b></string>
+
+    <string name="ModelChoice"><b>Выберите модель автомобиля: </b></string>
 
     <string name="help">Помогите</string>
     <string name="settings">настройки</string>
     <string name="lang">язык</string>
+    <string name="exit">Выход</string>
 </resources>
