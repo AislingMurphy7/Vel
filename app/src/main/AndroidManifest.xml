@@ -29,11 +29,10 @@
             android:label="@string/title_activity_settings" />
         <activity android:name=".Audi" />
         <activity android:name=".Ford" />
-        <activity android:name=".Volks" />
         <activity android:name=".BMW" />
         <activity android:name=".Renault" />
         <activity android:name=".Toyota" />
-        <activity android:name=".TESTER" />
+        <activity android:name=".volkswagen" />
     </application>
 
 </manifest>

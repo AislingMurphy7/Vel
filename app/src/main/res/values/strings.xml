@@ -2,6 +2,7 @@
 
     <string name="imagedesc">Application Logo</string>
     <string name="listimagelang">Language Flags</string>
+    <string name="carimage">Vehicle image</string>
 
     <string name="listCusTextV">Textview</string>
 
@@ -44,6 +45,14 @@
     <string name="FAQ3">SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
         SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
         SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT</string>
+
+    <string name="A4">Audi A4 OBD-II Port Location</string>
+    <string name="A6">Audi A6 OBD-II Port Location</string>
+    <string name="TT">Audi TT OBD-II Port Location</string>
+    <string name="Q5">Audi Q5 OBD-II Port Location</string>
+    <string name="under_wheel">The 16 Pin OBD-II port is located in driver side foot-well underneath the
+    steering wheel of the vehicle</string>
+
 
     <string name="help">Help</string>
     <string name="settings">Settings</string>

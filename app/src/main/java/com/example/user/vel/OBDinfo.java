@@ -39,7 +39,7 @@ public class OBDinfo extends AppCompatActivity
             //The application moves to the following screen
             public void onClick(View v)
             {
-                Intent intent = new Intent(OBDinfo.this, SetupELM.class);
+                Intent intent = new Intent(OBDinfo.this, VehicleSpec.class);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()

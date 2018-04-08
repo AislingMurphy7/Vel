@@ -6,32 +6,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-public class Toyota extends AppCompatActivity
+public class volkswagen extends AppCompatActivity
 {
 
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_bmw);
+        setContentView(R.layout.activity_volkswagen);
 
         ViewPager viewPager = findViewById(R.id.viewPager);
 
-        ViewPagerAdapter6 viewPagerAdapter = new ViewPagerAdapter6(this);
+        ViewPagerAdapter2 viewPagerAdapter = new ViewPagerAdapter2(this);
 
         viewPager.setAdapter(viewPagerAdapter);
-
-        Button bt1 = findViewById(R.id.button);
-
-        bt1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Toyota.this, SetupELM.class);
-            }
-        });
 
     }
 
@@ -51,7 +40,7 @@ public class Toyota extends AppCompatActivity
         //If the settings option is selected, user will be re-directed to setting screen
         if (id == R.id.action_settings)
         {
-            Intent intent = new Intent(Toyota.this, SettingsActivity.class);
+            Intent intent = new Intent(volkswagen.this, SettingsActivity.class);
             startActivity(intent);
 
         }//End if()
@@ -59,7 +48,7 @@ public class Toyota extends AppCompatActivity
         //If the language option is selected, user will be re-directed to language screen
         if (id == R.id.action_Language)
         {
-            Intent intent = new Intent(Toyota.this, MainActivity.class);
+            Intent intent = new Intent(volkswagen.this, MainActivity.class);
             startActivity(intent);
 
         }//End if()
@@ -67,7 +56,7 @@ public class Toyota extends AppCompatActivity
         //If the help option is selected, user will be re-directed to help screen
         if (id == R.id.action_help)
         {
-            Intent intent = new Intent(Toyota.this, UserHelp.class);
+            Intent intent = new Intent(volkswagen.this, UserHelp.class);
             startActivity(intent);
 
         }//End if()
@@ -85,5 +74,4 @@ public class Toyota extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-
 }
