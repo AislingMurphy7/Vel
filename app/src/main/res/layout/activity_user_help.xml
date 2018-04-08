@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -30,7 +31,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black">
+            </TextView>
 
             <ImageButton
                 android:contentDescription="@string/imagedesc"
@@ -39,7 +41,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent">
+            </ImageButton>
+
         </com.ms.square.android.expandabletextview.ExpandableTextView>
 
         <com.ms.square.android.expandabletextview.ExpandableTextView
@@ -59,7 +63,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black">
+            </TextView>
 
             <ImageButton
                 android:contentDescription="@string/imagedesc"
@@ -68,7 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent">
+            </ImageButton>
 
         </com.ms.square.android.expandabletextview.ExpandableTextView>
 
@@ -89,7 +95,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black">
+            </TextView>
 
             <ImageButton
                 android:contentDescription="@string/imagedesc"
@@ -98,7 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent">
+            </ImageButton>
 
         </com.ms.square.android.expandabletextview.ExpandableTextView>
 
@@ -119,7 +127,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black" />
+                android:textColor="@color/black">
+            </TextView>
 
             <ImageButton
                 android:contentDescription="@string/imagedesc"
@@ -128,7 +137,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent">
+            </ImageButton>
 
         </com.ms.square.android.expandabletextview.ExpandableTextView>
 </LinearLayout>

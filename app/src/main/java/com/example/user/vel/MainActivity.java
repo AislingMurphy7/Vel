@@ -40,7 +40,7 @@ public class MainActivity extends Activity
         //XML variable
         ListView listView = findViewById(R.id.Lang);
 
-        //
+        //CustomeAdapter is defined to allow for the listview to be more flexable to design change
         CustomAdpater customadapter = new CustomAdpater();
         listView.setAdapter(customadapter);
 
@@ -107,7 +107,7 @@ public class MainActivity extends Activity
         });//End setOnItemClickListener()
     }//End onCreate()
 
-    //
+    //Within this function the default locale is changed to the new chosen language
     private void setLocale(String lang)
     {
         Locale locale = new Locale(lang);
@@ -121,7 +121,7 @@ public class MainActivity extends Activity
         editor.apply();
     }//End setLocale()
 
-    //
+    //Within this function the selected language is set
     public void loadLocale()
     {
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
@@ -129,7 +129,7 @@ public class MainActivity extends Activity
         setLocale(language);
     }//End loadLocale()
 
-    //
+    //This class gets the count of the IMAGES array and its item ids
     class CustomAdpater extends BaseAdapter
     {
         public int getCount()
@@ -147,7 +147,8 @@ public class MainActivity extends Activity
             return 0;
         }//End getItemId
 
-        //
+        /*Within this function the custom layout is used and the IMAGES array is added to display
+        images within the array as one image per each list item*/
         public View getView(int i, View view, ViewGroup viewGroup)
         {
             view = getLayoutInflater().inflate(R.layout.custom_layout_lang,null);

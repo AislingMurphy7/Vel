@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:fillViewport="false"
     android:background="@drawable/gradient_background">
 
     <android.support.v7.widget.LinearLayoutCompat
@@ -25,13 +25,13 @@
                 android:adjustViewBounds="true"
                 android:maxHeight="300dp"
                 android:maxWidth="300dp"
-                android:scaleType="fitStart"
                 android:src="@drawable/vel"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center">
+            </ImageView>
 
             <TextView
                 android:textColor="@color/black"
-                android:id="@+id/text1"
+                android:id="@+id/OBD_text1"
                 android:layout_below="@+id/vel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
 
             <TextView
                 android:textColor="@color/black"
-                android:id="@+id/text2"
+                android:id="@+id/OBD_text2"
                 android:layout_below="@+id/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,15 +53,17 @@
 
             <TextView
                 android:textColor="@color/black"
-                android:id="@+id/text3"
+                android:id="@+id/OBD_text3"
                 android:layout_below="@+id/text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
-                android:paddingLeft="20dp"
-                android:text="@string/ELM" />
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="@string/ELM">
+            </TextView>
 
             <Button
                 android:textColor="@color/black"
@@ -70,7 +72,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:text="@string/next" />
+                android:text="@string/next">
+            </Button>
 
             <ProgressBar
                 android:id="@+id/progressbar"
@@ -80,7 +83,7 @@
                 android:padding="20dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="20dp">
+            </ProgressBar>
     </android.support.v7.widget.LinearLayoutCompat>
-
 </ScrollView>

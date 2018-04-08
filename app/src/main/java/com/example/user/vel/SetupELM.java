@@ -55,40 +55,39 @@ public class SetupELM extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item)
     {
         //Variable to hold id of selected menu option
-        int id = item.getItemId();
+        int option_id = item.getItemId();
         //If the settings option is selected, user will be re-directed to setting screen
-        if (id == R.id.action_settings)
+        if (option_id == R.id.action_settings)
         {
-            Intent intent = new Intent(SetupELM.this, SettingsActivity.class);
-            startActivity(intent);
+            Intent setting_intent = new Intent(SetupELM.this, SettingsActivity.class);
+            startActivity(setting_intent);
         }//End if()
 
         //If the language option is selected, user will be re-directed to language screen
-        if (id == R.id.action_Language)
+        if (option_id == R.id.action_Language)
         {
-            Intent intent = new Intent(SetupELM.this, MainActivity.class);
-            startActivity(intent);
+            Intent language_intent = new Intent(SetupELM.this, MainActivity.class);
+            startActivity(language_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
-        if (id == R.id.action_help)
+        if (option_id == R.id.action_help)
         {
-            Intent intent = new Intent(SetupELM.this, UserHelp.class);
-            startActivity(intent);
+            Intent help_intent = new Intent(SetupELM.this, UserHelp.class);
+            startActivity(help_intent);
         }//End if()
 
         //If the exit option is selected, the app will close
-        if (id == R.id.action_exit)
+        if (option_id == R.id.action_exit)
         {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            Intent exit_intent = new Intent(Intent.ACTION_MAIN);
+            exit_intent.addCategory(Intent.CATEGORY_HOME);
+            exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(exit_intent);
             finish();
             System.exit(0);
         }//End if()
 
         return super.onOptionsItemSelected(item);
-
     }//End onOptionsItemSelected()
-}//End OBDinfo()
+}//End SetupELM()

@@ -1,6 +1,6 @@
 /*
-
-
+This class retrieves data from a database stored on Firebase and places this data into a Listview.
+From the listview the user can select which Vehicle they would like to view
  */
 package com.example.user.vel;
 
@@ -126,7 +126,7 @@ public class VehicleSpec extends AppCompatActivity
                     Intent intent = new Intent(VehicleSpec.this, Toyota.class);
                     startActivity(intent);
                 }//End if()
-            }
+            }//End onItemClick()
         });//End setOnItemClickListener()
     }//End onCreate()
 
@@ -176,7 +176,4 @@ public class VehicleSpec extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-
-    public class CustomAdpater {
-    }
 }//End VehicleSpec()

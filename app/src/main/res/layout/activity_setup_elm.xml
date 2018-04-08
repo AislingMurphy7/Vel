@@ -24,7 +24,7 @@
         android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/ELM_text1"
         android:layout_below="@+id/vel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,8 +34,8 @@
         android:text="@string/ElmSet"/>
 
     <TextView
-        android:id="@+id/text1"
-        android:layout_below="@+id/text"
+        android:id="@+id/ELM_text2"
+        android:layout_below="@+id/ELM_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
