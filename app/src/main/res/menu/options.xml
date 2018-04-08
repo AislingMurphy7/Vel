@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    This menu XML file is used for the dropdown
+    toolbar menu that provides the user with additional
+    options, such as 'Settings', 'Language change', 'Help'
+    and 'Exit'.
+-->
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">

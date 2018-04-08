@@ -1,6 +1,6 @@
 /*
 This class informs the user where to locate the OBD-II port for connecting the ELM-327 device
-to the vehicle. This class informs the users of where the port is located within Renault vehicles.
+to the vehicle. This class informs the users of where the port is located within Audi vehicles.
  */
 package com.example.user.vel;
 
@@ -19,15 +19,15 @@ public class Renault extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_bmw);
+        setContentView(R.layout.activity_audi);
 
         //XML button variable
         Button bt1 = findViewById(R.id.button);
 
         //XML ViewPager variable for displaying the Image slider
-        ViewPager viewPager = findViewById(R.id.renviewPager);
-        //Referencing 'ViewPagerAdapter5.class' to create a new adapter
-        ViewPagerAdapter5 viewPagerAdapter = new ViewPagerAdapter5(this);
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        //Referencing 'ViewPagerAdapter.class' to create a new adapter
+        ViewPagerAdapter5 viewPagerAdapter = new ViewPagerAdapter5 (this);
         viewPager.setAdapter(viewPagerAdapter);
 
         //If the user taps on the 'Next' button, app will progress to the 'SetupELM' class
@@ -56,8 +56,8 @@ public class Renault extends AppCompatActivity
         //If the settings option is selected, user will be re-directed to setting screen
         if (option_id == R.id.action_settings)
         {
-            Intent setting_intent = new Intent(Renault.this, SettingsActivity.class);
-            startActivity(setting_intent);
+            Intent settings_intent = new Intent(Renault.this, SettingsActivity.class);
+            startActivity(settings_intent);
         }//End if()
 
         //If the language option is selected, user will be re-directed to language screen
@@ -87,4 +87,4 @@ public class Renault extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-}//End Renault()
+}//End Audi()

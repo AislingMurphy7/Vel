@@ -1,6 +1,6 @@
 /*
 This class informs the user where to locate the OBD-II port for connecting the ELM-327 device
-to the vehicle. This class informs the users of where the port is located within Volkswagen vehicles.
+to the vehicle. This class informs the users of where the port is located within Audi vehicles.
  */
 package com.example.user.vel;
 
@@ -19,15 +19,15 @@ public class volkswagen extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_volkswagen);
+        setContentView(R.layout.activity_audi);
 
         //XML button variable
-        Button bt1 = findViewById(R.id.bt1);
+        Button bt1 = findViewById(R.id.button);
 
         //XML ViewPager variable for displaying the Image slider
-        ViewPager viewPager = findViewById(R.id.volksviewPager);
-        //Referencing 'ViewPagerAdapter5.class' to create a new adapter
-        ViewPagerAdapter2 viewPagerAdapter = new ViewPagerAdapter2(this);
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        //Referencing 'ViewPagerAdapter.class' to create a new adapter
+        ViewPagerAdapter2 viewPagerAdapter = new ViewPagerAdapter2 (this);
         viewPager.setAdapter(viewPagerAdapter);
 
         //If the user taps on the 'Next' button, app will progress to the 'SetupELM' class
@@ -52,39 +52,39 @@ public class volkswagen extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item)
     {
         //Variable to hold id of selected menu option
-        int id = item.getItemId();
+        int option_id = item.getItemId();
         //If the settings option is selected, user will be re-directed to setting screen
-        if (id == R.id.action_settings)
+        if (option_id == R.id.action_settings)
         {
-            Intent intent = new Intent(volkswagen.this, SettingsActivity.class);
-            startActivity(intent);
+            Intent settings_intent = new Intent(volkswagen.this, SettingsActivity.class);
+            startActivity(settings_intent);
         }//End if()
 
         //If the language option is selected, user will be re-directed to language screen
-        if (id == R.id.action_Language)
+        if (option_id == R.id.action_Language)
         {
-            Intent intent = new Intent(volkswagen.this, MainActivity.class);
-            startActivity(intent);
+            Intent language_intent = new Intent(volkswagen.this, MainActivity.class);
+            startActivity(language_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
-        if (id == R.id.action_help)
+        if (option_id == R.id.action_help)
         {
-            Intent intent = new Intent(volkswagen.this, UserHelp.class);
-            startActivity(intent);
+            Intent help_intent = new Intent(volkswagen.this, UserHelp.class);
+            startActivity(help_intent);
         }//End if()
 
         //If the exit option is selected, the app will close
-        if (id == R.id.action_exit)
+        if (option_id == R.id.action_exit)
         {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+            Intent exit_intent = new Intent(Intent.ACTION_MAIN);
+            exit_intent.addCategory(Intent.CATEGORY_HOME);
+            exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(exit_intent);
             finish();
             System.exit(0);
         }//End if()
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-}//End volkswagen()
+}//End Audi()

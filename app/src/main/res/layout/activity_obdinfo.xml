@@ -6,21 +6,17 @@
     display Strings of text to the user and finally a 'Button' which
     redirects the user to a new screen.
 -->
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/gradient_background">
 
     <android.support.v7.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="20dp"
+        android:paddingBottom="30dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:background="@drawable/gradient_background"
         tools:context="com.example.user.vel.OBDinfo">
 
             <ImageView
@@ -81,4 +77,3 @@
                 android:text="@string/next">
             </Button>
     </android.support.v7.widget.LinearLayoutCompat>
-</ScrollView>

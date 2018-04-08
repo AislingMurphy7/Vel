@@ -25,7 +25,7 @@ public class Audi extends AppCompatActivity
         Button bt1 = findViewById(R.id.button);
 
         //XML ViewPager variable for displaying the Image slider
-        ViewPager viewPager = findViewById(R.id.audiviewPager);
+        ViewPager viewPager = findViewById(R.id.viewPager);
         //Referencing 'ViewPagerAdapter.class' to create a new adapter
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter (this);
         viewPager.setAdapter(viewPagerAdapter);
