@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--
+    This XML file designs the layout for the 'Agreements.class'
+    This XML file defines an 'ImageView' to display the VéL app logo,
+    Two 'TextViews' that display Strings of text to the user and
+    finally two 'Button' which allow the user to agree and progress
+    on into the app, or disagree and exit the app.
+-->
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

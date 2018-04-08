@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--
+    This XML file designs the layout for the 'BMW.class'
+    This XML file defines a 'ViewPager' to display images, a 'TextView'
+    which displays a string to the user and finally a 'Button' which
+    redirects the user to a new screen
+-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

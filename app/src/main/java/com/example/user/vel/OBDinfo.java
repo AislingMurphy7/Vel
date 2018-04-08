@@ -6,15 +6,12 @@ has finished reading they can then progress to the next screen
 package com.example.user.vel;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 
 public class OBDinfo extends AppCompatActivity
 {
@@ -26,12 +23,6 @@ public class OBDinfo extends AppCompatActivity
 
         //XML variables
         Button next = findViewById(R.id.bt1);
-        ProgressBar progressbar = findViewById(R.id.progressbar);
-
-        //Changes colour of progressbar
-        progressbar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
-        //Setting the progress bar to 50% fill
-        progressbar.setProgress(50);
 
         //When the user selects the 'next' button
         next.setOnClickListener(new View.OnClickListener()
