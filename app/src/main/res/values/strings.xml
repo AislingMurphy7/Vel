@@ -45,6 +45,13 @@
         SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
         SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT</string>
 
+    <string name="Audi_Head"><b><u>Audi Vehicles OBD-II port location</u></b></string>
+    <string name="Bmw_Head"><b><u>BMW Vehicles OBD-II port location</u></b></string>
+    <string name="Volk_Head"><b><u>Volkswagen Vehicles OBD-II port location</u></b></string>
+    <string name="Ford_Head"><b><u>Ford Vehicles OBD-II port location</u></b></string>
+    <string name="Ren_Head"><b><u>Renault Vehicles OBD-II port location</u></b></string>
+    <string name="Toy_Head"><b><u>Toyota Vehicles OBD-II port location</u></b></string>
+
     <string name="under_wheel">The 16 Pin OBD-II port is located in driver side foot-well underneath the
     steering wheel of the vehicle</string>
 

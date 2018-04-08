@@ -18,6 +18,17 @@
     android:background="@drawable/gradient_background"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="357dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:padding="20dp"
+        android:text="@string/Bmw_Head"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/bmwviewPager"
         android:layout_width="wrap_content"
@@ -25,6 +36,7 @@
     </android.support.v4.view.ViewPager>
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/bmw_port"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

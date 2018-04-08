@@ -19,7 +19,7 @@ public class Renault extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_audi);
+        setContentView(R.layout.activity_renault);
 
         //XML button variable
         Button bt1 = findViewById(R.id.button);

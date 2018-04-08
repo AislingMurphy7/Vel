@@ -5,7 +5,7 @@
     which displays a string to the user and finally a 'Button' which
     redirects the user to a new screen
 -->
-<android.support.v7.widget.LinearLayoutCompat
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,13 +18,25 @@
     android:background="@drawable/gradient_background"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="20dp"
+        android:padding="20dp"
+        android:text="@string/Ren_Head"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
     <android.support.v4.view.ViewPager
-        android:id="@+id/renviewPager"
+        android:id="@+id/viewPager"
         android:layout_width="wrap_content"
         android:layout_height="200dp">
     </android.support.v4.view.ViewPager>
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/renault_port"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,4 +56,4 @@
         android:layout_marginLeft="20dp"
         android:text="@string/next">
     </Button>
-</android.support.v7.widget.LinearLayoutCompat>
+</LinearLayout>
