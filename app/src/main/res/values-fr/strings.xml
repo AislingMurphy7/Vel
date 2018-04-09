@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    This String XML file is used for defining and assigning
+    the French Strings for the application
+-->
 <resources>
 
     <string name="imagedesc">Logo de l\'\application</string>
     <string name="listimagelang">Indicateurs de langue</string>
+    <string name="carimage">image du véhicule</string>
 
     <string name="listCusTextV">Affichage</string>
 
@@ -17,21 +22,33 @@
 
     <string name="OBD"><b><u>Voiture Complète OBD-II</u></b></string>
     <string name="cars"><b>•</b>US véhicules fabriqués après 1996. \n\n<b>•</b>EU véhicules fabriqués après 2004. \n\n<b>•</b>JAP véhicules fabriqués après 2005</string>
-    <string name="ELM"><b><u>Adaptateur ELM-327</u></b> \n\n<b>•</b>Emplacement dans le véhicule</string>
     <string name="next">Prochain</string>
 
     <string name="ElmSet"><b><u>Configuration ELM-327</u></b></string>
     <string name="instruct"><b><u><i>Étape 1</i></u></b> \nPlug adaptateur dans le port OBD-II 16 broches. \n\n<b><u><i>Étape 2</i></u></b> \nAssurez-vous que la lumière verte clignote sur l\'\adaptateur.
                         \n\n<b><u><i>Étape 3</i></u></b> \nDémarrer le moteur de la voiture. \n\n<b><u><i>Étape 4</i></u></b> \nAccédez aux paramètres sur l\'\appareil Android: Paramètres > Bluetooth > Nom de l\'\adaptateur > Paires d\'\appareils.
                          \n\n<b><u><i>Étape 5</i></u></b> \nAccédez vers les paramètres de l\'\application: Paramètres > Sélectionner le nom de l\'\adaptateur dans la liste.</string>
-    <string name="next1">Prochain</string>
 
     <string name="CarChoice"><b>Veuillez sélectionner un fabricant de véhicule: </b></string>
 
     <string name="ModelChoice"><b>Veuillez sélectionner le modèle de véhicule: </b></string>
 
+    <string name="FAQ"></string>
+    <string name="FAQ1"></string>
+    <string name="FAQ2"></string>
+    <string name="FAQ3"></string>
+
+    <string name="Audi_Head"><b><u>Emplacement du port Audi Véhicules OBD-II</u></b></string>
+    <string name="Bmw_Head"><b><u>Emplacement du port BMW Véhicules OBD-II</u></b></string>
+    <string name="Volk_Head"><b><u>Emplacement du port Volkswagen Véhicules OBD-II</u></b></string>
+    <string name="Ford_Head"><b><u>Emplacement du port Ford Véhicules OBD-II</u></b></string>
+    <string name="Ren_Head"><b><u>Emplacement du port Renault Véhicules OBD-II</u></b></string>
+    <string name="Toy_Head"><b><u>Emplacement du port Toyota Véhicules OBD-II</u></b></string>
+
+    <string name="slider_text">Faites glisser les images ci-dessous pour afficher les emplacements OBD et les véhicules pris en charge</string>
+    <string name="under_wheel">Le port OBD-II à 16 broches est situé dans le pied du côté conducteur, sous le volant du véhicule</string>
+
     <string name="help">Aidez-moi</string>
-    <string name="settings">Paramètres</string>
     <string name="lang">La langue</string>
     <string name="exit">Sortie</string>
 </resources>

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    This String XML file is used for defining and assigning
+    the German Strings for the application
+-->
 <resources>
 
     <string name="imagedesc">Anwendungslogo</string>
@@ -18,7 +22,6 @@
 
     <string name="OBD"><b><u>OBD-II Komplientes Auto</u></b></string>
     <string name="cars"><b>•</b>US-Fahrzeuge hergestellt nach 1996. \n\n<b>•</b>EU-Fahrzeuge hergestellt nach 2004. \n\n<b>•</b>JAP Fahrzeuge hergestellt nach 2005</string>
-    <string name="ELM"><b><u>ELM-327 Adapter</u></b> \n\n<b>•</b>Standort innerhalb des Fahrzeugs</string>
     <string name="next">Nächster</string>
 
     <string name="ElmSet"><b><u>ELM-327 Setup</u></b></string>
@@ -35,10 +38,17 @@
     <string name="FAQ2"></string>
     <string name="FAQ3"></string>
 
+    <string name="Audi_Head"><b><u>Audi Fahrzeuge OBD-II Hafenstandort</u></b></string>
+    <string name="Bmw_Head"><b><u>BMW Fahrzeuge OBD-II Hafenstandort</u></b></string>
+    <string name="Volk_Head"><b><u>Volkswagen Fahrzeuge OBD-II Hafenstandort</u></b></string>
+    <string name="Ford_Head"><b><u>Ford-Fahrzeuge OBD-II Hafenstandort</u></b></string>
+    <string name="Ren_Head"><b><u>Renault Fahrzeuge OBD-II Hafenstandort</u></b></string>
+    <string name="Toy_Head"><b><u>Toyota Fahrzeuge OBD-II Hafenstandort</u></b></string>
+
+    <string name="slider_text">Wischen Sie die Bilder unten, um OBD-Standorte und unterstützte Fahrzeuge anzuzeigen</string>
     <string name="under_wheel">Der 16-polige OBD-II-Anschluss befindet sich in der Fahrerseite unter dem Fuß</string>
 
     <string name="Help">Hilfe</string>
-    <string name="settings">Einstellungen</string>
     <string name="lang">Sprache</string>
     <string name="exit">Ausgang</string>
 </resources>

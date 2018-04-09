@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    This String XML file is used for defining and assigning
+    the Russian Strings for the application
+-->
 <resources>
 
     <string name="imagedesc">Логотип приложения</string>
     <string name="listimagelang">Флаги языков</string>
+    <string name="carimage">изображение автомобиля</string>
 
     <string name="listCusTextV">Textview</string>
 
@@ -17,7 +22,6 @@
 
     <string name="OBD"><b><u>Совместимый автомобиль OBD-II</u></b></string>
     <string name="cars"><b>•</b>US, изготовленные после 1996 года. Автомобили \n\n<b>•</b>EU, выпущенные после 2004 года. \n\n<b>•</b>JAP-транспортные средства, выпущенные после 2005 года</string>
-    <string name="ELM"><b><u>Адаптер ELM-327</u></b> \n\n<b>•</b>Расположение внутри автомобиля</string>
     <string name="next">следующий</string>
 
     <string name="ElmSet"><b><u>Настройка ELM-327</u></b></string>
@@ -30,8 +34,22 @@
 
     <string name="ModelChoice"><b>Выберите модель автомобиля: </b></string>
 
+    <string name="FAQ"></string>
+    <string name="FAQ1"></string>
+    <string name="FAQ2"></string>
+    <string name="FAQ3"></string>
+
+    <string name="Audi_Head"><b><u>Транспортное средство ауди OBD-II</u></b></string>
+    <string name="Bmw_Head"><b><u>Транспортное средство БМВ OBD-II</u></b></string>
+    <string name="Volk_Head"><b><u>Транспортное средство volkswagen OBD-II</u></b></string>
+    <string name="Ford_Head"><b><u>Транспортное средство брод OBD-II</u></b></string>
+    <string name="Ren_Head"><b><u>Транспортное средство Renault OBD-II</u></b></string>
+    <string name="Toy_Head"><b><u>Транспортное средство Тойота OBD-II</u></b></string>
+
+    <string name="slider_text">Пролистайте изображения ниже, чтобы просмотреть места OBD и поддерживаемые транспортные средства</string>
+    <string name="under_wheel">Порт 16-контактного OBD-II расположен в нижней части багажника водителя под рулевым колесом автомобиля</string>
+
     <string name="help">Помогите</string>
-    <string name="settings">настройки</string>
     <string name="lang">язык</string>
     <string name="exit">Выход</string>
 </resources>
