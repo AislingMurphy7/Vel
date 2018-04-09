@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    This XML file designs the layout for the 'VehicleSpec.class'
-    This XML file defines an 'ImageView' fof the VéL app logo,
-    a 'TextView' which displays a string to the user and finally
-    a 'ListView' which displays the data retrieved from the Firebase
-    database
+    This XML file designs the layout for the 'LanguageSelect.class'
+    This XML file defines an 'ImageView' to display the VéL app logo,
+    a'TextView' that displays a String of text to the user and finally
+    a 'ListView' which has the abilty to change the language of the app.
 -->
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.user.vel.VehicleSpec"
-    android:background="@drawable/gradient_background">
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="20dp"
+    android:background="@drawable/gradient_background"
+    tools:context="com.example.user.vel.LanguageSelect">
 
     <ImageView
         android:contentDescription="@string/imagedesc"
         android:id="@+id/vel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
         android:maxHeight="300dp"
         android:maxWidth="300dp"
         android:src="@drawable/vel"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center">
+    </ImageView>
 
     <TextView
         android:textColor="@color/black"
-        android:id="@+id/ChooseMake"
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:layout_gravity="center_horizontal"
-        android:text="@string/CarChoice"
+        android:layout_margin="20dp"
+        android:text="@string/Pick"
         android:textSize="20sp">
     </TextView>
 
     <ListView
-        android:id="@+id/listview2"
+        android:id="@+id/Lang"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
-
 </android.support.v7.widget.LinearLayoutCompat>

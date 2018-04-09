@@ -58,13 +58,6 @@ public class Graphview extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the settings option is selected, user will be re-directed to setting screen
-        if (option_id == R.id.action_settings)
-        {
-            Intent settings_intent = new Intent(Graphview.this, SettingsActivity.class);
-            startActivity(settings_intent);
-        }//End if()
-
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {

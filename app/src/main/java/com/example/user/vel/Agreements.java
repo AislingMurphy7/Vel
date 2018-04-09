@@ -1,8 +1,3 @@
-/*
-This class displays information informing the user
-of when it is safe to use the application. The user is then
-required to state if they agree or disagree with the message
-*/
 package com.example.user.vel;
 
 import android.content.Intent;
@@ -12,6 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+/*
+This class displays information informing the user
+of when it is safe to use the application. The user is then
+required to state if they agree or disagree with the message
+*/
 
 public class Agreements extends AppCompatActivity
 {
@@ -64,13 +65,6 @@ public class Agreements extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the settings option is selected, user will be re-directed to setting screen
-        if (option_id == R.id.action_settings)
-        {
-            Intent Settings_intent = new Intent(Agreements.this, SettingsActivity.class);
-            startActivity(Settings_intent);
-        }//End if()
-
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {

@@ -1,7 +1,3 @@
-/*
-This class retrieves data from a database stored on Firebase and places this data into a Listview.
-From the listview the user can select which Vehicle they would like to view
- */
 package com.example.user.vel;
 
 import android.content.Intent;
@@ -21,6 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+
+/*
+This class retrieves data from a database stored on Firebase and places this data into a ListView.
+From the ListView the user can select which Vehicle they would like to view
+ */
 
 public class VehicleSpec extends AppCompatActivity
 {
@@ -142,13 +143,6 @@ public class VehicleSpec extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int id = item.getItemId();
-        //If the settings option is selected, user will be re-directed to setting screen
-        if (id == R.id.action_settings)
-        {
-            Intent intent = new Intent(VehicleSpec.this, SettingsActivity.class);
-            startActivity(intent);
-        }//End if()
-
         //If the language option is selected, user will be re-directed to language screen
         if (id == R.id.action_Language)
         {

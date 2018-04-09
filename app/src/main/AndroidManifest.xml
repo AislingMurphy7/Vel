@@ -24,15 +24,14 @@
         <activity android:name=".UserHelp" />
         <activity android:name=".VehicleSpec" />
         <activity android:name=".Graphview" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
         <activity android:name=".Audi" />
         <activity android:name=".Ford" />
         <activity android:name=".BMW" />
         <activity android:name=".Renault" />
         <activity android:name=".Toyota" />
         <activity android:name=".volkswagen" />
+        <activity android:name=".LanguageSelect" />
+
     </application>
 
 </manifest>

@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     This XML file designs the layout for the 'OBDinfo.class'
-    This XML file defines a 'ScrollView' to to allow the screen to scroll.
-    An 'ImageView' to display the VéL app logo, Three 'TextViews' that
-    display Strings of text to the user and finally a 'Button' which
-    redirects the user to a new screen.
+    This XML file defines an 'ImageView' to display the VéL app logo,
+    Three 'TextViews' that display Strings of text to the user and
+    finally a 'Button' which redirects the user to a new screen.
 -->
-
     <android.support.v7.widget.LinearLayoutCompat
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingBottom="30dp"
         android:paddingLeft="20dp"
@@ -34,12 +32,11 @@
             <TextView
                 android:textColor="@color/black"
                 android:id="@+id/OBD_text1"
-                android:layout_below="@+id/vel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
                 android:textSize="20sp"
+                android:paddingTop="20dp"
                 android:text="@string/OBD"/>
 
             <TextView
@@ -50,22 +47,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="10dp"
+                android:paddingTop="10dp"
                 android:textSize="20sp"
+                android:paddingBottom="15dp"
                 android:text="@string/cars"/>
-
-            <TextView
-                android:textColor="@color/black"
-                android:id="@+id/OBD_text3"
-                android:layout_below="@+id/text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:textSize="20sp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text="@string/ELM">
-            </TextView>
 
             <Button
                 android:textColor="@color/black"

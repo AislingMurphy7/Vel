@@ -8,8 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-/**
- * Created by user on 08/04/2018.
+/*
+
+
  */
 
 public class ViewPagerAdapter3 extends PagerAdapter

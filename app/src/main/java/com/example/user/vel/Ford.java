@@ -1,6 +1,6 @@
 /*
 This class informs the user where to locate the OBD-II port for connecting the ELM-327 device
-to the vehicle. This class informs the users of where the port is located within BMW vehicles.
+to the vehicle. This class informs the users of where the port is located within Ford vehicles.
  */
 package com.example.user.vel;
 
@@ -26,7 +26,7 @@ public class Ford extends AppCompatActivity
 
         //XML ViewPager variable for displaying the Image slider
         ViewPager viewPager = findViewById(R.id.viewPager);
-        //Referencing 'ViewPagerAdapter3.class' to create a new adapter
+        //Referencing 'ViewPagerAdapter4.class' to create a new adapter
         ViewPagerAdapter4 viewPagerAdapter = new ViewPagerAdapter4(this);
         viewPager.setAdapter(viewPagerAdapter);
 
@@ -53,13 +53,6 @@ public class Ford extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the settings option is selected, user will be re-directed to setting screen
-        if (option_id == R.id.action_settings)
-        {
-            Intent settings_intent = new Intent(Ford.this, SettingsActivity.class);
-            startActivity(settings_intent);
-        }//End if()
-
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {

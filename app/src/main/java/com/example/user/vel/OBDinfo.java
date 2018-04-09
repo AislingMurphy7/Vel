@@ -1,8 +1,3 @@
-/*
-This class displays an information screen informing the user
-important information concerning the OBD protocol. Once the user
-has finished reading they can then progress to the next screen
-*/
 package com.example.user.vel;
 
 import android.content.Intent;
@@ -12,6 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+/*
+This class displays an information screen informing the user
+important information concerning the OBD protocol. Once the user
+has finished reading they can then progress to the next screen
+*/
 
 public class OBDinfo extends AppCompatActivity
 {
@@ -49,13 +50,6 @@ public class OBDinfo extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the settings option is selected, user will be re-directed to setting screen
-        if (option_id == R.id.action_settings)
-        {
-            Intent settings_intent = new Intent(OBDinfo.this, SettingsActivity.class);
-            startActivity(settings_intent);
-        }//End if()
-
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {

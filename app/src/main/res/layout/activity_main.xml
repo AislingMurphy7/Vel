@@ -1,47 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    This XML file designs the layout for the 'MainActivity.class'
-    This XML file defines an 'ImageView' to display the VéL app logo,
-    a'TextView' that displays a String of text to the user and finally
-    a 'ListView' which has the abilty to change the language of the app.
--->
-<android.support.v7.widget.LinearLayoutCompat
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="20dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="20dp"
-    android:background="@drawable/gradient_background"
-    tools:context="com.example.user.vel.MainActivity">
+    tools:context="com.example.user.vel.MainActivity"
+    android:background="@drawable/gradient_background">
 
     <ImageView
+        android:id="@+id/splash"
         android:contentDescription="@string/imagedesc"
-        android:id="@+id/vel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxHeight="300dp"
-        android:maxWidth="300dp"
+        android:layout_marginTop="56dp"
+        android:layout_centerInParent="true"
         android:src="@drawable/vel"
-        android:layout_gravity="center">
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="3000">
     </ImageView>
 
-    <TextView
-        android:textColor="@color/black"
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="@string/Pick"
-        android:textSize="20sp">
-    </TextView>
-
-    <ListView
-        android:id="@+id/Lang"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
-</android.support.v7.widget.LinearLayoutCompat>
+</RelativeLayout>

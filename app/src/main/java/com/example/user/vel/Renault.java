@@ -1,7 +1,3 @@
-/*
-This class informs the user where to locate the OBD-II port for connecting the ELM-327 device
-to the vehicle. This class informs the users of where the port is located within Audi vehicles.
- */
 package com.example.user.vel;
 
 import android.content.Intent;
@@ -12,6 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+/*
+This class informs the user where to locate the OBD-II port for connecting the ELM-327 device
+to the vehicle. This class informs the users of where the port is located within Renault vehicles.
+ */
 
 public class Renault extends AppCompatActivity
 {
@@ -26,7 +27,7 @@ public class Renault extends AppCompatActivity
 
         //XML ViewPager variable for displaying the Image slider
         ViewPager viewPager = findViewById(R.id.viewPager);
-        //Referencing 'ViewPagerAdapter.class' to create a new adapter
+        //Referencing 'ViewPagerAdapter5.class' to create a new adapter
         ViewPagerAdapter5 viewPagerAdapter = new ViewPagerAdapter5 (this);
         viewPager.setAdapter(viewPagerAdapter);
 
@@ -53,13 +54,6 @@ public class Renault extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the settings option is selected, user will be re-directed to setting screen
-        if (option_id == R.id.action_settings)
-        {
-            Intent settings_intent = new Intent(Renault.this, SettingsActivity.class);
-            startActivity(settings_intent);
-        }//End if()
-
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {

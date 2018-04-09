@@ -32,8 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
         android:text="@string/warn"
         android:textSize="20sp"/>
 
@@ -45,12 +45,15 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:textSize="20sp"
+        android:paddingStart="10dp"
+        android:paddingEnd="2dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="15dp"
         android:text="@string/NoUse"/>
 
     <Button
         android:textColor="@color/black"
         android:id="@+id/Agree"
-        android:layout_below="@+id/text2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"

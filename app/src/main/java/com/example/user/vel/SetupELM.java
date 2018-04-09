@@ -1,8 +1,3 @@
-/*
-This class displays an information screen informing the user
-important information concerning the ELM-327 device. Once the user
-has finished reading they can then progress to the next screen
-*/
 package com.example.user.vel;
 
 import android.content.Intent;
@@ -12,6 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+/*
+This class displays an information screen informing the user
+important information concerning the ELM-327 device. Once the user
+has finished reading they can then progress to the next screen
+*/
 
 public class SetupELM extends AppCompatActivity
 {
@@ -30,7 +31,7 @@ public class SetupELM extends AppCompatActivity
             //The application moves to the following screen
             public void onClick(View view)
             {
-                Intent intent = new Intent(SetupELM.this, VehicleSpec.class);
+                Intent intent = new Intent(SetupELM.this, Graphview.class);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
@@ -48,13 +49,6 @@ public class SetupELM extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the settings option is selected, user will be re-directed to setting screen
-        if (option_id == R.id.action_settings)
-        {
-            Intent setting_intent = new Intent(SetupELM.this, SettingsActivity.class);
-            startActivity(setting_intent);
-        }//End if()
-
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {
