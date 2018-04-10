@@ -21,7 +21,7 @@
     <string name="Disagree">Jag håller inte med</string>
 
     <string name="OBD"><b><u>OBD-II-kompatibel bil</u></b></string>
-    <string name="cars"><b>•</b>US fordon tillverkad efter 1996. \n\n<b>•</b>EU fordon tillverkad efter 2004. \n\n<b>•</b>JAP fordon tillverkad efter 2005</string>
+    <string name="cars">US fordon tillverkad efter 1996. \n\nEU fordon tillverkad efter 2004. \n\nJAP fordon tillverkad efter 2005</string>
     <string name="next">Nästa</string>
 
     <string name="ElmSet"><b><u>ELM-327 Setup</u></b></string>

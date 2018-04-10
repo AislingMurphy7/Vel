@@ -8,10 +8,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.util.ArrayList;
 
 public class Graphview extends AppCompatActivity
 {
@@ -25,25 +34,55 @@ public class Graphview extends AppCompatActivity
         //Sets the layout according to the XML file
         setContentView(R.layout.activity_graphview);
 
-        //Declaring x & y variables
-        double y,x;
-        //Graph will start at -6
-        x = -5.0;
+        //XML variable
+        ListView listView2 = findViewById(R.id.listviewG);
 
-        //XML variables
-        GraphView graph = findViewById(R.id.graph);
-        series = new LineGraphSeries<>();
+        /*Database variable is getting the connection to the firebase database via google-services
+        JSON file and making reference to the child of "Make"*/
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Make");
 
-        //For loop to loop through & store DataPoints
-        for(int i = 0; i<500; i++)
+        //Holds the valuse gathered from firebase
+        final ArrayList<String> carlist = new ArrayList<>();
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.itemview, carlist);
+        //Set the ArrayAdapter to the listview
+        listView2.setAdapter(arrayAdapter);
+
+        //ChildEventListener allows child events to be listened for
+        database.addChildEventListener(new ChildEventListener()
         {
-            x = x + 0.01;
-            //Function for graph
-            y = Math.sin(x);
-            series.appendData(new DataPoint(x, y), true, 500);
-        }//End For()
+            //Will run when the app is started and when there is data added to the database
+            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            {
+                //Holds the Datasnapshot value of the database as type String
+                String value = dataSnapshot.getValue(String.class);
 
-        graph.addSeries(series);
+                //Add the info retrieved from datasnapshot into the ArrayList
+                carlist.add(value);
+                //Will refresh app when the data changes in the database
+                arrayAdapter.notifyDataSetChanged();
+            }//End onChildAdded()
+            //Will run when data within the database is changed/edited
+            public void onChildChanged(DataSnapshot dataSnapshot, String s)
+            {
+
+            }//End onChildChanged()
+            //Will run when data within the database is removed
+            public void onChildRemoved(DataSnapshot dataSnapshot)
+            {
+
+            }//End onChildRemoved()
+            //Will run when data within the database is moved to different location
+            public void onChildMoved(DataSnapshot dataSnapshot, String s)
+            {
+
+            }//End onChildMoved()
+            //Will run when any sort of error occurs
+            public void onCancelled(DatabaseError databaseError)
+            {
+
+            }//End onCancelled()
+
+        });
     }//End onCreate()
 
     //Function creates the dropdown toolbar menu

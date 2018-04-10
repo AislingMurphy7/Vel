@@ -20,7 +20,7 @@
     <string name="Disagree">I Disagree</string>
 
     <string name="OBD"><b><u>OBD-II Compliant Car</u></b></string>
-    <string name="cars"><b>•</b> US vehicles manufactured after 1996. \n\n<b>•</b> EU vehicles manufactured after 2004. \n\n<b>•</b> JAP vehicles manufactured after 2005</string>
+    <string name="cars">US vehicles manufactured after 1996. \n\nEU vehicles manufactured after 2004. \n\nJAP vehicles manufactured after 2005</string>
     <string name="next">Next</string>
 
     <string name="ElmSet"><b><u>ELM-327 Setup</u></b></string>

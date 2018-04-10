@@ -21,7 +21,7 @@
     <string name="Disagree">Я не согласен</string>
 
     <string name="OBD"><b><u>Совместимый автомобиль OBD-II</u></b></string>
-    <string name="cars"><b>•</b>US, изготовленные после 1996 года. Автомобили \n\n<b>•</b>EU, выпущенные после 2004 года. \n\n<b>•</b>JAP-транспортные средства, выпущенные после 2005 года</string>
+    <string name="cars">US, изготовленные после 1996 года Автомобили \n\nEU, выпущенные после 2004 года. \n\nAP-транспортные средства, выпущенные после 2005 года</string>
     <string name="next">следующий</string>
 
     <string name="ElmSet"><b><u>Настройка ELM-327</u></b></string>

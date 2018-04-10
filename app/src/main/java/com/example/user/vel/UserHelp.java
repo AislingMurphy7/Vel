@@ -10,9 +10,8 @@ import android.widget.Toast;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
 /*
-
-
-
+This class displays several ExpandableTextViews to the user which
+all contain FAQs and general information concerning the application
  */
 
 public class UserHelp extends AppCompatActivity

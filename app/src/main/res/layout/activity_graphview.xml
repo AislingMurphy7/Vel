@@ -11,11 +11,17 @@
     android:paddingTop="40dp"
     android:background="@drawable/gradient_background"
     tools:context="com.example.user.vel.Graphview">
+
+    <ListView
+        android:id="@+id/listviewG"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
     
-    <com.jjoe64.graphview.GraphView
+    <!--<com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/graph">
-    </com.jjoe64.graphview.GraphView>
+    </com.jjoe64.graphview.GraphView> -->
 
 </android.support.constraint.ConstraintLayout>

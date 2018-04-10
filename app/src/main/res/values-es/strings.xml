@@ -21,7 +21,7 @@
     <string name="Disagree">Estoy en desacuerdo</string>
 
     <string name="OBD"><b><u>Coche Complient OBD-II</u></b></string>
-    <string name="cars"><b>•</b>US vehículos fabricados después de 1996. \n\n<b>•</b>Vehículos de la UE fabricados después de 2004. \n\n<b>•</b>JAP vehículos fabricados después de 2005</string>
+    <string name="cars">US vehículos fabricados después de 1996. \n\nVehículos de la UE fabricados después de 2004. \n\nJAP vehículos fabricados después de 2005</string>
     <string name="next">Siguiente</string>
 
     <string name="ElmSet"><b><u>Configuración ELM-327</u></b></string>

@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
             {
                 try
                 {
-                    sleep(5000);
+                    sleep(4000);
                     super.run();
                 }
                 catch (InterruptedException e)
@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                Intent intent = new Intent(getApplicationContext(), LanguageSelect.class);
+                Intent intent = new Intent(getApplicationContext(), Graphview.class);
                 startActivity(intent);
                 finish();
             }
