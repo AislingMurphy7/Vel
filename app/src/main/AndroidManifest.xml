@@ -31,7 +31,7 @@
         <activity android:name=".Toyota" />
         <activity android:name=".volkswagen" />
         <activity android:name=".LanguageSelect" />
-
+        <activity android:name=".Graph"></activity>
     </application>
 
 </manifest>

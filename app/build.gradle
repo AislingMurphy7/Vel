@@ -32,6 +32,7 @@ dependencies {
     implementation files('libs/GraphView-4.2.1.jar')
     compile 'com.ms-square:expandableTextView:0.1.4'
     compile 'com.android.support:design:26.1.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
 
 
