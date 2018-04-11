@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -16,17 +17,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class Graphview extends AppCompatActivity
 {
-
-    //Declare LineGrapheSeries of type Datapoint
-    LineGraphSeries<DataPoint> series;
+    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -35,18 +33,141 @@ public class Graphview extends AppCompatActivity
         setContentView(R.layout.activity_graphview);
 
         //XML variable
-        ListView listView2 = findViewById(R.id.listviewG);
+        final ListView listView2 = findViewById(R.id.listviewG);
 
-        /*Database variable is getting the connection to the firebase database via google-services
-        JSON file and making reference to the child of "Make"*/
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("VW_Data").child("0");
 
+       //****Crashes app**//
+       /* DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String Bearing = dataSnapshot.child("VW_Data").child("0").getValue(String.class);
+                arrayList.add(Bearing);
+                arrayAdapter = new ArrayAdapter<String>(Graphview.this, R.layout.itemview, arrayList);
+                listView2.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
+
+
+        //****ATTEMPT 4 -DOESNT CRASH APP***/
+        /*DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("VW_Data");
+
+        ValueEventListener eventListener =  new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String id = dataSnapshot.getKey();
+
+                DatabaseReference keyRef = FirebaseDatabase.getInstance().getReference().child("VW_Data").child(id);
+                ValueEventListener valueEventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                            String bearing = ds.child("Bearing").getValue(String.class);
+                            String Data = ds.child("Data").getValue(String.class);
+                            arrayList.add(bearing);
+                            arrayAdapter = new ArrayAdapter<String>(Graphview.this, android.R.layout.simple_list_item_1, arrayList);
+                            listView2.setAdapter(arrayAdapter);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+                };
+                keyRef.addListenerForSingleValueEvent(valueEventListener);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        database.addListenerForSingleValueEvent(eventListener);
+
+        */
+
+
+
+
+
+        //***ATTEMPT 3***/
+        /*DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("VW_Data");
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot datas : dataSnapshot.getChildren())
+                {
+                    String bearing = (String) datas.child("Bearing").getValue();
+                    arrayList.add(bearing);
+                    arrayAdapter = new ArrayAdapter<String>(Graphview.this, android.R.layout.simple_list_item_1, arrayList);
+                    listView2.setAdapter(arrayAdapter);
+
+                    }
+                }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        }); */
+
+
+
+
+
+
+
+        /****Second Attempt****/
+        /*DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("VW_Data");
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> vert = dataSnapshot.getChildren();
+
+                if (vert != null)
+                {
+                    for (DataSnapshot vertItem : vert){
+                        String bearing = (String) vertItem.child("Bearing").getValue();
+                        arrayList.add(bearing);
+                        arrayAdapter = new ArrayAdapter<String>(Graphview.this, android.R.layout.simple_list_item_1, arrayList);
+                        listView2.setAdapter(arrayAdapter);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        }); */
+
+
+
+
+
+
+        /***WORKING - DISPLAYS "0"*****/
+        /*****From previous activity*****/
         //Holds the valuse gathered from firebase
         final ArrayList<String> carlist = new ArrayList<>();
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.itemview, carlist);
         //Set the ArrayAdapter to the listview
         listView2.setAdapter(arrayAdapter);
 
+        //DatabaseReference database = FirebaseDatabase.getInstance().getReference("/VW_Data/0").child("Bearing:");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("VW_Data").child("0");
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
         {

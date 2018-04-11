@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                Intent intent = new Intent(getApplicationContext(), Graph.class);
+                Intent intent = new Intent(getApplicationContext(), Graphview.class);
                 startActivity(intent);
                 finish();
             }
