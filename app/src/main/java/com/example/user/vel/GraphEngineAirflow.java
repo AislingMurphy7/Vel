@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -35,73 +34,59 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class GraphEngineSpecs extends Activity implements
+public class GraphEngineAirflow extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener {
 
-    private static final String TAG = "GraphEngineSpecs";
+    private static final String TAG = "GraphEngineAirflow";
 
     private LineChart chart;
 
-    ArrayList<Entry> engineloadList = new ArrayList<>();
-    ArrayList<Entry> throttlePositionList = new ArrayList<>();
+    ArrayList<Entry> engineAirflow = new ArrayList<>();
 
-    LineDataSet set1, set2;
+    LineDataSet set1;
 
     LineData data;
 
     protected void onCreate(Bundle savedInstanceState) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineSpecs.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineAirflow.this);
         builder.setCancelable(true);
 
-        builder.setTitle(GraphEngineSpecs.this.getString(R.string.engine_load_title));
-        builder.setMessage(GraphEngineSpecs.this.getString(R.string.engine_load_def));
+        builder.setTitle(GraphEngineAirflow.this.getString(R.string.engine_airflow_title));
+        builder.setMessage(GraphEngineAirflow.this.getString(R.string.engine_airflow_def));
 
-        builder.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-
-        AlertDialog.Builder builder3 = new AlertDialog.Builder(GraphEngineSpecs.this);
-        builder3.setCancelable(true);
-
-        builder3.setTitle(GraphEngineSpecs.this.getString(R.string.engine_throttle_title));
-        builder3.setMessage(GraphEngineSpecs.this.getString(R.string.engine_throttle_def));
-
-        builder3.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(GraphEngineAirflow.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineSpecs.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphEngineAirflow.this, VehicleSpec.class);
                 startActivity(intent);
             }
         });
 
-        builder3.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(GraphEngineAirflow.this.getString(R.string.next), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
             }
         });
 
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineSpecs.this);
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineAirflow.this);
         builder2.setCancelable(true);
 
-        builder2.setTitle(GraphEngineSpecs.this.getString(R.string.IMPORTANT));
-        builder2.setMessage(GraphEngineSpecs.this.getString(R.string.throttle_load_info));
+        builder2.setTitle(GraphEngineAirflow.this.getString(R.string.IMPORTANT));
+        builder2.setMessage(GraphEngineAirflow.this.getString(R.string.airflow_info));
 
-        builder2.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+        builder2.setNegativeButton(GraphEngineAirflow.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineSpecs.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphEngineAirflow.this, VehicleSpec.class);
                 startActivity(intent);
             }
         });
 
-        builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.next), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -109,17 +94,16 @@ public class GraphEngineSpecs extends Activity implements
         });
 
         builder2.show();
-        builder3.show();
         builder.show();
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_graph_enginespec);
+        setContentView(R.layout.activity_graph_engine_airflow);
 
         chart = findViewById(R.id.linechart);
 
-        chart.setOnChartGestureListener(GraphEngineSpecs.this);
-        chart.setOnChartValueSelectedListener(GraphEngineSpecs.this);
+        chart.setOnChartGestureListener(GraphEngineAirflow.this);
+        chart.setOnChartValueSelectedListener(GraphEngineAirflow.this);
 
         //enable touch gestures
         chart.setTouchEnabled(true);
@@ -137,7 +121,7 @@ public class GraphEngineSpecs extends Activity implements
 
         YAxis left = chart.getAxisLeft();
         left.setAxisMinimum(0f);
-        left.setAxisMaximum(100f);
+        left.setAxisMaximum(50f);
         left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
 
@@ -145,7 +129,6 @@ public class GraphEngineSpecs extends Activity implements
         left2.setEnabled(false);
 
         chart.getAxisRight().setEnabled(false);
-
 
         String[] vals = new String[] {"0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s"};
 
@@ -159,33 +142,21 @@ public class GraphEngineSpecs extends Activity implements
         XAxis x = chart.getXAxis();
         x.setTextSize(13f);
         x.setValueFormatter(new MyXAxisValueFormatter(vals));
-        x.setGranularity(2);
+        x.setGranularity(1);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
 
 
-        engineloadList.add(new Entry(0, 0));
-        engineloadList.add(new Entry(1, 0));
+        engineAirflow.add(new Entry(0, 0));
+        engineAirflow.add(new Entry(1, 0));
 
-
-        throttlePositionList.add(new Entry(0, 0));
-        throttlePositionList.add(new Entry(1, 0));
-
-
-        set1 = new LineDataSet(engineloadList, "Engine Load ");
+        set1 = new LineDataSet(engineAirflow, "Engine AirFlow ");
         set1.setFillAlpha(110);
         set1.setColor(Color.RED);
         set1.setLineWidth(3f);
         set1.setValueTextSize(10f);
         set1.setValueTextColor(Color.BLACK);
 
-        set2 = new LineDataSet(throttlePositionList, "Throttle Position ");
-        set2.setFillAlpha(110);
-        set2.setColor(Color.BLUE);
-        set2.setLineWidth(3f);
-        set2.setValueTextSize(10f);
-        set2.setValueTextColor(Color.BLACK);
-
-        data = new LineData(set1, set2);
+        data = new LineData(set1);
 
         chart.setData(data);
 
@@ -196,7 +167,7 @@ public class GraphEngineSpecs extends Activity implements
 
     private void downloadData()
     {
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_temp_specs);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_engine_airflow);
         //Set the ArrayAdapter to the listview
 
         //DatabaseReference database = FirebaseDatabase.getInstance().getReference("/VehicleData/0").child("Bearing:");
@@ -209,8 +180,7 @@ public class GraphEngineSpecs extends Activity implements
             {
                 //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
-                System.out.println("getEngineLoad: " + vehicleData.getEngineLoad());
-                System.out.println("getThrottlePosition: " + vehicleData.getThrottlePosition());
+                System.out.println("getmassAirflowRate: " + vehicleData.getMassAirflowRate());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
                 //Add the info retrieved from datasnapshot into the ArrayList
@@ -245,11 +215,8 @@ public class GraphEngineSpecs extends Activity implements
     private void setData(int key, VehicleData vehicleData)
     {
         System.out.println("Using key: " + key);
-        System.out.println("Setting Engine Load: " + vehicleData.getEngineLoad());
-        engineloadList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineLoad())));
-
-        System.out.println("Setting Throttle Position: " + vehicleData.getThrottlePosition());
-        throttlePositionList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getThrottlePosition())));
+        System.out.println("Setting Mass Intake Airflow Rate: " + vehicleData.getMassAirflowRate());
+        engineAirflow.add(new Entry(key + 2, Float.parseFloat(vehicleData.getMassAirflowRate())));
 
         set1.notifyDataSetChanged();
         data.notifyDataChanged();
@@ -322,12 +289,5 @@ public class GraphEngineSpecs extends Activity implements
     public void onNothingSelected() {
         Log.i(TAG, "onNothingSelected: ");
     }
-
-    //Function creates the dropdown toolbar menu
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.options, menu);
-        return super.onCreateOptionsMenu(menu);
-    }//End onCreateOptionMenu()
 
 }

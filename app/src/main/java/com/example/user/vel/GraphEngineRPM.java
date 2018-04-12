@@ -1,13 +1,13 @@
 package com.example.user.vel;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -34,31 +34,76 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class Graph3 extends Activity implements
+public class GraphEngineRPM extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener {
 
-    private static final String TAG = "GraphTempSpecs";
+    private static final String TAG = "GraphEngineRPM";
 
     private LineChart chart;
 
     ArrayList<Entry> engineRPMlist = new ArrayList<>();
-    ArrayList<Entry> massAirflowList = new ArrayList<>();
 
-    LineDataSet set1, set2;
+    LineDataSet set1;
 
     LineData data;
 
     protected void onCreate(Bundle savedInstanceState) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineRPM.this);
+        builder.setCancelable(true);
+
+        builder.setTitle(GraphEngineRPM.this.getString(R.string.engine_rpm_title));
+        builder.setMessage(GraphEngineRPM.this.getString(R.string.engine_rpm_def));
+
+        builder.setNegativeButton(GraphEngineRPM.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+                Intent intent = new Intent(GraphEngineRPM.this, VehicleSpec.class);
+                startActivity(intent);
+            }
+        });
+
+        builder.setPositiveButton(GraphEngineRPM.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineRPM.this);
+        builder2.setCancelable(true);
+
+        builder2.setTitle(GraphEngineRPM.this.getString(R.string.IMPORTANT));
+        builder2.setMessage(GraphEngineRPM.this.getString(R.string.rpm_info));
+
+        builder2.setNegativeButton(GraphEngineRPM.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+                Intent intent = new Intent(GraphEngineRPM.this, VehicleSpec.class);
+                startActivity(intent);
+            }
+        });
+
+        builder2.setPositiveButton(GraphEngineRPM.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder2.show();
+        builder.show();
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_graph3);
+        setContentView(R.layout.activity_graph_engine_rpm);
 
         chart = findViewById(R.id.linechart);
 
-        chart.setOnChartGestureListener(Graph3.this);
-        chart.setOnChartValueSelectedListener(Graph3.this);
+        chart.setOnChartGestureListener(GraphEngineRPM.this);
+        chart.setOnChartValueSelectedListener(GraphEngineRPM.this);
 
         //enable touch gestures
         chart.setTouchEnabled(true);
@@ -104,11 +149,6 @@ public class Graph3 extends Activity implements
         engineRPMlist.add(new Entry(0, 0));
         engineRPMlist.add(new Entry(1, 0));
 
-
-        massAirflowList.add(new Entry(0, 0));
-        massAirflowList.add(new Entry(1, 0));
-
-
         set1 = new LineDataSet(engineRPMlist, "Engine RPM ");
         set1.setFillAlpha(110);
         set1.setColor(Color.RED);
@@ -116,14 +156,8 @@ public class Graph3 extends Activity implements
         set1.setValueTextSize(10f);
         set1.setValueTextColor(Color.BLACK);
 
-        set2 = new LineDataSet(massAirflowList, "Mass Airflow Rate ");
-        set2.setFillAlpha(110);
-        set2.setColor(Color.BLUE);
-        set2.setLineWidth(3f);
-        set2.setValueTextSize(10f);
-        set2.setValueTextColor(Color.BLACK);
 
-        data = new LineData(set1, set2);
+        data = new LineData(set1);
 
         chart.setData(data);
 
@@ -134,7 +168,7 @@ public class Graph3 extends Activity implements
 
     private void downloadData()
     {
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_engine_rpm);
         //Set the ArrayAdapter to the listview
 
         //DatabaseReference database = FirebaseDatabase.getInstance().getReference("/VehicleData/0").child("Bearing:");
@@ -148,7 +182,6 @@ public class Graph3 extends Activity implements
                 //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
                 System.out.println("getEngineRPM: " + vehicleData.getEngineRPM());
-                System.out.println("getMassAirflowRate: " + vehicleData.getMassAirflowRate());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
                 //Add the info retrieved from datasnapshot into the ArrayList
@@ -186,14 +219,10 @@ public class Graph3 extends Activity implements
         System.out.println("Setting EngineRPM: " + vehicleData.getEngineRPM());
         engineRPMlist.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineRPM())));
 
-        System.out.println("setting Mass Airflow Rate: " + vehicleData.getMassAirflowRate());
-        massAirflowList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getMassAirflowRate())));
-
         set1.notifyDataSetChanged();
         data.notifyDataChanged();
         this.chart.notifyDataSetChanged();
         chart.invalidate();
-
 
     }
 
@@ -213,9 +242,6 @@ public class Graph3 extends Activity implements
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
         Log.i(TAG, "onChartGestureStart: X:" + me.getX() + "Y:" + me.getY());
-        Toast toast = Toast.makeText(this, "onChartGestureStart: X:" + me.getX() + "Y:" + me.getY(), Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP, 0, 20);
-        toast.show();
     }
 
     @Override
@@ -241,19 +267,16 @@ public class Graph3 extends Activity implements
     @Override
     public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
         Log.i(TAG, "onChartFling: veloX: " + velocityX + "veloY" + velocityY);
-        Toast.makeText(this, "onChartFling: veloX: " + velocityX + "veloY" + velocityY, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
         Log.i(TAG, "onChartScale: ScaleX: " + scaleX + "ScaleY: " + scaleY);
-        Toast.makeText(this, "onChartScale: ScaleX: " + scaleX + "ScaleY: " + scaleY, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onChartTranslate(MotionEvent me, float dX, float dY) {
         Log.i(TAG, "onChartTranslate: dX" + dX + "dY" + dY);
-        Toast.makeText(this, "onChartTranslate: dX" + dX + "dY" + dY, Toast.LENGTH_SHORT).show();
     }
 
     @Override

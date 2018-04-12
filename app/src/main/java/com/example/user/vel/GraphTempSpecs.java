@@ -1,13 +1,13 @@
 package com.example.user.vel;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -50,10 +50,70 @@ public class GraphTempSpecs extends Activity implements
 
     protected void onCreate(Bundle savedInstanceState) {
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(GraphTempSpecs.this);
+        builder.setCancelable(true);
+
+        builder.setTitle(GraphTempSpecs.this.getString(R.string.engine_coolant_title));
+        builder.setMessage(GraphTempSpecs.this.getString(R.string.engine_coolant_def));
+
+        builder.setPositiveButton(GraphTempSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog.Builder builder3 = new AlertDialog.Builder(GraphTempSpecs.this);
+        builder3.setCancelable(true);
+
+        builder3.setTitle(GraphTempSpecs.this.getString(R.string.engine_air_intake_title));
+        builder3.setMessage(GraphTempSpecs.this.getString(R.string.engine_air_intake_def));
+
+        builder3.setNegativeButton(GraphTempSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+                Intent intent = new Intent(GraphTempSpecs.this, VehicleSpec.class);
+                startActivity(intent);
+            }
+        });
+
+        builder3.setPositiveButton(GraphTempSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphTempSpecs.this);
+        builder2.setCancelable(true);
+
+        builder2.setTitle(GraphTempSpecs.this.getString(R.string.IMPORTANT));
+        builder2.setMessage(GraphTempSpecs.this.getString(R.string.coolant_airintake_info));
+
+        builder2.setNegativeButton(GraphTempSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+                Intent intent = new Intent(GraphTempSpecs.this, VehicleSpec.class);
+                startActivity(intent);
+            }
+        });
+
+        builder2.setPositiveButton(GraphTempSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder2.show();
+        builder3.show();
+        builder.show();
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_graph);
+        setContentView(R.layout.activity_graph_temp_specs);
 
         chart = findViewById(R.id.linechart);
 
@@ -136,7 +196,7 @@ public class GraphTempSpecs extends Activity implements
 
     private void downloadData()
     {
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_temp_specs);
         //Set the ArrayAdapter to the listview
 
         //DatabaseReference database = FirebaseDatabase.getInstance().getReference("/VehicleData/0").child("Bearing:");
@@ -215,9 +275,6 @@ public class GraphTempSpecs extends Activity implements
     @Override
     public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
         Log.i(TAG, "onChartGestureStart: X:" + me.getX() + "Y:" + me.getY());
-        Toast toast = Toast.makeText(this, "onChartGestureStart: X:" + me.getX() + "Y:" + me.getY(), Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.TOP, 0, 20);
-        toast.show();
     }
 
     @Override
@@ -243,19 +300,16 @@ public class GraphTempSpecs extends Activity implements
     @Override
     public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
         Log.i(TAG, "onChartFling: veloX: " + velocityX + "veloY" + velocityY);
-        Toast.makeText(this, "onChartFling: veloX: " + velocityX + "veloY" + velocityY, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
         Log.i(TAG, "onChartScale: ScaleX: " + scaleX + "ScaleY: " + scaleY);
-        Toast.makeText(this, "onChartScale: ScaleX: " + scaleX + "ScaleY: " + scaleY, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onChartTranslate(MotionEvent me, float dX, float dY) {
         Log.i(TAG, "onChartTranslate: dX" + dX + "dY" + dY);
-        Toast.makeText(this, "onChartTranslate: dX" + dX + "dY" + dY, Toast.LENGTH_SHORT).show();
     }
 
     @Override

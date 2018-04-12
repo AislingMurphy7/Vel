@@ -33,21 +33,25 @@
 
     <string name="ModelChoice"><b>Please select vehicle model: </b></string>
 
-    <string name="FAQ">SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
-        SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
-        SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT</string>
+    <string name="FAQ"><b><u>Does My Car have OBD-II?</u></b> \n\nAll 1996 and newer vehicles, both petrol and diesel fuel passenger vehicles. The vehicles are required to have OBD-II systems. To verify that your
+        vehicle is equipped with OBD II, you can look for the words "OBD II" on the emission control information label attached to the underside of the vehicle hood</string>
 
-    <string name="FAQ1">SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
-        SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
-        SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT</string>
+    <string name="FAQ1"><b><u>What is the Engine RPM sensor?</u></b> \n\nRPM means "Revolutions Per Minute". It measures the number of times the Crankshaft rotates in the engine. when combustion
+    (aka The vehicle is started) in the engine cylinder occurs, the pistons begin moving up and down. The motion this creates is sent to the Crankshaft and this motion is what is
+        measured as RPM</string>
 
-    <string name="FAQ2">SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
-        SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
-        SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT</string>
+    <string name="FAQ2"><b><u>What is the Engine Load sensor? </u></b> \n\n The Manifold Absolute Pressure (MAP) sensor. Engine load is the amount of vacuum in the intake
+    manifold. The reading drops when the throttle is open (when vehicle is accelerating)</string>
 
-    <string name="FAQ3">SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
-        SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT
-        SAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXTSAMPLETEXT</string>
+    <string name="FAQ3"><b><u>What is the Coolant Temperature sensor?</u></b> \n\nA CTS is used to measure the temperature of the coolant in the cooling system of a vehicle. This sensor gives off a reading indicating how
+    much heat the engine is giving off. The ECU uses this sensor to keep the engine temperature down by adjusting the fuel injection, fuel mix and when the electric fan is switched on and off.</string>
+
+    <string name="FAQ4"><b><u>What is the Mass Airflow Rate sensor?</u></b> \n\nThis sensor is used to find out the mass flow rate of air that is entering an engine. This sensor is required to help balance and deliver
+    the correct fuel mass to the engine, due to the fact that air changes its density with temperature and pressure.</string>
+
+    <string name="FAQ5"><b><u>What is the Throttle Position sensor? </u></b>\n\nThis sensor is used to monitor the throttle position of a vehicle. </string>
+    
+    <string name="FAQ6"><b><u>What is the Engine Air Temperature sensor?</u></b> \n\nThis sensor monitors the temperature of the air entering the engine.</string>
 
     <string name="Audi_Head"><b><u>Audi Vehicles OBD-II port location</u></b></string>
     <string name="Bmw_Head"><b><u>BMW Vehicles OBD-II port location</u></b></string>
@@ -62,7 +66,36 @@
 
     <string name="temp_specs">View Engine Temperatures</string>
     <string name="throttle_load">View Engine / Throttle</string>
-    <string name="Final_specs">View Final specs</string>
+    <string name="RPM">View Engine RPM</string>
+    <string name="mass_air">View Mass Airflow Rate</string>
+
+    <string name="engine_rpm_def"> Engine RPM is defined as Revolutions per minute \nThis measures how fast
+    a vehicle is operating by measuring how many times crankshaft does a full rotation. </string>
+    <string name="engine_rpm_title">Engine RPM definition</string>
+    <string name="cancel">Cancel</string>
+    <string name="IMPORTANT">DATA MESSAGE</string>
+    <string name="rpm_info">Data received from database show: \nEngine RPM is: NORMAL</string>
+    <string name="engine_airflow_def">The Mass Airflow Rate is the rate of air entering an engine. This is needed
+    to balance and deliver the correct fuel mass to an engine</string>
+    <string name="engine_airflow_title">Engine Mass Airflow Rate definition</string>
+    <string name="airflow_info">Data received from database show: \nMass Airflow Rate is: NORMAL</string>
+    <string name="engine_coolant_title">Coolant Temperature definition</string>
+    <string name="engine_air_intake_def">The Air Intake Temperature sensor monitors the temperature of the air
+    entering the engine. This reading is required to estimate air density so it can balance air/fuel mixture.</string>
+    <string name="engine_coolant_def">Coolant is a liquid required within a vehicles engine to absorbed
+    heat from an engine to avoid overheating out damage. If the coolant temperature rises this means that
+    there is a possibility that the engine is: \n1). Overheating \n2). Coolant levels are low</string>
+    <string name="engine_air_intake_title">Air Intake Temperature definition</string>
+    <string name="coolant_airintake_info">Data received from database show: \nEngine Coolant Temperature is:
+        NORMAL \nAir Intake Temperature is: NORMAL</string>
+    <string name="engine_load_title">Engine Load definition</string>
+    <string name="engine_load_def">The MAP sensor reads the engine load. Engine load is the amount of vacuum in the intake
+    manifold. The reading drops when the throttle is open (when vehicle is accelerating)</string>
+    <string name="engine_throttle_title">Throttle position definition</string>
+    <string name="engine_throttle_def">Throttle Position sensor monitors the throttle position of a vehicle</string>
+    <string name="throttle_load_info">Data received from database show: \nEngine Load is:
+        NORMAL \nThrottle position is: NORMAL</string>
+
 
     <string name="help">Help</string>
     <string name="lang">Language</string>

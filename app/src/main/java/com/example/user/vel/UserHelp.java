@@ -31,6 +31,12 @@ public class UserHelp extends AppCompatActivity
         expandableTextView2.setText(getString(R.string.FAQ2));
         ExpandableTextView expandableTextView3 = findViewById(R.id.expand_text_view3);
         expandableTextView3.setText(getString(R.string.FAQ3));
+        ExpandableTextView expandableTextView4 = findViewById(R.id.expand_text_view4);
+        expandableTextView4.setText(getString(R.string.FAQ4));
+        ExpandableTextView expandableTextView5 = findViewById(R.id.expand_text_view5);
+        expandableTextView5.setText(getString(R.string.FAQ5));
+        ExpandableTextView expandableTextView6 = findViewById(R.id.expand_text_view6);
+        expandableTextView6.setText(getString(R.string.FAQ6));
     }//End onCreate()
 
     //Function creates the dropdown toolbar menu

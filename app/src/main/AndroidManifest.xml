@@ -32,7 +32,10 @@
         <activity android:name=".LanguageSelect" />
         <activity android:name=".GraphTempSpecs" />
         <activity android:name=".GraphEngineSpecs" />
-        <activity android:name=".Graph3" />
+        <activity android:name=".GraphEngineRPM" />
+        <activity android:name=".GraphEngineAirflow"></activity>
+
+
     </application>
 
 </manifest>

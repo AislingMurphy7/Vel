@@ -94,7 +94,17 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:text="@string/next">
+            android:text="@string/RPM">
+        </Button>
+
+        <Button
+            android:textColor="@color/black"
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/mass_air">
         </Button>
     </LinearLayout>
 </ScrollView>
