@@ -24,6 +24,7 @@ public class OBDinfo extends AppCompatActivity
 
         //XML variables
         Button next = findViewById(R.id.bt1);
+        Button elmSetup = findViewById(R.id.bt2);
 
         //When the user selects the 'next' button
         next.setOnClickListener(new View.OnClickListener()
@@ -32,6 +33,17 @@ public class OBDinfo extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(OBDinfo.this, VehicleSpec.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End OnClickListener()
+
+        //When the user selects the 'next' button
+        elmSetup.setOnClickListener(new View.OnClickListener()
+        {
+            //The application moves to the following screen
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(OBDinfo.this, SetupELM.class);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()

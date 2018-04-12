@@ -31,7 +31,7 @@ public class SetupELM extends AppCompatActivity
             //The application moves to the following screen
             public void onClick(View view)
             {
-                Intent intent = new Intent(SetupELM.this, Graphview.class);
+                Intent intent = new Intent(SetupELM.this, GraphTempSpecs.class);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()

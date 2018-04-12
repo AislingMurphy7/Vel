@@ -5,68 +5,97 @@
     which displays a string to the user and finally a 'Button' which
     redirects the user to a new screen
 -->
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
-    tools:context="com.example.user.vel.BMW"
-    android:background="@drawable/gradient_background"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background">
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="20dp"
-        android:paddingBottom="20dp"
-        android:text="@string/Bmw_Head"
-        android:textColor="@color/black"
-        android:textSize="20sp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/slider_text"
-        android:layout_margin="10dp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:paddingBottom="10dp"
-        android:text="@string/slider_text"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content">
-    </TextView>
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/bmwviewPager"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp">
-    </android.support.v4.view.ViewPager>
-
-    <TextView
-        android:textColor="@color/black"
-        android:id="@+id/bmw_port"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        android:text="@string/under_wheel"
-        android:textSize="20sp"
-        android:padding="10dp">
-    </TextView>
-
-    <Button
-        android:textColor="@color/black"
-        android:id="@+id/button"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="@string/next">
-    </Button>
-</LinearLayout>
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        tools:context="com.example.user.vel.BMW"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp"
+            android:paddingBottom="20dp"
+            android:text="@string/Bmw_Head"
+            android:textColor="@color/black"
+            android:textSize="20sp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/slider_text"
+            android:layout_margin="10dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:paddingBottom="10dp"
+            android:text="@string/slider_text"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content">
+        </TextView>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/bmwviewPager"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp">
+        </android.support.v4.view.ViewPager>
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/bmw_port"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="@string/under_wheel"
+            android:textSize="20sp"
+            android:padding="10dp">
+        </TextView>
+
+        <Button
+            android:textColor="@color/black"
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/temp_specs">
+        </Button>
+
+        <Button
+            android:textColor="@color/black"
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/throttle_load">
+        </Button>
+
+        <Button
+            android:textColor="@color/black"
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/next">
+        </Button>
+    </LinearLayout>
+</ScrollView>

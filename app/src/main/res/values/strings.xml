@@ -22,6 +22,7 @@
     <string name="OBD"><b><u>OBD-II Compliant Car</u></b></string>
     <string name="cars">US vehicles manufactured after 1996. \n\nEU vehicles manufactured after 2004. \n\nJAP vehicles manufactured after 2005</string>
     <string name="next">Next</string>
+    <string name="elmInstrut">ELM-327 Setup</string>
 
     <string name="ElmSet"><b><u>ELM-327 Setup</u></b></string>
     <string name="instruct"><b><u><i>Step 1</i></u></b> \nPlug adapter into OBD-II 16-pin port. \n\n<b><u><i>Step 2</i></u></b> \nEnsure green light flashes on adapter.
@@ -58,6 +59,10 @@
     <string name="slider_text">Swipe images below to view OBD locations and supported vehicles</string>
     <string name="under_wheel">The 16 Pin OBD-II port is located in driver side foot-well underneath the
     steering wheel of the vehicle</string>
+
+    <string name="temp_specs">View Engine Temperatures</string>
+    <string name="throttle_load">View Engine / Throttle</string>
+    <string name="Final_specs">View Final specs</string>
 
     <string name="help">Help</string>
     <string name="lang">Language</string>

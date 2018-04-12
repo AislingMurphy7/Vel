@@ -1,10 +1,13 @@
 package com.example.user.vel;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -13,7 +16,6 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -32,15 +34,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class Graph extends Activity implements
+public class GraphEngineSpecs extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener {
 
-    private static final String TAG = "Graph";
+    private static final String TAG = "GraphEngineSpecs";
 
     private LineChart chart;
 
-    ArrayList<Entry> coolantTemperatureList = new ArrayList<>();
-    ArrayList<Entry> engineRPMList = new ArrayList<>();
+    ArrayList<Entry> engineloadList = new ArrayList<>();
+    ArrayList<Entry> throttlePositionList = new ArrayList<>();
 
     LineDataSet set1, set2;
 
@@ -51,12 +53,12 @@ public class Graph extends Activity implements
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_graph);
+        setContentView(R.layout.activity_graph_enginespec);
 
         chart = findViewById(R.id.linechart);
 
-        chart.setOnChartGestureListener(Graph.this);
-        chart.setOnChartValueSelectedListener(Graph.this);
+        chart.setOnChartGestureListener(GraphEngineSpecs.this);
+        chart.setOnChartValueSelectedListener(GraphEngineSpecs.this);
 
         //enable touch gestures
         chart.setTouchEnabled(true);
@@ -72,26 +74,11 @@ public class Graph extends Activity implements
         //background
         chart.setBackgroundColor(Color.LTGRAY);
 
-        LimitLine upper = new LimitLine(65f, "TOO HIGH");
-        upper.setLineWidth(4f);
-        upper.enableDashedLine(10f,10f, 10f);
-        upper.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
-        upper.setTextSize(15f);
-
-        LimitLine lower = new LimitLine(35f, "TOO LOW");
-        lower.setLineWidth(4f);
-        lower.enableDashedLine(10f,10f, 0f);
-        lower.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        lower.setTextSize(15f);
-
         YAxis left = chart.getAxisLeft();
-        left.removeAllLimitLines();
-        left.addLimitLine(upper);
-        left.addLimitLine(lower);
-        ///left.setAxisMinimum(25f);
+        left.setAxisMinimum(0f);
         left.setAxisMaximum(100f);
+        left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
-        left.setDrawLimitLinesBehindData(true);
 
         YAxis left2 = chart.getAxisRight();
         left2.setEnabled(false);
@@ -99,36 +86,38 @@ public class Graph extends Activity implements
         chart.getAxisRight().setEnabled(false);
 
 
-       String[] vals = new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
+        String[] vals = new String[] {"0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s"};
 
         //get legend object
         Legend i = chart.getLegend();
         //cust legend
-        i.setForm(Legend.LegendForm.LINE);
-        i.setTextColor(Color.WHITE);
+        i.setTextSize(15f);
+        i.setForm(Legend.LegendForm.CIRCLE);
+        i.setTextColor(Color.BLACK);
 
         XAxis x = chart.getXAxis();
+        x.setTextSize(13f);
         x.setValueFormatter(new MyXAxisValueFormatter(vals));
-        x.setGranularity(1);
-        x.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
+        x.setGranularity(2);
+        x.setPosition(XAxis.XAxisPosition.BOTTOM);
 
 
-        coolantTemperatureList.add(new Entry(0, 0));
-        coolantTemperatureList.add(new Entry(1, 0));
+        engineloadList.add(new Entry(0, 0));
+        engineloadList.add(new Entry(1, 0));
 
 
-        engineRPMList.add(new Entry(0, 0));
-        engineRPMList.add(new Entry(1, 0));
+        throttlePositionList.add(new Entry(0, 0));
+        throttlePositionList.add(new Entry(1, 0));
 
 
-        set1 = new LineDataSet(coolantTemperatureList, "Data Set1");
+        set1 = new LineDataSet(engineloadList, "Engine Load ");
         set1.setFillAlpha(110);
         set1.setColor(Color.RED);
         set1.setLineWidth(3f);
         set1.setValueTextSize(10f);
         set1.setValueTextColor(Color.BLACK);
 
-        set2 = new LineDataSet(engineRPMList, "Data Set2");
+        set2 = new LineDataSet(throttlePositionList, "Throttle Position ");
         set2.setFillAlpha(110);
         set2.setColor(Color.BLUE);
         set2.setLineWidth(3f);
@@ -146,7 +135,6 @@ public class Graph extends Activity implements
 
     private void downloadData()
     {
-
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph);
         //Set the ArrayAdapter to the listview
 
@@ -160,8 +148,8 @@ public class Graph extends Activity implements
             {
                 //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
-                System.out.println("getCoolantTemperature: " + vehicleData.getCoolantTemperature());
-                System.out.println("getIntakeAirTemperature: " + vehicleData.getIntakeAirTemperature());
+                System.out.println("getEngineLoad: " + vehicleData.getEngineLoad());
+                System.out.println("getThrottlePosition: " + vehicleData.getThrottlePosition());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
                 //Add the info retrieved from datasnapshot into the ArrayList
@@ -196,11 +184,11 @@ public class Graph extends Activity implements
     private void setData(int key, VehicleData vehicleData)
     {
         System.out.println("Using key: " + key);
-        System.out.println("Setting CoolantTemperature: " + vehicleData.getCoolantTemperature());
-        coolantTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getCoolantTemperature())));
+        System.out.println("Setting Engine Load: " + vehicleData.getEngineLoad());
+        engineloadList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineLoad())));
 
-        System.out.println("setting EngineRPM: " + vehicleData.getEngineRPM());
-        engineRPMList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineRPM())));
+        System.out.println("Setting Throttle Position: " + vehicleData.getThrottlePosition());
+        throttlePositionList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getThrottlePosition())));
 
         set1.notifyDataSetChanged();
         data.notifyDataChanged();
@@ -212,7 +200,7 @@ public class Graph extends Activity implements
 
     public class MyXAxisValueFormatter implements IAxisValueFormatter{
         private String[] mVals;
-        public MyXAxisValueFormatter(String[] vals)
+        private MyXAxisValueFormatter(String[] vals)
         {
             this.mVals = vals;
         }
@@ -279,5 +267,12 @@ public class Graph extends Activity implements
     public void onNothingSelected() {
         Log.i(TAG, "onNothingSelected: ");
     }
+
+    //Function creates the dropdown toolbar menu
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.options, menu);
+        return super.onCreateOptionsMenu(menu);
+    }//End onCreateOptionMenu()
 
 }

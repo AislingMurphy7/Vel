@@ -23,7 +23,6 @@
         <activity android:name=".SetupELM" />
         <activity android:name=".UserHelp" />
         <activity android:name=".VehicleSpec" />
-        <activity android:name=".Graphview" />
         <activity android:name=".Audi" />
         <activity android:name=".Ford" />
         <activity android:name=".BMW" />
@@ -31,7 +30,9 @@
         <activity android:name=".Toyota" />
         <activity android:name=".Volkswagen" />
         <activity android:name=".LanguageSelect" />
-        <activity android:name=".Graph"></activity>
+        <activity android:name=".GraphTempSpecs" />
+        <activity android:name=".GraphEngineSpecs" />
+        <activity android:name=".Graph3" />
     </application>
 
 </manifest>

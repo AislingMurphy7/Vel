@@ -24,6 +24,9 @@ public class Volkswagen extends AppCompatActivity
 
         //XML button variable
         Button bt1 = findViewById(R.id.button);
+        Button bt2 = findViewById(R.id.button2);
+        Button bt3 = findViewById(R.id.button3);
+
 
         //XML ViewPager variable for displaying the Image slider
         ViewPager viewPager = findViewById(R.id.viewPager);
@@ -36,7 +39,27 @@ public class Volkswagen extends AppCompatActivity
         {
             public void onClick(View v)
             {
-                Intent intent = new Intent(Volkswagen.this, Graph.class);
+                Intent intent = new Intent(Volkswagen.this, GraphTempSpecs.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+        //If the user taps on the 'Next' button, app will progress to the 'SetupELM' class
+        bt2.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Volkswagen.this, GraphEngineSpecs.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+        //If the user taps on the 'Next' button, app will progress to the 'SetupELM' class
+        bt3.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Volkswagen.this, Graph3.class);
                 startActivity(intent);
             }//End onClick()
         });//End setOnClickListener()
