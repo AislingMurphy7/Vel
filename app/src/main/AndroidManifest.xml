@@ -29,7 +29,7 @@
         <activity android:name=".BMW" />
         <activity android:name=".Renault" />
         <activity android:name=".Toyota" />
-        <activity android:name=".volkswagen" />
+        <activity android:name=".Volkswagen" />
         <activity android:name=".LanguageSelect" />
         <activity android:name=".Graph"></activity>
     </application>

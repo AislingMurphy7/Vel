@@ -96,7 +96,7 @@ public class VehicleSpec extends AppCompatActivity
                 else if(i == 1)
                 {
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(VehicleSpec.this, volkswagen.class);
+                    Intent intent = new Intent(VehicleSpec.this, Volkswagen.class);
                     startActivity(intent);
                 }//End if()
                 //If option(i) is equal to the third row

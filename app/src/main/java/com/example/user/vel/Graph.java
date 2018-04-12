@@ -3,7 +3,6 @@ package com.example.user.vel;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -22,7 +21,6 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -55,7 +53,7 @@ public class Graph extends Activity implements
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_graph);
 
-        chart = (LineChart) findViewById(R.id.linechart);
+        chart = findViewById(R.id.linechart);
 
         chart.setOnChartGestureListener(Graph.this);
         chart.setOnChartValueSelectedListener(Graph.this);
@@ -114,33 +112,13 @@ public class Graph extends Activity implements
         x.setGranularity(1);
         x.setPosition(XAxis.XAxisPosition.BOTH_SIDED);
 
-        ArrayList<Entry> yVal = new ArrayList<>();
-        ArrayList<Entry> yVal2 = new ArrayList<>();
-
 
         coolantTemperatureList.add(new Entry(0, 0));
         coolantTemperatureList.add(new Entry(1, 0));
-        //yVal.add(new Entry(2, 0));
-        //yVal.add(new Entry(3, 3));
-        //yVal.add(new Entry(4, 0));
-        //yVal.add(new Entry(5, 0));
-        //yVal.add(new Entry(6, 1));
-        //yVal.add(new Entry(7, 0));
-        //yVal.add(new Entry(8, 0));
-        //yVal.add(new Entry(9, 0));
-        //yVal.add(new Entry(10, 30));
 
 
         engineRPMList.add(new Entry(0, 0));
         engineRPMList.add(new Entry(1, 0));
-        yVal2.add(new Entry(2, 0));
-        yVal2.add(new Entry(3, 0));
-        yVal2.add(new Entry(4, 0));
-        yVal2.add(new Entry(5, 0));
-        yVal2.add(new Entry(6, 0));
-        yVal2.add(new Entry(7, 0));
-        yVal2.add(new Entry(8, 0));
-        yVal2.add(new Entry(9, 0));
 
 
         set1 = new LineDataSet(coolantTemperatureList, "Data Set1");
@@ -168,8 +146,8 @@ public class Graph extends Activity implements
 
     private void downloadData()
     {
-        final ArrayList<String> carlist = new ArrayList<>();
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.itemview, carlist);
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph);
         //Set the ArrayAdapter to the listview
 
         //DatabaseReference database = FirebaseDatabase.getInstance().getReference("/VehicleData/0").child("Bearing:");

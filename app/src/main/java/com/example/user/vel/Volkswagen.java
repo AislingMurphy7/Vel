@@ -14,7 +14,7 @@ This class informs the user where to locate the OBD-II port for connecting the E
 to the vehicle. This class informs the users of where the port is located within Audi vehicles.
  */
 
-public class volkswagen extends AppCompatActivity
+public class Volkswagen extends AppCompatActivity
 {
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -36,7 +36,7 @@ public class volkswagen extends AppCompatActivity
         {
             public void onClick(View v)
             {
-                Intent intent = new Intent(volkswagen.this, SetupELM.class);
+                Intent intent = new Intent(Volkswagen.this, Graph.class);
                 startActivity(intent);
             }//End onClick()
         });//End setOnClickListener()
@@ -57,14 +57,14 @@ public class volkswagen extends AppCompatActivity
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {
-            Intent language_intent = new Intent(volkswagen.this, MainActivity.class);
+            Intent language_intent = new Intent(Volkswagen.this, MainActivity.class);
             startActivity(language_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
         if (option_id == R.id.action_help)
         {
-            Intent help_intent = new Intent(volkswagen.this, UserHelp.class);
+            Intent help_intent = new Intent(Volkswagen.this, UserHelp.class);
             startActivity(help_intent);
         }//End if()
 
