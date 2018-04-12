@@ -48,7 +48,7 @@ public class VehicleSpec extends AppCompatActivity
         database.addChildEventListener(new ChildEventListener()
         {
             //Will run when the app is started and when there is data added to the database
-            public void onChildAdded(DataSnapshot dataSnapshot, String s)
+            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey)
             {
                 //Holds the Datasnapshot value of the database as type String
                 String value = dataSnapshot.getValue(String.class);
