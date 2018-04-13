@@ -1,0 +1,83 @@
+[
+	{
+		"deviceTime": "47:55.1",
+		"coolantTemperature": "84",
+		"engineRPM": "1147.5",
+		"intakeAirTemperature": "30",
+		"engineLoad": "39.60784531",
+		"massAirflowRate": "2.319999933",
+		"throttlePosition": "24.31372643"
+	},
+	{
+		"deviceTime": "47:56.1",
+		"coolantTemperature": "84",
+		"engineRPM": "1470.25",
+		"intakeAirTemperature": "30",
+		"engineLoad": "43.52941132",
+		"massAirflowRate": "4.179999828",
+		"throttlePosition": "16.86274529"
+	},
+	{
+		"deviceTime": "47:57.1",
+		"coolantTemperature": "84",
+		"engineRPM": "1000",
+		"intakeAirTemperature": "45",
+		"engineLoad": "40.39215851",
+		"massAirflowRate": "4.199999809",
+		"throttlePosition": "16.47058868"
+	},
+	{
+		"deviceTime": "47:58.1",
+		"coolantTemperature": "84",
+		"engineRPM": "943.75",
+		"intakeAirTemperature": "55",
+		"engineLoad": "40.7843132",
+		"massAirflowRate": "4.230000019",
+		"throttlePosition": "16.47058868"
+	},
+	{
+		"deviceTime": "47:59.1",
+		"coolantTemperature": "84",
+		"engineRPM": "860",
+		"intakeAirTemperature": "50",
+		"engineLoad": "42.35294342",
+		"massAirflowRate": "4.139999866",
+		"throttlePosition": "16.47058868"
+	},
+	{
+		"deviceTime": "48:00.1",
+		"coolantTemperature": "84",
+		"engineRPM": "855.25",
+		"intakeAirTemperature": "40",
+		"engineLoad": "44.31372452",
+		"massAirflowRate": "4.170000076",
+		"throttlePosition": "16.47058868"
+	},
+	{
+		"deviceTime": "48:01.1",
+		"coolantTemperature": "84",
+		"engineRPM": "903",
+		"intakeAirTemperature": "35",
+		"engineLoad": "44.31372452",
+		"massAirflowRate": "4.25",
+		"throttlePosition": "20.3921566"
+	},
+	{
+		"deviceTime": "48:02.1",
+		"coolantTemperature": "84",
+		"engineRPM": "1287.5",
+		"intakeAirTemperature": "30",
+		"engineLoad": "44.31372452",
+		"massAirflowRate": "3.819999933",
+		"throttlePosition": "17.64705849"
+	},
+	{
+		"deviceTime": "48:03.1",
+		"coolantTemperature": "84",
+		"engineRPM": "875",
+		"intakeAirTemperature": "30",
+		"engineLoad": "43.52941132",
+		"massAirflowRate": "4.090000153",
+		"throttlePosition": "16.47058868"
+	}
+]
