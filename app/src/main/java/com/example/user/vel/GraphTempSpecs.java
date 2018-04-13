@@ -271,7 +271,7 @@ public class GraphTempSpecs extends Activity implements
         coolantTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getCoolantTemperature())));
 
         //Prints to console first
-        System.out.println("setting EngineRPM: " + vehicleData.getEngineRPM());
+        System.out.println("setting Intake Air Temp: " + vehicleData.getIntakeAirTemperature());
         //Adds new entrys to the arrayList and converts the string into a float
         airIntakeTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getIntakeAirTemperature())));
 
