@@ -22,7 +22,6 @@
     <string name="OBD"><b><u>OBD-II Compliant Car</u></b></string>
     <string name="cars">US vehicles manufactured after 1996. \n\nEU vehicles manufactured after 2004. \n\nJAP vehicles manufactured after 2005</string>
     <string name="next">Next</string>
-    <string name="elmInstrut">ELM-327 Setup</string>
 
     <string name="ElmSet"><b><u>ELM-327 Setup</u></b></string>
     <string name="instruct"><b><u><i>Step 1</i></u></b> \nPlug adapter into OBD-II 16-pin port. \n\n<b><u><i>Step 2</i></u></b> \nEnsure green light flashes on adapter.
@@ -95,7 +94,6 @@
     <string name="engine_throttle_def">Throttle Position sensor monitors the throttle position of a vehicle</string>
     <string name="throttle_load_info">Data received from database show: \nEngine Load is:
         NORMAL \nThrottle position is: NORMAL</string>
-
 
     <string name="help">Help</string>
     <string name="lang">Language</string>

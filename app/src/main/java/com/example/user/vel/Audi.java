@@ -12,6 +12,7 @@ import android.widget.Button;
 /*
 This class informs the user where to locate the OBD-II port for connecting the ELM-327 device
 to the vehicle. This class informs the users of where the port is located within Audi vehicles.
+The users can also view the data graphs belonging the the vehicle within this class as well
  */
 
 public class Audi extends AppCompatActivity
@@ -24,6 +25,10 @@ public class Audi extends AppCompatActivity
 
         //XML button variable
         Button bt1 = findViewById(R.id.button);
+        Button bt2 = findViewById(R.id.button2);
+        Button bt3 = findViewById(R.id.button3);
+        Button bt4 = findViewById(R.id.button4);
+        Button bt5 = findViewById(R.id.button5);
 
         //XML ViewPager variable for displaying the Image slider
         ViewPager viewPager = findViewById(R.id.viewPager);
@@ -31,8 +36,49 @@ public class Audi extends AppCompatActivity
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter (this);
         viewPager.setAdapter(viewPagerAdapter);
 
-        //If the user taps on the 'Next' button, app will progress to the 'SetupELM' class
+        //If the user taps on the button, app will progress to the 'GraphTempSpecs' class
         bt1.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Audi.this, GraphTempSpecs.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+
+        //If the user taps on the button, app will progress to the 'GraphEngineSpecs' class
+        bt2.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Audi.this, GraphEngineSpecs.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+        //If the user taps on the button, app will progress to the 'GraphEngineRPM' class
+        bt3.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Audi.this, GraphEngineRPM.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+        //If the user taps on the button, app will progress to the 'GraphEngineAirflow' class
+        bt4.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(Audi.this, GraphEngineAirflow.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+        //If the user taps on the button, app will progress to the 'SetupELM' class
+        bt5.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {

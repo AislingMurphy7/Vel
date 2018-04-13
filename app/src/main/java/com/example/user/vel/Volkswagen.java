@@ -11,7 +11,8 @@ import android.widget.Button;
 
 /*
 This class informs the user where to locate the OBD-II port for connecting the ELM-327 device
-to the vehicle. This class informs the users of where the port is located within Audi vehicles.
+to the vehicle. This class informs the users of where the port is located within volkswagen vehicles.
+The users can also view the data graphs belonging the the vehicle within this class as well
  */
 
 public class Volkswagen extends AppCompatActivity

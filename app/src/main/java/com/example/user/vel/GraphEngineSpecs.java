@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -35,6 +33,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+/*
+    This class is used to graph the Data for the "Engine load" and the "Throttle position" which
+    is retrieved from the Database. This retrieves the data from the database which is stored on
+    Firebase. This data is then used to plot the data on a LineChart. Alert Dialogs Pop up before
+    the graph appears and explains the data to the user, as well as stating if the data recorded is
+    normal readings or if there are variances present
+ */
+
 public class GraphEngineSpecs extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener {
 
@@ -42,99 +48,126 @@ public class GraphEngineSpecs extends Activity implements
 
     private LineChart chart;
 
+    //Arrays to hold engine load and throttle position from Firebase
     ArrayList<Entry> engineloadList = new ArrayList<>();
     ArrayList<Entry> throttlePositionList = new ArrayList<>();
 
+    //Variables
     LineDataSet set1, set2;
-
     LineData data;
 
     protected void onCreate(Bundle savedInstanceState) {
 
+        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+          for the Engineload information*/
         AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineSpecs.this);
         builder.setCancelable(true);
 
+        //Setting the title and message from the string.xml
         builder.setTitle(GraphEngineSpecs.this.getString(R.string.engine_load_title));
         builder.setMessage(GraphEngineSpecs.this.getString(R.string.engine_load_def));
 
-        builder.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
 
-            }
-        });
+            }//End onClick()
+        });//End setPositiveButton()
 
+        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+          for the throttle position information*/
         AlertDialog.Builder builder3 = new AlertDialog.Builder(GraphEngineSpecs.this);
         builder3.setCancelable(true);
 
+        //Setting the title and message from the string.xml
         builder3.setTitle(GraphEngineSpecs.this.getString(R.string.engine_throttle_title));
         builder3.setMessage(GraphEngineSpecs.this.getString(R.string.engine_throttle_def));
 
-        builder3.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+        builder3.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
                 dialog.cancel();
                 Intent intent = new Intent(GraphEngineSpecs.this, VehicleSpec.class);
                 startActivity(intent);
-            }
-        });
+            }//End onClick()
+        });//End setNegativeButton()
 
-        builder3.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder3.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
 
-            }
-        });
+            }//End onClick()
+        });//End setPositiveButton()
 
+         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+          for the engine rpm and throttle position information retrieved from the database*/
         AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineSpecs.this);
         builder2.setCancelable(true);
 
+        //Setting the title and message from the string.xml
         builder2.setTitle(GraphEngineSpecs.this.getString(R.string.IMPORTANT));
         builder2.setMessage(GraphEngineSpecs.this.getString(R.string.throttle_load_info));
 
-        builder2.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+        builder2.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
                 dialog.cancel();
                 Intent intent = new Intent(GraphEngineSpecs.this, VehicleSpec.class);
                 startActivity(intent);
-            }
-        });
+            }//End onClick()
+        });//End setNegativeButton()
 
-        builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
 
-            }
-        });
+            }//End onClick()
+        });//End setPositiveButton()
 
+        //Show the Dialogs on screen
         builder2.show();
         builder3.show();
         builder.show();
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //Sets the layout according to the XML file
         setContentView(R.layout.activity_graph_enginespec);
 
+        //XML reference
         chart = findViewById(R.id.linechart);
 
+        //Listens for on chart taps
         chart.setOnChartGestureListener(GraphEngineSpecs.this);
         chart.setOnChartValueSelectedListener(GraphEngineSpecs.this);
 
-        //enable touch gestures
+        //Enable touch gestures
         chart.setTouchEnabled(true);
 
-        //enable scaling and dragging
+        //Enable scaling and dragging
         chart.setDragEnabled(true);
         chart.setScaleEnabled(false);
         chart.setDrawGridBackground(false);
 
-        //enable pinch zoom to avoid scaling x and y
+        //Enable pinch zoom
         chart.setPinchZoom(true);
 
-        //background
+        //Background color
         chart.setBackgroundColor(Color.LTGRAY);
 
+        //Setting YAxis
         YAxis left = chart.getAxisLeft();
         left.setAxisMinimum(0f);
         left.setAxisMaximum(100f);
@@ -146,31 +179,30 @@ public class GraphEngineSpecs extends Activity implements
 
         chart.getAxisRight().setEnabled(false);
 
-
+        //Value string
         String[] vals = new String[] {"0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s"};
 
-        //get legend object
+        //Legend object
         Legend i = chart.getLegend();
-        //cust legend
+        //Customise legend
         i.setTextSize(15f);
         i.setForm(Legend.LegendForm.CIRCLE);
         i.setTextColor(Color.BLACK);
 
+        //Setting XAis
         XAxis x = chart.getXAxis();
         x.setTextSize(13f);
         x.setValueFormatter(new MyXAxisValueFormatter(vals));
         x.setGranularity(2);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-
+        //Adding value to arrays as system will crash without
         engineloadList.add(new Entry(0, 0));
         engineloadList.add(new Entry(1, 0));
-
-
         throttlePositionList.add(new Entry(0, 0));
         throttlePositionList.add(new Entry(1, 0));
 
-
+        //Setting the lines
         set1 = new LineDataSet(engineloadList, "Engine Load ");
         set1.setFillAlpha(110);
         set1.setColor(Color.RED);
@@ -189,31 +221,32 @@ public class GraphEngineSpecs extends Activity implements
 
         chart.setData(data);
 
+        //Calls the downloadDatt()
         downloadData();
+        //Change the chart when a change occurs
         chart.notifyDataSetChanged();
-
-    }
+    }//End onCreate
 
     private void downloadData()
     {
+        //ArrayAdapter
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_temp_specs);
-        //Set the ArrayAdapter to the listview
 
-        //DatabaseReference database = FirebaseDatabase.getInstance().getReference("/VehicleData/0").child("Bearing:");
+        //Connecting into table "VehicleData" on the Firebase database
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("VehicleData");
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
         {
-            //Will run when the app is started and when there is data added to the database
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey)
             {
                 //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
+                //Prints values to console to prove the download is working
                 System.out.println("getEngineLoad: " + vehicleData.getEngineLoad());
                 System.out.println("getThrottlePosition: " + vehicleData.getThrottlePosition());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
-                //Add the info retrieved from datasnapshot into the ArrayList
+                //Converting value to integer
                 setData(Integer.parseInt(dataSnapshot.getKey()), vehicleData);
                 //Will refresh app when the data changes in the database
                 arrayAdapter.notifyDataSetChanged();
@@ -238,96 +271,114 @@ public class GraphEngineSpecs extends Activity implements
             {
 
             }//End onCancelled()
+        });//End addChildEventListener()
+    }//End DownloadData()
 
-        });
-    }
-
+    //Function sets the data on the graph
     private void setData(int key, VehicleData vehicleData)
     {
+        //Prints to console first
         System.out.println("Using key: " + key);
         System.out.println("Setting Engine Load: " + vehicleData.getEngineLoad());
+        //Adds new entrys to the arrayList and converts the string into a float
         engineloadList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineLoad())));
 
         System.out.println("Setting Throttle Position: " + vehicleData.getThrottlePosition());
+        //Adds new entrys to the arrayList and converts the string into a float
         throttlePositionList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getThrottlePosition())));
 
+        //Change the chart when changes occurs
         set1.notifyDataSetChanged();
         data.notifyDataChanged();
         this.chart.notifyDataSetChanged();
+        //Redisplay chart
         chart.invalidate();
+    }//End setData()
 
-
-    }
-
-    public class MyXAxisValueFormatter implements IAxisValueFormatter{
+    //Using the String to change the values of the XAis
+    public class MyXAxisValueFormatter implements IAxisValueFormatter
+    {
         private String[] mVals;
         private MyXAxisValueFormatter(String[] vals)
         {
             this.mVals = vals;
-        }
+        }//End MyXAxisValueFormatter()
 
         @Override
-        public String getFormattedValue(float value, AxisBase axis) {
+        public String getFormattedValue(float value, AxisBase axis)
+        {
             return mVals[(int)value];
-        }
-    }
+        }//End getFormattedValue()
+    }//End MyXAxisValueFormatter()
 
     @Override
-    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+    //Sends log message if action is performed
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture)
+    {
         Log.i(TAG, "onChartGestureStart: X:" + me.getX() + "Y:" + me.getY());
-    }
+    }//End()
 
     @Override
-    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+    //Sends log message if action is performed
+    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture)
+    {
         Log.i(TAG, "onChartGestureEnd: " + lastPerformedGesture);
-    }
+    }//End()
 
     @Override
-    public void onChartLongPressed(MotionEvent me) {
+    //Sends log message if action is performed
+    public void onChartLongPressed(MotionEvent me)
+    {
         Log.i(TAG, "onChartLongPressed: ");
-    }
+    }//End()
 
     @Override
-    public void onChartDoubleTapped(MotionEvent me) {
+    //Sends log message if action is performed
+    public void onChartDoubleTapped(MotionEvent me)
+    {
         Log.i(TAG, "onChartDoubleTapped: ");
-    }
+    }//End()
 
     @Override
-    public void onChartSingleTapped(MotionEvent me) {
+    //Sends log message if action is performed
+    public void onChartSingleTapped(MotionEvent me)
+    {
         Log.i(TAG, "onChartSingleTapped: ");
-    }
+    }//End()
 
     @Override
-    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+    //Sends log message if action is performed
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY)
+    {
         Log.i(TAG, "onChartFling: veloX: " + velocityX + "veloY" + velocityY);
-    }
+    }//End()
 
     @Override
-    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+    //Sends log message if action is performed
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY)
+    {
         Log.i(TAG, "onChartScale: ScaleX: " + scaleX + "ScaleY: " + scaleY);
-    }
+    }//End()
 
     @Override
-    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+    public void onChartTranslate(MotionEvent me, float dX, float dY)
+    {
         Log.i(TAG, "onChartTranslate: dX" + dX + "dY" + dY);
-    }
+    }//End()
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    //Sends log message if action is performed
+    public void onValueSelected(Entry e, Highlight h)
+    {
         Log.i(TAG, "onValueSelected: " + e.toString());
         Toast.makeText(this, "onValueSelected: " + e.toString(), Toast.LENGTH_SHORT).show();
-    }
+    }//End()
 
     @Override
-    public void onNothingSelected() {
-        Log.i(TAG, "onNothingSelected: ");
-    }
-
-    //Function creates the dropdown toolbar menu
-    public boolean onCreateOptionsMenu(Menu menu)
+    //Sends log message if action is performed
+    public void onNothingSelected()
     {
-        getMenuInflater().inflate(R.menu.options, menu);
-        return super.onCreateOptionsMenu(menu);
-    }//End onCreateOptionMenu()
+        Log.i(TAG, "onNothingSelected: ");
+    }//End()
 
 }

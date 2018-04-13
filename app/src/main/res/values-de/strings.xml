@@ -33,10 +33,23 @@
 
     <string name="ModelChoice"><b>Bitte wählen Sie ein Fahrzeugmodell: </b></string>
 
-    <string name="FAQ"></string>
-    <string name="FAQ1"></string>
-    <string name="FAQ2"></string>
-    <string name="FAQ3"></string>
+    <string name="FAQ"><b><u>Hat mein Auto OBD-II?</u></b> \n\n Jahr 1996 und neuere Fahrzeuge, sowohl Benzin- als auch Dieselkraftwagen. Die Fahrzeuge müssen OBD-II-Systeme haben. Um zu überprüfen, ob Ihr Fahrzeug mit OBD II ausgestattet ist,
+        können Sie auf dem Emissionskontrollschild, das an der Unterseite der Fahrzeughaube angebracht ist, nach dem Wort "OBD II" suchen</string>
+
+    <string name="FAQ1"><b><u>Was ist der Motordrehzahlsensor?</u></b> \n\nRPM bedeutet "Umdrehungen pro Minute". Er misst die Anzahl der Umdrehungen der Kurbelwelle im Motor. Wenn eine Verbrennung (aka Das Fahrzeug ist gestartet) im Motorzylinder auftritt,
+        beginnen sich die Kolben auf und ab zu bewegen. Die dabei entstehende Bewegung wird an die Kurbelwelle gesendet und diese Bewegung wird als Drehzahl gemessen</string>
+
+    <string name="FAQ2"><b><u>Was ist der Motorlastsensor? </u></b> \n\n Der Absolutdrucksensor (MAP). Die Motorlast ist die Höhe des Vakuums im Ansaugkrümmer. Der Messwert sinkt, wenn der Gashebel geöffnet ist (wenn das Fahrzeug beschleunigt)</string>
+
+    <string name="FAQ3"><b><u>Was ist der Kühlmitteltemperatursensor?</u></b> \n\n Dieser Sensor wird verwendet, um die Temperatur des Kühlsystems eines Fahrzeugs zu messen. Dieser Sensor gibt Ihnen einen Hinweis, wie
+    viel Hitze der Motor gibt ab. Die ECU verwendet diesen Sensor, um die Motortemperatur niedrig zu halten, indem sie die Kraftstoffeinspritzung, das Kraftstoffgemisch und das Ein- und Ausschalten des elektrischen Ventilators einstellt.</string>
+
+    <string name="FAQ4"><b><u>Was ist der mass Airflow Rate-Sensor?</u></b> \n\nDieser Sensor wird verwendet, um den Massendurchfluss von Luft zu ermitteln, die in einen Motor eindringt. Dieser Sensor muss helfen, die richtige Kraftstoffmasse für den Motor auszugleichen
+        und zu liefern, da die Luft ihre Dichte mit der Temperatur und dem Druck ändert.</string>
+
+    <string name="FAQ5"><b><u>Was ist der Drosselklappensensor?</u></b>\n\nDieser Sensor wird verwendet, um die Drosselklappenposition eines Fahrzeugs zu überwachen.</string>
+
+    <string name="FAQ6"><b><u>Was ist der Motorlufttemperatursensor?</u></b> \n\nDieser Sensor überwacht die Temperatur der Luft, die in den Motor eindringt.</string>
 
     <string name="Audi_Head"><b><u>Audi Fahrzeuge OBD-II Hafenstandort</u></b></string>
     <string name="Bmw_Head"><b><u>BMW Fahrzeuge OBD-II Hafenstandort</u></b></string>
@@ -47,6 +60,38 @@
 
     <string name="slider_text">Wischen Sie die Bilder unten, um OBD-Standorte und unterstützte Fahrzeuge anzuzeigen</string>
     <string name="under_wheel">Der 16-polige OBD-II-Anschluss befindet sich in der Fahrerseite unter dem Fuß</string>
+
+    <string name="temp_specs">Motor-Temperaturen anzeigen</string>
+    <string name="throttle_load">Motorlast und Drosselklappenposition anzeigen</string>
+    <string name="RPM">Motordrehzahl anzeigen</string>
+    <string name="mass_air">Zeigen Sie die Luftmassenrate an</string>
+
+    <string name="engine_rpm_def"> Engine RPM ist definiert als Umdrehungen pro Minute \nDies misst, wie schnell
+    Ein Fahrzeug arbeitet, indem es misst, wie oft die Kurbelwelle eine volle Umdrehung ausführt.</string>
+    <string name="engine_rpm_title">Motordrehzahldefinition</string>
+    <string name="cancel">Stornieren</string>
+    <string name="IMPORTANT">DATENMELDUNG</string>
+    <string name="rpm_info">Daten von der Datenbank erhalten: \nMotor RPM ist: NORMAL</string>
+    <string name="engine_airflow_def">Die mass Airflow Rate ist die Luftmenge, die in einen Motor eindringt. Dies ist erforderlich
+    um die richtige Kraftstoffmasse zu einem Motor auszugleichen und zu liefern</string>
+    <string name="engine_airflow_title">Definition der Luftmassenrate des Motors</string>
+    <string name="airflow_info">Daten aus der Datenbank zeigen: \nmass Airflow Rate ist: NORMAL</string>
+    <string name="engine_coolant_title">Kühlmitteltemperatur-Definition</string>
+    <string name="engine_air_intake_def">TDer Luftansaugtemperatursensor überwacht die Temperatur der Luft
+    Einstieg in den Motor. Dieser Wert wird benötigt, um die Luftdichte abzuschätzen, damit das Luft/Kraftstoff-Gemisch ausgeglichen werden kann.</string>
+    <string name="engine_coolant_def">Kühlmittel ist eine Flüssigkeit, die innerhalb eines Fahrzeugmotors zur Absorption benötigt wird
+    Wärme von einem Motor, um Überhitzung Schäden zu vermeiden. Wenn die Kühlmitteltemperatur ansteigt, bedeutet dies, dass
+    Es gibt eine Möglichkeit, dass der Motor ist: \n1). Überhitzung \n2). Kühlmittelstand ist niedrig</string>
+    <string name="engine_air_intake_title">Lufteintrittstemperatur-Definition</string>
+    <string name="coolant_airintake_info">aten von der Datenbank erhalten: \ nMotor Kühlmitteltemperatur ist:
+        NORMAL \ nDie Lufteintrittstemperatur ist: NORMAL</string>
+    <string name="engine_load_title">Definition der Motorlast</string>
+    <string name="engine_load_def">Der MAP-Sensor liest die Motorlast. Die Motorlast ist die Menge an Vakuum in der Ansaugung
+    vielfältig. Der Messwert sinkt, wenn der Gashebel geöffnet ist (wenn das Fahrzeug beschleunigt)</string>
+    <string name="engine_throttle_title">Drosselklappenpositionsdefinition</string>
+    <string name="engine_throttle_def">Drosselklappensensor überwacht die Position der Drosselklappe in einem Fahrzeug</string>
+    <string name="throttle_load_info">Daten aus der Datenbank zeigen: \ nMotorlast ist:
+        NORMAL \ nDie Flaschenposition ist: NORMAL</string>
 
     <string name="Help">Hilfe</string>
     <string name="lang">Sprache</string>

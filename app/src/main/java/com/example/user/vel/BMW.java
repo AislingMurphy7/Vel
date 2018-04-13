@@ -12,6 +12,7 @@ import android.widget.Button;
 /*
 This class informs the user where to locate the OBD-II port for connecting the ELM-327 device
 to the vehicle. This class informs the users of where the port is located within BMW vehicles.
+The users can also view the data graphs belonging the the vehicle within this class as well
  */
 
 public class BMW extends AppCompatActivity
@@ -24,6 +25,10 @@ public class BMW extends AppCompatActivity
 
         //XML Button variable
         Button button = findViewById(R.id.button);
+        Button bt2 = findViewById(R.id.button2);
+        Button bt3 = findViewById(R.id.button3);
+        Button bt4 = findViewById(R.id.button4);
+        Button bt5 = findViewById(R.id.button5);
 
         //XML ViewPager variable for displaying the Image slider
         ViewPager viewPager = findViewById(R.id.bmwviewPager);
@@ -31,15 +36,56 @@ public class BMW extends AppCompatActivity
         ViewPagerAdapter3 viewPagerAdapter = new ViewPagerAdapter3(this);
         viewPager.setAdapter(viewPagerAdapter);
 
-        //If the user taps on the 'Next' button, app will progress to the 'SetupELM' class
+        //If the user taps on the button, app will progress to the 'GraphTempSpecs' class
         button.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(BMW.this, GraphTempSpecs.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+
+        //If the user taps on the button, app will progress to the 'GraphEngineSpecs' class
+        bt2.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(BMW.this, GraphEngineSpecs.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+        //If the user taps on the button, app will progress to the 'GraphEngineRPM' class
+        bt3.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(BMW.this, GraphEngineRPM.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+        //If the user taps on the button, app will progress to the 'GraphEngineAirflow' class
+        bt4.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(BMW.this, GraphEngineAirflow.class);
+                startActivity(intent);
+            }//End onClick()
+        });//End setOnClickListener()
+
+        //If the user taps on the button, app will progress to the 'SetupELM' class
+        bt5.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
                 Intent intent = new Intent(BMW.this, SetupELM.class);
                 startActivity(intent);
             }//End onClick()
-        });//End seOnClickListener
+        });//End setOnClickListener()
     }//End onCreate()
 
     //Function creates the dropdown toolbar menu

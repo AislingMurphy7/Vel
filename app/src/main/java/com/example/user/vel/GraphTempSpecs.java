@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -34,6 +33,14 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+/*
+    This class is used to graph the Data for the "Air Intake Temperature" and the "Coolant Temperature" which
+    is retrieved from the Database. This retrieves the data from the database which is stored on
+    Firebase. This data is then used to plot the data on a LineChart. Alert Dialogs Pop up before
+    the graph appears and explains the data to the user, as well as stating if the data recorded is
+    normal readings or if there are variances present
+ */
+
 public class GraphTempSpecs extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener {
 
@@ -53,6 +60,7 @@ public class GraphTempSpecs extends Activity implements
         AlertDialog.Builder builder = new AlertDialog.Builder(GraphTempSpecs.this);
         builder.setCancelable(true);
 
+        //Setting the title and message from the string.xml
         builder.setTitle(GraphTempSpecs.this.getString(R.string.engine_coolant_title));
         builder.setMessage(GraphTempSpecs.this.getString(R.string.engine_coolant_def));
 
@@ -66,17 +74,19 @@ public class GraphTempSpecs extends Activity implements
         AlertDialog.Builder builder3 = new AlertDialog.Builder(GraphTempSpecs.this);
         builder3.setCancelable(true);
 
+        //Setting the title and message from the string.xml
         builder3.setTitle(GraphTempSpecs.this.getString(R.string.engine_air_intake_title));
         builder3.setMessage(GraphTempSpecs.this.getString(R.string.engine_air_intake_def));
 
+        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
         builder3.setNegativeButton(GraphTempSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
                 Intent intent = new Intent(GraphTempSpecs.this, VehicleSpec.class);
                 startActivity(intent);
-            }
-        });
+            }//End onClick()
+        });//End setNegativeButton()
 
         builder3.setPositiveButton(GraphTempSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
             @Override
@@ -85,56 +95,64 @@ public class GraphTempSpecs extends Activity implements
             }
         });
 
+
         AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphTempSpecs.this);
         builder2.setCancelable(true);
 
+        //Setting the title and message from the string.xml
         builder2.setTitle(GraphTempSpecs.this.getString(R.string.IMPORTANT));
         builder2.setMessage(GraphTempSpecs.this.getString(R.string.coolant_airintake_info));
 
-        builder2.setNegativeButton(GraphTempSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+        builder2.setNegativeButton(GraphTempSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+        {
             @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
                 dialog.cancel();
                 Intent intent = new Intent(GraphTempSpecs.this, VehicleSpec.class);
                 startActivity(intent);
-            }
-        });
+            }//End onClick()
+        });//End setNegativeButton()
 
         builder2.setPositiveButton(GraphTempSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-            }
-        });
+            }//End onClick()
+        });//End setPositiveButton()
 
+        //Show the Dialogs on screen
         builder2.show();
         builder3.show();
         builder.show();
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //Sets the layout according to the XML file
         setContentView(R.layout.activity_graph_temp_specs);
 
         chart = findViewById(R.id.linechart);
 
+        //Listens for on chart taps
         chart.setOnChartGestureListener(GraphTempSpecs.this);
         chart.setOnChartValueSelectedListener(GraphTempSpecs.this);
 
-        //enable touch gestures
+        //Enable touch gestures
         chart.setTouchEnabled(true);
 
-        //enable scaling and dragging
+        //Enable scaling and dragging
         chart.setDragEnabled(true);
         chart.setScaleEnabled(false);
         chart.setDrawGridBackground(false);
-        chart.setContentDescription("");
 
-        //enable pinch zoom to avoid scaling x and y
+        //Enable pinch zoom
         chart.setPinchZoom(true);
 
-        //background
+        //Background color
         chart.setBackgroundColor(Color.LTGRAY);
 
+        //Setting YAxis
         YAxis left = chart.getAxisLeft();
         left.setAxisMinimum(0f);
         left.setAxisMaximum(100f);
@@ -146,31 +164,30 @@ public class GraphTempSpecs extends Activity implements
 
         chart.getAxisRight().setEnabled(false);
 
-
+        //Value string
         String[] vals = new String[] {"0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s"};
 
-        //get legend object
+        //Legend object
         Legend i = chart.getLegend();
-        //cust legend
+        //Customise legend
         i.setTextSize(15f);
         i.setForm(Legend.LegendForm.CIRCLE);
         i.setTextColor(Color.BLACK);
 
+        //Setting XAis
         XAxis x = chart.getXAxis();
         x.setTextSize(13f);
         x.setValueFormatter(new MyXAxisValueFormatter(vals));
         x.setGranularity(1);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-
+        //Adding value to arrays as system will crash without
         coolantTemperatureList.add(new Entry(0, 0));
         coolantTemperatureList.add(new Entry(1, 0));
-
-
         airIntakeTemperatureList.add(new Entry(0, 0));
         airIntakeTemperatureList.add(new Entry(1, 0));
 
-
+        //Setting the lines
         set1 = new LineDataSet(coolantTemperatureList, "Coolant Temp ");
         set1.setFillAlpha(110);
         set1.setColor(Color.RED);
@@ -189,17 +206,19 @@ public class GraphTempSpecs extends Activity implements
 
         chart.setData(data);
 
+        //Calls the downloadDatt()
         downloadData();
+        //Change the chart when a change occurs
         chart.notifyDataSetChanged();
+    }//End onCreate
 
-    }
-
+    //Downloads Data from Firebase
     private void downloadData()
     {
+        //ArrayAdapter
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_temp_specs);
-        //Set the ArrayAdapter to the listview
 
-        //DatabaseReference database = FirebaseDatabase.getInstance().getReference("/VehicleData/0").child("Bearing:");
+        //Connecting into table "VehicleData" on the Firebase database
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("VehicleData");
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
@@ -209,11 +228,12 @@ public class GraphTempSpecs extends Activity implements
             {
                 //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
+                //Prints values to console to prove the download is working
                 System.out.println("getCoolantTemperature: " + vehicleData.getCoolantTemperature());
                 System.out.println("getIntakeAirTemperature: " + vehicleData.getIntakeAirTemperature());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
-                //Add the info retrieved from datasnapshot into the ArrayList
+                //Converting value to integer
                 setData(Integer.parseInt(dataSnapshot.getKey()), vehicleData);
                 //Will refresh app when the data changes in the database
                 arrayAdapter.notifyDataSetChanged();
@@ -238,89 +258,115 @@ public class GraphTempSpecs extends Activity implements
             {
 
             }//End onCancelled()
+        });//End addChildEventListener()
+    }//End DownloadData()
 
-        });
-    }
-
+    //Function sets the data on the graph
     private void setData(int key, VehicleData vehicleData)
     {
+        //Prints to console first
         System.out.println("Using key: " + key);
         System.out.println("Setting CoolantTemperature: " + vehicleData.getCoolantTemperature());
+        //Adds new entrys to the arrayList and converts the string into a float
         coolantTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getCoolantTemperature())));
 
+        //Prints to console first
         System.out.println("setting EngineRPM: " + vehicleData.getEngineRPM());
+        //Adds new entrys to the arrayList and converts the string into a float
         airIntakeTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getIntakeAirTemperature())));
 
+        //Change the chart when changes occurs
         set1.notifyDataSetChanged();
         data.notifyDataChanged();
         this.chart.notifyDataSetChanged();
+        //Redisplay chart
         chart.invalidate();
+    }//End setData()
 
-
-    }
-
-    public class MyXAxisValueFormatter implements IAxisValueFormatter{
+    //Using the String to change the values of the XAis
+    public class MyXAxisValueFormatter implements IAxisValueFormatter
+    {
         private String[] mVals;
         private MyXAxisValueFormatter(String[] vals)
         {
             this.mVals = vals;
-        }
+        }//End MyXAxisValueFormatter()
 
         @Override
-        public String getFormattedValue(float value, AxisBase axis) {
+        public String getFormattedValue(float value, AxisBase axis)
+        {
             return mVals[(int)value];
-        }
-    }
+        }//End getFormattedValue()
+    }//End MyXAxisValueFormatter()
 
     @Override
-    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+    //Sends log message if action is performed
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture)
+    {
         Log.i(TAG, "onChartGestureStart: X:" + me.getX() + "Y:" + me.getY());
-    }
+    }//End()
 
     @Override
-    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+    //Sends log message if action is performed
+    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture)
+    {
         Log.i(TAG, "onChartGestureEnd: " + lastPerformedGesture);
-    }
+    }//End()
 
     @Override
-    public void onChartLongPressed(MotionEvent me) {
+    //Sends log message if action is performed
+    public void onChartLongPressed(MotionEvent me)
+    {
         Log.i(TAG, "onChartLongPressed: ");
-    }
+    }//End()
 
     @Override
-    public void onChartDoubleTapped(MotionEvent me) {
+    //Sends log message if action is performed
+    public void onChartDoubleTapped(MotionEvent me)
+    {
         Log.i(TAG, "onChartDoubleTapped: ");
-    }
+    }//End()
 
     @Override
-    public void onChartSingleTapped(MotionEvent me) {
+    //Sends log message if action is performed
+    public void onChartSingleTapped(MotionEvent me)
+    {
         Log.i(TAG, "onChartSingleTapped: ");
-    }
+    }//End()
 
     @Override
-    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+    //Sends log message if action is performed
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY)
+    {
         Log.i(TAG, "onChartFling: veloX: " + velocityX + "veloY" + velocityY);
-    }
+    }//End()
 
     @Override
-    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+    //Sends log message if action is performed
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY)
+    {
         Log.i(TAG, "onChartScale: ScaleX: " + scaleX + "ScaleY: " + scaleY);
-    }
+    }//End()
 
     @Override
-    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+    //Sends log message if action is performed
+    public void onChartTranslate(MotionEvent me, float dX, float dY)
+    {
         Log.i(TAG, "onChartTranslate: dX" + dX + "dY" + dY);
-    }
+    }//End()
 
     @Override
-    public void onValueSelected(Entry e, Highlight h) {
+    //Sends log message if action is performed
+    public void onValueSelected(Entry e, Highlight h)
+    {
         Log.i(TAG, "onValueSelected: " + e.toString());
         Toast.makeText(this, "onValueSelected: " + e.toString(), Toast.LENGTH_SHORT).show();
-    }
+    }//End()
 
     @Override
-    public void onNothingSelected() {
+    //Sends log message if action is performed
+    public void onNothingSelected()
+    {
         Log.i(TAG, "onNothingSelected: ");
-    }
-
-}
+    }//End()
+}//End GraphTempSpecs()

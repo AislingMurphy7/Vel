@@ -33,10 +33,23 @@
 
     <string name="ModelChoice"><b>Seleccione el modelo del vehículo: </b></string>
 
-    <string name="FAQ"></string>
-    <string name="FAQ1"></string>
-    <string name="FAQ2"></string>
-    <string name="FAQ3"></string>
+    <string name="FAQ"><b><u>¿Mi automóvil tiene OBD-II? </u></b> \n\nTodos los vehículos de 1996 y posteriores, vehículos de pasajeros de gasolina y diesel. Los vehículos deben tener sistemas OBD-II. Para verificar que su vehículo esté equipado con OBD II, puede buscar las palabras "OBD II" en la etiqueta de
+        información de control de emisiones adjunta a la parte inferior del capó del vehículo</string>
+
+    <string name="FAQ1"><b><u>¿Qué es el sensor de RPM del motor? </u></b> \n\nRPM significa "Revoluciones por minuto". Mide el número de veces que el cigüeñal gira en el motor. cuando ocurre la combustión (también conocida como El vehículo arranca) en el cilindro del motor, los pistones comienzan a moverse hacia
+        arriba y hacia abajo. El movimiento que esto crea se envía al cigüeñal y este movimiento es lo que se mide como RPM</string>
+
+    <string name="FAQ2"><b><u>¿Cuál es el sensor de carga del motor?</u></b> \n\n El sensor de Presión Absoluta del Colector (MAP). La carga del motor es la cantidad de vacío en el colector de admisión. La lectura cae cuando el acelerador está abierto (cuando el vehículo está acelerando)</string>
+
+    <string name="FAQ3"><b><u>¿Qué es el sensor de temperatura del refrigerante?</u></b> \n\nEste sensor se utiliza para medir la temperatura del sistema de refrigeración de un vehículo. Este sensor le da una lectura que indica cómo
+    mucho calor que el motor está emitiendo. La ECU usa este sensor para mantener baja la temperatura del motor ajustando la inyección de combustible, la mezcla de combustible y cuando se enciende y apaga el ventilador eléctrico.</string>
+
+    <string name="FAQ4"><b><u>¿Qué es el sensor de Tasa de flujo de aire masivo? </u></b> \n\nEste sensor se utiliza para conocer el caudal másico de aire que entra en un motor. Este sensor es necesario para ayudar a equilibrar y entregar la masa de combustible correcta al motor, debido a que el
+        aire cambia su densidad con la temperatura y la presión.</string>
+
+    <string name="FAQ5"><b><u>¿Qué es el sensor de posición del acelerador?</u></b>\n\nEste sensor se usa para controlar la posición del acelerador de un vehículo.</string>
+
+    <string name="FAQ6"><b><u>¿Qué es el sensor de temperatura del aire del motor? </u></b> \n\nEste sensor monitorea la temperatura del aire que ingresa al motor.</string>
 
     <string name="Audi_Head"><b><u>Ubicación del puerto OBD-II del vehículo Audi</u></b></string>
     <string name="Bmw_Head"><b><u>Ubicación del puerto OBD-II del vehículo BMW</u></b></string>
@@ -47,6 +60,38 @@
 
     <string name="slider_text">Pase las imágenes a continuación para ver las ubicaciones de OBD y vehículos compatibles</string>
     <string name="under_wheel">El puerto OBD-II de 16 clavijas se encuentra en el pie del lado del conductor, debajo del volante del vehículo</string>
+
+    <string name="temp_specs">Ver temperaturas del motor</string>
+    <string name="throttle_load">Ver la carga del motor y la posición del acelerador</string>
+    <string name="RPM">Ver motor RPM</string>
+    <string name="mass_air">Ver tasa de flujo de aire masivo</string>
+
+    <string name="engine_rpm_def"> Las RPM del motor se definen como Revoluciones por minuto \nEsto mide qué tan rápido
+    un vehículo está funcionando midiendo cuántas veces el cigüeñal hace una rotación completa.</string>
+    <string name="engine_rpm_title">Definición de motor RPM</string>
+    <string name="cancel">Cancelar</string>
+    <string name="IMPORTANT">MENSAJE DE DATOS</string>
+    <string name="rpm_info">Los datos recibidos de la base de datos muestran: \ nEl motor RPM es: NORMAL</string>
+    <string name="engine_airflow_def">La tasa de flujo de aire masivo es la tasa de aire que ingresa a un motor. Esto es necesario
+    para equilibrar y entregar la masa de combustible correcta a un motor</string>
+    <string name="engine_airflow_title">Definición de la tasa de flujo de aire masivo del motor</string>
+    <string name="airflow_info">Los datos recibidos de la base de datos muestran: \nLa tasa de flujo de aire de masa es: NORMAL</string>
+    <string name="engine_coolant_title">Definición de temperatura del refrigerante</string>
+    <string name="engine_air_intake_def">El sensor de temperatura de admisión de aire controla la temperatura del aire
+    entrando en el motor. Esta lectura es necesaria para estimar la densidad del aire para que pueda equilibrar la mezcla de aire/combustible.</string>
+    <string name="engine_coolant_def">El refrigerante es un líquido requerido dentro del motor de un vehículo para ser absorbido
+    calor de un motor para evitar el daño por sobrecalentamiento. Si la temperatura del refrigerante aumenta, significa que
+    existe la posibilidad de que el motor sea: \n1). Sobrecalentamiento \n2). Los niveles de refrigerante son bajos</string>
+    <string name="engine_air_intake_title">Definición de la temperatura de admisión de aire</string>
+    <string name="coolant_airintake_info">Los datos recibidos de la base de datos muestran: \nLa temperatura del refrigerante del motor es:
+        NORMAL \nLa temperatura de admisión del aire es: NORMAL</string>
+    <string name="engine_load_title">Definición de carga del motor</string>
+    <string name="engine_load_def">El sensor MAP lee la carga del motor. La carga del motor es la cantidad de vacío en la toma
+    colector. La lectura cae cuando el acelerador está abierto (cuando el vehículo está acelerando)</string>
+    <string name="engine_throttle_title">Definición de posición del acelerador</string>
+    <string name="engine_throttle_def">Sensor de posición del acelerador que controla la posición del acelerador en un vehículo</string>
+    <string name="throttle_load_info">Los datos recibidos de la base de datos muestran: \nLa carga del motor es:
+        NORMAL \nLa posición del acelerador es: NORMAL</string>
 
     <string name="help">Ayuda</string>
     <string name="lang">Idioma</string>

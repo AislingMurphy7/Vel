@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Custom layout for the Vehicle spec listView
+-->
+
 <TextView
     android:textColor="@color/black"
     android:id="@+id/text"

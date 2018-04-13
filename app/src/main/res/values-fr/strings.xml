@@ -33,10 +33,22 @@
 
     <string name="ModelChoice"><b>Veuillez sélectionner le modèle de véhicule: </b></string>
 
-    <string name="FAQ"></string>
-    <string name="FAQ1"></string>
-    <string name="FAQ2"></string>
-    <string name="FAQ3"></string>
+    <string name="FAQ"><b><u>Does My Car have OBD-II?</u></b> \n\nTous les véhicules de 1996 et plus récents, les véhicules à passagers essence et diesel. Les véhicules doivent posséder des systèmes OBD-II. Pour vérifier que votre véhicule est équipé de l\'OBD II, vous pouvez chercher les mots «OBD II» sur l'étiquette d'information de
+        contrôle des émissions attachée à la face inférieure de la hotte du véhicule.</string>
+
+    <string name="FAQ1"><b><u>Qu'est-ce que le capteur de régime moteur? </u></b> \n\nRPM signifie "révolutions par minute". Il mesure le nombre de rotations du vilebrequin dans le moteur. Lorsque la combustion (c\'est-à-dire le démarrage du véhicule) se produit dans le cylindre du moteur, les pistons commencent à se déplacer de
+        haut en bas. Le mouvement que cela crée est envoyé au vilebrequin et ce mouvement est ce qui est mesuré en tant que RPM</string>
+
+    <string name="FAQ2"><b><u>Qu'est-ce que le capteur de charge du moteur? </u></b> \n\n TLe capteur de pression absolue du collecteur (MAP). La charge du moteur est la quantité de vide dans le collecteur d\'admission. La lecture diminue lorsque la manette des gaz est ouverte (lorsque le véhicule accélère)</string>
+
+    <string name="FAQ3"><b><u>Qu'est-ce que le capteur de température du liquide de refroidissement?</u></b> \n\nCe capteur est utilisé pour mesurer la température du système de refroidissement d\'un véhicule. Ce capteur vous donne une lecture indiquant comment
+    beaucoup de chaleur que le moteur dégage. L\'ECU utilise ce capteur pour maintenir la température du moteur basse en ajustant l'injection de carburant, le mélange de carburant et quand le ventilateur électrique est allumé et éteint.</string>
+
+    <string name="FAQ4"><b><u>Qu'est-ce que le capteur de débit d'air massique? </u></b> \n\nCe capteur permet de connaître le débit massique d\'air entrant dans un moteur. Ce capteur est nécessaire pour aider à équilibrer et à fournir la bonne masse de carburant au moteur, en raison du fait que l\'air change sa densité avec la température et la pression.</string>
+
+    <string name="FAQ5"><b><u>Qu'est-ce que le capteur de position du papillon des gaz?</u></b>\n\nCe capteur est utilisé pour surveiller la position de l\'accélérateur d'un véhicule.</string>
+
+    <string name="FAQ6"><b><u>Qu'est-ce que le capteur de température d'air du moteur?</u></b> \n\nCe capteur contrôle la température de l\'air entrant dans le moteur.</string>
 
     <string name="Audi_Head"><b><u>Emplacement du port Audi Véhicules OBD-II</u></b></string>
     <string name="Bmw_Head"><b><u>Emplacement du port BMW Véhicules OBD-II</u></b></string>
@@ -48,6 +60,37 @@
     <string name="slider_text">Faites glisser les images ci-dessous pour afficher les emplacements OBD et les véhicules pris en charge</string>
     <string name="under_wheel">Le port OBD-II à 16 broches est situé dans le pied du côté conducteur, sous le volant du véhicule</string>
 
+    <string name="temp_specs">Voir les températures du moteur</string>
+    <string name="throttle_load">Afficher la charge du moteur et la position du papillon</string>
+    <string name="RPM">RPM du moteur de vue</string>
+    <string name="mass_air">Afficher le débit d\'air massique</string>
+
+    <string name="engine_rpm_def"> Le régime moteur est défini en révolutions par minute \nCeci mesure la vitesse
+    un véhicule fonctionne en mesurant combien de fois le vilebrequin fait une rotation complète. </string>
+    <string name="engine_rpm_title">Définition du régime moteur</string>
+    <string name="cancel">Annuler</string>
+    <string name="IMPORTANT">MESSAGE DE DONNÉES</string>
+    <string name="rpm_info">Les données reçues de la base de données montrent: \nLe RPM moteur est: NORMALE</string>
+    <string name="engine_airflow_def">Le débit d\'air massique est le débit d\'air entrant dans un moteur. C\'est nécessaire
+    pour équilibrer et livrer la bonne masse de carburant à un moteur</string>
+    <string name="engine_airflow_title">Définition du débit d\'air massique du moteur</string>
+    <string name="airflow_info">Les données reçues de la base de données montrent: \nMass Airflow Rate est: NORMALE</string>
+    <string name="engine_coolant_title">Définition de la température du liquide de refroidissement</string>
+    <string name="engine_air_intake_def">Le capteur de température d\'entrée d\'air surveille la température de l\'air
+    entrer dans le moteur. Cette lecture est nécessaire pour estimer la densité de l\'air afin qu\'il puisse équilibrer le mélange air / carburant.</string>
+    <string name="engine_coolant_def">Le liquide de refroidissement est un liquide nécessaire dans un moteur de véhicule à absorber
+    la chaleur d\'un moteur pour éviter de surchauffer les dommages. Si la température du liquide de refroidissement augmente, cela signifie que
+    il y a une possibilité que le moteur soit: \n1). Surchauffe \n2). Les niveaux de liquide de refroidissement sont bas</string>
+    <string name="engine_air_intake_title">Définition de la température d\'entrée d'air</string>
+    <string name="coolant_airintake_info">Les données reçues de la base de données montrent: \nLa température du liquide de refroidissement moteur est:
+        NORMAL La température d'entrée d'air est: NORMALE</string>
+    <string name="engine_load_title">Définition du chargement du moteur</string>
+    <string name="engine_load_def">Le capteur MAP lit la charge du moteur. La charge du moteur est la quantité de vide dans l\'admission
+    collecteur. La lecture diminue lorsque la manette des gaz est ouverte (lorsque le véhicule accélère)</string>
+    <string name="engine_throttle_title">Définition de la position du papillon</string>
+    <string name="engine_throttle_def">Le capteur de position du papillon surveille la position de la commande des gaz dans un véhicule</string>
+    <string name="throttle_load_info">Les données reçues de la base de données montrent: \nLa charge du moteur est:
+        NORMALE \nLa position de l'accélérateur est: NORMALE</string>
     <string name="help">Aidez-moi</string>
     <string name="lang">La langue</string>
     <string name="exit">Sortie</string>

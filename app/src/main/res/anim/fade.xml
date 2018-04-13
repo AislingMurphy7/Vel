@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    XML file for the Fade animation seen on the opening screen
+-->
+
 <alpha xmlns:android="http://schemas.android.com/apk/res/android"
     android:fromAlpha="0.0"
     android:toAlpha="1.0"
     android:duration="4000">
-
 </alpha>

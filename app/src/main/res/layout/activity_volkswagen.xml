@@ -2,8 +2,7 @@
 <!--
     This XML file designs the layout for the 'Volkswagen.class'
     This XML file defines a 'ViewPager' to display images, a 'TextView'
-    which displays a string to the user and finally a 'Button' which
-    redirects the user to a new screen
+    which displays a string to the user and several 'Buttons'
 -->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"

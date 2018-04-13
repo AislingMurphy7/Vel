@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:text="@string/elmInstrut">
+                android:text="@string/ElmSet">
             </Button>
     </android.support.v7.widget.LinearLayoutCompat>
 </ScrollView>

@@ -20,7 +20,6 @@ import android.widget.Toast;
 import java.util.Locale;
 
 /*
-This class is the first screen of the VéL Android app
 This class displays a ListView containing languages which
 the user can select from to change the following screens to
 the language they have chosen

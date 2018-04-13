@@ -12,6 +12,8 @@ import android.widget.Button;
 This class displays an information screen informing the user
 important information concerning the OBD protocol. Once the user
 has finished reading they can then progress to the next screen
+or they can select a button that will display how to set up the
+ELM-327 device
 */
 
 public class OBDinfo extends AppCompatActivity
@@ -37,7 +39,7 @@ public class OBDinfo extends AppCompatActivity
             }//End onClick()
         });//End OnClickListener()
 
-        //When the user selects the 'next' button
+        //When the user selects the button screen moves to the SetupELM screen
         elmSetup.setOnClickListener(new View.OnClickListener()
         {
             //The application moves to the following screen

@@ -2,8 +2,7 @@
 <!--
     This XML file designs the layout for the 'BMW.class'
     This XML file defines a 'ViewPager' to display images, a 'TextView'
-    which displays a string to the user and finally a 'Button' which
-    redirects the user to a new screen
+    which displays a string to the user and several 'Buttons'
 -->
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -70,6 +69,16 @@
 
         <Button
             android:textColor="@color/black"
+            android:id="@+id/button5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/ElmSet">
+        </Button>
+
+        <Button
+            android:textColor="@color/black"
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,7 +104,17 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:text="@string/next">
+            android:text="@string/RPM">
+        </Button>
+
+        <Button
+            android:textColor="@color/black"
+            android:id="@+id/button4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/mass_air">
         </Button>
     </LinearLayout>
 </ScrollView>
