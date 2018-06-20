@@ -51,7 +51,7 @@ public class MainActivity extends Activity
                 }//End catch
 
                 //Then the application will progress to the next screen
-                Intent intent = new Intent(getApplicationContext(), LanguageSelect.class);
+                Intent intent = new Intent(getApplicationContext(), LoginUser.class);
                 startActivity(intent);
                 finish();
             }//End run()
