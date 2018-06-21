@@ -24,7 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Agreements" />
-        <activity android:name=".OBDinfo" />
         <activity android:name=".SetupELM" />
         <activity android:name=".UserHelp" />
         <activity android:name=".VehicleSpec" />
@@ -39,9 +38,6 @@
         <activity android:name=".GraphEngineSpecs" />
         <activity android:name=".GraphEngineRPM" />
         <activity android:name=".GraphEngineAirflow" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login" />
         <activity android:name=".LoginUser" />
         <activity android:name=".SignupUser" />
         <activity android:name=".userProfile"></activity>

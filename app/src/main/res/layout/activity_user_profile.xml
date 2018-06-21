@@ -10,11 +10,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tap on the camera to choose a profile picture"
+        android:text="@string/insert_pic"
         android:textAlignment="center"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
     <ImageView
+        android:contentDescription="@string/imagedesc"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:id="@+id/imageView"
@@ -22,24 +23,31 @@
         android:background="@drawable/camera"
         android:scaleType="centerCrop"/>
 
-    <EditText
-        android:id="@+id/editTextDisplayName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Display name"/>
-
-    <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Save"/>
-
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressbar"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/editTextDisplayName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_displayname"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/save"/>
+
+    <TextView
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:id="@+id/textViewVerified"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </android.support.v7.widget.LinearLayoutCompat>

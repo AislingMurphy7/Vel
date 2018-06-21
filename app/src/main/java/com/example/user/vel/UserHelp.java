@@ -54,7 +54,7 @@ public class UserHelp extends AppCompatActivity
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {
-            Intent language_intent = new Intent(UserHelp.this, MainActivity.class);
+            Intent language_intent = new Intent(UserHelp.this, LanguageSelect.class);
             startActivity(language_intent);
         }//End if()
 
@@ -62,6 +62,12 @@ public class UserHelp extends AppCompatActivity
         if (option_id == R.id.action_help)
         {
             Toast.makeText(UserHelp.this, "You are already in 'User Help'", Toast.LENGTH_LONG).show();
+        }//End if()
+
+        if (option_id == R.id.action_prof)
+        {
+            Intent prof_intent = new Intent(UserHelp.this, userProfile.class);
+            startActivity(prof_intent);
         }//End if()
 
         //If the exit option is selected, the app will close

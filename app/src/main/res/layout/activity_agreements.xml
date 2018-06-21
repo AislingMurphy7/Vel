@@ -2,72 +2,105 @@
 <!--
     This XML file designs the layout for the 'Agreements.class'
     This XML file defines an 'ImageView' to display the VéL app logo,
-    Two 'TextViews' that display Strings of text to the user and
+    five 'TextViews' that display Strings of text to the user, and
     finally two 'Button' which allow the user to agree and progress
     on into the app, or disagree and exit the app.
 -->
-<android.support.v7.widget.LinearLayoutCompat
+
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background"
-    android:paddingBottom="20dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    tools:context="com.example.user.vel.Agreements">
+    android:background="@drawable/gradient_background">
 
-    <ImageView
-        android:id="@+id/vel"
-        android:contentDescription="@string/imagedesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/vel"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:textColor="@color/red"
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="20dp"
-        android:paddingBottom="10dp"
-        android:text="@string/warn"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:textColor="@color/black"
-        android:id="@+id/Agreement_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="10dp"
-        android:textSize="20sp"
-        android:paddingStart="10dp"
-        android:paddingEnd="2dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="15dp"
-        android:text="@string/NoUse"/>
-
-    <Button
-        android:textColor="@color/black"
-        android:id="@+id/Agree"
+    <android.support.v7.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="@string/Agree"/>
+        android:orientation="vertical"
+        android:background="@drawable/gradient_background"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        tools:context="com.example.user.vel.Agreements">
 
-    <Button
-        android:textColor="@color/black"
-        android:id="@+id/Disagree"
-        android:layout_below="@+id/agree"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="@string/Disagree"/>
+        <ImageView
+            android:id="@+id/vel"
+            android:contentDescription="@string/imagedesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vel"
+            android:layout_gravity="center"/>
 
-</android.support.v7.widget.LinearLayoutCompat>
+        <TextView
+            android:textColor="@color/red"
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp"
+            android:text="@string/warn"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/Agreement_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="2dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:text="@string/NoUse"/>
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/OBD_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"
+            android:paddingTop="20dp"
+            android:text="@string/OBD"/>
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/OBD_text2"
+            android:layout_below="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:paddingTop="10dp"
+            android:textSize="20sp"
+            android:paddingBottom="15dp"
+            android:text="@string/cars"/>
+
+        <Button
+            android:textColor="@color/black"
+            android:id="@+id/Agree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/Agree"/>
+
+        <Button
+            android:textColor="@color/black"
+            android:id="@+id/Disagree"
+            android:layout_below="@+id/agree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/Disagree"/>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+</ScrollView>

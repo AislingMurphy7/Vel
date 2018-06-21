@@ -193,6 +193,12 @@ public class LanguageSelect extends AppCompatActivity
             startActivity(help_intent);
         }//End if()
 
+        if (option_id == R.id.action_prof)
+        {
+            Intent prof_intent = new Intent(LanguageSelect.this, userProfile.class);
+            startActivity(prof_intent);
+        }//End if()
+
         //If the exit option is selected, the app will close
         if (option_id == R.id.action_exit)
         {

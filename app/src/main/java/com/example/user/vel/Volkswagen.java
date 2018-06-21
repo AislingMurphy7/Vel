@@ -92,7 +92,7 @@ public class Volkswagen extends AppCompatActivity
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {
-            Intent language_intent = new Intent(Volkswagen.this, MainActivity.class);
+            Intent language_intent = new Intent(Volkswagen.this, LanguageSelect.class);
             startActivity(language_intent);
         }//End if()
 
@@ -101,6 +101,12 @@ public class Volkswagen extends AppCompatActivity
         {
             Intent help_intent = new Intent(Volkswagen.this, UserHelp.class);
             startActivity(help_intent);
+        }//End if()
+
+        if (option_id == R.id.action_prof)
+        {
+            Intent prof_intent = new Intent(Volkswagen.this, userProfile.class);
+            startActivity(prof_intent);
         }//End if()
 
         //If the exit option is selected, the app will close

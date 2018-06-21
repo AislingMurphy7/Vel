@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+
+-->
+
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,7 +14,7 @@
 
      <ImageView
          android:id="@+id/vel"
-         android:contentDescription="Application logo"
+         android:contentDescription="@string/imagedesc"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:src="@drawable/vel"
@@ -20,7 +24,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextEmail"
         android:layout_gravity="center_horizontal"
-        android:hint="Email"
+        android:hint="@string/prompt_email"
         android:layout_width="300dp"
         android:inputType="textEmailAddress"
         android:paddingBottom="15dp" />
@@ -29,28 +33,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/editTextPassword"
         android:layout_gravity="center_horizontal"
-        android:hint="Password"
+        android:hint="@string/prompt_password"
         android:inputType="textPassword"
         android:paddingBottom="15dp"
         android:layout_width="300dp" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonLogin"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="7dp"
-        android:text="Login"
-        android:textColor="@color/black"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewSignup"
-        android:layout_gravity="center_horizontal"
-        android:text="Don't have an account? Sign up here!"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:textColor="@color/black"/>
 
     <ProgressBar
         android:layout_width="wrap_content"
@@ -58,5 +44,24 @@
         android:id="@+id/progressbar"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLogin"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
+        android:text="@string/Log_in"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewSignup"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/No_Acc"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black"/>
+
 
 </android.support.v7.widget.LinearLayoutCompat>

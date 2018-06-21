@@ -31,7 +31,7 @@ public class SetupELM extends AppCompatActivity
             //The application moves to the following screen
             public void onClick(View view)
             {
-                Intent intent = new Intent(SetupELM.this, GraphTempSpecs.class);
+                Intent intent = new Intent(SetupELM.this, VehicleSpec.class);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
@@ -52,7 +52,7 @@ public class SetupELM extends AppCompatActivity
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {
-            Intent language_intent = new Intent(SetupELM.this, MainActivity.class);
+            Intent language_intent = new Intent(SetupELM.this, LanguageSelect.class);
             startActivity(language_intent);
         }//End if()
 
@@ -61,6 +61,12 @@ public class SetupELM extends AppCompatActivity
         {
             Intent help_intent = new Intent(SetupELM.this, UserHelp.class);
             startActivity(help_intent);
+        }//End if()
+
+        if (option_id == R.id.action_prof)
+        {
+            Intent prof_intent = new Intent(SetupELM.this, userProfile.class);
+            startActivity(prof_intent);
         }//End if()
 
         //If the exit option is selected, the app will close

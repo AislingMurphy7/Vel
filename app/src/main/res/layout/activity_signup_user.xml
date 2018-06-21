@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/vel"
-        android:contentDescription="Application logo"
+        android:contentDescription="@string/imagedesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/vel"
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:id="@+id/editTextEmail"
-        android:hint="Email"
+        android:hint="@string/prompt_email"
         android:layout_width="300dp"
         android:inputType="textEmailAddress"
         android:paddingBottom="15dp" />
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:id="@+id/editTextPassword"
-        android:hint="Password"
+        android:hint="@string/prompt_password"
         android:layout_width="300dp"
         android:inputType="textPassword"
         android:paddingBottom="15dp" />
@@ -41,7 +41,7 @@
         android:id="@+id/buttonSignup"
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
-        android:text="Sign Up"
+        android:text="@string/Signup"
         android:textColor="@color/black"/>
 
     <TextView
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:id="@+id/textViewLogin"
-        android:text="Already have an account? Sign in here!"
+        android:text="@string/have_Acc"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"/>
 

@@ -14,6 +14,14 @@ of when it is safe to use the application. The user is then
 required to state if they agree or disagree with the message
 */
 
+/*
+This class displays an information screen informing the user
+important information concerning the OBD protocol. Once the user
+has finished reading they can then progress to the next screen
+or they can select a button that will display how to set up the
+ELM-327 device
+*/
+
 public class Agreements extends AppCompatActivity
 {
     protected void onCreate(Bundle savedInstanceState)
@@ -47,7 +55,7 @@ public class Agreements extends AppCompatActivity
             //The app moves from the current screen to the following screen
             public void onClick(View view)
             {
-                Intent Agree_intent = new Intent(Agreements.this, OBDinfo.class);
+                Intent Agree_intent = new Intent(Agreements.this, SetupELM.class);
                 startActivity(Agree_intent);
             }//End onClick()
         });//End OnClickListener()
@@ -68,7 +76,7 @@ public class Agreements extends AppCompatActivity
         //If the language option is selected, user will be re-directed to language screen
         if (option_id == R.id.action_Language)
         {
-            Intent Language_intent = new Intent(Agreements.this, MainActivity.class);
+            Intent Language_intent = new Intent(Agreements.this, LanguageSelect.class);
             startActivity(Language_intent);
         }//End if()
 
@@ -77,6 +85,12 @@ public class Agreements extends AppCompatActivity
         {
             Intent help_intent = new Intent(Agreements.this, UserHelp.class);
             startActivity(help_intent);
+        }//End if()
+
+        if (option_id == R.id.action_prof)
+        {
+            Intent prof_intent = new Intent(Agreements.this, userProfile.class);
+            startActivity(prof_intent);
         }//End if()
 
         //If the exit option is selected, the app will close
