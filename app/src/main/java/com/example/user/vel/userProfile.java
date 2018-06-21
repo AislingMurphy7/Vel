@@ -59,6 +59,8 @@ public class userProfile extends Activity {
 
             }
         });
+        
+        loadUserInfo();
 
         findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +70,27 @@ public class userProfile extends Activity {
 
             }
         });
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if(mAuth.getCurrentUser() == null)
+        {
+            finish();
+            startActivity(new Intent(this, LoginUser.class));
+            Toast.makeText(this, "HERE", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void loadUserInfo() {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        String photoURL = user.getPhotoUrl().toString();
+        String displayname =  user.getDisplayName();
     }
 
     private void saveUserInfo() {

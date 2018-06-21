@@ -83,12 +83,11 @@ public class SignupUser extends Activity implements View.OnClickListener {
                         progressbar.setVisibility(View.GONE);
                         if(task.isSuccessful())
                         {
+                            finish();
                             //Sign in success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), "User Registered Successfully", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(SignupUser.this, userProfile.class));
 
-                            Intent intent = new Intent(SignupUser.this, LanguageSelect.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
                         }else {
                             if(task.getException() instanceof FirebaseAuthUserCollisionException)
                             {
@@ -112,6 +111,7 @@ public class SignupUser extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.textViewLogin:
+                finish();
                 startActivity(new Intent(this, LoginUser.class));
                 break;
 
