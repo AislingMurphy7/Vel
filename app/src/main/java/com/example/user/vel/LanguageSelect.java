@@ -28,10 +28,10 @@ the language they have chosen
 public class LanguageSelect extends AppCompatActivity
 {
     //IMAGES Array holds all the Images used within the ListView for the Languages
-    int[] IMAGES = {R.drawable.english, R.drawable.french, R.drawable.spanish, R.drawable.german, R.drawable.swedish, R.drawable.russia};
+    int[] IMAGES = {R.drawable.english, R.drawable.french, R.drawable.spanish, R.drawable.german};
 
     //NAMES Array holds the languages the user can select from
-    String[] NAMES = {"English", "French", "Spanish", "German", "Swedish", "Russian"};
+    String[] NAMES = {"English", "French", "Spanish", "German"};
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -85,24 +85,6 @@ public class LanguageSelect extends AppCompatActivity
                 {
                     //The Locale will be set to "German"
                     setLocale("de");
-                    //The app will change from current screen to next screen
-                    Intent intent = new Intent(LanguageSelect.this, Agreements.class);
-                    startActivity(intent);
-                }//End if()
-                //If option(i) is equal to the fifth row
-                else if(i == 4)
-                {
-                    //The Locale will be set to "Swedish"
-                    setLocale("sv");
-                    //The app will change from current screen to next screen
-                    Intent intent = new Intent(LanguageSelect.this, Agreements.class);
-                    startActivity(intent);
-                }//End if()
-                //If option(i) is equal to the sixth row
-                else if(i == 5)
-                {
-                    //The Locale will be set to "Russian"
-                    setLocale("ru");
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(LanguageSelect.this, Agreements.class);
                     startActivity(intent);
@@ -183,7 +165,7 @@ public class LanguageSelect extends AppCompatActivity
         //If the settings option is selected, user will be informed they are already on the language screen
         if (option_id == R.id.action_Language)
         {
-            Toast.makeText(LanguageSelect.this, "You are already in the language selection screen", Toast.LENGTH_LONG).show();
+            Toast.makeText(LanguageSelect.this, R.string.lang_page, Toast.LENGTH_LONG).show();
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen

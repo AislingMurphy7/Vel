@@ -45,28 +45,28 @@ public class SignupUser extends Activity implements View.OnClickListener {
         String password = editTextPassword.getText().toString().trim();
 
         if(email.isEmpty()) {
-            editTextEmail.setError("Email is required");
+            editTextEmail.setError(getText(R.string.email_need));
             editTextEmail.requestFocus();
             return;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
-            editTextEmail.setError("Please enter a valid email address");
+            editTextEmail.setError(getText(R.string.ent_valid_email));
             editTextEmail.requestFocus();
             return;
         }
 
         if(password.isEmpty())
         {
-            editTextPassword.setError("Password is required");
+            editTextPassword.setError(getText(R.string.pass_empt));
             editTextPassword.requestFocus();
             return;
         }
 
         if(password.length()<6)
         {
-            editTextPassword.setError("Minimum length of password is 6");
+            editTextPassword.setError(getText(R.string.mini_length));
             editTextPassword.requestFocus();
             return;
         }
@@ -82,13 +82,13 @@ public class SignupUser extends Activity implements View.OnClickListener {
                         {
                             finish();
                             //Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(getApplicationContext(), "User Registered Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.reg_user, Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(SignupUser.this, userProfile.class));
 
                         }else {
                             if(task.getException() instanceof FirebaseAuthUserCollisionException)
                             {
-                                Toast.makeText(getApplicationContext(), "Email is already registered", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), R.string.reg_already, Toast.LENGTH_SHORT).show();
 
                             }else{
                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();

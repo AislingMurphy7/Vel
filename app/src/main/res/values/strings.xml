@@ -116,10 +116,24 @@
     <string name="Log_in">Login</string>
     <string name="Signup">Sign Up</string>
     <string name="save">Save</string>
-    <string name="No_Acc">Don\'t have an account? Sign up here!</string>
-    <string name="have_Acc">Already have an account? Sign in here!</string>
+    <string name="No_Acc"><u>Don\'t have an account? Sign up here!</u></string>
+    <string name="have_Acc"><u>Already have an account? Sign in here!</u></string>
     <string name="enter_displayname">Enter Display name</string>
     <string name="insert_pic">Tap on the camera to choose a profile picture</string>
+    <string name="email_verified">Email Verified</string>
+    <string name="email_NotVerified">Email not Verified (Click here to Verify)</string>
+    <string name="email_sent">Verification Email Sent</string>
+    <string name="displayname_empt">Name Required</string>
+    <string name="prof_updated">Profile Updated</string>
+    <string name="in_prof">You are already in your profile</string>
+    <string name="ent_valid_email">Please enter a valid email address</string>
+    <string name="email_need">Email is required</string>
+    <string name="pass_empt">Password is required</string>
+    <string name="mini_length">Minimum length of password is 6</string>
+    <string name="reg_user">User Registered Successfully</string>
+    <string name="reg_already">Email is already registered</string>
+    <string name="lang_page">You are already in the language selection screen</string>
+    <string name="user_page">You are already in \'User Help\'</string>
 
 
 </resources>

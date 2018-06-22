@@ -44,28 +44,28 @@ public class LoginUser extends Activity implements View.OnClickListener{
         String password = editTextPassword.getText().toString().trim();
 
         if(email.isEmpty()) {
-            editTextEmail.setError("Email is required");
+            editTextEmail.setError(getText(R.string.email_need));
             editTextEmail.requestFocus();
             return;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
-            editTextEmail.setError("Please enter a valid email address");
+            editTextEmail.setError(getText(R.string.ent_valid_email));
             editTextEmail.requestFocus();
             return;
         }
 
         if(password.isEmpty())
         {
-            editTextPassword.setError("Password is required");
+            editTextPassword.setError(getText(R.string.pass_empt));
             editTextPassword.requestFocus();
             return;
         }
 
         if(password.length()<6)
         {
-            editTextPassword.setError("Minimum length of password is 6");
+            editTextPassword.setError(getText(R.string.mini_length));
             editTextPassword.requestFocus();
             return;
         }
@@ -87,20 +87,6 @@ public class LoginUser extends Activity implements View.OnClickListener{
             }
         });
     }
-
-    /*
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if(mAuth.getCurrentUser() != null)
-        {
-            finish();
-            startActivity(new Intent(this, userProfile.class));
-            Toast.makeText(this, "HERE", Toast.LENGTH_SHORT).show();
-        }
-    }
-    */
 
     @Override
     public void onClick(View v)

@@ -5,49 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient_background"
     tools:context=".userProfile">
 
     <TextView
+        android:id="@+id/prof_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/insert_pic"
         android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:textSize="20sp"/>
 
     <ImageView
+        android:id="@+id/imageView"
         android:contentDescription="@string/imagedesc"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:id="@+id/imageView"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/camera"
         android:scaleType="centerCrop"/>
 
     <ProgressBar
+        android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressbar"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"/>
 
     <EditText
         android:id="@+id/editTextDisplayName"
+        android:paddingTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_displayname"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/save"/>
 
     <TextView
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         android:id="@+id/textViewVerified"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:paddingTop="30dp"
+        android:layout_gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_margin="10dp"/>
 
 </android.support.v7.widget.LinearLayoutCompat>

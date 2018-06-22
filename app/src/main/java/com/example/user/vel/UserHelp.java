@@ -61,7 +61,7 @@ public class UserHelp extends AppCompatActivity
         //If the settings option is selected, user will be informed they are already on the help screen
         if (option_id == R.id.action_help)
         {
-            Toast.makeText(UserHelp.this, "You are already in 'User Help'", Toast.LENGTH_LONG).show();
+            Toast.makeText(UserHelp.this, R.string.user_page, Toast.LENGTH_LONG).show();
         }//End if()
 
         if (option_id == R.id.action_prof)

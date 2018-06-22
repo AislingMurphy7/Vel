@@ -106,16 +106,16 @@ public class userProfile extends AppCompatActivity {
             }
 
             if(user.isEmailVerified()){
-                textView.setText("Email Verified");
+                textView.setText(R.string.email_verified);
             }else{
-                textView.setText("Email not Verified (Click here to Verify)");
+                textView.setText(R.string.email_NotVerified);
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(userProfile.this, "Verification Email Sent", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(userProfile.this, R.string.email_sent, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -129,7 +129,7 @@ public class userProfile extends AppCompatActivity {
 
         if(displayname.isEmpty())
         {
-            editText.setError("Name Required");
+            editText.setError(getText(R.string.displayname_empt));
             editText.requestFocus();
             return;
         }
@@ -148,7 +148,7 @@ public class userProfile extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(userProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(userProfile.this, R.string.prof_updated, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -240,7 +240,7 @@ public class userProfile extends AppCompatActivity {
 
         if (option_id == R.id.action_prof)
         {
-            Toast.makeText(userProfile.this, "You are already in your profile", Toast.LENGTH_LONG).show();
+            Toast.makeText(userProfile.this, R.string.in_prof, Toast.LENGTH_LONG).show();
         }//End if()
 
         //If the exit option is selected, the app will close
