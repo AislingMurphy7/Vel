@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+-->
+
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +13,6 @@
     android:background="@drawable/gradient_background"
     tools:context=".SignupUser">
 
-
     <ImageView
         android:id="@+id/vel"
         android:paddingTop="40sp"
@@ -16,7 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/vel"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center">
+    </ImageView>
 
     <EditText
         android:id="@+id/editTextEmail"
@@ -26,7 +31,8 @@
         android:layout_gravity="center_horizontal"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
-        android:paddingBottom="15dp" />
+        android:paddingBottom="15dp">
+    </EditText>
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -34,14 +40,16 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="@string/prompt_password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword">
+    </EditText>
 
     <ProgressBar
         android:id="@+id/progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:visibility="gone"/>
+        android:visibility="gone">
+    </ProgressBar>
 
     <Button
         android:id="@+id/buttonSignup"
@@ -50,7 +58,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:text="@string/Signup"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black">
+    </Button>
 
     <TextView
         android:id="@+id/textViewLogin"
@@ -59,7 +68,8 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/have_Acc"
         android:textSize="20sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black">
+    </TextView>
 
 </android.support.v7.widget.LinearLayoutCompat>
 

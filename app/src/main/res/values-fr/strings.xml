@@ -91,7 +91,43 @@
     <string name="engine_throttle_def">Le capteur de position du papillon surveille la position de la commande des gaz dans un véhicule</string>
     <string name="throttle_load_info">Les données reçues de la base de données montrent: \nLa charge du moteur est:
         NORMALE \nLa position de l'accélérateur est: NORMALE</string>
+
     <string name="help">Aidez-moi</string>
     <string name="lang">La langue</string>
     <string name="exit">Sortie</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Le courriel </string>
+    <string name="prompt_password">Mot de passe </string>
+    <string name="action_sign_in">Connexion ou Inscription</string>
+    <string name="action_sign_in_short">Connectez-vous</string>
+    <string name="error_invalid_email">Cette adresse e-mail est invalide</string>
+    <string name="error_invalid_password">Ce mot de passe est trop court</string>
+    <string name="error_incorrect_password">Ce mot de passe n\'est pas correct</string>
+    <string name="error_field_required">Ce champ est requis</string>
+    <string name="permission_rationale">"Les autorisations de contacts sont nécessaires pour fournir
+        des complétions de courrier électronique"
+    </string>
+
+    <string name="Log_in">S\'identifier</string>
+    <string name="Signup">S\'inscrire</string>
+    <string name="save">enregistrer</string>
+    <string name="No_Acc"><u>Vous n'avez pas de compte? Inscrivez-vous ici!</u></string>
+    <string name="have_Acc"><u>Vous avez déjà un compte? Se connecter ici!</u></string>
+    <string name="enter_displayname">Entrez le nom d\'affichage</string>
+    <string name="insert_pic">Appuyez sur l\'appareil photo pour choisir une photo de profil</string>
+    <string name="email_verified">Le courriel verifié</string>
+    <string name="email_NotVerified">Le courriel non vérifié (Cliquez ici pour vérifier)</string>
+    <string name="email_sent">Le courriel  de vérification a été envoyé</string>
+    <string name="displayname_empt">Nom requis</string>
+    <string name="prof_updated">Profil mis à jour</string>
+    <string name="in_prof">Vous êtes déjà dans votre profil</string>
+    <string name="ent_valid_email">S\'il vous plaît, mettez une adresse email valide</string>
+    <string name="email_need">Le courriel est requis</string>
+    <string name="pass_empt">Mot de passe requis</string>
+    <string name="mini_length">La longueur minimale du mot de passe est de 6</string>
+    <string name="reg_user">Utilisateur enregistré avec succès</string>
+    <string name="reg_already">L\'adresse e-mail est déjà utilisée</string>
+    <string name="lang_page">Vous êtes déjà dans l\'écran de sélection de la langue</string>
+    <string name="user_page">Vous êtes déjà dans \'Aide utilisateur\'</string>
 </resources>

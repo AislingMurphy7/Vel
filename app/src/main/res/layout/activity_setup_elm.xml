@@ -26,8 +26,8 @@
         tools:context="com.example.user.vel.SetupELM">
 
         <ImageView
-            android:contentDescription="@string/imagedesc"
             android:id="@+id/vel"
+            android:contentDescription="@string/imagedesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -39,8 +39,8 @@
         </ImageView>
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/ELM_text1"
+            android:textColor="@color/black"
             android:layout_below="@+id/vel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,8 +51,8 @@
         </TextView>
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/ELM_text2"
+            android:textColor="@color/black"
             android:layout_below="@+id/ELM_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,13 +63,15 @@
         </TextView>
 
         <Button
-            android:textColor="@color/black"
             android:id="@+id/bt1"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="@string/next">
         </Button>
+
     </android.support.v7.widget.LinearLayoutCompat>
+
 </ScrollView>

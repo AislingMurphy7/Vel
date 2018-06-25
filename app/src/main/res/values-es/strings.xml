@@ -96,4 +96,40 @@
     <string name="help">Ayuda</string>
     <string name="lang">Idioma</string>
     <string name="exit">Salida</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">electrónico</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_sign_in">Ingresa o Registro</string>
+    <string name="action_sign_in_short">Registrarse</string>
+    <string name="error_invalid_email">Esta dirección de correo electrónico no es válida</string>
+    <string name="error_invalid_password">Esta contraseña es muy corta</string>
+    <string name="error_incorrect_password">Esta contraseña no es correcta</string>
+    <string name="error_field_required">este campo es requerido</string>
+    <string name="permission_rationale">"Los permisos de contactos son necesarios para
+        proporcionar terminaciones de correo electrónico"
+    </string>
+
+    <string name="Log_in">Iniciar sesión</string>
+    <string name="Signup">Regístrate</string>
+    <string name="save">salvar</string>
+    <string name="No_Acc"><u>No tienes una cuenta? ¡Registrate aquí!</u></string>
+    <string name="have_Acc"><u>¿Ya tienes una cuenta? ¡Firme aquí!</u></string>
+    <string name="enter_displayname">Ingrese el nombre para mostrar</string>
+    <string name="insert_pic">Toca la cámara para elegir una foto de perfil</string>
+    <string name="email_verified">Correo Electrónico Verificado</string>
+    <string name="email_NotVerified">Correo electrónico no verificado (Haga clic aquí para
+        verificar)</string>
+    <string name="email_sent">El mensaje de verificación ha sido enviado</string>
+    <string name="displayname_empt">Nombre requerido</string>
+    <string name="prof_updated">Perfil actualizado</string>
+    <string name="in_prof">Ya estás en tu perfil</string>
+    <string name="ent_valid_email">Por favor, introduce una dirección de correo electrónico válida</string>
+    <string name="email_need">correo electronico es requerido</string>
+    <string name="pass_empt">se requiere contraseña</string>
+    <string name="mini_length">La longitud mínima de la contraseña es 6</string>
+    <string name="reg_user">Usuario registrado con éxito</string>
+    <string name="reg_already">El correo electrónico ya está registrado</string>
+    <string name="lang_page">Ya estás en la pantalla de selección de idioma</string>
+    <string name="user_page">Ya estás en \'ayuda del usuario\'</string>
 </resources>

@@ -12,26 +12,29 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:contentDescription="@string/listimagelang"
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="60dp"
+        android:contentDescription="@string/listimagelang"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:srcCompat="@mipmap/ic_launcher">
+    </ImageView>
 
     <TextView
-        android:textColor="@color/black"
-        android:textSize="20sp"
         android:id="@+id/textViewLang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         android:layout_alignBottom="@+id/imageView"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/imageView"
-        android:text="@string/listCusTextV" />
+        android:text="@string/listCusTextV">
+    </TextView>
+
 </RelativeLayout>

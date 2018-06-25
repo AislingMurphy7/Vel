@@ -3,7 +3,7 @@ package com.example.user.vel;
 /*
     This class handles the information that is stored/pulled
     from Firebase. Once the program can make a link between itself
-    and Firebaase based off the names of the variables below there should
+    and Firebase based off the names of the variables below there should
     be no issue of pulling data from the database
  */
 

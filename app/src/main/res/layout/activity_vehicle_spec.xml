@@ -16,10 +16,10 @@
     android:background="@drawable/gradient_background">
 
     <ImageView
-        android:contentDescription="@string/imagedesc"
         android:id="@+id/vel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/imagedesc"
         android:adjustViewBounds="true"
         android:maxHeight="300dp"
         android:maxWidth="300dp"
@@ -27,10 +27,10 @@
         android:layout_gravity="center"/>
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/ChooseMake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/black"
         android:layout_margin="20dp"
         android:layout_gravity="center_horizontal"
         android:text="@string/CarChoice"

@@ -96,5 +96,41 @@
     <string name="Help">Hilfe</string>
     <string name="lang">Sprache</string>
     <string name="exit">Ausgang</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">E-mail</string>
+    <string name="prompt_password">Wachtwoord</string>
+    <string name="action_sign_in">Log in of registreer</string>
+    <string name="action_sign_in_short">Aanmelden</string>
+    <string name="error_invalid_email">Dit e-mailadres is ongeldiga</string>
+    <string name="error_invalid_password">Dit wachtwoord is te kort</string>
+    <string name="error_incorrect_password">Dit wachtwoord is niet correct</string>
+    <string name="error_field_required">dit veld is verplicht</string>
+    <string name="permission_rationale">"Contacten voor contactpersonen zijn nodig
+        om e-mailaanleveringen te kunnen leveren"
+    </string>
+
+    <string name="Log_in">Log in</string>
+    <string name="Signup">Aanmelden</string>
+    <string name="save">opslaan</string>
+    <string name="No_Acc"><u>Heb je geen account? Registreer hier!</u></string>
+    <string name="have_Acc"><u>Heb je al een account? Meld je hier aan!</u></string>
+    <string name="enter_displayname">Voer de weergavenaam in</string>
+    <string name="insert_pic">Tik op de camera om een profielfoto te kiezen</string>
+    <string name="email_verified">email geverifieerd</string>
+    <string name="email_NotVerified">Email niet geverifieerd (klik hier om te verifiëren)</string>
+    <string name="email_sent">Verificatie email verzonden</string>
+    <string name="displayname_empt">Naam vereist</string>
+    <string name="prof_updated">Profiel geüpdatet</string>
+
+    <string name="in_prof">Je staat al in je profiel</string>
+    <string name="ent_valid_email">Gelieve een geldig e-mailadres in te geven</string>
+    <string name="email_need">E-mail is verplicht</string>
+    <string name="pass_empt">Een wachtwoord is verplicht</string>
+    <string name="mini_length">Minimale wachtwoordlengte is 6</string>
+    <string name="reg_user">Gebruiker succesvol geregistreerd</string>
+    <string name="reg_already">Email is al geregistreerd</string>
+    <string name="lang_page">U bevindt zich al in het taalkeuzescherm</string>
+    <string name="user_page">U bevindt zich al in \'Gebruikershelp\'</string>
 </resources>
 

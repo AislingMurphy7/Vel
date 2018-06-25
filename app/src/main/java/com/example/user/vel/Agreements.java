@@ -10,16 +10,11 @@ import android.widget.Button;
 
 /*
 This class displays information informing the user
-of when it is safe to use the application. The user is then
-required to state if they agree or disagree with the message
-*/
-
-/*
-This class displays an information screen informing the user
-important information concerning the OBD protocol. Once the user
-has finished reading they can then progress to the next screen
-or they can select a button that will display how to set up the
-ELM-327 device
+of when it is safe to use the application. This class also
+displays information informing the user about important
+information concerning the OBD protocol. The user is then
+required to state if they agree or disagree with the messages
+shown.
 */
 
 public class Agreements extends AppCompatActivity

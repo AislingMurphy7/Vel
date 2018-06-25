@@ -40,10 +40,10 @@
             </TextView>
 
             <ImageButton
-                android:contentDescription="@string/imagedesc"
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/imagedesc"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
                 android:background="@android:color/transparent">
@@ -72,10 +72,10 @@
             </TextView>
 
             <ImageButton
-                android:contentDescription="@string/imagedesc"
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/imagedesc"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
                 android:background="@android:color/transparent">
@@ -104,10 +104,10 @@
             </TextView>
 
             <ImageButton
-                android:contentDescription="@string/imagedesc"
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/imagedesc"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
                 android:background="@android:color/transparent">
@@ -136,10 +136,10 @@
             </TextView>
 
             <ImageButton
-                android:contentDescription="@string/imagedesc"
                 android:id="@id/expand_collapse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/imagedesc"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
                 android:background="@android:color/transparent">
@@ -168,8 +168,8 @@
         </TextView>
 
         <ImageButton
-            android:contentDescription="@string/imagedesc"
             android:id="@id/expand_collapse"
+            android:contentDescription="@string/imagedesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -200,10 +200,10 @@
         </TextView>
 
         <ImageButton
-            android:contentDescription="@string/imagedesc"
             android:id="@id/expand_collapse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/imagedesc"
             android:layout_margin="16dp"
             android:layout_gravity="end|bottom"
             android:background="@android:color/transparent">
@@ -232,10 +232,10 @@
         </TextView>
 
         <ImageButton
-            android:contentDescription="@string/imagedesc"
             android:id="@id/expand_collapse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/imagedesc"
             android:layout_margin="16dp"
             android:layout_gravity="end|bottom"
             android:background="@android:color/transparent">

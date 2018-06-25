@@ -3,7 +3,7 @@
     This XML file designs the layout for the 'LanguageSelect.class'
     This XML file defines an 'ImageView' to display the VéL app logo,
     a'TextView' that displays a String of text to the user and finally
-    a 'ListView' which has the abilty to change the language of the app.
+    a 'ListView' which has the ability to change the language of the app.
 -->
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,4 +45,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </ListView>
+
 </android.support.v7.widget.LinearLayoutCompat>

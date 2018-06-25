@@ -29,17 +29,17 @@
 
         <ImageView
             android:id="@+id/vel"
-            android:contentDescription="@string/imagedesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/imagedesc"
             android:src="@drawable/vel"
             android:layout_gravity="center"/>
 
         <TextView
-            android:textColor="@color/red"
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/red"
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="10dp"
@@ -47,10 +47,10 @@
             android:textSize="20sp"/>
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/Agreement_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
             android:textSize="20sp"
@@ -61,21 +61,21 @@
             android:text="@string/NoUse"/>
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/OBD_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
             android:paddingTop="20dp"
             android:text="@string/OBD"/>
 
         <TextView
-            android:textColor="@color/black"
             android:id="@+id/OBD_text2"
-            android:layout_below="@+id/text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_below="@+id/text1"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
             android:paddingTop="10dp"
@@ -84,20 +84,20 @@
             android:text="@string/cars"/>
 
         <Button
-            android:textColor="@color/black"
             android:id="@+id/Agree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:text="@string/Agree"/>
 
         <Button
-            android:textColor="@color/black"
             android:id="@+id/Disagree"
-            android:layout_below="@+id/agree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_below="@+id/agree"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:text="@string/Disagree"/>
