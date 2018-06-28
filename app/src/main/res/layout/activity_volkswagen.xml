@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
     This XML file designs the layout for the 'Volkswagen.class'
-    This XML file defines a 'ViewPager' to display images, a 'TextView'
-    which displays a string to the user and several 'Buttons'
+    There is a scrollview, within which there is a
+    'ViewPager' to display images, a 'TextView'
+    which displays a string to the user and finally several 'Buttons'
 -->
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,7 +37,8 @@
             android:padding="20dp"
             android:text="@string/Volk_Head"
             android:textColor="@color/black"
-            android:textSize="18.7sp" />
+            android:textSize="18.7sp">
+        </TextView>
 
         <TextView
             android:id="@+id/slider_text"
@@ -67,14 +71,14 @@
         </TextView>
 
         <Button
-        android:textColor="@color/black"
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="@string/temp_specs">
-    </Button>
+            android:textColor="@color/black"
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/temp_specs">
+        </Button>
 
         <Button
             android:textColor="@color/black"
@@ -105,5 +109,6 @@
             android:layout_marginLeft="20dp"
             android:text="@string/mass_air">
         </Button>
+
     </LinearLayout>
 </ScrollView>

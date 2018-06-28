@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-
+    This XML file designs the layout for the 'userProfile.class'
+    There is a 'TextView' which informs the user to tap on the camera if they wish
+    to change their profile picture, an 'ImaheView' which displays the camera image
+    and new profile image when the user picks one from their gallery, a 'ProgressBar'
+    which shows information is being processed, an 'EditText' which allows the user to
+    change their display name, a 'Button' which allows the user to save the new
+    information and finally a 'TextView' which will display a message if the user has
+    verified their email address otherwise it will display another message stating
+    that the address has not been verified.
 -->
 
 <android.support.v7.widget.LinearLayoutCompat

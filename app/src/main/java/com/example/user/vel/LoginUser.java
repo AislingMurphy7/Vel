@@ -16,6 +16,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+/*
+    This class allows the user to sign into their individual account if they have already
+    registered. It contains two edit texts which allows the user to inout their
+    email address and password, a sign in button and finally clickable text which redirects
+    the user to the sign up / register page.
+ */
+
 public class LoginUser extends Activity implements View.OnClickListener{
 
     FirebaseAuth mAuth;

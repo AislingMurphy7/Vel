@@ -4,6 +4,7 @@
     Custom layout for the Vehicle images which can be found on all the
     vehicle classes (Audi.class, BMW.class, Ford.class.. etc..)
 -->
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

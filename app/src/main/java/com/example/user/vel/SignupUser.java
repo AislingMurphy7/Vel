@@ -17,6 +17,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
+/*
+    This class allows the user to create an account.
+    It contains two edit texts which allows the user to inout their
+    email address and password, a sign up button and finally clickable text which redirects
+    the user to the login page if they already have an account created.
+ */
+
 public class SignupUser extends Activity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;

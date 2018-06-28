@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
     This XML file designs the layout for the 'Toyota.class'
-    This XML file defines a 'ViewPager' to display images, a 'TextView'
-    which displays a string to the user and several 'Buttons'
+    There is a scrollview, within which there is a
+    'ViewPager' to display images, a 'TextView'
+    which displays a string to the user and finally several 'Buttons'
 -->
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,7 +37,8 @@
             android:padding="20dp"
             android:text="@string/Toy_Head"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp">
+        </TextView>
 
         <TextView
             android:id="@+id/slider_text"
@@ -115,5 +119,6 @@
             android:layout_marginLeft="20dp"
             android:text="@string/mass_air">
         </Button>
+
     </LinearLayout>
 </ScrollView>

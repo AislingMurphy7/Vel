@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    XML for Mass airflow rate graph used in the GraphEngineAirFlow.class
+    XML for Mass airflow rate graph used in the GraphEngineAirFlow.class.
+    This implements the mikephil graph API
 -->
 
 <LinearLayout

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
     This XML file designs the layout for the 'Agreements.class'
     This XML file defines an 'ImageView' to display the VéL app logo,
-    five 'TextViews' that display Strings of text to the user, and
+    four 'TextViews' that display Strings of text to the user, and
     finally two 'Button' which allow the user to agree and progress
     on into the app, or disagree and exit the app.
 -->
@@ -33,7 +34,8 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/imagedesc"
             android:src="@drawable/vel"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center">
+        </ImageView>
 
         <TextView
             android:id="@+id/text"
@@ -44,7 +46,8 @@
             android:paddingTop="20dp"
             android:paddingBottom="10dp"
             android:text="@string/warn"
-            android:textSize="20sp"/>
+            android:textSize="20sp">
+        </TextView>
 
         <TextView
             android:id="@+id/Agreement_text"
@@ -58,7 +61,8 @@
             android:paddingEnd="2dp"
             android:paddingTop="10dp"
             android:paddingBottom="15dp"
-            android:text="@string/NoUse"/>
+            android:text="@string/NoUse">
+        </TextView>
 
         <TextView
             android:id="@+id/OBD_text1"
@@ -68,7 +72,8 @@
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
             android:paddingTop="20dp"
-            android:text="@string/OBD"/>
+            android:text="@string/OBD">
+        </TextView>
 
         <TextView
             android:id="@+id/OBD_text2"
@@ -81,7 +86,8 @@
             android:paddingTop="10dp"
             android:textSize="20sp"
             android:paddingBottom="15dp"
-            android:text="@string/cars"/>
+            android:text="@string/cars">
+        </TextView>
 
         <Button
             android:id="@+id/Agree"
@@ -90,7 +96,8 @@
             android:textColor="@color/black"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/Agree"/>
+            android:text="@string/Agree">
+        </Button>
 
         <Button
             android:id="@+id/Disagree"
@@ -100,7 +107,8 @@
             android:layout_below="@+id/agree"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:text="@string/Disagree"/>
+            android:text="@string/Disagree">
+        </Button>
 
     </android.support.v7.widget.LinearLayoutCompat>
 </ScrollView>

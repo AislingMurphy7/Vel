@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-
+    This XML file designs the layout for the 'SignupUser.class'
+    This XML file defines an 'ImageView' to display the VéL app logo,
+    two 'EditTexts' which take input in the form of Email and Password,
+    a 'ProgressBar' which shows information is being processed, a 'Button'
+    which allows the user to sign up once all information entered is correct
+    and finally a clickable 'TextView' which redirects the user to the login
+    page if needed.
 -->
 
 <android.support.v7.widget.LinearLayoutCompat

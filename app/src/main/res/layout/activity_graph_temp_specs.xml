@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    XML for coolant temperature and air intake temperature graph used in the GraphTempSpecs.class
+    XML for coolant temperature and air intake temperature graph used in the GraphTempSpecs.class.
+    This implements the mikephil graph API
 -->
 
 <LinearLayout
@@ -17,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/linechart">
-
     </com.github.mikephil.charting.charts.LineChart>
 
 </LinearLayout>

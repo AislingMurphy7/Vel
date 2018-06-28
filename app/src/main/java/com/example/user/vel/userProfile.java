@@ -30,6 +30,11 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
+/*
+    This class allows the user to edit their profile by changing their profile picture which they
+    choose from the camera gallery, they can also edit their display name.
+ */
+
 public class userProfile extends AppCompatActivity {
 
     private static final int CHOOSE_IMAGE = 101;

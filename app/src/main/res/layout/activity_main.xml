@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    XML for the MainActivity.class
+    XML for the MainActivity.class.
+    This XML displays the splash screen when the application first opens
+    on the android device.
 -->
 
 <RelativeLayout

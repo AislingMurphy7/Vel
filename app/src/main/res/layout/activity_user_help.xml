@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
     This XML file designs the layout for the 'user_help.class'
     This XML file defines several 'ExpandableTextViews', 'TextViews'
     and an 'ImageButton" which allows the ExpandableTextView to be
     expanded to view the extra information
 -->
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

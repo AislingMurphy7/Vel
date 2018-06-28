@@ -2,6 +2,7 @@
 
 <!--
     XML for the Engine load and Throttle position graph used in the GraphEngineSpecs.class
+    This implements the mikephil graph API
 -->
 
 <LinearLayout
@@ -17,7 +18,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/linechart">
-
     </com.github.mikephil.charting.charts.LineChart>
 
 </LinearLayout>
