@@ -35,7 +35,8 @@ import java.io.IOException;
     choose from the camera gallery, they can also edit their display name.
  */
 
-public class userProfile extends AppCompatActivity {
+public class userProfile extends AppCompatActivity
+{
 
     private static final int CHOOSE_IMAGE = 101;
 
@@ -51,7 +52,8 @@ public class userProfile extends AppCompatActivity {
     FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
@@ -62,29 +64,30 @@ public class userProfile extends AppCompatActivity {
         progressbar = findViewById(R.id.progressbar);
         textView = findViewById(R.id.textViewVerified);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 showImageChooser();
-
-            }
-        });
+            }//End onClick()
+        });//End setOnClickListener()
         
         loadUserInfo();
 
-        findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
                 saveUserInfo();
-
-            }
-        });
-    }
-
+            }//End onClick()
+        });//End setOnClickListener()
+    }//End onCreate()
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
 
         if(mAuth.getCurrentUser() == null)
@@ -92,44 +95,55 @@ public class userProfile extends AppCompatActivity {
             finish();
             startActivity(new Intent(this, LoginUser.class));
             Toast.makeText(this, "HERE", Toast.LENGTH_SHORT).show();
-        }
-    }
+        }//End if()
+    }//End onStart()
 
-
-    private void loadUserInfo() {
+    private void loadUserInfo()
+    {
         final FirebaseUser user = mAuth.getCurrentUser();
 
-        if(user != null) {
-            if (user.getPhotoUrl() != null) {
+        if(user != null)
+        {
+            if (user.getPhotoUrl() != null)
+            {
                 Glide.with(this)
                         .load(user.getPhotoUrl().toString())
                         .into(imageView);
-            }
+            }//End if()
 
-            if (user.getDisplayName() != null) {
+            if (user.getDisplayName() != null)
+            {
                 editText.setText(user.getDisplayName());
-            }
+            }//End if()
 
-            if(user.isEmailVerified()){
+            if(user.isEmailVerified())
+            {
                 textView.setText(R.string.email_verified);
-            }else{
-                textView.setText(R.string.email_NotVerified);
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(userProfile.this, R.string.email_sent, Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
-            }
-        }
-    }
+            }//End if()
+            else
+                {
+                    textView.setText(R.string.email_NotVerified);
+                    textView.setOnClickListener(new View.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(View v)
+                        {
+                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>()
+                            {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
+                                    Toast.makeText(userProfile.this, R.string.email_sent, Toast.LENGTH_SHORT).show();
+                                }//End onComplete()
+                            });//End sendEmailVerification()
+                        }//End onClick()
+                    });//End setOnClickListener()
+                }//End else()
+        }//End if()
+    }//End loadUserInfo()
 
-    private void saveUserInfo() {
+    private void saveUserInfo()
+    {
         String displayname = editText.getText().toString();
 
         if(displayname.isEmpty())
@@ -137,7 +151,7 @@ public class userProfile extends AppCompatActivity {
             editText.setError(getText(R.string.displayname_empt));
             editText.requestFocus();
             return;
-        }
+        }//End if()
 
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -149,39 +163,46 @@ public class userProfile extends AppCompatActivity {
                     .build();
 
             user.updateProfile(profile)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    .addOnCompleteListener(new OnCompleteListener<Void>()
+                    {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
+                        public void onComplete(@NonNull Task<Void> task)
+                        {
+                            if(task.isSuccessful())
+                            {
                                 Toast.makeText(userProfile.this, R.string.prof_updated, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
-
-    }
+                            }//End if()
+                        }//End onComplete()
+                    });//End addOnCompleteListener()
+        }//End if()
+    }//End saveUserInfo()
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode == CHOOSE_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null)
         {
             uriProfileImage = data.getData();
 
-            try {
+            try
+            {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriProfileImage);
                 imageView.setImageBitmap(bitmap);
 
                 uploadImageToFirebaseStorage();
                 
-            } catch (IOException e) {
+            }//End try()
+            catch (IOException e)
+            {
                 e.printStackTrace();
-            }
-        }
-    }
+            }//End catch()
+        }//End if()
+    }//End onActivityResult()
 
-    private void uploadImageToFirebaseStorage() {
+    private void uploadImageToFirebaseStorage()
+    {
         StorageReference profileimageRef =
                 FirebaseStorage.getInstance().getReference("profilepics/"+System.currentTimeMillis() + ".jpg");
 
@@ -189,33 +210,34 @@ public class userProfile extends AppCompatActivity {
         {
             progressbar.setVisibility(View.VISIBLE);
             profileimageRef.putFile(uriProfileImage)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+                    {
                         @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                        {
                             progressbar.setVisibility(View.GONE);
-
                             profileImageUrl = taskSnapshot.getDownloadUrl().toString();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
+                        }//End onSuccess()
+                    })//End addOnSuccessListener()
+                    .addOnFailureListener(new OnFailureListener()
+                    {
                         @Override
-                        public void onFailure(@NonNull Exception e) {
-
+                        public void onFailure(@NonNull Exception e)
+                        {
                             progressbar.setVisibility(View.GONE);
                             Toast.makeText(userProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-            }
+                        }//End onFailure()
+                    });//End addOnFailureListener()
+        }//End if()
+    }//End uploadImageToFirebaseStorage()
 
-        }
-
-    private void showImageChooser(){
+    private void showImageChooser()
+    {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Profile Image"), CHOOSE_IMAGE);
-    }
+    }//End showImageChooser()
 
     //Function creates the dropdown toolbar menu
     public boolean onCreateOptionsMenu(Menu menu)
@@ -243,6 +265,7 @@ public class userProfile extends AppCompatActivity {
             startActivity(help_intent);
         }//End if()
 
+        //The user is already located within this screen
         if (option_id == R.id.action_prof)
         {
             Toast.makeText(userProfile.this, R.string.in_prof, Toast.LENGTH_LONG).show();
@@ -261,4 +284,4 @@ public class userProfile extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-}
+}//End userProfile()
