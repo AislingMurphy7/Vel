@@ -118,7 +118,7 @@ public class LoginUser extends Activity implements View.OnClickListener
                         //If login in was successful
                         if(task.isSuccessful())
                         {
-                            //Clear previous pages
+                            //Clear previous pages to prevent moving back to login screen
                             finish();
                             //Login success, update UI with the signed-in user's information
                             Intent intent = new Intent(LoginUser.this, userProfile.class);
