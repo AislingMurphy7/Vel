@@ -133,34 +133,37 @@ public class userProfile extends AppCompatActivity {
             public void onClick(View v)
             {
                 final String displayname = editText.getText().toString();
-                progressbar.setVisibility(View.VISIBLE);
 
-                if(isChanged) {
+                if (!TextUtils.isEmpty(displayname) && uriProfileImage != null)
+                {
 
-                    if (!TextUtils.isEmpty(displayname) && uriProfileImage != null) {
-                        user_id = mAuth.getCurrentUser().getUid();
+                     progressbar.setVisibility(View.VISIBLE);
 
-                        StorageReference image_path = storageReference.child("profile_images").child(user_id + ".jpg");
+                     if(isChanged) {
 
-                        image_path.putFile(uriProfileImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            user_id = mAuth.getCurrentUser().getUid();
+
+                            StorageReference image_path = storageReference.child("profile_images").child(user_id + ".jpg");
+
+                            image_path.putFile(uriProfileImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 
-                                if (task.isSuccessful()) {
-                                    storeFirestore(task, displayname);
+                                    if (task.isSuccessful()) {
+                                        storeFirestore(task, displayname);
 
-                                } else {
-                                    String error = task.getException().getMessage();
-                                    Toast.makeText(userProfile.this, "Image Error: " + error, Toast.LENGTH_LONG).show();
+                                    } else {
+                                        String error = task.getException().getMessage();
+                                        Toast.makeText(userProfile.this, "Image Error: " + error, Toast.LENGTH_LONG).show();
 
-                                    progressbar.setVisibility(View.INVISIBLE);
+                                        progressbar.setVisibility(View.INVISIBLE);
+                                    }
+
                                 }
-
-                            }
                         });
-                    }
-                } else{
-                    storeFirestore(null, displayname);
+                    } else{
+                         storeFirestore(null, displayname);
+                     }
                 }
             }
         });
