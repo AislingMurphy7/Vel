@@ -134,6 +134,8 @@
     <string name="reg_already">Email is already registered</string>
     <string name="lang_page">You are already in the language selection screen</string>
     <string name="user_page">You are already in \'User Help\'</string>
+    <string name="title_activity_new_part">NewPart</string>
+    <string name="title_activity_part_list">PartList</string>
 
 
 </resources>

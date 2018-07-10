@@ -1,15 +1,22 @@
 package com.example.user.vel;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -17,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,195 +32,234 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.theartofdev.edmodo.cropper.CropImage;
+import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /*
     This class allows the user to edit their profile by changing their profile picture which they
     choose from the camera gallery, they can also edit their display name.
  */
 
-public class userProfile extends AppCompatActivity
-{
-
-    private static final int CHOOSE_IMAGE = 101;
-
+public class userProfile extends AppCompatActivity {
     //Declare variables
-    TextView textView;
-    ImageView imageView;
-    EditText editText;
-    Uri uriProfileImage;
-    ProgressBar progressbar;
-    String profileImageUrl;
+    private TextView textView;
+
+    private CircleImageView imageView;
+    private EditText editText;
+    private Uri uriProfileImage = null;
+    private Button buttonSave;
+    private ProgressBar progressbar;
+    private String user_id;
+
+    private boolean isChanged = false;
+
 
     //Declare FireBase object
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
+    private StorageReference storageReference;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
         setContentView(R.layout.activity_user_profile);
 
         //Instantiate mAuth
         mAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        user_id = mAuth.getCurrentUser().getUid();
 
         //XML variables
         editText = findViewById(R.id.editTextDisplayName);
         imageView = findViewById(R.id.imageView);
+        buttonSave = findViewById(R.id.buttonSave);
         progressbar = findViewById(R.id.progressbar);
         textView = findViewById(R.id.textViewVerified);
 
+        progressbar.setVisibility(View.VISIBLE);
+        buttonSave.setEnabled(false);
+
+        firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if(task.isSuccessful())
+                {
+
+                    if(task.getResult().exists())
+                    {
+                        String name = task.getResult().getString("name");
+                        String image =  task.getResult().getString("image");
+
+                        uriProfileImage = Uri.parse(image);
+
+                        editText.setText(name);
+
+                        RequestOptions options = new RequestOptions();
+                        options.placeholder(R.drawable.camera);
+
+                        Glide.with(userProfile.this).setDefaultRequestOptions(options).load(image).into(imageView);
+                    }
+
+                }else
+                {
+                    String error = task.getException().getMessage();
+                    Toast.makeText(userProfile.this, "Data retrieve Error: " + error, Toast.LENGTH_LONG).show();
+                }
+
+                progressbar.setVisibility(View.INVISIBLE);
+                buttonSave.setEnabled(true);
+            }
+        });
+
+        EmailVerifiy();
+
+        buttonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                final String displayname = editText.getText().toString();
+                progressbar.setVisibility(View.VISIBLE);
+
+                if(isChanged) {
+
+                    if (!TextUtils.isEmpty(displayname) && uriProfileImage != null) {
+                        user_id = mAuth.getCurrentUser().getUid();
+
+                        StorageReference image_path = storageReference.child("profile_images").child(user_id + ".jpg");
+
+                        image_path.putFile(uriProfileImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                                if (task.isSuccessful()) {
+                                    storeFirestore(task, displayname);
+
+                                } else {
+                                    String error = task.getException().getMessage();
+                                    Toast.makeText(userProfile.this, "Image Error: " + error, Toast.LENGTH_LONG).show();
+
+                                    progressbar.setVisibility(View.INVISIBLE);
+                                }
+
+                            }
+                        });
+                    }
+                } else{
+                    storeFirestore(null, displayname);
+                }
+            }
+        });
+
         //When image is clicked on the showImageChooser function will be ran
-        imageView.setOnClickListener(new View.OnClickListener()
-        {
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                showImageChooser();
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    if (ContextCompat.checkSelfPermission(userProfile.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(userProfile.this, "Permission Denied", Toast.LENGTH_LONG).show();
+                        ActivityCompat.requestPermissions(userProfile.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    } else {
+                        ImagePick();
+                    }
+                }
+                else
+                {
+                    ImagePick();
+                }
             }//End onClick()
-        });//End setOnClickListener()
 
-        //LoadUserInfo funstion will be ran after the user chooses an image
-        loadUserInfo();
-
-        /*When the user has loaded all their information & they tap the save button, saveUserInfo()
-         will be ran*/
-        findViewById(R.id.buttonSave).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                saveUserInfo();
-            }//End onClick()
         });//End setOnClickListener()
     }//End onCreate()
 
-    @Override
-    //When the activity opens
-    protected void onStart()
+    private void storeFirestore(@NonNull Task<UploadTask.TaskSnapshot> task, String displayname)
     {
-        super.onStart();
+        Uri download_uri;
 
-        //If the user is = to null, they are not logged in
-        if(mAuth.getCurrentUser() == null)
-        {
-            //The activity will finish
-            finish();
-            //The user will be sent to the login screen
-            startActivity(new Intent(this, LoginUser.class));
-        }//End if()
-    }//End onStart()
+        if(task != null) {
 
-    private void loadUserInfo()
-    {
+            download_uri = task.getResult().getDownloadUrl();
+        }
+        else{
+            download_uri = uriProfileImage;
+        }
+
+        Map<String, String> userMap = new HashMap<>();
+        userMap.put("name", displayname);
+        userMap.put("image", download_uri.toString());
+
+        firebaseFirestore.collection("Users").document(user_id).set(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(userProfile.this, "Profile set up", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(userProfile.this, NewPartAdd.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    String error = task.getException().getMessage();
+                    Toast.makeText(userProfile.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+
+                }
+
+                progressbar.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
+
+    private void ImagePick() {
+        CropImage.activity()
+                .setGuidelines(CropImageView.Guidelines.ON)
+                .setAspectRatio(1, 1)
+                .start(userProfile.this);
+    }
+
+
+    private void EmailVerifiy() {
         //GEt the user from FireBase
         final FirebaseUser user = mAuth.getCurrentUser();
 
-        //If the user is not null
-        if(user != null)
-        {
-            //If URL is not null
-            if (user.getPhotoUrl() != null)
-            {
-                //Profile picture is added to the ImageView on screen
-                Glide.with(this)
-                        .load(user.getPhotoUrl().toString())
-                        .into(imageView);
-            }//End if()
-
-            //If display name is not null
-            if (user.getDisplayName() != null)
-            {
-                //Users display name is set
-                editText.setText(user.getDisplayName());
-            }//End if()
-
-            //If the users email has been verified via email
-            if(user.isEmailVerified())
-            {
-                //Message is displayed
-                textView.setText(R.string.email_verified);
-            }//End if()
-            else
-                {
-                    //If the email is not verified the below message is displayed
-                    textView.setText(R.string.email_NotVerified);
-                    //If the user tap on the text
-                    textView.setOnClickListener(new View.OnClickListener()
-                    {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            //A verification email is sent to the email address
-                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>()
-                            {
-                                @Override
-                                //One the email is sent a toast message is displayed
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    Toast.makeText(userProfile.this, R.string.email_sent, Toast.LENGTH_SHORT).show();
-                                }//End onComplete()
-                            });//End sendEmailVerification()
-                        }//End onClick()
-                    });//End setOnClickListener()
-                }//End else()
+        //If the users email has been verified via email
+        if (user.isEmailVerified()) {
+            //Message is displayed
+            textView.setText(R.string.email_verified); }//End if()
+            else {
+                //If the email is not verified the below message is displayed
+                textView.setText(R.string.email_NotVerified);
+                //If the user tap on the text
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //A verification email is sent to the email address
+                        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            //One the email is sent a toast message is displayed
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(userProfile.this, R.string.email_sent, Toast.LENGTH_SHORT).show();
+                            }//End onComplete()
+                        });//End sendEmailVerification()
+                    }//End onClick()
+                });//End setOnClickListener()
+            }//End else()
         }//End if()
-    }//End loadUserInfo()
-
-    private void saveUserInfo()
-    {
-        //Take the name entered into the EditText and place it into a string
-        String displayname = editText.getText().toString();
-
-        //If the EditText is empty
-        if(displayname.isEmpty())
-        {
-            //An error message is displayed
-            editText.setError(getText(R.string.displayname_empt));
-            //Show error
-            editText.requestFocus();
-            return;
-        }//End if()
-
-        //Get current user from FireBase
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        //If user and image URL is not mull
-        if(user != null && profileImageUrl != null)
-        {
-            //User updated information is requested for change in FireBase
-            UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(displayname)
-                    .setPhotoUri(Uri.parse(profileImageUrl))
-                    .build();
-
-            //Users information is changed
-            user.updateProfile(profile)
-                    .addOnCompleteListener(new OnCompleteListener<Void>()
-                    {
-                        @Override
-                        //When execution is complete
-                        public void onComplete(@NonNull Task<Void> task)
-                        {
-                            //If the task was successful
-                            if(task.isSuccessful())
-                            {
-                                //Message is displayed to the user
-                                Toast.makeText(userProfile.this, R.string.prof_updated, Toast.LENGTH_SHORT).show();
-                            }//End if()
-                        }//End onComplete()
-                    });//End addOnCompleteListener()
-        }//End if()
-    }//End saveUserInfo()
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         /*
@@ -220,81 +267,20 @@ public class userProfile extends AppCompatActivity
           result code is = to result_ok
           if the data is not null
          */
-        if(requestCode == CHOOSE_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null)
-        {
-            //URI of image is stored
-            uriProfileImage = data.getData();
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == RESULT_OK) {
 
-            try
-            {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriProfileImage);
-                imageView.setImageBitmap(bitmap);
+                uriProfileImage = result.getUri();
+                imageView.setImageURI(uriProfileImage);
 
-                //method to store image in FireBase
-                uploadImageToFirebaseStorage();
-                
-            }//End try()
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }//End catch()
-        }//End if()
-    }//End onActivityResult()
+                isChanged = true;
 
-    private void uploadImageToFirebaseStorage()
-    {
-        StorageReference profileimageRef =
-                //FireBase reference to store images in 'profilepics' as .jpg
-                FirebaseStorage.getInstance().getReference("profilepics/"+System.currentTimeMillis() + ".jpg");
-
-        //If imafe is not null
-        if(uriProfileImage != null)
-        {
-            //Sets the progressbar to visible on screen
-            progressbar.setVisibility(View.VISIBLE);
-            //Image is added to FireBase
-            profileimageRef.putFile(uriProfileImage)
-                    //Records if the upload is a success or not
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
-                    {
-                        @Override
-                        //If the upload occurred successfully
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
-                        {
-                            //Sets the progressbar to invisible on screen
-                            progressbar.setVisibility(View.GONE);
-                            //Download URL is added to the string
-                            profileImageUrl = taskSnapshot.getDownloadUrl().toString();
-                        }//End onSuccess()
-                    })//End addOnSuccessListener()
-
-                    //If the upload occurred unseccessfully
-                    .addOnFailureListener(new OnFailureListener()
-                    {
-                        @Override
-                        public void onFailure(@NonNull Exception e)
-                        {
-                            //Sets the progressbar to invisible on screen
-                            progressbar.setVisibility(View.GONE);
-                            //Displays the appropriate error message
-                            Toast.makeText(userProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }//End onFailure()
-                    });//End addOnFailureListener()
-        }//End if()
-    }//End uploadImageToFirebaseStorage()
-
-    private void showImageChooser()
-    {
-        //Create Intent
-        Intent intent = new Intent();
-        //Set type to Image
-        intent.setType("image/*");
-        //Set action of Intent
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        //Creates a file called Chooser and set title
-        startActivityForResult(Intent.createChooser(intent, "Select Profile Image"), CHOOSE_IMAGE);
-    }//End showImageChooser()
-
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
+        }
+    }
     //Function creates the dropdown toolbar menu
     public boolean onCreateOptionsMenu(Menu menu)
     {
