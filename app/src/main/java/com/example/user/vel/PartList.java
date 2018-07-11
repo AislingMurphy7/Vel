@@ -2,23 +2,51 @@ package com.example.user.vel;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class PartList extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore firebaseFirestore;
+    private FirebaseFirestore firebaseFirestore2;
+    private String current_user;
     private FloatingActionButton addPostBtn;
+
+    private RecyclerView Parts_view;
+    private List<PartLogs> part_list;
+    private Recycler_Adapter recycler_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part_list);
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
 
         addPostBtn = findViewById(R.id.add_post_btn);
         addPostBtn.setOnClickListener(new View.OnClickListener() {
@@ -30,6 +58,35 @@ public class PartList extends AppCompatActivity {
             }
         });
 
+        part_list = new ArrayList<>();
+        Parts_view = findViewById(R.id.parts_list_view);
+
+        recycler_adapter = new Recycler_Adapter(part_list);
+        Parts_view.setLayoutManager(new LinearLayoutManager(this));
+        Parts_view.setAdapter(recycler_adapter);
+
+
+
+        firebaseFirestore2 = FirebaseFirestore.getInstance();
+        firebaseFirestore2.collection("Parts").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                for (DocumentChange doc: documentSnapshots.getDocumentChanges())
+                {
+                    if(doc.getType() == DocumentChange.Type.ADDED)
+                    {
+                        PartLogs partLogs = doc.getDocument().toObject(PartLogs.class);
+                        part_list.add(partLogs);
+
+                        recycler_adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
+
+
+
+
     }
 
     //Function creates the dropdown toolbar menu
@@ -39,6 +96,48 @@ public class PartList extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
 
     }//End onCreateOptionsMenu()
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(currentUser == null)
+        {
+            sendToLogin();
+        } else {
+
+            current_user = mAuth.getCurrentUser().getUid();
+
+            firebaseFirestore.collection("Users").document(current_user).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if(task.isSuccessful())
+                    {
+                        if(!task.getResult().exists())
+                        {
+                            Intent intent = new Intent(PartList.this, userProfile.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    } else
+                    {
+                        String error = task.getException().getMessage();
+                        Toast.makeText(PartList.this, "Error: " + error, Toast.LENGTH_LONG).show();
+
+                    }
+                }
+            });
+        }
+    }
+
+    private void sendToLogin()
+    {
+        Intent intent =  new Intent(PartList.this, LoginUser.class);
+        startActivity(intent);
+        finish();
+    }
 
     //If one of the options from the dropdown menu is selected the following will occur
     public boolean onOptionsItemSelected(MenuItem item)
