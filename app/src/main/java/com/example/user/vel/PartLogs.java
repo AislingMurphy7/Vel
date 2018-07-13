@@ -3,7 +3,7 @@ package com.example.user.vel;
 
 import java.util.Date;
 
-public class PartLogs {
+public class PartLogs extends PartsPostID{
 
     public String desc, image_thumb, image_url, user_id;
     public Date timestamp;

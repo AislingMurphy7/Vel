@@ -23,6 +23,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -66,23 +67,26 @@ public class PartList extends AppCompatActivity {
         Parts_view.setAdapter(recycler_adapter);
 
 
+        if(mAuth.getCurrentUser() != null) {
+            firebaseFirestore2 = FirebaseFirestore.getInstance();
 
-        firebaseFirestore2 = FirebaseFirestore.getInstance();
-        firebaseFirestore2.collection("Parts").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
-                for (DocumentChange doc: documentSnapshots.getDocumentChanges())
-                {
-                    if(doc.getType() == DocumentChange.Type.ADDED)
-                    {
-                        PartLogs partLogs = doc.getDocument().toObject(PartLogs.class);
-                        part_list.add(partLogs);
+            Query firstquery = firebaseFirestore2.collection("Parts").orderBy("timestamp", Query.Direction.DESCENDING);
+            firstquery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e) {
+                    for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
+                        if (doc.getType() == DocumentChange.Type.ADDED) {
 
-                        recycler_adapter.notifyDataSetChanged();
+                            String PostID = doc.getDocument().getId();
+                            PartLogs partLogs = doc.getDocument().toObject(PartLogs.class).withId(PostID);
+                            part_list.add(partLogs);
+
+                            recycler_adapter.notifyDataSetChanged();
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
 
 
 
@@ -161,6 +165,7 @@ public class PartList extends AppCompatActivity {
         //The user is already located within this screen
         if (option_id == R.id.action_prof)
         {
+            Intent prof_intent = new Intent(PartList.this, userProfile.class);
             Toast.makeText(PartList.this, R.string.in_prof, Toast.LENGTH_LONG).show();
         }//End if()
 
@@ -172,7 +177,6 @@ public class PartList extends AppCompatActivity {
             exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(exit_intent);
             finish();
-            System.exit(0);
         }//End if()
 
         return super.onOptionsItemSelected(item);
