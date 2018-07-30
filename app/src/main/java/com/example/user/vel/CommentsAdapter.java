@@ -8,14 +8,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder>{
 
-    public List<Comments> commentsList;
+    private List<Comments> commentsList;
     public Context context;
 
-    public CommentsAdapter(List<Comments> commentsList)
+    private FirebaseFirestore firebaseFirestore;
+
+    CommentsAdapter(List<Comments> commentsList)
     {
         this.commentsList = commentsList;
     }
@@ -26,16 +37,31 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_itemlist, parent, false);
         context = parent.getContext();
+        firebaseFirestore = FirebaseFirestore.getInstance();
         return new CommentsAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CommentsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final CommentsAdapter.ViewHolder holder, int position) {
 
         holder.setIsRecyclable(false);
 
         String commentMessage = commentsList.get(position).getMessage();
         holder.setComment_message(commentMessage);
+
+
+        String user_id = commentsList.get(position).getUser_id();
+        firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    String userName = task.getResult().getString("name");
+                    String userImage = task.getResult().getString("image");
+                    holder.setUserData(userName, userImage);
+                }
+            }
+        });
     }
 
     @Override
@@ -50,9 +76,12 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
         private View mView;
 
+        private TextView CommentUsername;
+        private CircleImageView CommentImage;
+
         private TextView comment_message;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
         }
@@ -62,6 +91,18 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             comment_message = mView.findViewById(R.id.comment_message);
             comment_message.setText(message);
 
+        }
+
+
+        public void setUserData(String userName, String userImage) {
+            CommentUsername = mView.findViewById(R.id.comment_username);
+            CommentImage = mView.findViewById(R.id.comment_image);
+
+            CommentUsername.setText(userName);
+
+            RequestOptions placeOption = new RequestOptions();
+
+            Glide.with(context).applyDefaultRequestOptions(placeOption).load(userImage).into(CommentImage);
         }
     }
 }

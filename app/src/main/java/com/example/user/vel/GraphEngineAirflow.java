@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -33,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /*
     This class is used to graph the Data for the "Mass Airflow Rate" which
@@ -211,7 +211,7 @@ public class GraphEngineAirflow extends Activity implements
                 //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
                 //Prints values to console to prove the download is working
-                System.out.println("getmassAirflowRate: " + vehicleData.getMassAirflowRate());
+                System.out.println("getmassAirflowRate: " + Objects.requireNonNull(vehicleData).getMassAirflowRate());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
                 //Converting value to integer

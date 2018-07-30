@@ -3,10 +3,8 @@ package com.example.user.vel;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -18,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,12 +23,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -40,9 +34,9 @@ import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -81,7 +75,7 @@ public class userProfile extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        user_id = mAuth.getCurrentUser().getUid();
+        user_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
         //XML variables
         editText = findViewById(R.id.editTextDisplayName);
@@ -110,14 +104,13 @@ public class userProfile extends AppCompatActivity {
                         editText.setText(name);
 
                         RequestOptions options = new RequestOptions();
-                        options.placeholder(R.drawable.camera);
 
                         Glide.with(userProfile.this).setDefaultRequestOptions(options).load(image).into(imageView);
                     }
 
                 }else
                 {
-                    String error = task.getException().getMessage();
+                    String error = Objects.requireNonNull(task.getException()).getMessage();
                     Toast.makeText(userProfile.this, "Data retrieve Error: " + error, Toast.LENGTH_LONG).show();
                 }
 
@@ -153,7 +146,7 @@ public class userProfile extends AppCompatActivity {
                                         storeFirestore(task, displayname);
 
                                     } else {
-                                        String error = task.getException().getMessage();
+                                        String error = Objects.requireNonNull(task.getException()).getMessage();
                                         Toast.makeText(userProfile.this, "Image Error: " + error, Toast.LENGTH_LONG).show();
 
                                         progressbar.setVisibility(View.INVISIBLE);
@@ -193,17 +186,11 @@ public class userProfile extends AppCompatActivity {
     {
         Uri download_uri;
 
-        if(task != null) {
-
-            download_uri = task.getResult().getDownloadUrl();
-        }
-        else{
-            download_uri = uriProfileImage;
-        }
+        download_uri = task.getResult().getDownloadUrl();
 
         Map<String, String> userMap = new HashMap<>();
         userMap.put("name", displayname);
-        userMap.put("image", download_uri.toString());
+        userMap.put("image", Objects.requireNonNull(download_uri).toString());
 
         firebaseFirestore.collection("Users").document(user_id).set(userMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -215,7 +202,7 @@ public class userProfile extends AppCompatActivity {
                     finish();
                 }
                 else {
-                    String error = task.getException().getMessage();
+                    String error = Objects.requireNonNull(task.getException()).getMessage();
                     Toast.makeText(userProfile.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
 
                 }
@@ -238,7 +225,7 @@ public class userProfile extends AppCompatActivity {
         final FirebaseUser user = mAuth.getCurrentUser();
 
         //If the users email has been verified via email
-        if (user.isEmailVerified()) {
+        if (Objects.requireNonNull(user).isEmailVerified()) {
             //Message is displayed
             textView.setText(R.string.email_verified); }//End if()
             else {

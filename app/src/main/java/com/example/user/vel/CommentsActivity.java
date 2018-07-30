@@ -27,17 +27,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class CommentsActivity extends AppCompatActivity {
 
     private EditText comment;
-    private ImageView comment_post_btn;
 
-    private RecyclerView comments_list;
     private CommentsAdapter commentsAdapter;
     private List<Comments> commentsList;
 
-    private FirebaseAuth mAuth;
     private FirebaseFirestore firebaseFirestore;
 
     private String Post_ID;
@@ -48,15 +46,15 @@ public class CommentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        current_id = mAuth.getCurrentUser().getUid();
+        current_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         Post_ID = getIntent().getStringExtra("Post_ID");
 
         comment = findViewById(R.id.comment_field);
-        comment_post_btn =  findViewById(R.id.comment_post_btn);
-        comments_list = findViewById(R.id.comment_list);
+        ImageView comment_post_btn = findViewById(R.id.comment_post_btn);
+        RecyclerView comments_list = findViewById(R.id.comment_list);
 
         commentsList =  new ArrayList<>();
         commentsAdapter = new CommentsAdapter(commentsList);
@@ -73,8 +71,6 @@ public class CommentsActivity extends AppCompatActivity {
                     for (DocumentChange doc : documentSnapshots.getDocumentChanges()) {
 
                         if (doc.getType() == DocumentChange.Type.ADDED) {
-
-                            String commentId = doc.getDocument().getId();
                             Comments comments = doc.getDocument().toObject(Comments.class);
                             commentsList.add(comments);
                             commentsAdapter.notifyDataSetChanged();
@@ -137,6 +133,7 @@ public class CommentsActivity extends AppCompatActivity {
         {
             Intent prof_intent = new Intent(CommentsActivity.this, userProfile.class);
             Toast.makeText(CommentsActivity.this, R.string.in_prof, Toast.LENGTH_LONG).show();
+            startActivity(prof_intent);
         }//End if()
 
         //If the exit option is selected, the app will close

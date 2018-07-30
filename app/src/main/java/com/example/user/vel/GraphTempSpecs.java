@@ -32,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /*
     This class is used to graph the Data for the "Air Intake Temperature" and the "Coolant Temperature" which
@@ -229,7 +230,7 @@ public class GraphTempSpecs extends Activity implements
                 //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
                 //Prints values to console to prove the download is working
-                System.out.println("getCoolantTemperature: " + vehicleData.getCoolantTemperature());
+                System.out.println("getCoolantTemperature: " + Objects.requireNonNull(vehicleData).getCoolantTemperature());
                 System.out.println("getIntakeAirTemperature: " + vehicleData.getIntakeAirTemperature());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());

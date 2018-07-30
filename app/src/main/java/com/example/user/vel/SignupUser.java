@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
+import java.util.Objects;
+
 /*
     This class allows the user to create an account.
     It contains two edit texts which allows the user to inout their
@@ -139,7 +141,7 @@ public class SignupUser extends Activity implements View.OnClickListener
                                 else
                                     {
                                         //Appropriate error message is displayed
-                                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                                     }//End else()
                         }//End else()
                     }//End onComplete()

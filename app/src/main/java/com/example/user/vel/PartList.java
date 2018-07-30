@@ -4,11 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,16 +26,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PartList extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore firebaseFirestore;
-    private FirebaseFirestore firebaseFirestore2;
-    private String current_user;
-    private FloatingActionButton addPostBtn;
 
-    private RecyclerView Parts_view;
     private List<PartLogs> part_list;
     private Recycler_Adapter recycler_adapter;
 
@@ -49,7 +44,7 @@ public class PartList extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        addPostBtn = findViewById(R.id.add_post_btn);
+        FloatingActionButton addPostBtn = findViewById(R.id.add_post_btn);
         addPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,15 +55,15 @@ public class PartList extends AppCompatActivity {
         });
 
         part_list = new ArrayList<>();
-        Parts_view = findViewById(R.id.parts_list_view);
+        RecyclerView parts_view = findViewById(R.id.parts_list_view);
 
         recycler_adapter = new Recycler_Adapter(part_list);
-        Parts_view.setLayoutManager(new LinearLayoutManager(this));
-        Parts_view.setAdapter(recycler_adapter);
+        parts_view.setLayoutManager(new LinearLayoutManager(this));
+        parts_view.setAdapter(recycler_adapter);
 
 
         if(mAuth.getCurrentUser() != null) {
-            firebaseFirestore2 = FirebaseFirestore.getInstance();
+            FirebaseFirestore firebaseFirestore2 = FirebaseFirestore.getInstance();
 
             Query firstquery = firebaseFirestore2.collection("Parts").orderBy("timestamp", Query.Direction.DESCENDING);
             firstquery.addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -112,7 +107,7 @@ public class PartList extends AppCompatActivity {
             sendToLogin();
         } else {
 
-            current_user = mAuth.getCurrentUser().getUid();
+            String current_user = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
             firebaseFirestore.collection("Users").document(current_user).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -127,7 +122,7 @@ public class PartList extends AppCompatActivity {
                         }
                     } else
                     {
-                        String error = task.getException().getMessage();
+                        String error = Objects.requireNonNull(task.getException()).getMessage();
                         Toast.makeText(PartList.this, "Error: " + error, Toast.LENGTH_LONG).show();
 
                     }
@@ -167,6 +162,7 @@ public class PartList extends AppCompatActivity {
         {
             Intent prof_intent = new Intent(PartList.this, userProfile.class);
             Toast.makeText(PartList.this, R.string.in_prof, Toast.LENGTH_LONG).show();
+            startActivity(prof_intent);
         }//End if()
 
         //If the exit option is selected, the app will close

@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 /*
     This class allows the user to sign into their individual account if they have already
     registered. It contains two edit texts which allows the user to inout their
@@ -128,7 +130,7 @@ public class LoginUser extends Activity implements View.OnClickListener
                         else
                             {
                                 //Appropriate error message is displayed
-                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                             }//End else()
                     }//End onComplete()
                 });//End addOnCompleteListener

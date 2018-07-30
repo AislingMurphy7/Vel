@@ -17,11 +17,10 @@ import android.widget.ImageView;
 public class ViewPagerAdapter extends PagerAdapter
 {
     private Context context;
-    private LayoutInflater layoutInflater;
     //Images included on the Audi page
     private int [] audi = {R.drawable.audi_a4,R.drawable.audi_a6, R.drawable.audi_tt, R.drawable.audi_q5};
 
-    public ViewPagerAdapter(Context context)
+    ViewPagerAdapter(Context context)
     {
         this.context = context;
     }//End ViewPagerAdapter()
@@ -42,7 +41,7 @@ public class ViewPagerAdapter extends PagerAdapter
     @Override
     public Object instantiateItem(ViewGroup container, int position)
     {
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.custom_layout, null);
         //XML variable
         ImageView imageView = view.findViewById(R.id.imageViewS);

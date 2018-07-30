@@ -46,14 +46,12 @@ public class NewPartAdd extends AppCompatActivity {
     private static final int MAX_LENGTH = 100;
     private ImageView newPartImage;
     private EditText partDesc;
-    private Button partAdd;
     private ProgressBar progressBar;
 
     private Uri partImage = null;
 
     private StorageReference storageReference;
     private FirebaseFirestore firebaseFirestore;
-    private FirebaseAuth firebaseAuth;
 
     private String current_user;
 
@@ -66,13 +64,13 @@ public class NewPartAdd extends AppCompatActivity {
 
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseFirestore = FirebaseFirestore.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-        current_user = firebaseAuth.getCurrentUser().getUid();
+        current_user = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
 
         newPartImage = findViewById(R.id.new_post_image);
         partDesc =  findViewById(R.id.new_post_desc);
-        partAdd = findViewById(R.id.post_btn);
+        Button partAdd = findViewById(R.id.post_btn);
         progressBar = findViewById(R.id.progressbar);
 
         newPartImage.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +100,7 @@ public class NewPartAdd extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull final Task<UploadTask.TaskSnapshot> task) {
 
-                            final String downloadUri = task.getResult().getDownloadUrl().toString();
+                            final String downloadUri = Objects.requireNonNull(task.getResult().getDownloadUrl()).toString();
 
                             if(task.isSuccessful()){
 
@@ -130,7 +128,7 @@ public class NewPartAdd extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                                        String download_thumUri = taskSnapshot.getDownloadUrl().toString();
+                                        String download_thumUri = Objects.requireNonNull(taskSnapshot.getDownloadUrl()).toString();
 
                                         Map<String, Object> partMap =  new HashMap<>();
                                         partMap.put("image_url", downloadUri);
@@ -152,7 +150,7 @@ public class NewPartAdd extends AppCompatActivity {
 
                                                 } else {
 
-                                                    String error = task.getException().getMessage();
+                                                    String error = Objects.requireNonNull(task.getException()).getMessage();
                                                     Toast.makeText(NewPartAdd.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
 
                                                 }
@@ -168,7 +166,7 @@ public class NewPartAdd extends AppCompatActivity {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
 
-                                        String error = task.getException().getMessage();
+                                        String error = Objects.requireNonNull(task.getException()).getMessage();
                                         Toast.makeText(NewPartAdd.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
                                     }
                                 });
@@ -176,7 +174,7 @@ public class NewPartAdd extends AppCompatActivity {
                             } else {
 
                                 progressBar.setVisibility(View.INVISIBLE);
-                                String error = task.getException().getMessage();
+                                String error = Objects.requireNonNull(task.getException()).getMessage();
                                 Toast.makeText(NewPartAdd.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
 
                             }
@@ -203,17 +201,6 @@ public class NewPartAdd extends AppCompatActivity {
         }
     }
 
-    public static String random() {
-        Random generator = new Random();
-        StringBuilder randomStringBuilder = new StringBuilder();
-        int randomLength = generator.nextInt(MAX_LENGTH);
-        char tempChar;
-        for (int i = 0; i < randomLength; i++){
-            tempChar = (char) (generator.nextInt(96) + 32);
-            randomStringBuilder.append(tempChar);
-        }
-        return randomStringBuilder.toString();
-    }
 
 
     //Function creates the dropdown toolbar menu
