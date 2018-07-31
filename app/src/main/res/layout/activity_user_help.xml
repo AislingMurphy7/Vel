@@ -18,7 +18,7 @@
     android:paddingRight="20dp"
     android:paddingTop="20dp"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background"
+    android:background="#c70039"
     tools:context="com.example.user.vel.UserHelp">
 
         <com.ms.square.android.expandabletextview.ExpandableTextView
@@ -38,7 +38,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black">
+                android:textColor="#FFFFFF">
             </TextView>
 
             <ImageButton
@@ -70,7 +70,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black">
+                android:textColor="#FFFFFF">
             </TextView>
 
             <ImageButton
@@ -102,7 +102,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black">
+                android:textColor="#FFFFFF">
             </TextView>
 
             <ImageButton
@@ -134,7 +134,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:textColor="@color/black">
+                android:textColor="#FFFFFF">
             </TextView>
 
             <ImageButton
@@ -166,7 +166,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:textSize="16sp"
-            android:textColor="@color/black">
+            android:textColor="#FFFFFF">
         </TextView>
 
         <ImageButton
@@ -198,7 +198,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:textSize="16sp"
-            android:textColor="@color/black">
+            android:textColor="#FFFFFF">
         </TextView>
 
         <ImageButton
@@ -230,7 +230,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:textSize="16sp"
-            android:textColor="@color/black">
+            android:textColor="#FFFFFF">
         </TextView>
 
         <ImageButton

@@ -1,16 +1,20 @@
 package com.example.user.vel;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 
-public class Welcome_Page extends AppCompatActivity {
+public class Welcome_Page extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Removes actionbar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_welcome__page);
 
         Button language = findViewById(R.id.langbtn);

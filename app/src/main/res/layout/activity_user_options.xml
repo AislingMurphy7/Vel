@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c70039"
     android:orientation="vertical"
-    tools:context=".Welcome_Page">
+    android:background="#c70039"
+    tools:context=".user_options">
 
     <ImageView
         android:id="@+id/vel"
@@ -22,35 +22,57 @@
     </ImageView>
 
     <Button
-        android:id="@+id/langbtn"
+        android:id="@+id/Informationbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Language Selection"
+        android:text="General User Information"
         android:textColor="#c70039">
     </Button>
 
     <Button
-        android:id="@+id/Loginbtn"
+        android:id="@+id/Devicebtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Account Login"
+        android:text="ELM-327 Setup"
         android:textColor="#c70039">
     </Button>
 
     <Button
-        android:id="@+id/CreateAccbtn"
+        android:id="@+id/Vehiclebtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Create Account"
+        android:text="Vehicle Information"
+        android:textColor="#c70039">
+    </Button>
+
+    <Button
+        android:id="@+id/EditProfbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Edit Profile"
+        android:textColor="#c70039">
+    </Button>
+
+    <Button
+        android:id="@+id/FourmBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Social Fourm"
         android:textColor="#c70039">
     </Button>
 

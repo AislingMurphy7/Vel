@@ -49,7 +49,8 @@
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".NewPartAdd" />
         <activity android:name=".CommentsActivity" />
-        <activity android:name=".Welcome_Page"></activity>
+        <activity android:name=".Welcome_Page" />
+        <activity android:name=".user_options"></activity>
     </application>
 
 </manifest>

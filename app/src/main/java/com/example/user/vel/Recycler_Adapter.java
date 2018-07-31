@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -62,7 +63,7 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
         holder.setIsRecyclable(false);
 
         final String PostID = part_list.get(position).PartsPostID;
-        final String currentUserID = mAuth.getCurrentUser().getUid();
+        final String currentUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
         String desc_data = part_list.get(position).getDesc();
         holder.setDescText(desc_data);
@@ -183,19 +184,19 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
             super(itemView);
             mView = itemView;
 
-            likeBtn = mView.findViewById(R.id.blog_like_btn);
-            CommentBtn = mView.findViewById(R.id.blog_comment_icon);
+            likeBtn = mView.findViewById(R.id.like_btn);
+            CommentBtn = mView.findViewById(R.id.comment_icon);
         }
 
         void setDescText(String descText)
         {
-            descView = mView.findViewById(R.id.blog_desc);
+            descView = mView.findViewById(R.id.post_desc);
             descView.setText(descText);
         }
 
         void setPartImage(String downloadUri, String thumbUri)
         {
-            PartImageview = mView.findViewById(R.id.blog_image);
+            PartImageview = mView.findViewById(R.id.post_image);
 
             RequestOptions requestOptions = new RequestOptions();
             Glide.with(context).applyDefaultRequestOptions(requestOptions).load(downloadUri).thumbnail(
@@ -211,8 +212,8 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
 
         public void setUserData(String name, String image)
         {
-            PostUserName = mView.findViewById(R.id.blog_user_name);
-            PostUserImage = mView.findViewById(R.id.blog_user_image);
+            PostUserName = mView.findViewById(R.id.user_name);
+            PostUserImage = mView.findViewById(R.id.user_image);
 
             PostUserName.setText(name);
 
@@ -223,12 +224,12 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
         }
 
         public void updateLikesCount(int count) {
-            likeCount = mView.findViewById(R.id.blog_like_count);
+            likeCount = mView.findViewById(R.id.like_count);
             likeCount.setText(count + " Comment");
         }
 
         public void updateCommentCount(int count) {
-            commentCount = mView.findViewById(R.id.blog_comment_count);
+            commentCount = mView.findViewById(R.id.comment_count);
             commentCount.setText(count + " Comment");
         }
     }

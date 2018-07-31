@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -25,7 +26,7 @@ the user can select from to change the following screens to
 the language they have chosen
 */
 
-public class LanguageSelect extends AppCompatActivity
+public class LanguageSelect extends Activity
 {
     //IMAGES Array holds all the Images used within the ListView for the Languages
     int[] IMAGES = {R.drawable.english, R.drawable.french, R.drawable.spanish, R.drawable.german};
@@ -36,6 +37,8 @@ public class LanguageSelect extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        //Removes actionbar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         //Executes the loadLocale() function
         loadLocale();
         //Sets the layout according to the XML file
@@ -149,50 +152,5 @@ public class LanguageSelect extends AppCompatActivity
         }//End getView()
     }//End CustomAdapter()
 
-    //Function creates the dropdown toolbar menu
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.options, menu);
-        return super.onCreateOptionsMenu(menu);
-
-    }//End onCreateOptionMenu()
-
-    //If one of the options from the dropdown menu is selected the following will occur
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        //Variable to hold id of selected menu option
-        int option_id = item.getItemId();
-        //If the settings option is selected, user will be informed they are already on the language screen
-        if (option_id == R.id.action_Language)
-        {
-            Toast.makeText(LanguageSelect.this, R.string.lang_page, Toast.LENGTH_LONG).show();
-        }//End if()
-
-        //If the help option is selected, user will be re-directed to help screen
-        if (option_id == R.id.action_help)
-        {
-            Intent help_intent = new Intent(LanguageSelect.this, UserHelp.class);
-            startActivity(help_intent);
-        }//End if()
-
-        if (option_id == R.id.action_prof)
-        {
-            Intent prof_intent = new Intent(LanguageSelect.this, userProfile.class);
-            startActivity(prof_intent);
-        }//End if()
-
-        //If the exit option is selected, the app will close
-        if (option_id == R.id.action_exit)
-        {
-            Intent exit_intent = new Intent(Intent.ACTION_MAIN);
-            exit_intent.addCategory(Intent.CATEGORY_HOME);
-            exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(exit_intent);
-            finish();
-            System.exit(0);
-        }//End if()
-
-        return super.onOptionsItemSelected(item);
-    }//End onOptionsItemSelected()
 }//End MainActivity()
 
