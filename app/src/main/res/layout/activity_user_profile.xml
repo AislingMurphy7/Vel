@@ -17,7 +17,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/gradient_background"
+    android:background="#c70039"
     android:orientation="vertical"
     tools:context=".userProfile">
 
@@ -30,6 +30,7 @@
         android:paddingTop="30dp"
         android:paddingBottom="30dp"
         android:textSize="20sp"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">   </TextView>
@@ -40,7 +41,7 @@
         android:layout_height="200dp"
         android:contentDescription="@string/imagedesc"
         android:scaleType="centerCrop"
-        android:src="@drawable/camera"
+        android:src="@drawable/post_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/prof_textView" />
@@ -51,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"
+        android:indeterminateTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
@@ -63,6 +65,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/enter_displayname"
         android:inputType="text"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -75,6 +79,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/save"
+        android:textColor="#c70039"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDisplayName">
@@ -88,6 +94,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_margin="10dp"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSave">

@@ -132,4 +132,17 @@
     <string name="reg_already">El correo electrónico ya está registrado</string>
     <string name="lang_page">Ya estás en la pantalla de selección de idioma</string>
     <string name="user_page">Ya estás en \'ayuda del usuario\'</string>
+
+    <string name="comment_heading">Comentarios : </string>
+    <string name="comment_here">Ingrese su comentario aquí</string>
+    <string name="comment_desc">icono de comentario</string>
+    <string name="part_image">imagen de parte</string>
+    <string name="image_desc">Ingrese la descripción de la imagen aquí</string>
+    <string name="username">usuario</string>
+    <string name="loading">Cargando comentario, por favor espere</string>
+    <string name="likebtn">Botón "me gusta</string>
+    <string name="date">Fecha de publicación</string>
+    <string name="likes">0 me gusta</string>
+    <string name="comments">0 comentarios</string>
+    <string name="comment_icon">icono de comentario</string>
 </resources>

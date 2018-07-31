@@ -14,7 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background">
+    android:background="#c70039">
 
     <android.support.v7.widget.LinearLayoutCompat
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/gradient_background"
+        android:background="#c70039"
         android:paddingBottom="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -41,7 +41,7 @@
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/red"
+            android:textColor="#FFFFFF"
             android:layout_gravity="center_horizontal"
             android:paddingTop="20dp"
             android:paddingBottom="10dp"
@@ -53,7 +53,7 @@
             android:id="@+id/Agreement_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
             android:textSize="20sp"
@@ -68,7 +68,7 @@
             android:id="@+id/OBD_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:layout_gravity="center_horizontal"
             android:textSize="20sp"
             android:paddingTop="20dp"
@@ -79,7 +79,7 @@
             android:id="@+id/OBD_text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:layout_below="@+id/text1"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
@@ -93,9 +93,10 @@
             android:id="@+id/Agree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#c70039"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:backgroundTint="#FFFFFF"
             android:text="@string/Agree">
         </Button>
 
@@ -103,10 +104,11 @@
             android:id="@+id/Disagree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="#c70039"
             android:layout_below="@+id/agree"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
+            android:backgroundTint="#FFFFFF"
             android:text="@string/Disagree">
         </Button>
 

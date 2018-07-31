@@ -132,5 +132,18 @@
     <string name="reg_already">Email is al geregistreerd</string>
     <string name="lang_page">U bevindt zich al in het taalkeuzescherm</string>
     <string name="user_page">U bevindt zich al in \'Gebruikershelp\'</string>
+
+    <string name="comment_heading">opmerkingen : </string>
+    <string name="comment_here">Voer hier je reactie in</string>
+    <string name="comment_desc">opmerking pictogram</string>
+    <string name="part_image">deel afbeelding</string>
+    <string name="image_desc">Voer hier de beschrijving van de afbeelding in</string>
+    <string name="username">gebruikersnaam</string>
+    <string name="loading">Reactie laden, een ogenblik geduld</string>
+    <string name="likebtn">zoals knop</string>
+    <string name="date">Post-datum</string>
+    <string name="likes">0 leuk</string>
+    <string name="comments">0 reacties</string>
+    <string name="comment_icon">opmerking pictogram</string>
 </resources>
 

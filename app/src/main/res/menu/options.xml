@@ -11,7 +11,7 @@
 
     <item android:title="@string/lang"
         android:id="@+id/action_Language"
-        app:showAsAction="never" >
+        app:showAsAction="never">
     </item>
 
     <item android:title="@string/help"

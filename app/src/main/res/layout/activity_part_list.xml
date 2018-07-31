@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="#c70039"
     android:orientation="vertical"
     tools:context=".PartList">
 
@@ -16,10 +16,10 @@
         android:layout_marginEnd="16dp"
         android:clickable="true"
         android:focusable="true"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/plus" />
+        app:srcCompat="@drawable/action_add_web"/>
 
     <FrameLayout
         android:id="@+id/main_container"

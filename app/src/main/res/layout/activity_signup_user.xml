@@ -16,12 +16,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background"
+    android:background="#c70039"
     tools:context=".SignupUser">
 
     <ImageView
         android:id="@+id/vel"
-        android:paddingTop="40sp"
+        android:paddingTop="70sp"
+        android:paddingBottom="40sp"
         android:contentDescription="@string/imagedesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,6 +38,8 @@
         android:layout_gravity="center_horizontal"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:paddingBottom="15dp">
     </EditText>
 
@@ -46,7 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="@string/prompt_password"
-        android:inputType="textPassword">
+        android:textColorHint="#FFFFFF"
+        android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:paddingBottom="15dp">
     </EditText>
 
     <ProgressBar
@@ -54,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:indeterminateTint="#FFFFFF"
         android:visibility="gone">
     </ProgressBar>
 
@@ -64,7 +71,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:text="@string/Signup"
-        android:textColor="@color/black">
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#c70039">
     </Button>
 
     <TextView
@@ -74,7 +82,8 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/have_Acc"
         android:textSize="20sp"
-        android:textColor="@color/black">
+        android:textColor="#FFFFFF"
+        android:paddingTop="50sp">
     </TextView>
 
 </android.support.v7.widget.LinearLayoutCompat>

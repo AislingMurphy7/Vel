@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#c70039"
     tools:context=".CommentsActivity">
 
     <TextView
         android:id="@+id/comment_label"
+        android:paddingTop="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:text="Comments : "
+        android:text="@string/comment_heading"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent" />
@@ -25,7 +29,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
-        android:hint="Your Comment here ..."
+        android:hint="@string/comment_here"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:inputType="textMultiLine"
         android:padding="12dp"
         android:textSize="16sp"
@@ -34,7 +40,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:contentDescription="Comment icon"
+        android:contentDescription="@string/comment_desc"
         android:id="@+id/comment_post_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"

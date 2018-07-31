@@ -130,4 +130,17 @@
     <string name="reg_already">L\'adresse e-mail est déjà utilisée</string>
     <string name="lang_page">Vous êtes déjà dans l\'écran de sélection de la langue</string>
     <string name="user_page">Vous êtes déjà dans \'Aide utilisateur\'</string>
+
+    <string name="comment_heading">commentaires : </string>
+    <string name="comment_here">Entrez votre commentaire ici</string>
+    <string name="comment_desc">icône de commentaire</string>
+    <string name="part_image">image de la pièce</string>
+    <string name="image_desc">Entrez la description de l\'image ici</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="loading">Chargement du commentaire, veuillez patienter </string>
+    <string name="likebtn">comme le bouton</string>
+    <string name="date">Date du poste</string>
+    <string name="likes">0 aime</string>
+    <string name="comments">0 commentaire</string>
+    <string name="comment_icon">icône de commentaire</string>
 </resources>
