@@ -59,7 +59,7 @@ public class LanguageSelect extends AppCompatActivity
                     //The Locale will be set to "English"
                     setLocale("en");
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(LanguageSelect.this, Agreements.class);
+                    Intent intent = new Intent(LanguageSelect.this, LoginUser.class);
                     startActivity(intent);
                 }//End if()
                 //If option(i) is equal to the second row
@@ -68,7 +68,7 @@ public class LanguageSelect extends AppCompatActivity
                     //The Locale will be set to "French"
                     setLocale("fr");
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(LanguageSelect.this, Agreements.class);
+                    Intent intent = new Intent(LanguageSelect.this, LoginUser.class);
                     startActivity(intent);
                 }//End if()
                 //If option(i) is equal to the third row
@@ -77,7 +77,7 @@ public class LanguageSelect extends AppCompatActivity
                     //The Locale will be set to "Spanish"
                     setLocale("es");
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(LanguageSelect.this, Agreements.class);
+                    Intent intent = new Intent(LanguageSelect.this, LoginUser.class);
                     startActivity(intent);
                 }//End if()
                 //If option(i) is equal to the fourth row
@@ -86,7 +86,7 @@ public class LanguageSelect extends AppCompatActivity
                     //The Locale will be set to "German"
                     setLocale("de");
                     //The app will change from current screen to next screen
-                    Intent intent = new Intent(LanguageSelect.this, Agreements.class);
+                    Intent intent = new Intent(LanguageSelect.this, LoginUser.class);
                     startActivity(intent);
                 }//End if()
             }//End onItemClick()

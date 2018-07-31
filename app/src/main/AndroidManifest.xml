@@ -48,7 +48,8 @@
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".NewPartAdd" />
-        <activity android:name=".CommentsActivity"></activity>
+        <activity android:name=".CommentsActivity" />
+        <activity android:name=".Welcome_Page"></activity>
     </application>
 
 </manifest>

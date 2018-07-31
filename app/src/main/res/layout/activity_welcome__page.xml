@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#c70039"
+    android:orientation="vertical"
+    tools:context=".Welcome_Page">
+
+    <ImageView
+        android:id="@+id/vel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/imagedesc"
+        android:paddingBottom="40sp"
+        android:paddingLeft="20sp"
+        android:paddingTop="70sp"
+        android:src="@drawable/vel">
+    </ImageView>
+
+    <Button
+        android:id="@+id/langbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Language Selection"
+        android:textColor="#c70039">
+    </Button>
+
+    <Button
+        android:id="@+id/CreateAccbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Create Account"
+        android:textColor="#c70039">
+    </Button>
+
+    <Button
+        android:id="@+id/Loginbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Account Login"
+        android:textColor="#c70039">
+    </Button>
+
+</android.support.v7.widget.LinearLayoutCompat>
