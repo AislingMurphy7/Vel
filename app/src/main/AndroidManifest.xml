@@ -50,7 +50,7 @@
         <activity android:name=".NewPartAdd" />
         <activity android:name=".CommentsActivity" />
         <activity android:name=".Welcome_Page" />
-        <activity android:name=".user_options"></activity>
+        <activity android:name=".user_options" />
     </application>
 
 </manifest>

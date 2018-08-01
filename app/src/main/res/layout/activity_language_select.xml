@@ -28,6 +28,8 @@
         android:maxHeight="300dp"
         android:maxWidth="300dp"
         android:src="@drawable/vel"
+        android:paddingBottom="30sp"
+        android:paddingTop="25sp"
         android:layout_gravity="center">
     </ImageView>
 

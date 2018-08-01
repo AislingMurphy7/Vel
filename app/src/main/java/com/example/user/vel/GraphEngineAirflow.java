@@ -76,7 +76,7 @@ public class GraphEngineAirflow extends Activity implements
             }//End onClick()
         });//End setNegativeButton()
 
-        builder.setPositiveButton(GraphEngineAirflow.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
@@ -105,7 +105,7 @@ public class GraphEngineAirflow extends Activity implements
             }//End onClick()
         });//End setNegativeButton()
 
-        builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.next), new DialogInterface.OnClickListener()
+        builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)

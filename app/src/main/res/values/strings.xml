@@ -16,12 +16,9 @@
 
     <string name="warn"><b><u>WARNING</u></b></string>
     <string name="NoUse">Please do not use this application whilst driving.\nOnly use this application whilst vehicle is parked</string>
-    <string name="Agree">I Agree</string>
-    <string name="Disagree">I Disagree</string>
 
     <string name="OBD"><b><u>OBD-II Compliant Car</u></b></string>
     <string name="cars">US vehicles manufactured after 1996. \n\nEU vehicles manufactured after 2004. \n\nJAP vehicles manufactured after 2005</string>
-    <string name="next">Next</string>
 
     <string name="ElmSet"><b><u>ELM-327 Setup</u></b></string>
     <string name="instruct"><b><u><i>Step 1</i></u></b> \nPlug adapter into OBD-II 16-pin port. \n\n<b><u><i>Step 2</i></u></b> \nEnsure green light flashes on adapter.
@@ -95,16 +92,14 @@
     <string name="throttle_load_info">Data received from database show: \nEngine Load is:
         NORMAL \nThrottle position is: NORMAL</string>
 
+    <string name="home">Home</string>
     <string name="help">Help</string>
-    <string name="lang">Language</string>
     <string name="exit">Sign Out</string>
     <string name="profile">Profile</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -147,6 +142,18 @@
     <string name="likes">0 Likes</string>
     <string name="comments">0 Comments</string>
     <string name="comment_icon">comment icon</string>
+
+    <string name="lang_select">Language Selection</string>
+    <string name="acc_login">Account Login</string>
+    <string name="create_acc">Create Account</string>
+    <string name="gen_info">General Information</string>
+    <string name="vehicle_info">Vehicle Information</string>
+    <string name="edit_prof">Edit profile</string>
+    <string name="social">Social Forum</string>
+    <string name="ELM">ELM-327 Setup</string>
+    <string name="Ok">OK</string>
+
+    <string name="options_page">You are already in \'Home\'</string>
 
 
 </resources>

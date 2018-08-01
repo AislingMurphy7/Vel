@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/imagedesc"
             android:src="@drawable/vel"
+            android:paddingTop="20sp"
             android:layout_gravity="center">
         </ImageView>
 
@@ -90,26 +91,14 @@
         </TextView>
 
         <Button
-            android:id="@+id/Agree"
+            android:id="@+id/ok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#c70039"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             android:backgroundTint="#FFFFFF"
-            android:text="@string/Agree">
-        </Button>
-
-        <Button
-            android:id="@+id/Disagree"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="#c70039"
-            android:layout_below="@+id/agree"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:backgroundTint="#FFFFFF"
-            android:text="@string/Disagree">
+            android:text="@string/Ok">
         </Button>
 
     </android.support.v7.widget.LinearLayoutCompat>

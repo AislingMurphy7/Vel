@@ -143,11 +143,10 @@ public class PartList extends AppCompatActivity {
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the language option is selected, user will be re-directed to language screen
-        if (option_id == R.id.action_Language)
+        if (option_id == R.id.action_home)
         {
-            Intent Language_intent = new Intent(PartList.this, LanguageSelect.class);
-            startActivity(Language_intent);
+            Intent home_intent = new Intent(PartList.this, user_options.class);
+            startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
@@ -161,7 +160,6 @@ public class PartList extends AppCompatActivity {
         if (option_id == R.id.action_prof)
         {
             Intent prof_intent = new Intent(PartList.this, userProfile.class);
-            Toast.makeText(PartList.this, R.string.in_prof, Toast.LENGTH_LONG).show();
             startActivity(prof_intent);
         }//End if()
 

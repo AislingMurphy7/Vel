@@ -143,11 +143,10 @@ public class VehicleSpec extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the language option is selected, user will be re-directed to language screen
-        if (option_id == R.id.action_Language)
+        if (option_id == R.id.action_home)
         {
-            Intent intent = new Intent(VehicleSpec.this, LanguageSelect.class);
-            startActivity(intent);
+            Intent home_intent = new Intent(VehicleSpec.this, user_options.class);
+            startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen

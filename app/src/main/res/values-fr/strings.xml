@@ -17,12 +17,9 @@
 
     <string name="warn"><b><u>ATTENTION</u></b></string>
     <string name="NoUse">S\'\il vous plaît ne pas utiliser cette application pendant la conduite. \nSeulement utiliser cette application pendant que le véhicule est stationné</string>
-    <string name="Agree">Je suis d\'\accord</string>
-    <string name="Disagree"> Je ne suis pas d\'\accord</string>
 
     <string name="OBD"><b><u>Voiture Complète OBD-II</u></b></string>
     <string name="cars">US véhicules fabriqués après 1996. \n\nEU véhicules fabriqués après 2004. \n\nJAP véhicules fabriqués après 2005</string>
-    <string name="next">Prochain</string>
 
     <string name="ElmSet"><b><u>Configuration ELM-327</u></b></string>
     <string name="instruct"><b><u><i>Étape 1</i></u></b> \nPlug adaptateur dans le port OBD-II 16 broches. \n\n<b><u><i>Étape 2</i></u></b> \nAssurez-vous que la lumière verte clignote sur l\'\adaptateur.
@@ -92,15 +89,14 @@
     <string name="throttle_load_info">Les données reçues de la base de données montrent: \nLa charge du moteur est:
         NORMALE \nLa position de l'accélérateur est: NORMALE</string>
 
+    <string name="home">Accueil</string>
     <string name="help">Aidez-moi</string>
-    <string name="lang">La langue</string>
     <string name="exit">Sortie</string>
+    <string name="profile">Profil</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Le courriel </string>
     <string name="prompt_password">Mot de passe </string>
-    <string name="action_sign_in">Connexion ou Inscription</string>
-    <string name="action_sign_in_short">Connectez-vous</string>
     <string name="error_invalid_email">Cette adresse e-mail est invalide</string>
     <string name="error_invalid_password">Ce mot de passe est trop court</string>
     <string name="error_incorrect_password">Ce mot de passe n\'est pas correct</string>
@@ -143,4 +139,17 @@
     <string name="likes">0 aime</string>
     <string name="comments">0 commentaire</string>
     <string name="comment_icon">icône de commentaire</string>
+
+    <string name="lang_select">Sélection de la langue</string>
+    <string name="acc_login">connexion au compte</string>
+    <string name="create_acc">Créer un compte</string>
+    <string name="gen_info">informations générales</string>
+    <string name="vehicle_info">informations sur le véhicule</string>
+    <string name="edit_prof">Editer le profil</string>
+    <string name="social">Forum social</string>
+    <string name="ELM">Configuration ELM-327</string>
+    <string name="Ok">OK</string>
+
+    <string name="options_page">Vous êtes déjà à la maison</string>
+
 </resources>

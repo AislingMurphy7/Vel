@@ -100,11 +100,10 @@ public class BMW extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the language option is selected, user will be re-directed to language screen
-        if (option_id == R.id.action_Language)
+        if (option_id == R.id.action_home)
         {
-            Intent language_intent = new Intent(BMW.this, LanguageSelect.class);
-            startActivity(language_intent);
+            Intent home_intent = new Intent(BMW.this, user_options.class);
+            startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen

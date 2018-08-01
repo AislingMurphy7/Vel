@@ -23,15 +23,15 @@ public class SetupELM extends AppCompatActivity
         setContentView(R.layout.activity_setup_elm);
 
         //XML variables
-        Button next = findViewById(R.id.bt1);
+        Button ok = findViewById(R.id.bt1);
 
         //When the user selects the 'next' button
-        next.setOnClickListener(new View.OnClickListener()
+        ok.setOnClickListener(new View.OnClickListener()
         {
             //The application moves to the following screen
             public void onClick(View view)
             {
-                Intent intent = new Intent(SetupELM.this, VehicleSpec.class);
+                Intent intent = new Intent(SetupELM.this, user_options.class);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
@@ -49,11 +49,10 @@ public class SetupELM extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the language option is selected, user will be re-directed to language screen
-        if (option_id == R.id.action_Language)
+        if (option_id == R.id.action_home)
         {
-            Intent language_intent = new Intent(SetupELM.this, LanguageSelect.class);
-            startActivity(language_intent);
+            Intent home_intent = new Intent(SetupELM.this, user_options.class);
+            startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen

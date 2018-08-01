@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -109,16 +110,22 @@ public class CommentsActivity extends AppCompatActivity {
         });
     }
 
+    //Function creates the dropdown toolbar menu
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.options, menu);
+        return super.onCreateOptionsMenu(menu);
+    }//End onCreateOptionsMenu()
+
     //If one of the options from the dropdown menu is selected the following will occur
     public boolean onOptionsItemSelected(MenuItem item)
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the language option is selected, user will be re-directed to language screen
-        if (option_id == R.id.action_Language)
+        if (option_id == R.id.action_home)
         {
-            Intent Language_intent = new Intent(CommentsActivity.this, LanguageSelect.class);
-            startActivity(Language_intent);
+            Intent home_intent = new Intent(CommentsActivity.this, user_options.class);
+            startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
@@ -132,7 +139,6 @@ public class CommentsActivity extends AppCompatActivity {
         if (option_id == R.id.action_prof)
         {
             Intent prof_intent = new Intent(CommentsActivity.this, userProfile.class);
-            Toast.makeText(CommentsActivity.this, R.string.in_prof, Toast.LENGTH_LONG).show();
             startActivity(prof_intent);
         }//End if()
 

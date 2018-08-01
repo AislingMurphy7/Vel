@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:contentDescription="@string/imagedesc"
-        android:paddingBottom="40sp"
+        android:paddingBottom="85sp"
         android:paddingStart="20sp"
         android:paddingEnd="0dp"
         android:paddingTop="70sp"
@@ -28,7 +28,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Language Selection"
+        android:text="@string/lang_select"
         android:textColor="#c70039">
     </Button>
 
@@ -39,7 +39,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Account Login"
+        android:text="@string/acc_login"
         android:textColor="#c70039">
     </Button>
 
@@ -50,7 +50,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Create Account"
+        android:text="@string/create_acc"
         android:textColor="#c70039">
     </Button>
 

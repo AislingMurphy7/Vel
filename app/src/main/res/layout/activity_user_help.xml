@@ -48,6 +48,7 @@
                 android:contentDescription="@string/imagedesc"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
+                android:tint="#FFFFFF"
                 android:background="@android:color/transparent">
             </ImageButton>
 
@@ -80,6 +81,7 @@
                 android:contentDescription="@string/imagedesc"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
+                android:tint="#FFFFFF"
                 android:background="@android:color/transparent">
             </ImageButton>
 
@@ -112,6 +114,7 @@
                 android:contentDescription="@string/imagedesc"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
+                android:tint="#FFFFFF"
                 android:background="@android:color/transparent">
             </ImageButton>
 
@@ -144,6 +147,7 @@
                 android:contentDescription="@string/imagedesc"
                 android:layout_margin="16dp"
                 android:layout_gravity="end|bottom"
+                android:tint="#FFFFFF"
                 android:background="@android:color/transparent">
             </ImageButton>
 
@@ -176,6 +180,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_gravity="end|bottom"
+            android:tint="#FFFFFF"
             android:background="@android:color/transparent">
         </ImageButton>
 
@@ -208,6 +213,7 @@
             android:contentDescription="@string/imagedesc"
             android:layout_margin="16dp"
             android:layout_gravity="end|bottom"
+            android:tint="#FFFFFF"
             android:background="@android:color/transparent">
         </ImageButton>
 
@@ -240,6 +246,7 @@
             android:contentDescription="@string/imagedesc"
             android:layout_margin="16dp"
             android:layout_gravity="end|bottom"
+            android:tint="#FFFFFF"
             android:background="@android:color/transparent">
         </ImageButton>
 

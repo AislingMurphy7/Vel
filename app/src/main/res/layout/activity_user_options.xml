@@ -17,7 +17,7 @@
         android:paddingBottom="40sp"
         android:paddingStart="20sp"
         android:paddingEnd="0dp"
-        android:paddingTop="70sp"
+        android:paddingTop="50sp"
         android:src="@drawable/vel">
     </ImageView>
 
@@ -28,7 +28,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="General User Information"
+        android:text="@string/gen_info"
         android:textColor="#c70039">
     </Button>
 
@@ -39,7 +39,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="ELM-327 Setup"
+        android:text="@string/ELM"
         android:textColor="#c70039">
     </Button>
 
@@ -50,7 +50,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Vehicle Information"
+        android:text="@string/vehicle_info"
         android:textColor="#c70039">
     </Button>
 
@@ -61,7 +61,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Edit Profile"
+        android:text="@string/edit_prof"
         android:textColor="#c70039">
     </Button>
 
@@ -72,7 +72,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="7dp"
         android:backgroundTint="#FFFFFF"
-        android:text="Social Fourm"
+        android:text="@string/social"
         android:textColor="#c70039">
     </Button>
 

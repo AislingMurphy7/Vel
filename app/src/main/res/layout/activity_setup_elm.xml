@@ -13,7 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background">
+    android:background="#c70039">
 
     <android.support.v7.widget.LinearLayoutCompat
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/gradient_background"
+        android:background="#c70039"
         android:paddingBottom="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -33,16 +33,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:maxWidth="300dp"
-            android:maxHeight="300dp"
             android:scaleType="fitStart"
+            android:paddingTop="20sp"
             android:src="@drawable/vel"
             android:layout_gravity="center">
         </ImageView>
 
         <TextView
             android:id="@+id/ELM_text1"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:layout_below="@+id/vel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +53,7 @@
 
         <TextView
             android:id="@+id/ELM_text2"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:layout_below="@+id/ELM_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,12 +65,13 @@
 
         <Button
             android:id="@+id/bt1"
-            android:textColor="@color/black"
+            android:textColor="#C70039"
+            android:backgroundTint="#FFFFFF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="@string/next">
+            android:text="@string/Ok">
         </Button>
 
     </android.support.v7.widget.LinearLayoutCompat>

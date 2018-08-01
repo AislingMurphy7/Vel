@@ -17,12 +17,9 @@
 
     <string name="warn"><b><u>WARNUNG</u></b></string>
     <string name="NoUse">Bitte verwenden Sie diese Anwendung nicht während der Fahrt. \nVerwenden Sie diese Anwendung nur, wenn das Fahrzeug geparkt ist</string>
-    <string name="Agree"> Ich stimme zu</string>
-    <string name="Disagree">Ich bin nicht einverstanden</string>
 
     <string name="OBD"><b><u>OBD-II Komplientes Auto</u></b></string>
     <string name="cars">US-Fahrzeuge hergestellt nach 1996. \n\nEU-Fahrzeuge hergestellt nach 2004. \n\nJAP Fahrzeuge hergestellt nach 2005</string>
-    <string name="next">Nächster</string>
 
     <string name="ElmSet"><b><u>ELM-327 Setup</u></b></string>
     <string name="instruct"><b><u><i>Schritt 1</i></u></b> \nStecken Sie den Adapter in den 16-poligen OBD-II-Anschluss. \n\n<b><u><i>Schritt 2</i></u></b> \nVergewissern Sie sich, dass am Adapter grünes Licht blinkt.
@@ -93,15 +90,14 @@
     <string name="throttle_load_info">Daten aus der Datenbank zeigen: \ nMotorlast ist:
         NORMAL \ nDie Flaschenposition ist: NORMAL</string>
 
+    <string name="home">Zuhause</string>
     <string name="Help">Hilfe</string>
-    <string name="lang">Sprache</string>
     <string name="exit">Ausgang</string>
+    <string name="profile">Profil</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">E-mail</string>
     <string name="prompt_password">Wachtwoord</string>
-    <string name="action_sign_in">Log in of registreer</string>
-    <string name="action_sign_in_short">Aanmelden</string>
     <string name="error_invalid_email">Dit e-mailadres is ongeldiga</string>
     <string name="error_invalid_password">Dit wachtwoord is te kort</string>
     <string name="error_incorrect_password">Dit wachtwoord is niet correct</string>
@@ -145,5 +141,18 @@
     <string name="likes">0 leuk</string>
     <string name="comments">0 reacties</string>
     <string name="comment_icon">opmerking pictogram</string>
+
+    <string name="lang_select">Sprachauswahl</string>
+    <string name="acc_login">Anmeldung</string>
+    <string name="create_acc">Benutzerkonto anlegen</string>
+    <string name="gen_info">Information</string>
+    <string name="vehicle_info">Fahrzeuginformationen</string>
+    <string name="edit_prof">Profil bearbeiten</string>
+    <string name="social">Sozialforum</string>
+    <string name="ELM">ELM-327 Setup</string>
+    <string name="Ok">OK</string>
+
+    <string name="options_page">Du bist bereits in \'Zuhause\'</string>
+
 </resources>
 

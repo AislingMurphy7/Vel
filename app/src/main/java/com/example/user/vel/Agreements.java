@@ -26,23 +26,7 @@ public class Agreements extends AppCompatActivity
         setContentView(R.layout.activity_agreements);
 
         //XML Button variables
-        Button Agree =  findViewById(R.id.Agree);
-        Button Disagree = findViewById(R.id.Disagree);
-
-        //If user taps the 'Disagree' button
-        Disagree.setOnClickListener(new View.OnClickListener()
-        {
-            //The application ends and closes itself
-            public void onClick(View view)
-            {
-                Intent Disagree_intent = new Intent(Intent.ACTION_MAIN);
-                Disagree_intent.addCategory(Intent.CATEGORY_HOME);
-                Disagree_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(Disagree_intent);
-                finish();
-                System.exit(0);
-            } //End onClick()
-        }); //End OnClickListener()
+        Button Agree =  findViewById(R.id.ok);
 
         //If the user selects the 'Agree' button
         Agree.setOnClickListener(new View.OnClickListener()
@@ -50,7 +34,7 @@ public class Agreements extends AppCompatActivity
             //The app moves from the current screen to the following screen
             public void onClick(View view)
             {
-                Intent Agree_intent = new Intent(Agreements.this, SetupELM.class);
+                Intent Agree_intent = new Intent(Agreements.this, user_options.class);
                 startActivity(Agree_intent);
             }//End onClick()
         });//End OnClickListener()
@@ -68,11 +52,10 @@ public class Agreements extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
-        //If the language option is selected, user will be re-directed to language screen
-        if (option_id == R.id.action_Language)
+        if (option_id == R.id.action_home)
         {
-            Intent Language_intent = new Intent(Agreements.this, LanguageSelect.class);
-            startActivity(Language_intent);
+            Intent home_intent = new Intent(Agreements.this, user_options.class);
+            startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen

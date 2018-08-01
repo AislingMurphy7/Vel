@@ -65,7 +65,7 @@ public class GraphTempSpecs extends Activity implements
         builder.setTitle(GraphTempSpecs.this.getString(R.string.engine_coolant_title));
         builder.setMessage(GraphTempSpecs.this.getString(R.string.engine_coolant_def));
 
-        builder.setPositiveButton(GraphTempSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(GraphTempSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -89,7 +89,7 @@ public class GraphTempSpecs extends Activity implements
             }//End onClick()
         });//End setNegativeButton()
 
-        builder3.setPositiveButton(GraphTempSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder3.setPositiveButton(GraphTempSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -116,7 +116,7 @@ public class GraphTempSpecs extends Activity implements
             }//End onClick()
         });//End setNegativeButton()
 
-        builder2.setPositiveButton(GraphTempSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener() {
+        builder2.setPositiveButton(GraphTempSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

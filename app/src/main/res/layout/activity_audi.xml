@@ -13,7 +13,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/gradient_background">
+    android:background="#c70039">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -25,7 +25,7 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
         tools:context="com.example.user.vel.Audi"
-        android:background="@drawable/gradient_background"
+        android:background="#c70039"
         android:orientation="vertical">
 
         <TextView

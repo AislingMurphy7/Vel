@@ -68,7 +68,7 @@ public class GraphEngineSpecs extends Activity implements
         builder.setTitle(GraphEngineSpecs.this.getString(R.string.engine_load_title));
         builder.setMessage(GraphEngineSpecs.this.getString(R.string.engine_load_def));
 
-        builder.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener()
+        builder.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
@@ -98,7 +98,7 @@ public class GraphEngineSpecs extends Activity implements
             }//End onClick()
         });//End setNegativeButton()
 
-        builder3.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener()
+        builder3.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
@@ -128,7 +128,7 @@ public class GraphEngineSpecs extends Activity implements
             }//End onClick()
         });//End setNegativeButton()
 
-        builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.next), new DialogInterface.OnClickListener()
+        builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
