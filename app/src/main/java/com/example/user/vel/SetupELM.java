@@ -30,7 +30,7 @@ public class SetupELM extends AppCompatActivity
             //The application moves to the following screen
             public void onClick(View view)
             {
-                Intent intent = new Intent(SetupELM.this, user_options.class);
+                Intent intent = new Intent(SetupELM.this, Homepage.class);
                 startActivity(intent);
 
             }//End onClick()
@@ -52,7 +52,7 @@ public class SetupELM extends AppCompatActivity
         //If the home option is selected, user will be re-directed to home screen
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(SetupELM.this, user_options.class);
+            Intent home_intent = new Intent(SetupELM.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
@@ -66,7 +66,7 @@ public class SetupELM extends AppCompatActivity
         //If the profile option is selected, user will be re-directed to profile screen
         if (option_id == R.id.action_prof)
         {
-            Intent prof_intent = new Intent(SetupELM.this, userProfile.class);
+            Intent prof_intent = new Intent(SetupELM.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 

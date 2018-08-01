@@ -55,7 +55,7 @@ public class UserHelp extends AppCompatActivity
         if (option_id == R.id.action_home)
         {
             //The user will be redirected to the home page
-            Intent home_intent = new Intent(UserHelp.this, user_options.class);
+            Intent home_intent = new Intent(UserHelp.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
@@ -70,7 +70,7 @@ public class UserHelp extends AppCompatActivity
         if (option_id == R.id.action_prof)
         {
             //The user will be redirected to the profile page
-            Intent prof_intent = new Intent(UserHelp.this, userProfile.class);
+            Intent prof_intent = new Intent(UserHelp.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 

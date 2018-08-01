@@ -28,18 +28,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class PartList extends AppCompatActivity {
+public class PostList extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore firebaseFirestore;
 
-    private List<PartLogs> part_list;
+    private List<PostLog> part_list;
     private Recycler_Adapter recycler_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_part_list);
+        setContentView(R.layout.activity_post_list);
 
         mAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -49,7 +49,7 @@ public class PartList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(PartList.this, NewPartAdd.class);
+                Intent intent = new Intent(PostList.this, NewPost.class);
                 startActivity(intent);
             }
         });
@@ -73,7 +73,7 @@ public class PartList extends AppCompatActivity {
                         if (doc.getType() == DocumentChange.Type.ADDED) {
 
                             String PostID = doc.getDocument().getId();
-                            PartLogs partLogs = doc.getDocument().toObject(PartLogs.class).withId(PostID);
+                            PostLog partLogs = doc.getDocument().toObject(PostLog.class).withId(PostID);
                             part_list.add(partLogs);
 
                             recycler_adapter.notifyDataSetChanged();
@@ -116,14 +116,14 @@ public class PartList extends AppCompatActivity {
                     {
                         if(!task.getResult().exists())
                         {
-                            Intent intent = new Intent(PartList.this, userProfile.class);
+                            Intent intent = new Intent(PostList.this, UserProfile.class);
                             startActivity(intent);
                             finish();
                         }
                     } else
                     {
                         String error = Objects.requireNonNull(task.getException()).getMessage();
-                        Toast.makeText(PartList.this, "Error: " + error, Toast.LENGTH_LONG).show();
+                        Toast.makeText(PostList.this, "Error: " + error, Toast.LENGTH_LONG).show();
 
                     }
                 }
@@ -133,7 +133,7 @@ public class PartList extends AppCompatActivity {
 
     private void sendToLogin()
     {
-        Intent intent =  new Intent(PartList.this, LoginUser.class);
+        Intent intent =  new Intent(PostList.this, LoginUser.class);
         startActivity(intent);
         finish();
     }
@@ -145,21 +145,21 @@ public class PartList extends AppCompatActivity {
         int option_id = item.getItemId();
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(PartList.this, user_options.class);
+            Intent home_intent = new Intent(PostList.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
         if (option_id == R.id.action_help)
         {
-            Intent help_intent = new Intent(PartList.this, UserHelp.class);
+            Intent help_intent = new Intent(PostList.this, UserHelp.class);
             startActivity(help_intent);
         }//End if()
 
         //The user is already located within this screen
         if (option_id == R.id.action_prof)
         {
-            Intent prof_intent = new Intent(PartList.this, userProfile.class);
+            Intent prof_intent = new Intent(PostList.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 

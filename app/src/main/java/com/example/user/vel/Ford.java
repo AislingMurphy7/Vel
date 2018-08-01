@@ -106,7 +106,7 @@ public class Ford extends AppCompatActivity
         int option_id = item.getItemId();
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(Ford.this, user_options.class);
+            Intent home_intent = new Intent(Ford.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
@@ -119,7 +119,7 @@ public class Ford extends AppCompatActivity
 
         if (option_id == R.id.action_prof)
         {
-            Intent prof_intent = new Intent(Ford.this, userProfile.class);
+            Intent prof_intent = new Intent(Ford.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 

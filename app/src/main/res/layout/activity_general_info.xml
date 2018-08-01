@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    This XML file designs the layout for the 'Agreements.class'
+    This XML file designs the layout for the 'General_Information.class'
     This XML file defines an 'ImageView' to display the VéL app logo,
     four 'TextViews' that display Strings of text to the user, and
     finally a 'Button' which allows the user to switch pages
@@ -25,7 +25,7 @@
         android:paddingBottom="20dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        tools:context="com.example.user.vel.Agreements">
+        tools:context="com.example.user.vel.General_Information">
 
         <ImageView
             android:id="@+id/vel"

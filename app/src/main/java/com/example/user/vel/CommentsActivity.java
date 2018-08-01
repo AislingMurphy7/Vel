@@ -124,7 +124,7 @@ public class CommentsActivity extends AppCompatActivity {
         int option_id = item.getItemId();
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(CommentsActivity.this, user_options.class);
+            Intent home_intent = new Intent(CommentsActivity.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
@@ -138,7 +138,7 @@ public class CommentsActivity extends AppCompatActivity {
         //The user is already located within this screen
         if (option_id == R.id.action_prof)
         {
-            Intent prof_intent = new Intent(CommentsActivity.this, userProfile.class);
+            Intent prof_intent = new Intent(CommentsActivity.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 

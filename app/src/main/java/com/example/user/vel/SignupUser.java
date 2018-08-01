@@ -125,7 +125,7 @@ public class SignupUser extends Activity implements View.OnClickListener
                             finish();
                             //Sign in success, update UI with the signed-in user's information
                             Toast.makeText(getApplicationContext(), R.string.reg_user, Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(SignupUser.this, userProfile.class));
+                            startActivity(new Intent(SignupUser.this, UserProfile.class));
 
                         }//End if()
                         else

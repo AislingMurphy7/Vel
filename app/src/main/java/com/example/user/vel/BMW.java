@@ -102,7 +102,7 @@ public class BMW extends AppCompatActivity
         int option_id = item.getItemId();
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(BMW.this, user_options.class);
+            Intent home_intent = new Intent(BMW.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
@@ -115,7 +115,7 @@ public class BMW extends AppCompatActivity
 
         if (option_id == R.id.action_prof)
         {
-            Intent prof_intent = new Intent(BMW.this, userProfile.class);
+            Intent prof_intent = new Intent(BMW.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    This XML file designs the layout for the 'user_options.class'
+    This XML file designs the layout for the 'Homepage.class'
     This XML file defines five 'Buttons' that redirects the
     user to different pages linked to this page.
 -->
@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#c70039"
-    tools:context=".user_options">
+    tools:context=".Homepage">
 
     <ImageView
         android:id="@+id/vel"

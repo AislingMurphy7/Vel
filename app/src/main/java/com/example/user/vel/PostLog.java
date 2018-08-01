@@ -3,16 +3,16 @@ package com.example.user.vel;
 
 import java.util.Date;
 
-public class PartLogs extends PartsPostID{
+public class PostLog extends PartsPostID{
 
     private String desc, image_thumb, image_url, user_id;
     private Date timestamp;
 
-    public PartLogs() {
+    public PostLog() {
 
     }
 
-    public PartLogs(String desc, String image_thumb, String image_url, String user_id, Date timestamp) {
+    public PostLog(String desc, String image_thumb, String image_url, String user_id, Date timestamp) {
         this.desc = desc;
         this.image_thumb = image_thumb;
         this.image_url = image_url;

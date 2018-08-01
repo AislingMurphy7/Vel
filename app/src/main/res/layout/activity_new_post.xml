@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    This XML file designs the layout for the 'PartList.class'
+    This XML file designs the layout for the 'PostList.class'
     This XML file defines an 'ImageView' to display the image
     chosen by the user, an 'EditText' to take the input from the
     user for the post description, a 'ProgressBar' and finally a
@@ -16,7 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewPartAdd"
+    tools:context=".NewPost"
     android:paddingTop="60dp">
 
     <ImageView

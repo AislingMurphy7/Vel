@@ -33,13 +33,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.ViewHolder> {
 
-    private List<PartLogs> part_list;
+    private List<PostLog> part_list;
     public Context context;
 
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth mAuth;
 
-    Recycler_Adapter(List<PartLogs> part_list){
+    Recycler_Adapter(List<PostLog> part_list){
 
         this.part_list = part_list;
 
@@ -49,7 +49,7 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.part_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_itemlist, parent, false);
         context = parent.getContext();
         firebaseFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();

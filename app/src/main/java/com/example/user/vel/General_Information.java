@@ -17,13 +17,13 @@ This class is selected from the Homepage of the
 Application called 'General Information'
 */
 
-public class Agreements extends AppCompatActivity
+public class General_Information extends AppCompatActivity
 {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_agreements);
+        setContentView(R.layout.activity_general_info);
 
         //XML Button variables
         Button Agree =  findViewById(R.id.ok);
@@ -34,7 +34,7 @@ public class Agreements extends AppCompatActivity
             //The app moves from the current screen back to the Home screen
             public void onClick(View view)
             {
-                Intent Agree_intent = new Intent(Agreements.this, user_options.class);
+                Intent Agree_intent = new Intent(General_Information.this, Homepage.class);
                 startActivity(Agree_intent);
 
             }//End onClick()
@@ -57,7 +57,7 @@ public class Agreements extends AppCompatActivity
         //If the home option is selected, user will be re-directed to home screen
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(Agreements.this, user_options.class);
+            Intent home_intent = new Intent(General_Information.this, Homepage.class);
             startActivity(home_intent);
 
         }//End if()
@@ -65,7 +65,7 @@ public class Agreements extends AppCompatActivity
         //If the help option is selected, user will be re-directed to help screen
         if (option_id == R.id.action_help)
         {
-            Intent help_intent = new Intent(Agreements.this, UserHelp.class);
+            Intent help_intent = new Intent(General_Information.this, UserHelp.class);
             startActivity(help_intent);
 
         }//End if()
@@ -73,7 +73,7 @@ public class Agreements extends AppCompatActivity
         //If the profile option is selected, user will be re-directed to profile screen
         if (option_id == R.id.action_prof)
         {
-            Intent prof_intent = new Intent(Agreements.this, userProfile.class);
+            Intent prof_intent = new Intent(General_Information.this, UserProfile.class);
             startActivity(prof_intent);
 
         }//End if()
@@ -93,4 +93,4 @@ public class Agreements extends AppCompatActivity
         return super.onOptionsItemSelected(item);
 
     }//End onOptionsItemSelected()
-}//End Agreements()
+}//End General_Information()

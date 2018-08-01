@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    This XML file designs the layout for the 'PartList.class'
+    This XML file designs the layout for the 'PostList.class'
     This XML file defines an 'FloatingActionButton' which allows
     the user to add a new part to the page and a 'FrameLayout'
     along with a 'RecyclerView' to display the new information.
@@ -15,7 +15,7 @@
     android:layout_height="match_parent"
     android:background="#c70039"
     android:orientation="vertical"
-    tools:context=".PartList">
+    tools:context=".PostList">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_post_btn"

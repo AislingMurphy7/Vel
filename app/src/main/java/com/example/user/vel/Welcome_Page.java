@@ -23,7 +23,7 @@ public class Welcome_Page extends Activity
         //Removes actionbar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_welcome__page);
+        setContentView(R.layout.activity_welcome_page);
 
         //XML button variables
         Button language = findViewById(R.id.langbtn);

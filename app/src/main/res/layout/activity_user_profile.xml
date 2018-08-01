@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    This XML file designs the layout for the 'userProfile.class'
+    This XML file designs the layout for the 'UserProfile.class'
     There is a 'TextView' which informs the user to tap on the camera if they wish
     to change their profile picture, an 'ImageView' which displays the camera image
     and new profile image when the user picks one from their gallery, a 'ProgressBar'
@@ -20,7 +20,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#c70039"
     android:orientation="vertical"
-    tools:context=".userProfile">
+    tools:context=".UserProfile">
 
     <TextView
         android:id="@+id/prof_textView"

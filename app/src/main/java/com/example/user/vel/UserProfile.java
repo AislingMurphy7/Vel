@@ -45,7 +45,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
     choose from the camera gallery, they can also edit their display name.
  */
 
-public class userProfile extends AppCompatActivity {
+public class UserProfile extends AppCompatActivity {
     //Declare variables
     private TextView textView;
 
@@ -105,13 +105,13 @@ public class userProfile extends AppCompatActivity {
 
                         RequestOptions options = new RequestOptions();
 
-                        Glide.with(userProfile.this).setDefaultRequestOptions(options).load(image).into(imageView);
+                        Glide.with(UserProfile.this).setDefaultRequestOptions(options).load(image).into(imageView);
                     }
 
                 }else
                 {
                     String error = Objects.requireNonNull(task.getException()).getMessage();
-                    Toast.makeText(userProfile.this, "Data retrieve Error: " + error, Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserProfile.this, "Data retrieve Error: " + error, Toast.LENGTH_LONG).show();
                 }
 
                 progressbar.setVisibility(View.INVISIBLE);
@@ -147,7 +147,7 @@ public class userProfile extends AppCompatActivity {
 
                                     } else {
                                         String error = Objects.requireNonNull(task.getException()).getMessage();
-                                        Toast.makeText(userProfile.this, "Image Error: " + error, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(UserProfile.this, "Image Error: " + error, Toast.LENGTH_LONG).show();
 
                                         progressbar.setVisibility(View.INVISIBLE);
                                     }
@@ -166,9 +166,9 @@ public class userProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    if (ContextCompat.checkSelfPermission(userProfile.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        Toast.makeText(userProfile.this, "Permission Denied", Toast.LENGTH_LONG).show();
-                        ActivityCompat.requestPermissions(userProfile.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+                    if (ContextCompat.checkSelfPermission(UserProfile.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(UserProfile.this, "Permission Denied", Toast.LENGTH_LONG).show();
+                        ActivityCompat.requestPermissions(UserProfile.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                     } else {
                         ImagePick();
                     }
@@ -196,14 +196,14 @@ public class userProfile extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(userProfile.this, "Profile set up", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(userProfile.this, NewPartAdd.class);
+                    Toast.makeText(UserProfile.this, "Profile set up", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(UserProfile.this, NewPost.class);
                     startActivity(intent);
                     finish();
                 }
                 else {
                     String error = Objects.requireNonNull(task.getException()).getMessage();
-                    Toast.makeText(userProfile.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                    Toast.makeText(UserProfile.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
 
                 }
 
@@ -216,7 +216,7 @@ public class userProfile extends AppCompatActivity {
         CropImage.activity()
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .setAspectRatio(1, 1)
-                .start(userProfile.this);
+                .start(UserProfile.this);
     }
 
 
@@ -240,7 +240,7 @@ public class userProfile extends AppCompatActivity {
                             @Override
                             //One the email is sent a toast message is displayed
                             public void onComplete(@NonNull Task<Void> task) {
-                                Toast.makeText(userProfile.this, R.string.email_sent, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UserProfile.this, R.string.email_sent, Toast.LENGTH_SHORT).show();
                             }//End onComplete()
                         });//End sendEmailVerification()
                     }//End onClick()
@@ -285,21 +285,21 @@ public class userProfile extends AppCompatActivity {
         int option_id = item.getItemId();
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(userProfile.this, user_options.class);
+            Intent home_intent = new Intent(UserProfile.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
         if (option_id == R.id.action_help)
         {
-            Intent help_intent = new Intent(userProfile.this, UserHelp.class);
+            Intent help_intent = new Intent(UserProfile.this, UserHelp.class);
             startActivity(help_intent);
         }//End if()
 
         //The user is already located within this screen
         if (option_id == R.id.action_prof)
         {
-            Toast.makeText(userProfile.this, R.string.in_prof, Toast.LENGTH_LONG).show();
+            Toast.makeText(UserProfile.this, R.string.in_prof, Toast.LENGTH_LONG).show();
         }//End if()
 
         //If the exit option is selected, the app will close
@@ -315,4 +315,4 @@ public class userProfile extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-}//End userProfile()
+}//End UserProfile()

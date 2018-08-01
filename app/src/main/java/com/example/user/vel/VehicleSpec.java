@@ -156,7 +156,7 @@ public class VehicleSpec extends AppCompatActivity
         if (option_id == R.id.action_home)
         {
             //The user will be re-directed to home screen
-            Intent home_intent = new Intent(VehicleSpec.this, user_options.class);
+            Intent home_intent = new Intent(VehicleSpec.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
@@ -172,7 +172,7 @@ public class VehicleSpec extends AppCompatActivity
         if (option_id == R.id.action_prof)
         {
             //The user will be re-directed to profile screen
-            Intent prof_intent = new Intent(VehicleSpec.this, userProfile.class);
+            Intent prof_intent = new Intent(VehicleSpec.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 

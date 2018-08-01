@@ -16,14 +16,14 @@ import android.widget.Toast;
     'Vehicle Information', 'Edit Profile' & 'Social Forum'
  */
 
-public class user_options extends AppCompatActivity
+public class Homepage extends AppCompatActivity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_user_options);
+        setContentView(R.layout.activity_homepage);
 
         //XML button variables
         Button general_info = findViewById(R.id.Informationbtn);
@@ -39,7 +39,7 @@ public class user_options extends AppCompatActivity
             public void onClick(View v)
             {
                 //The user is redirected to the 'General Information' screen
-                Intent general_info = new Intent(user_options.this, Agreements.class);
+                Intent general_info = new Intent(Homepage.this, General_Information.class);
                 startActivity(general_info);
             }//End onClick()
         });//End setOnClickListener()
@@ -51,7 +51,7 @@ public class user_options extends AppCompatActivity
             public void onClick(View v)
             {
                 //The user is redirected to the 'ELM-327 Setup' screen
-                Intent device = new Intent(user_options.this, SetupELM.class);
+                Intent device = new Intent(Homepage.this, SetupELM.class);
                 startActivity(device);
             }//End onClick()
         });//End setOnClickListener()
@@ -63,7 +63,7 @@ public class user_options extends AppCompatActivity
             public void onClick(View v)
             {
                 //The user is redirected to the 'Vehicle Information' screens
-                Intent vehicle_info = new Intent(user_options.this, VehicleSpec.class);
+                Intent vehicle_info = new Intent(Homepage.this, VehicleSpec.class);
                 startActivity(vehicle_info);
             }//End onClick()
         });//End setOnClickListener()
@@ -75,7 +75,7 @@ public class user_options extends AppCompatActivity
             public void onClick(View v)
             {
                 //The user is redirected to the 'Edit Profile' screen
-                Intent profile = new Intent(user_options.this, userProfile.class);
+                Intent profile = new Intent(Homepage.this, UserProfile.class);
                 startActivity(profile);
             }//End onClick()
         });//End setOnClickListener()
@@ -87,7 +87,7 @@ public class user_options extends AppCompatActivity
             public void onClick(View v)
             {
                 //The user is redirected to the 'Social Forum' screen
-                Intent social = new Intent(user_options.this, PartList.class);
+                Intent social = new Intent(Homepage.this, PostList.class);
                 startActivity(social);
             }//End onClick()
         });//End setOnClickListener()
@@ -109,14 +109,14 @@ public class user_options extends AppCompatActivity
         if (option_id == R.id.action_home)
         {
             //The user will be informed they are already in the home page
-            Toast.makeText(user_options.this, R.string.options_page, Toast.LENGTH_LONG).show();
+            Toast.makeText(Homepage.this, R.string.options_page, Toast.LENGTH_LONG).show();
         }//End if()
 
         //If the help option is selected
         if (option_id == R.id.action_help)
         {
             //The user will be re-directed to help screen
-            Intent help_intent = new Intent(user_options.this, UserHelp.class);
+            Intent help_intent = new Intent(Homepage.this, UserHelp.class);
             startActivity(help_intent);
         }//End if()
 
@@ -124,7 +124,7 @@ public class user_options extends AppCompatActivity
         if (option_id == R.id.action_prof)
         {
             //The user will be re-directed to profile screen
-            Intent help_intent = new Intent(user_options.this, userProfile.class);
+            Intent help_intent = new Intent(Homepage.this, UserProfile.class);
             startActivity(help_intent);
         }//End if()
 
@@ -142,4 +142,4 @@ public class user_options extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-}//End user_options()
+}//End Homepage()

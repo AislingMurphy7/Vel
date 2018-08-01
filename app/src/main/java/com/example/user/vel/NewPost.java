@@ -36,14 +36,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Random;
 import java.util.UUID;
 
 import id.zelory.compressor.Compressor;
 
-public class NewPartAdd extends AppCompatActivity {
+public class NewPost extends AppCompatActivity {
 
-    private static final int MAX_LENGTH = 100;
     private ImageView newPartImage;
     private EditText partDesc;
     private ProgressBar progressBar;
@@ -60,7 +58,7 @@ public class NewPartAdd extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_part_add);
+        setContentView(R.layout.activity_new_post);
 
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -80,7 +78,7 @@ public class NewPartAdd extends AppCompatActivity {
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setMinCropResultSize(512, 512)
                         .setAspectRatio(1, 1)
-                        .start(NewPartAdd.this);
+                        .start(NewPost.this);
             }
         });
 
@@ -107,7 +105,7 @@ public class NewPartAdd extends AppCompatActivity {
                                 File newImageFile = new File(partImage.getPath());
 
                                 try {
-                                    compressedImageFile =  new Compressor(NewPartAdd.this)
+                                    compressedImageFile =  new Compressor(NewPost.this)
                                             .setMaxHeight(100)
                                             .setMaxWidth(100)
                                             .setQuality(2)
@@ -143,15 +141,15 @@ public class NewPartAdd extends AppCompatActivity {
 
                                                 if(task.isSuccessful()){
 
-                                                    Toast.makeText(NewPartAdd.this, "Record has been added", Toast.LENGTH_LONG).show();
-                                                    Intent intent = new Intent(NewPartAdd.this, PartList.class);
+                                                    Toast.makeText(NewPost.this, "Record has been added", Toast.LENGTH_LONG).show();
+                                                    Intent intent = new Intent(NewPost.this, PostList.class);
                                                     startActivity(intent);
                                                     finish();
 
                                                 } else {
 
                                                     String error = Objects.requireNonNull(task.getException()).getMessage();
-                                                    Toast.makeText(NewPartAdd.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
 
                                                 }
 
@@ -167,7 +165,7 @@ public class NewPartAdd extends AppCompatActivity {
                                     public void onFailure(@NonNull Exception e) {
 
                                         String error = Objects.requireNonNull(task.getException()).getMessage();
-                                        Toast.makeText(NewPartAdd.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
                                     }
                                 });
 
@@ -175,7 +173,7 @@ public class NewPartAdd extends AppCompatActivity {
 
                                 progressBar.setVisibility(View.INVISIBLE);
                                 String error = Objects.requireNonNull(task.getException()).getMessage();
-                                Toast.makeText(NewPartAdd.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                                Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
 
                             }
                         }
@@ -217,20 +215,20 @@ public class NewPartAdd extends AppCompatActivity {
         int option_id = item.getItemId();
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(NewPartAdd.this, user_options.class);
+            Intent home_intent = new Intent(NewPost.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
         if (option_id == R.id.action_help)
         {
-            Intent help_intent = new Intent(NewPartAdd.this, UserHelp.class);
+            Intent help_intent = new Intent(NewPost.this, UserHelp.class);
             startActivity(help_intent);
         }//End if()
 
         if (option_id == R.id.action_prof)
         {
-            Intent prof_intent = new Intent(NewPartAdd.this, userProfile.class);
+            Intent prof_intent = new Intent(NewPost.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 
