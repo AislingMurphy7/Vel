@@ -16,9 +16,9 @@ for added visual effect
 
 public class MainActivity extends Activity
 {
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         //Removes actionbar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -44,6 +44,7 @@ public class MainActivity extends Activity
                     sleep(4000);
                     super.run();
                 }//End try
+
                 //If there is an error
                 catch (InterruptedException e)
                 {
@@ -54,10 +55,12 @@ public class MainActivity extends Activity
                 Intent intent = new Intent(getApplicationContext(), Welcome_Page.class);
                 startActivity(intent);
                 finish();
+
             }//End run()
         };// Thread()
 
         //Timer starts
         timer.start();
+
     }//End onCreate()
 }//End MainActivity()

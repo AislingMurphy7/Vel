@@ -1,3 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    This XML file designs the layout for the 'PartList.class'
+    This XML file defines an 'ImageView' to display the image
+    chosen by the user, an 'EditText' to take the input from the
+    user for the post description, a 'ProgressBar' and finally a
+    'Button' that saves the information to FireBase Database.
+-->
+
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -18,7 +28,8 @@
         app:srcCompat="@drawable/post_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+    </ImageView>
 
     <EditText
         android:id="@+id/new_post_desc"
@@ -36,7 +47,8 @@
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_post_image" />
+        app:layout_constraintTop_toBottomOf="@+id/new_post_image" >
+    </EditText>
 
     <ProgressBar
         android:id="@+id/progressbar"
@@ -64,6 +76,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressbar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressbar" >
+    </Button>
 
 </android.support.constraint.ConstraintLayout>

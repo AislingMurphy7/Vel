@@ -3,7 +3,7 @@
 <!--
     This XML file designs the layout for the 'userProfile.class'
     There is a 'TextView' which informs the user to tap on the camera if they wish
-    to change their profile picture, an 'ImaheView' which displays the camera image
+    to change their profile picture, an 'ImageView' which displays the camera image
     and new profile image when the user picks one from their gallery, a 'ProgressBar'
     which shows information is being processed, an 'EditText' which allows the user to
     change their display name, a 'Button' which allows the user to save the new
@@ -12,7 +12,8 @@
     that the address has not been verified.
 -->
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

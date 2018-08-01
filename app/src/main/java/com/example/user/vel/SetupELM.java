@@ -10,8 +10,7 @@ import android.widget.Button;
 
 /*
 This class displays an information screen informing the user
-important information concerning the ELM-327 device. Once the user
-has finished reading they can then progress to the next screen
+important information concerning the ELM-327 device.
 */
 
 public class SetupELM extends AppCompatActivity
@@ -25,7 +24,7 @@ public class SetupELM extends AppCompatActivity
         //XML variables
         Button ok = findViewById(R.id.bt1);
 
-        //When the user selects the 'next' button
+        //When the user selects the 'OK' button
         ok.setOnClickListener(new View.OnClickListener()
         {
             //The application moves to the following screen
@@ -33,6 +32,7 @@ public class SetupELM extends AppCompatActivity
             {
                 Intent intent = new Intent(SetupELM.this, user_options.class);
                 startActivity(intent);
+
             }//End onClick()
         });//End OnClickListener()
     }//End onCreate()
@@ -49,6 +49,7 @@ public class SetupELM extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
+        //If the home option is selected, user will be re-directed to home screen
         if (option_id == R.id.action_home)
         {
             Intent home_intent = new Intent(SetupELM.this, user_options.class);
@@ -62,6 +63,7 @@ public class SetupELM extends AppCompatActivity
             startActivity(help_intent);
         }//End if()
 
+        //If the profile option is selected, user will be re-directed to profile screen
         if (option_id == R.id.action_prof)
         {
             Intent prof_intent = new Intent(SetupELM.this, userProfile.class);
@@ -80,5 +82,6 @@ public class SetupELM extends AppCompatActivity
         }//End if()
 
         return super.onOptionsItemSelected(item);
+
     }//End onOptionsItemSelected()
 }//End SetupELM()

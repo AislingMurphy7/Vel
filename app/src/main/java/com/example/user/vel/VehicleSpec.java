@@ -19,7 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 /*
-This class retrieves data from a database stored on Firebase and places this data into a ListView.
+This class retrieves data from a database stored on FireBase and places this data into a ListView.
 From the ListView the user can select which Vehicle they would like to view
  */
 
@@ -34,14 +34,14 @@ public class VehicleSpec extends AppCompatActivity
         //XML variable
         ListView listView2 = findViewById(R.id.listview2);
 
-        /*Database variable is getting the connection to the firebase database via google-services
+        /*Database variable is getting the connection to the FireBase database via google-services
         JSON file and making reference to the child of "Make"*/
         DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Make");
 
-        //Holds the valuse gathered from firebase
+        //Holds the values gathered from FireBase
         final ArrayList<String> carlist = new ArrayList<>();
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.itemview, carlist);
-        //Set the ArrayAdapter to the listview
+        //Set the ArrayAdapter to the ListView
         listView2.setAdapter(arrayAdapter);
 
         //ChildEventListener allows child events to be listened for
@@ -50,29 +50,33 @@ public class VehicleSpec extends AppCompatActivity
             //Will run when the app is started and when there is data added to the database
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey)
             {
-                //Holds the Datasnapshot value of the database as type String
+                //Holds the DataSnapshot value of the database as type String
                 String value = dataSnapshot.getValue(String.class);
 
-                //Add the info retrieved from datasnapshot into the ArrayList
+                //Add the info retrieved from DataSnapshot into the ArrayList
                 carlist.add(value);
                 //Will refresh app when the data changes in the database
                 arrayAdapter.notifyDataSetChanged();
             }//End onChildAdded()
+
             //Will run when data within the database is changed/edited
             public void onChildChanged(DataSnapshot dataSnapshot, String s)
             {
 
             }//End onChildChanged()
+
             //Will run when data within the database is removed
             public void onChildRemoved(DataSnapshot dataSnapshot)
             {
 
             }//End onChildRemoved()
+
             //Will run when data within the database is moved to different location
             public void onChildMoved(DataSnapshot dataSnapshot, String s)
             {
 
             }//End onChildMoved()
+
             //Will run when any sort of error occurs
             public void onCancelled(DatabaseError databaseError)
             {
@@ -92,6 +96,7 @@ public class VehicleSpec extends AppCompatActivity
                     Intent intent = new Intent(VehicleSpec.this, Audi.class);
                     startActivity(intent);
                 }//End if()
+
                 //If option(i) is equal to the second row
                 else if(i == 1)
                 {
@@ -99,6 +104,7 @@ public class VehicleSpec extends AppCompatActivity
                     Intent intent = new Intent(VehicleSpec.this, Volkswagen.class);
                     startActivity(intent);
                 }//End if()
+
                 //If option(i) is equal to the third row
                 else if(i == 2)
                 {
@@ -106,6 +112,7 @@ public class VehicleSpec extends AppCompatActivity
                     Intent intent = new Intent(VehicleSpec.this, Ford.class);
                     startActivity(intent);
                 }//End if()
+
                 //If option(i) is equal to the fourth row
                 else if(i == 3)
                 {
@@ -113,6 +120,7 @@ public class VehicleSpec extends AppCompatActivity
                     Intent intent = new Intent(VehicleSpec.this, BMW.class);
                     startActivity(intent);
                 }//End if()
+
                 //If option(i) is equal to the fifth row
                 else if(i == 4)
                 {
@@ -120,6 +128,7 @@ public class VehicleSpec extends AppCompatActivity
                     Intent intent = new Intent(VehicleSpec.this, Renault.class);
                     startActivity(intent);
                 }//End if()
+
                 //If option(i) is equal to the sixth row
                 else if(i == 5)
                 {
@@ -143,28 +152,34 @@ public class VehicleSpec extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
+        //If the home option is selected
         if (option_id == R.id.action_home)
         {
+            //The user will be re-directed to home screen
             Intent home_intent = new Intent(VehicleSpec.this, user_options.class);
             startActivity(home_intent);
         }//End if()
 
-        //If the help option is selected, user will be re-directed to help screen
+        //If the help option is selected
         if (option_id == R.id.action_help)
         {
+            //The user will be re-directed to help screen
             Intent intent = new Intent(VehicleSpec.this, UserHelp.class);
             startActivity(intent);
         }//End if()
 
+        //If the profile option is selected
         if (option_id == R.id.action_prof)
         {
+            //The user will be re-directed to profile screen
             Intent prof_intent = new Intent(VehicleSpec.this, userProfile.class);
             startActivity(prof_intent);
         }//End if()
 
-        //If the exit option is selected, the app will close
+        //If the exit option is selected
         if (option_id == R.id.action_exit)
         {
+            //The app will close
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    This XML file designs the layout for the 'Welcome_Page.class'
+    This XML file defines an 'ImageView' to display the VéL app logo,
+    This XML file defines three 'Buttons' that redirects the
+    user to different pages linked to this page.
+-->
+
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    This XML file designs the layout for the 'user_options.class'
+    This XML file defines five 'Buttons' that redirects the
+    user to different pages linked to this page.
+-->
+
 <android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"

@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<!--
+    This XML file designs the layout for the 'CommentsActivity.class'
+    This XML file defines a 'TextView' that displays the heading, an
+     'EditText' that takes the input from the user, an 'ImageView' that
+     displays the send button for the comments, and
+    finally a 'RecyclerView' which will display all the previously
+    submitted comments
+-->
+
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,7 +30,8 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+    </TextView>
 
     <EditText
         android:id="@+id/comment_field"
@@ -37,11 +49,12 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/comment_post_btn"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" >
+    </EditText>
 
     <ImageView
-        android:contentDescription="@string/comment_desc"
         android:id="@+id/comment_post_btn"
+        android:contentDescription="@string/comment_desc"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="16dp"
@@ -49,7 +62,8 @@
         android:padding="8dp"
         android:src="@drawable/action_comment_send_web"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" >
+    </ImageView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/comment_list"
@@ -62,6 +76,7 @@
         app:layout_constraintBottom_toTopOf="@+id/comment_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comment_label" />
+        app:layout_constraintTop_toBottomOf="@+id/comment_label" >
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

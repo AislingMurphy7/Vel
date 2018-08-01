@@ -24,7 +24,8 @@
         android:contentDescription="@string/imagedesc"
         android:adjustViewBounds="true"
         android:src="@drawable/vel"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center">
+    </ImageView>
 
     <TextView
         android:id="@+id/ChooseMake"

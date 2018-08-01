@@ -51,27 +51,33 @@ public class UserHelp extends AppCompatActivity
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
+        //If the home option is selected
         if (option_id == R.id.action_home)
         {
+            //The user will be redirected to the home page
             Intent home_intent = new Intent(UserHelp.this, user_options.class);
             startActivity(home_intent);
         }//End if()
 
-        //If the settings option is selected, user will be informed they are already on the help screen
+        //If the help option is selected
         if (option_id == R.id.action_help)
         {
+            //The user will be informed they are already in the help page
             Toast.makeText(UserHelp.this, R.string.user_page, Toast.LENGTH_LONG).show();
         }//End if()
 
+        //If the profile option is selected
         if (option_id == R.id.action_prof)
         {
+            //The user will be redirected to the profile page
             Intent prof_intent = new Intent(UserHelp.this, userProfile.class);
             startActivity(prof_intent);
         }//End if()
 
-        //If the exit option is selected, the app will close
+        //If the exit option is selected
         if (option_id == R.id.action_exit)
         {
+            //The app will close
             Intent exit_intent = new Intent(Intent.ACTION_MAIN);
             exit_intent.addCategory(Intent.CATEGORY_HOME);
             exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -4,8 +4,7 @@
     This XML file designs the layout for the 'Agreements.class'
     This XML file defines an 'ImageView' to display the VéL app logo,
     four 'TextViews' that display Strings of text to the user, and
-    finally two 'Button' which allow the user to agree and progress
-    on into the app, or disagree and exit the app.
+    finally a 'Button' which allows the user to switch pages
 -->
 
 <ScrollView

@@ -9,59 +9,89 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class user_options extends AppCompatActivity {
+/*
+    This class is the main 'Homepage' of the VéL application,
+    Here the user can choose from a selection of options
+    such as 'General Information', 'ELM-327 Setup',
+    'Vehicle Information', 'Edit Profile' & 'Social Forum'
+ */
 
+public class user_options extends AppCompatActivity
+{
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
+        //Sets the layout according to the XML file
         setContentView(R.layout.activity_user_options);
 
+        //XML button variables
         Button general_info = findViewById(R.id.Informationbtn);
         Button device_btn = findViewById(R.id.Devicebtn);
         Button vehicle_info = findViewById(R.id.Vehiclebtn);
         Button edit_prof = findViewById(R.id.EditProfbtn);
-        Button social_fourm = findViewById(R.id.FourmBtn);
+        Button social_forum = findViewById(R.id.FourmBtn);
 
-        general_info.setOnClickListener(new View.OnClickListener() {
+        //If the user selects the 'General Information' button
+        general_info.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //The user is redirected to the 'General Information' screen
                 Intent general_info = new Intent(user_options.this, Agreements.class);
                 startActivity(general_info);
-            }
-        });
+            }//End onClick()
+        });//End setOnClickListener()
 
-        device_btn.setOnClickListener(new View.OnClickListener() {
+        //If the user selects the 'ELM-327 Setup' button
+        device_btn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //The user is redirected to the 'ELM-327 Setup' screen
                 Intent device = new Intent(user_options.this, SetupELM.class);
                 startActivity(device);
-            }
-        });
+            }//End onClick()
+        });//End setOnClickListener()
 
-        vehicle_info.setOnClickListener(new View.OnClickListener() {
+        //If the user selects the 'Vehicle Information' button
+        vehicle_info.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //The user is redirected to the 'Vehicle Information' screens
                 Intent vehicle_info = new Intent(user_options.this, VehicleSpec.class);
                 startActivity(vehicle_info);
-            }
-        });
+            }//End onClick()
+        });//End setOnClickListener()
 
-        edit_prof.setOnClickListener(new View.OnClickListener() {
+        //If the user selects the 'Edit Profile' button
+        edit_prof.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //The user is redirected to the 'Edit Profile' screen
                 Intent profile = new Intent(user_options.this, userProfile.class);
                 startActivity(profile);
-            }
-        });
+            }//End onClick()
+        });//End setOnClickListener()
 
-        social_fourm.setOnClickListener(new View.OnClickListener() {
+        //If the user selects the 'Social Forum' button
+        social_forum.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //The user is redirected to the 'Social Forum' screen
                 Intent social = new Intent(user_options.this, PartList.class);
                 startActivity(social);
-            }
-        });
-    }
+            }//End onClick()
+        });//End setOnClickListener()
+    }//End onCreate()
 
     //Function creates the dropdown toolbar menu
     public boolean onCreateOptionsMenu(Menu menu)
@@ -75,28 +105,33 @@ public class user_options extends AppCompatActivity {
     {
         //Variable to hold id of selected menu option
         int option_id = item.getItemId();
+        //If the home option is selected
         if (option_id == R.id.action_home)
         {
+            //The user will be informed they are already in the home page
             Toast.makeText(user_options.this, R.string.options_page, Toast.LENGTH_LONG).show();
         }//End if()
 
-        //If the help option is selected, user will be re-directed to help screen
+        //If the help option is selected
         if (option_id == R.id.action_help)
         {
+            //The user will be re-directed to help screen
             Intent help_intent = new Intent(user_options.this, UserHelp.class);
             startActivity(help_intent);
         }//End if()
 
-        //The user is already located within this screen
+        //If the profile option is selected
         if (option_id == R.id.action_prof)
         {
+            //The user will be re-directed to profile screen
             Intent help_intent = new Intent(user_options.this, userProfile.class);
             startActivity(help_intent);
         }//End if()
 
-        //If the exit option is selected, the app will close
+        //If the exit option is selected
         if (option_id == R.id.action_exit)
         {
+            //The app will close
             Intent exit_intent = new Intent(Intent.ACTION_MAIN);
             exit_intent.addCategory(Intent.CATEGORY_HOME);
             exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -107,4 +142,4 @@ public class user_options extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-}
+}//End user_options()

@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,7 +13,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -47,7 +43,7 @@ public class LanguageSelect extends Activity
         //XML variable
         ListView listView = findViewById(R.id.Lang);
 
-        //CustomeAdapter is defined to allow for the listview to be more flexable to design change
+        //CustomAdapter is defined to allow for the listview to be more flexible to design change
         CustomAdpater customadapter = new CustomAdpater();
         listView.setAdapter(customadapter);
 
@@ -64,7 +60,9 @@ public class LanguageSelect extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(LanguageSelect.this, LoginUser.class);
                     startActivity(intent);
+
                 }//End if()
+
                 //If option(i) is equal to the second row
                 else if(i == 1)
                 {
@@ -73,7 +71,9 @@ public class LanguageSelect extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(LanguageSelect.this, LoginUser.class);
                     startActivity(intent);
+
                 }//End if()
+
                 //If option(i) is equal to the third row
                 else if(i == 2)
                 {
@@ -82,7 +82,9 @@ public class LanguageSelect extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(LanguageSelect.this, LoginUser.class);
                     startActivity(intent);
+
                 }//End if()
+
                 //If option(i) is equal to the fourth row
                 else if(i == 3)
                 {
@@ -91,6 +93,7 @@ public class LanguageSelect extends Activity
                     //The app will change from current screen to next screen
                     Intent intent = new Intent(LanguageSelect.this, LoginUser.class);
                     startActivity(intent);
+
                 }//End if()
             }//End onItemClick()
         });//End setOnItemClickListener()
@@ -108,6 +111,7 @@ public class LanguageSelect extends Activity
         SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
         editor.putString("My_Lang", lang);
         editor.apply();
+
     }//End setLocale()
 
     //Within this function the selected language is set
@@ -116,6 +120,7 @@ public class LanguageSelect extends Activity
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
         String language = prefs.getString("My_Lang", "");
         setLocale(language);
+
     }//End loadLocale()
 
     //This class gets the count of the IMAGES array and its item ids
@@ -124,16 +129,19 @@ public class LanguageSelect extends Activity
         public int getCount()
         {
             return IMAGES.length;
+
         }//End getCount()
 
         public Object getItem(int i)
         {
             return null;
+
         }//End getItem()
 
         public long getItemId(int i)
         {
             return 0;
+
         }//End getItemId
 
         /*Within this function the custom layout is used and the IMAGES array is added to display
@@ -149,8 +157,8 @@ public class LanguageSelect extends Activity
             textViewLang.setText(NAMES[i]);
 
             return view;
+
         }//End getView()
     }//End CustomAdapter()
-
 }//End MainActivity()
 
