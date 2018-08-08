@@ -31,9 +31,11 @@ public class VehicleData
         this.throttlePosition = throttlePosition;
     }//End VehicleData()
 
+    //Empty Constructor
     VehicleData()
     {}
 
+    //Getters and setters
     public String getDeviceTime()
     {
         return deviceTime;

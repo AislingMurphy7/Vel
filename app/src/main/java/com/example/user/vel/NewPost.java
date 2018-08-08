@@ -40,80 +40,116 @@ import java.util.UUID;
 
 import id.zelory.compressor.Compressor;
 
-public class NewPost extends AppCompatActivity {
+/*
+    This class allows the user to add a new post to the forum within the app, Here
+    they can add a picture and a simple description of what the picture is.
+    This is then uploaded to FireBase and redisplayed when the user selects the
+    social forum
+ */
 
+public class NewPost extends AppCompatActivity
+{
+    //XML variables
     private ImageView newPartImage;
     private EditText partDesc;
     private ProgressBar progressBar;
 
+    //Image variable
     private Uri partImage = null;
 
+    //FireBase variables
     private StorageReference storageReference;
     private FirebaseFirestore firebaseFirestore;
 
     private String current_user;
 
+    //Thumbnail variable
     private Bitmap compressedImageFile;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
+        //Sets the layout according to the XML file
         setContentView(R.layout.activity_new_post);
 
+        //Instansiate variables
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseFirestore = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
+        //Gets current id from FireBase
         current_user = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
 
+        //XML variables
         newPartImage = findViewById(R.id.new_post_image);
         partDesc =  findViewById(R.id.new_post_desc);
         Button partAdd = findViewById(R.id.post_btn);
         progressBar = findViewById(R.id.progressbar);
 
-        newPartImage.setOnClickListener(new View.OnClickListener() {
+        //When the user taps on the image
+        newPartImage.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setMinCropResultSize(512, 512)
                         .setAspectRatio(1, 1)
                         .start(NewPost.this);
-            }
-        });
+            }//End onClick()
+        });//End setOnClickListener()
 
-        partAdd.setOnClickListener(new View.OnClickListener() {
+        //When user selects the 'Add' button
+        partAdd.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //The description is saved to a String
                 final String desc = partDesc.getText().toString();
 
-                if(!TextUtils.isEmpty(desc) && partImage != null){
-
+                //If the description and image is not empty
+                if(!TextUtils.isEmpty(desc) && partImage != null)
+                {
+                    //Set progressbar to visible
                     progressBar.setVisibility(View.VISIBLE);
 
+                    //A random name is generated or the image in FireBase
                     final String rand_name = UUID.randomUUID().toString();
 
+                    //File path of the 'part_images' where the image is saved to in FireBase
                     final StorageReference filePath = storageReference.child("part_images").child(rand_name + ".jpg");
-                    filePath.putFile(partImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    //The file is added to the filePath variable for FireBase
+                    filePath.putFile(partImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>()
+                    {
                         @Override
-                        public void onComplete(@NonNull final Task<UploadTask.TaskSnapshot> task) {
-
+                        public void onComplete(@NonNull final Task<UploadTask.TaskSnapshot> task)
+                        {
+                            //DownloadUrl is added to the variable
                             final String downloadUri = Objects.requireNonNull(task.getResult().getDownloadUrl()).toString();
 
-                            if(task.isSuccessful()){
-
+                            //If successful
+                            if(task.isSuccessful())
+                            {
+                                //The image and path are saved into variable
                                 File newImageFile = new File(partImage.getPath());
 
-                                try {
+                                //The app will then compress the file to make it smaller and easily handled
+                                try
+                                {
                                     compressedImageFile =  new Compressor(NewPost.this)
                                             .setMaxHeight(100)
                                             .setMaxWidth(100)
                                             .setQuality(2)
                                             .compressToBitmap(newImageFile);
 
-                                } catch (IOException e) {
+                                }//End try()
+                                catch (IOException e)
+                                {
                                     e.printStackTrace();
-                                }
+                                }//End catch()
 
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -122,9 +158,11 @@ public class NewPost extends AppCompatActivity {
                                 UploadTask uploadTask = storageReference
                                         .child("part_images/thumbs").child(rand_name + ".jpg").putBytes(thumb_data);
 
-                                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
+                                {
                                     @Override
-                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                                    {
 
                                         String download_thumUri = Objects.requireNonNull(taskSnapshot.getDownloadUrl()).toString();
 
@@ -135,71 +173,81 @@ public class NewPost extends AppCompatActivity {
                                         partMap.put("user_id", current_user);
                                         partMap.put("timestamp", FieldValue.serverTimestamp());
 
-                                        firebaseFirestore.collection("Parts").add(partMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                        firebaseFirestore.collection("Parts").add(partMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>()
+                                        {
                                             @Override
-                                            public void onComplete(@NonNull Task<DocumentReference> task) {
-
-                                                if(task.isSuccessful()){
-
+                                            public void onComplete(@NonNull Task<DocumentReference> task)
+                                            {
+                                                //If successful
+                                                if(task.isSuccessful())
+                                                {
+                                                    //The user is informed that the record has been added, then redirected to the PostList page
                                                     Toast.makeText(NewPost.this, "Record has been added", Toast.LENGTH_LONG).show();
                                                     Intent intent = new Intent(NewPost.this, PostList.class);
                                                     startActivity(intent);
                                                     finish();
+                                                }//End if()
 
-                                                } else {
-
+                                                //If not successful
+                                                else {
+                                                    //Error message is displayed to the user informing them of the issue
                                                     String error = Objects.requireNonNull(task.getException()).getMessage();
                                                     Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                                                }//End else()
 
-                                                }
-
+                                                //Sets progressbar to invisible
                                                 progressBar.setVisibility(View.INVISIBLE);
+                                            }//End onComplete()
+                                        });//End onCompleteListener()
+                                    }//End OnSuccess()
 
-                                            }
-                                        });
-
-
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
+                                    //If the process fails
+                                }).addOnFailureListener(new OnFailureListener()
+                                {
                                     @Override
-                                    public void onFailure(@NonNull Exception e) {
-
+                                    public void onFailure(@NonNull Exception e)
+                                    {
+                                        //Error message is displayed to the user informing them of the issue
                                         String error = Objects.requireNonNull(task.getException()).getMessage();
                                         Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
-                                    }
-                                });
+                                    }//End OnFailure()
+                                });//End addOnFailureListener()
+                            }//End if()
 
-                            } else {
-
+                            //If not a success
+                            else {
+                                //Progressbar is set to invisible
                                 progressBar.setVisibility(View.INVISIBLE);
+                                //Error message is displayed to the user informing them of the issue
                                 String error = Objects.requireNonNull(task.getException()).getMessage();
                                 Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                            }//End else()
+                        }//End onComplete()
+                    });//End onCompleteListener()
+                }//End if()
+            }//End onClick()
+        });//End setOnClickListener()
+    }//End omCreate()
 
-                            }
-                        }
-                    });
-                }
-            }
-        });
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-
+            if (resultCode == RESULT_OK)
+            {
                 partImage = result.getUri();
                 newPartImage.setImageURI(partImage);
 
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+            }//End if()
+            else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
+            {
                 Exception error = result.getError();
-            }
-        }
-    }
-
-
+            }//End else if()
+        }//End if()
+    }//End onActivityResult()
 
     //Function creates the dropdown toolbar menu
     public boolean onCreateOptionsMenu(Menu menu)
@@ -245,4 +293,4 @@ public class NewPost extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-}
+}//End NewPost()

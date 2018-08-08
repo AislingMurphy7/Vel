@@ -19,90 +19,107 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder>{
+public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder>
+{
 
+    //List to hold comments
     private List<Comments> commentsList;
     public Context context;
 
+    //FireBase Variable
     private FirebaseFirestore firebaseFirestore;
 
     CommentsAdapter(List<Comments> commentsList)
     {
         this.commentsList = commentsList;
-    }
+    }//End CommentsAdapter()
 
     @NonNull
     @Override
-    public CommentsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public CommentsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_itemlist, parent, false);
         context = parent.getContext();
         firebaseFirestore = FirebaseFirestore.getInstance();
         return new CommentsAdapter.ViewHolder(view);
-    }
+    }//End onCreateViewHolder()
 
     @Override
-    public void onBindViewHolder(@NonNull final CommentsAdapter.ViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull final CommentsAdapter.ViewHolder holder, int position)
+    {
         holder.setIsRecyclable(false);
 
         String commentMessage = commentsList.get(position).getMessage();
         holder.setComment_message(commentMessage);
 
-
         String user_id = commentsList.get(position).getUser_id();
-        firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
+        {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task)
+            {
                 if(task.isSuccessful())
                 {
                     String userName = task.getResult().getString("name");
                     String userImage = task.getResult().getString("image");
                     holder.setUserData(userName, userImage);
-                }
-            }
-        });
-    }
+                }//End if()
+            }//End onComplete()
+        });//End OnCompleteListener()
+    }//End onBindViewHolder()
 
     @Override
-    public int getItemCount() {
-        if(commentsList != null){
+    //Retrieves the amount of items
+    public int getItemCount()
+    {
+        //If not null, return the size
+        if(commentsList != null)
+        {
             return commentsList.size();
-        } else {
+        }//End if()
+        //If null, return 0
+        else {
             return 0;
-        }
-    }
+        }//End else()
+    }//End getItemCount()
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
         private View mView;
 
+        //XML variables
         private TextView CommentUsername;
         private CircleImageView CommentImage;
-
         private TextView comment_message;
 
-        ViewHolder(View itemView) {
+        ViewHolder(View itemView)
+        {
             super(itemView);
             mView = itemView;
-        }
+        }//End ViewHolder()
 
+        //Sets the comments
         public void setComment_message(String message)
         {
+            //XML variable
             comment_message = mView.findViewById(R.id.comment_message);
+            //Sets the comment message
             comment_message.setText(message);
+        }//End setComment_message()
 
-        }
-
-
-        public void setUserData(String userName, String userImage) {
+        //Sets the username and user image who posted the comment
+        public void setUserData(String userName, String userImage)
+        {
+            //XML variables
             CommentUsername = mView.findViewById(R.id.comment_username);
             CommentImage = mView.findViewById(R.id.comment_image);
 
+            //Sets username
             CommentUsername.setText(userName);
 
             RequestOptions placeOption = new RequestOptions();
 
             Glide.with(context).applyDefaultRequestOptions(placeOption).load(userImage).into(CommentImage);
-        }
-    }
-}
+        }//End setUserData()
+    }//End ViewHolder()
+}//End CommentsAdapter()

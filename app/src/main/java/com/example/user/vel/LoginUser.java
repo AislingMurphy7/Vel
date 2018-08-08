@@ -20,9 +20,9 @@ import java.util.Objects;
 
 /*
     This class allows the user to sign into their individual account if they have already
-    registered. It contains two edit texts which allows the user to inout their
-    email address and password, a sign in button and finally clickable text which redirects
-    the user to the sign up / register page.
+    registered which is stored on FireBase. It contains two edit texts which allows the
+    user to inout their email address and password, a sign in button and finally
+    clickable text which redirects the user to the sign up / register page.
  */
 
 public class LoginUser extends Activity implements View.OnClickListener
@@ -107,7 +107,7 @@ public class LoginUser extends Activity implements View.OnClickListener
         //Sets the progressbar to visible on screen
         progressbar.setVisibility(View.VISIBLE);
 
-        //Logging user in viz inforaation storred in FireBase
+        //Logging user in viz information stored in FireBase
         mAuth.signInWithEmailAndPassword(email, password)
                 //Detects the completion
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>()

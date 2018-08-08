@@ -6,81 +6,90 @@
     user to different pages linked to this page.
 -->
 
-<android.support.v7.widget.LinearLayoutCompat
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="#c70039"
-    tools:context=".Homepage">
+    android:background="#c70039">
 
-    <ImageView
-        android:id="@+id/vel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:contentDescription="@string/imagedesc"
-        android:paddingBottom="40sp"
-        android:paddingStart="20sp"
-        android:paddingEnd="0dp"
-        android:paddingTop="50sp"
-        android:src="@drawable/vel">
-    </ImageView>
-
-    <Button
-        android:id="@+id/Informationbtn"
+    <android.support.v7.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="7dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="@string/gen_info"
-        android:textColor="#c70039">
-    </Button>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#c70039"
+        tools:context=".Homepage">
 
-    <Button
-        android:id="@+id/Devicebtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="7dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="@string/ELM"
-        android:textColor="#c70039">
-    </Button>
+        <ImageView
+            android:id="@+id/vel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/imagedesc"
+            android:paddingBottom="40sp"
+            android:paddingStart="20sp"
+            android:paddingEnd="0dp"
+            android:paddingTop="50sp"
+            android:src="@drawable/vel">
+        </ImageView>
 
-    <Button
-        android:id="@+id/Vehiclebtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="7dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="@string/vehicle_info"
-        android:textColor="#c70039">
-    </Button>
+        <Button
+            android:id="@+id/Informationbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/gen_info"
+            android:textColor="#c70039">
+        </Button>
 
-    <Button
-        android:id="@+id/EditProfbtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="7dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="@string/edit_prof"
-        android:textColor="#c70039">
-    </Button>
+        <Button
+            android:id="@+id/Devicebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/ELM"
+            android:textColor="#c70039">
+        </Button>
 
-    <Button
-        android:id="@+id/FourmBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="7dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="@string/social"
-        android:textColor="#c70039">
-    </Button>
+        <Button
+            android:id="@+id/Vehiclebtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/vehicle_info"
+            android:textColor="#c70039">
+        </Button>
 
-</android.support.v7.widget.LinearLayoutCompat>
+        <Button
+            android:id="@+id/EditProfbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/edit_prof"
+            android:textColor="#c70039">
+        </Button>
+
+        <Button
+            android:id="@+id/FourmBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/social"
+            android:textColor="#c70039">
+        </Button>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+</ScrollView>
