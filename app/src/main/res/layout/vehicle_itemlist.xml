@@ -28,20 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:contentDescription="@string/likebtn"
-                android:id="@+id/like_btn"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/post_desc"
-                app:srcCompat="@drawable/action_like_gray_web" >
-            </ImageView>
-
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/user_image"
                 android:layout_width="wrap_content"
@@ -50,8 +36,7 @@
                 android:layout_marginTop="16dp"
                 android:src="@drawable/profile_placeholder"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" >
-            </de.hdodenhof.circleimageview.CircleImageView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/user_name"
@@ -63,19 +48,7 @@
                 android:textStyle="bold"
                 android:textColor="#c70039"
                 app:layout_constraintStart_toEndOf="@+id/user_image"
-                app:layout_constraintTop_toTopOf="parent" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/blog_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/date"
-                android:textColor="#c70039"
-                app:layout_constraintStart_toEndOf="@+id/user_image"
-                app:layout_constraintTop_toBottomOf="@+id/user_name" >
-            </TextView>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:contentDescription="@string/part_image"
@@ -92,13 +65,13 @@
             </ImageView>
 
             <TextView
-                android:id="@+id/post_desc"
+                android:id="@+id/vehicle_make"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@string/image_desc"
+                android:text="@string/manutext"
                 android:textColor="#c70039"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -106,46 +79,32 @@
             </TextView>
 
             <TextView
-                android:id="@+id/like_count"
-                android:layout_width="wrap_content"
+                android:id="@+id/vehicle_model"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/likes"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/modeltext"
                 android:textColor="#c70039"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/like_btn"
-                app:layout_constraintTop_toBottomOf="@+id/post_desc" >
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_make" >
             </TextView>
 
             <TextView
-                android:id="@+id/comment_count"
-                android:layout_width="wrap_content"
+                android:id="@+id/vehicle_reg"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@string/comments"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/regtext"
                 android:textColor="#c70039"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/post_desc" >
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_model" >
             </TextView>
-
-            <ImageView
-                android:contentDescription="@string/comment_icon"
-                android:id="@+id/comment_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
-                android:src="@drawable/action_comment_icon_web"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/comment_count"
-                app:layout_constraintTop_toBottomOf="@+id/post_desc" >
-            </ImageView>
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>

@@ -7,11 +7,8 @@
 
     <string name="imagedesc">Anwendungslogo</string>
     <string name="listimagelang">Sprachflaggen</string>
-    <string name="carimage">Fahrzeug Bild</string>
 
     <string name="listCusTextV">Textvorschau</string>
-
-    <string name="app_name">VéL</string>
 
     <string name="Pick"><b><u>Bitte wählen Sie Ihre Sprache:</u></b></string>
 
@@ -25,10 +22,6 @@
     <string name="instruct"><b><u><i>Schritt 1</i></u></b> \nStecken Sie den Adapter in den 16-poligen OBD-II-Anschluss. \n\n<b><u><i>Schritt 2</i></u></b> \nVergewissern Sie sich, dass am Adapter grünes Licht blinkt.
                         \n\n<b><u><i>Schritt 3</i></u></b> \nStarten Sie den Automotor. \n\n<b><u><i>Schritt 4</i></u></b> \nNavigieren Sie zu Einstellungen auf dem Android-Gerät: Einstellungen > Bluetooth > Adaptername > Geräte verbinden.
                         \n\n<b><u><i>Schritt 5</i></u></b> \nNavigieren zu den Einstellungen in der App: Einstellungen > Wählen Sie den Adapternamen aus der Liste.</string>
-
-    <string name="CarChoice"><b>Bitte wählen Sie einen Fahrzeughersteller: </b></string>
-
-    <string name="ModelChoice"><b>Bitte wählen Sie ein Fahrzeugmodell: </b></string>
 
     <string name="FAQ"><b><u>Hat mein Auto OBD-II?</u></b> \n\n Jahr 1996 und neuere Fahrzeuge, sowohl Benzin- als auch Dieselkraftwagen. Die Fahrzeuge müssen OBD-II-Systeme haben. Um zu überprüfen, ob Ihr Fahrzeug mit OBD II ausgestattet ist,
         können Sie auf dem Emissionskontrollschild, das an der Unterseite der Fahrzeughaube angebracht ist, nach dem Wort "OBD II" suchen</string>
@@ -47,16 +40,6 @@
     <string name="FAQ5"><b><u>Was ist der Drosselklappensensor?</u></b>\n\nDieser Sensor wird verwendet, um die Drosselklappenposition eines Fahrzeugs zu überwachen.</string>
 
     <string name="FAQ6"><b><u>Was ist der Motorlufttemperatursensor?</u></b> \n\nDieser Sensor überwacht die Temperatur der Luft, die in den Motor eindringt.</string>
-
-    <string name="Audi_Head"><b><u>Audi Fahrzeuge OBD-II Hafenstandort</u></b></string>
-    <string name="Bmw_Head"><b><u>BMW Fahrzeuge OBD-II Hafenstandort</u></b></string>
-    <string name="Volk_Head"><b><u>Volkswagen Fahrzeuge OBD-II Hafenstandort</u></b></string>
-    <string name="Ford_Head"><b><u>Ford-Fahrzeuge OBD-II Hafenstandort</u></b></string>
-    <string name="Ren_Head"><b><u>Renault Fahrzeuge OBD-II Hafenstandort</u></b></string>
-    <string name="Toy_Head"><b><u>Toyota Fahrzeuge OBD-II Hafenstandort</u></b></string>
-
-    <string name="slider_text">Wischen Sie die Bilder unten, um OBD-Standorte und unterstützte Fahrzeuge anzuzeigen</string>
-    <string name="under_wheel">Der 16-polige OBD-II-Anschluss befindet sich in der Fahrerseite unter dem Fuß</string>
 
     <string name="temp_specs">Motor-Temperaturen anzeigen</string>
     <string name="throttle_load">Motorlast und Drosselklappenposition anzeigen</string>
@@ -133,7 +116,7 @@
     <string name="comment_here">Voer hier je reactie in</string>
     <string name="comment_desc">opmerking pictogram</string>
     <string name="part_image">deel afbeelding</string>
-    <string name="image_desc">Voer hier de beschrijving van de afbeelding in</string>
+    <string name="image_desc">Bildbeschreibung</string>
     <string name="username">gebruikersnaam</string>
     <string name="loading">Reactie laden, een ogenblik geduld</string>
     <string name="likebtn">zoals knop</string>
@@ -153,6 +136,14 @@
     <string name="Ok">OK</string>
 
     <string name="options_page">Du bist bereits in \'Zuhause\'</string>
+
+    <string name="vehicle">Fahrzeug Bild</string>
+    <string name="manu">Geben Sie den Fahrzeughersteller ein</string>
+    <string name="model">Geben Sie das Fahrzeugmodell ein</string>
+    <string name="reg">Geben Sie die Fahrzeugregistrierung ein</string>
+    <string name="manutext">Fahrzeughersteller</string>
+    <string name="modeltext">Fahrzeugmodell</string>
+    <string name="regtext">Fahrzeugregistrierung</string>
 
 </resources>
 

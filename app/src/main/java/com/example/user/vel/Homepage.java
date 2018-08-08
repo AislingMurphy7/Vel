@@ -63,7 +63,7 @@ public class Homepage extends AppCompatActivity
             public void onClick(View v)
             {
                 //The user is redirected to the 'Vehicle Information' screens
-                Intent vehicle_info = new Intent(Homepage.this, VehicleSpec.class);
+                Intent vehicle_info = new Intent(Homepage.this, VehicleList.class);
                 startActivity(vehicle_info);
             }//End onClick()
         });//End setOnClickListener()

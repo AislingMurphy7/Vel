@@ -6,11 +6,8 @@
 
     <string name="imagedesc">Application Logo</string>
     <string name="listimagelang">Language Flags</string>
-    <string name="carimage">Vehicle image</string>
 
     <string name="listCusTextV">Textview</string>
-
-    <string name="app_name">VéL</string>
 
     <string name="Pick"><b><u>Please select your language:</u></b></string>
 
@@ -24,10 +21,6 @@
     <string name="instruct"><b><u><i>Step 1</i></u></b> \nPlug adapter into OBD-II 16-pin port. \n\n<b><u><i>Step 2</i></u></b> \nEnsure green light flashes on adapter.
                         \n\n<b><u><i>Step 3</i></u></b> \nStart car engine. \n\n<b><u><i>Step 4</i></u></b> \nNavigate to settings on Android device: Settings > Bluetooth > Adapter Name > Pair devices.
                         \n\n<b><u><i>Step 5</i></u></b> \nNavigate to settings within app: Settings > Select adapter name from list.</string>
-
-    <string name="CarChoice"><b>Please select a vehicle manufacturer: </b></string>
-
-    <string name="ModelChoice"><b>Please select vehicle model: </b></string>
 
     <string name="FAQ"><b><u>Does My Car have OBD-II?</u></b> \n\nAll 1996 and newer vehicles, both petrol and diesel fuel passenger vehicles. The vehicles are required to have OBD-II systems. To verify that your
         vehicle is equipped with OBD II, you can look for the words "OBD II" on the emission control information label attached to the underside of the vehicle hood</string>
@@ -48,17 +41,6 @@
     <string name="FAQ5"><b><u>What is the Throttle Position sensor? </u></b>\n\nThis sensor is used to monitor the throttle position of a vehicle. </string>
 
     <string name="FAQ6"><b><u>What is the Engine Air Temperature sensor?</u></b> \n\nThis sensor monitors the temperature of the air entering the engine.</string>
-
-    <string name="Audi_Head"><b><u>Audi Vehicles OBD-II port location</u></b></string>
-    <string name="Bmw_Head"><b><u>BMW Vehicles OBD-II port location</u></b></string>
-    <string name="Volk_Head"><b><u>Volkswagen Vehicles OBD-II port location</u></b></string>
-    <string name="Ford_Head"><b><u>Ford Vehicles OBD-II port location</u></b></string>
-    <string name="Ren_Head"><b><u>Renault Vehicles OBD-II port location</u></b></string>
-    <string name="Toy_Head"><b><u>Toyota Vehicles OBD-II port location</u></b></string>
-
-    <string name="slider_text">Swipe images below to view OBD locations and supported vehicles</string>
-    <string name="under_wheel">The 16 Pin OBD-II port is located in driver side foot-well underneath the
-    steering wheel of the vehicle</string>
 
     <string name="temp_specs">View Engine Temperatures</string>
     <string name="throttle_load">View Engine / Throttle</string>
@@ -134,7 +116,7 @@
     <string name="comment_here">Enter your Comment here</string>
     <string name="comment_desc">Comment icon</string>
     <string name="part_image">Part image</string>
-    <string name="image_desc">Enter image description here</string>
+    <string name="image_desc">image description</string>
     <string name="username">username</string>
     <string name="loading">Loading Comment, Please wait</string>
     <string name="likebtn">like button</string>
@@ -155,5 +137,12 @@
 
     <string name="options_page">You are already in \'Home\'</string>
 
+    <string name="vehicle">Vehicle Image</string>
+    <string name="manu">Enter the vehicle manufacturer</string>
+    <string name="model">Enter the vehicle model</string>
+    <string name="reg">Enter the vehicle registration</string>
+    <string name="manutext">Manufacturer</string>
+    <string name="modeltext">Model</string>
+    <string name="regtext">Registration</string>
 
 </resources>

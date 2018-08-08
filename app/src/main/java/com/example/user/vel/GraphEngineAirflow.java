@@ -71,7 +71,7 @@ public class GraphEngineAirflow extends Activity implements
         {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineAirflow.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphEngineAirflow.this, Homepage.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()
@@ -100,7 +100,7 @@ public class GraphEngineAirflow extends Activity implements
             public void onClick(DialogInterface dialog, int whichButton)
             {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineAirflow.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphEngineAirflow.this, Homepage.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()

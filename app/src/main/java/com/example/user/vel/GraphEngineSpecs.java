@@ -93,7 +93,7 @@ public class GraphEngineSpecs extends Activity implements
             public void onClick(DialogInterface dialog, int whichButton)
             {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineSpecs.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphEngineSpecs.this, Homepage.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()
@@ -123,7 +123,7 @@ public class GraphEngineSpecs extends Activity implements
             public void onClick(DialogInterface dialog, int whichButton)
             {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineSpecs.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphEngineSpecs.this, Homepage.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()

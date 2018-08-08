@@ -71,7 +71,7 @@ public class GraphEngineRPM extends Activity implements
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineRPM.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphEngineRPM.this, Homepage.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()
@@ -98,7 +98,7 @@ public class GraphEngineRPM extends Activity implements
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineRPM.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphEngineRPM.this, Homepage.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()

@@ -41,21 +41,23 @@ import java.util.UUID;
 import id.zelory.compressor.Compressor;
 
 /*
-    This class allows the user to add a new post to the forum within the app, Here
-    they can add a picture and a simple description of what the picture is.
+    This class allows the user to add a new vehicle to the app, Here
+    they add a picture and  the make, model and registration of the vehicle
     This is then uploaded to FireBase and redisplayed when the user selects the
-    social forum
+    vehicle information
  */
 
-public class NewPost extends AppCompatActivity
+public class NewVehicle extends AppCompatActivity
 {
     //XML variables
-    private ImageView newPartImage;
-    private EditText partDesc;
+    private ImageView newVehicleImage;
+    private EditText vehicleMake;
+    private EditText vehicleModel;
+    private EditText vehicleReg;
     private ProgressBar progressBar;
 
     //Image variable
-    private Uri partImage = null;
+    private Uri vehicleImage = null;
 
     //FireBase variables
     private StorageReference storageReference;
@@ -71,7 +73,7 @@ public class NewPost extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_new_post);
+        setContentView(R.layout.activity_new_vehicle);
 
         //Instantiate variables
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -82,13 +84,15 @@ public class NewPost extends AppCompatActivity
         current_user = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
 
         //XML variables
-        newPartImage = findViewById(R.id.new_post_image);
-        partDesc =  findViewById(R.id.new_post_desc);
-        Button partAdd = findViewById(R.id.post_btn);
+        newVehicleImage = findViewById(R.id.new_vehicle_image);
+        vehicleMake =  findViewById(R.id.new_vehicle_make);
+        vehicleModel =  findViewById(R.id.new_vehicle_model);
+        vehicleReg =  findViewById(R.id.new_vehicle_reg);
+        Button vehicleAdd = findViewById(R.id.save_btn);
         progressBar = findViewById(R.id.progressbar);
 
         //When the user taps on the image
-        newPartImage.setOnClickListener(new View.OnClickListener()
+        newVehicleImage.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -97,21 +101,23 @@ public class NewPost extends AppCompatActivity
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setMinCropResultSize(512, 512)
                         .setAspectRatio(1, 1)
-                        .start(NewPost.this);
+                        .start(NewVehicle.this);
             }//End onClick()
         });//End setOnClickListener()
 
         //When user selects the 'Add' button
-        partAdd.setOnClickListener(new View.OnClickListener()
+        vehicleAdd.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                //The description is saved to a String
-                final String desc = partDesc.getText().toString();
+                //The make, model and reg is saved to Strings
+                final String make = vehicleMake.getText().toString();
+                final String model = vehicleModel.getText().toString();
+                final String reg = vehicleReg.getText().toString();
 
                 //If the description and image is not empty
-                if(!TextUtils.isEmpty(desc) && partImage != null)
+                if(!TextUtils.isEmpty(make) &&  !TextUtils.isEmpty(model) && !TextUtils.isEmpty(reg) && vehicleImage != null)
                 {
                     //Set progressbar to visible
                     progressBar.setVisibility(View.VISIBLE);
@@ -119,10 +125,10 @@ public class NewPost extends AppCompatActivity
                     //A random name is generated or the image in FireBase
                     final String rand_name = UUID.randomUUID().toString();
 
-                    //File path of the 'part_images' where the image is saved to in FireBase
-                    final StorageReference filePath = storageReference.child("part_images").child(rand_name + ".jpg");
+                    //File path of the 'vehicle_images' where the image is saved to in FireBase
+                    final StorageReference filePath = storageReference.child("vehicle_images").child(rand_name + ".jpg");
                     //The file is added to the filePath variable for FireBase
-                    filePath.putFile(partImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>()
+                    filePath.putFile(vehicleImage).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>()
                     {
                         @Override
                         public void onComplete(@NonNull final Task<UploadTask.TaskSnapshot> task)
@@ -134,12 +140,12 @@ public class NewPost extends AppCompatActivity
                             if(task.isSuccessful())
                             {
                                 //The image and path are saved into variable
-                                File newImageFile = new File(partImage.getPath());
+                                File newImageFile = new File(vehicleImage.getPath());
 
                                 //The app will then compress the file to make it smaller and easily handled
                                 try
                                 {
-                                    compressedImageFile =  new Compressor(NewPost.this)
+                                    compressedImageFile =  new Compressor(NewVehicle.this)
                                             .setMaxHeight(100)
                                             .setMaxWidth(100)
                                             .setQuality(2)
@@ -156,7 +162,7 @@ public class NewPost extends AppCompatActivity
                                 byte[] thumb_data = baos.toByteArray();
 
                                 UploadTask uploadTask = storageReference
-                                        .child("part_images/thumbs").child(rand_name + ".jpg").putBytes(thumb_data);
+                                        .child("vehicle_images/thumbs").child(rand_name + ".jpg").putBytes(thumb_data);
 
                                 uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
                                 {
@@ -166,14 +172,16 @@ public class NewPost extends AppCompatActivity
 
                                         String download_thumUri = Objects.requireNonNull(taskSnapshot.getDownloadUrl()).toString();
 
-                                        Map<String, Object> partMap =  new HashMap<>();
-                                        partMap.put("image_url", downloadUri);
-                                        partMap.put("image_thumb", download_thumUri);
-                                        partMap.put("desc", desc);
-                                        partMap.put("user_id", current_user);
-                                        partMap.put("timestamp", FieldValue.serverTimestamp());
+                                        Map<String, Object> vehicleMap =  new HashMap<>();
+                                        vehicleMap.put("image_url", downloadUri);
+                                        vehicleMap.put("image_thumb", download_thumUri);
+                                        vehicleMap.put("make", make);
+                                        vehicleMap.put("model", model);
+                                        vehicleMap.put("reg", reg);
+                                        vehicleMap.put("user_id", current_user);
+                                        vehicleMap.put("timestamp", FieldValue.serverTimestamp());
 
-                                        firebaseFirestore.collection("Parts").add(partMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>()
+                                        firebaseFirestore.collection("Vehicles").add(vehicleMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>()
                                         {
                                             @Override
                                             public void onComplete(@NonNull Task<DocumentReference> task)
@@ -182,8 +190,8 @@ public class NewPost extends AppCompatActivity
                                                 if(task.isSuccessful())
                                                 {
                                                     //The user is informed that the record has been added, then redirected to the PostList page
-                                                    Toast.makeText(NewPost.this, "Record has been added", Toast.LENGTH_LONG).show();
-                                                    Intent intent = new Intent(NewPost.this, PostList.class);
+                                                    Toast.makeText(NewVehicle.this, "Record has been added", Toast.LENGTH_LONG).show();
+                                                    Intent intent = new Intent(NewVehicle.this, VehicleList.class);
                                                     startActivity(intent);
                                                     finish();
                                                 }//End if()
@@ -192,7 +200,7 @@ public class NewPost extends AppCompatActivity
                                                 else {
                                                     //Error message is displayed to the user informing them of the issue
                                                     String error = Objects.requireNonNull(task.getException()).getMessage();
-                                                    Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(NewVehicle.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
                                                 }//End else()
 
                                                 //Sets progressbar to invisible
@@ -209,7 +217,7 @@ public class NewPost extends AppCompatActivity
                                     {
                                         //Error message is displayed to the user informing them of the issue
                                         String error = Objects.requireNonNull(task.getException()).getMessage();
-                                        Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(NewVehicle.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
                                     }//End OnFailure()
                                 });//End addOnFailureListener()
                             }//End if()
@@ -220,7 +228,7 @@ public class NewPost extends AppCompatActivity
                                 progressBar.setVisibility(View.INVISIBLE);
                                 //Error message is displayed to the user informing them of the issue
                                 String error = Objects.requireNonNull(task.getException()).getMessage();
-                                Toast.makeText(NewPost.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
+                                Toast.makeText(NewVehicle.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
                             }//End else()
                         }//End onComplete()
                     });//End onCompleteListener()
@@ -238,14 +246,13 @@ public class NewPost extends AppCompatActivity
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK)
             {
-                partImage = result.getUri();
-                newPartImage.setImageURI(partImage);
+                vehicleImage = result.getUri();
+                newVehicleImage.setImageURI(vehicleImage);
 
             }//End if()
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
             {
-                //Error message is displayed to the user informing them of the issue
-                Toast.makeText(NewPost.this, "Application Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(NewVehicle.this, "Application Error", Toast.LENGTH_LONG).show();
             }//End else if()
         }//End if()
     }//End onActivityResult()
@@ -264,20 +271,20 @@ public class NewPost extends AppCompatActivity
         int option_id = item.getItemId();
         if (option_id == R.id.action_home)
         {
-            Intent home_intent = new Intent(NewPost.this, Homepage.class);
+            Intent home_intent = new Intent(NewVehicle.this, Homepage.class);
             startActivity(home_intent);
         }//End if()
 
         //If the help option is selected, user will be re-directed to help screen
         if (option_id == R.id.action_help)
         {
-            Intent help_intent = new Intent(NewPost.this, UserHelp.class);
+            Intent help_intent = new Intent(NewVehicle.this, UserHelp.class);
             startActivity(help_intent);
         }//End if()
 
         if (option_id == R.id.action_prof)
         {
-            Intent prof_intent = new Intent(NewPost.this, UserProfile.class);
+            Intent prof_intent = new Intent(NewVehicle.this, UserProfile.class);
             startActivity(prof_intent);
         }//End if()
 
@@ -294,4 +301,4 @@ public class NewPost extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }//End onOptionsItemSelected()
-}//End NewPost()
+}//End NewVehicle()

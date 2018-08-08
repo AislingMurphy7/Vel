@@ -7,11 +7,8 @@
 
     <string name="imagedesc">Logotipo de aplicación</string>
     <string name="listimagelang">Banderas de idiomas</string>
-    <string name="carimage">imagen del vehículo</string>
 
     <string name="listCusTextV">Vista de texto</string>
-
-    <string name="app_name">VéL</string>
 
     <string name="Pick"><b><u>Por favor seleccione su idioma:</u></b></string>
 
@@ -25,10 +22,6 @@
     <string name="instruct"><b><u><i>Paso 1</i></u></b> \nConecte el adaptador al puerto OBD-II de 16 pines. \n\n<b><u><i>Paso 2</i></u></b> \nsegúrese de que la luz verde parpadee en el adaptador.
                         \n\n<b><u><i>Paso 3</i></u></b> \nArrancar el motor del automóvil. \n\n<b><u><i>Paso 4</i></u></b> \nNavegue a la configuración en el dispositivo Android: Configuración > Bluetooth > Nombre del adaptador > Emparejar dispositivos.
                         \n\n<b><u><i>Paso 5</i></u></b> \nNavegue a la configuración dentro de la aplicación: Configuración > Seleccione el nombre del adaptador de la lista.</string>
-
-    <string name="CarChoice"><b>Por favor seleccione un fabricante de Vehículo: </b></string>
-
-    <string name="ModelChoice"><b>Seleccione el modelo del vehículo: </b></string>
 
     <string name="FAQ"><b><u>¿Mi automóvil tiene OBD-II? </u></b> \n\nTodos los vehículos de 1996 y posteriores, vehículos de pasajeros de gasolina y diesel. Los vehículos deben tener sistemas OBD-II. Para verificar que su vehículo esté equipado con OBD II, puede buscar las palabras "OBD II" en la etiqueta de
         información de control de emisiones adjunta a la parte inferior del capó del vehículo</string>
@@ -47,16 +40,6 @@
     <string name="FAQ5"><b><u>¿Qué es el sensor de posición del acelerador?</u></b>\n\nEste sensor se usa para controlar la posición del acelerador de un vehículo.</string>
 
     <string name="FAQ6"><b><u>¿Qué es el sensor de temperatura del aire del motor? </u></b> \n\nEste sensor monitorea la temperatura del aire que ingresa al motor.</string>
-
-    <string name="Audi_Head"><b><u>Ubicación del puerto OBD-II del vehículo Audi</u></b></string>
-    <string name="Bmw_Head"><b><u>Ubicación del puerto OBD-II del vehículo BMW</u></b></string>
-    <string name="Volk_Head"><b><u>Ubicación del puerto OBD-II del vehículo Volkswagen</u></b></string>
-    <string name="Ford_Head"><b><u>Ubicación del puerto OBD-II del vehículo Ford</u></b></string>
-    <string name="Ren_Head"><b><u>Ubicación del puerto OBD-II del vehículo Renault</u></b></string>
-    <string name="Toy_Head"><b><u>Ubicación del puerto OBD-II del vehículo Toyota</u></b></string>
-
-    <string name="slider_text">Pase las imágenes a continuación para ver las ubicaciones de OBD y vehículos compatibles</string>
-    <string name="under_wheel">El puerto OBD-II de 16 clavijas se encuentra en el pie del lado del conductor, debajo del volante del vehículo</string>
 
     <string name="temp_specs">Ver temperaturas del motor</string>
     <string name="throttle_load">Ver la carga del motor y la posición del acelerador</string>
@@ -133,7 +116,7 @@
     <string name="comment_here">Ingrese su comentario aquí</string>
     <string name="comment_desc">icono de comentario</string>
     <string name="part_image">imagen de parte</string>
-    <string name="image_desc">Ingrese la descripción de la imagen aquí</string>
+    <string name="image_desc">descripción de la imagen</string>
     <string name="username">usuario</string>
     <string name="loading">Cargando comentario, por favor espere</string>
     <string name="likebtn">Botón "me gusta</string>
@@ -153,5 +136,13 @@
     <string name="Ok">OK</string>
 
     <string name="options_page">Ya estás en \'Inicio\'</string>
+
+    <string name="vehicle">Imagen del vehículo</string>
+    <string name="manu">Ingrese el fabricante del vehículo</string>
+    <string name="model">Ingrese el modelo del vehículo</string>
+    <string name="reg">Ingrese el registro del vehículo</string>
+    <string name="manutext">fabricante</string>
+    <string name="modeltext">modelo</string>
+    <string name="regtext">registro</string>
 
 </resources>

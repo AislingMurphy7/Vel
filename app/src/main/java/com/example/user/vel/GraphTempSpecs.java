@@ -84,7 +84,7 @@ public class GraphTempSpecs extends Activity implements
             @Override
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
-                Intent intent = new Intent(GraphTempSpecs.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphTempSpecs.this, Homepage.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()
@@ -111,7 +111,7 @@ public class GraphTempSpecs extends Activity implements
             public void onClick(DialogInterface dialog, int whichButton)
             {
                 dialog.cancel();
-                Intent intent = new Intent(GraphTempSpecs.this, VehicleSpec.class);
+                Intent intent = new Intent(GraphTempSpecs.this, Homepage.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()

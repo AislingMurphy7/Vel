@@ -28,13 +28,6 @@
         <activity android:name=".General_Information" />
         <activity android:name=".SetupELM" />
         <activity android:name=".UserHelp" />
-        <activity android:name=".VehicleSpec" />
-        <activity android:name=".Audi" />
-        <activity android:name=".Ford" />
-        <activity android:name=".BMW" />
-        <activity android:name=".Renault" />
-        <activity android:name=".Toyota" />
-        <activity android:name=".Volkswagen" />
         <activity android:name=".LanguageSelect" />
         <activity android:name=".GraphTempSpecs" />
         <activity android:name=".GraphEngineSpecs" />
@@ -51,6 +44,8 @@
         <activity android:name=".CommentsActivity" />
         <activity android:name=".Welcome_Page" />
         <activity android:name=".Homepage" />
+        <activity android:name=".VehicleList" />
+        <activity android:name=".NewVehicle"/>
     </application>
 
 </manifest>

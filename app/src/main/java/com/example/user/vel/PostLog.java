@@ -1,11 +1,16 @@
 package com.example.user.vel;
 
-
 import java.util.Date;
+
+/*
+    This class handles the information that is stored/pulled
+    from Firebase. Once the program can make a link between itself
+    and Firebase based off the names of the variables below there should
+    be no issue of pulling data from the database
+ */
 
 public class PostLog extends PartsPostID
 {
-
     private String desc, image_thumb, image_url, user_id;
     private Date timestamp;
 
