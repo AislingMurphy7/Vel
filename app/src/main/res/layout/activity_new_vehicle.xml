@@ -23,6 +23,7 @@
         android:background="#c70039"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="40dp"
         android:orientation="vertical"
         tools:context=".NewVehicle"
         android:paddingTop="60dp">
