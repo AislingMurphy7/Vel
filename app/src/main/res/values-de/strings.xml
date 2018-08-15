@@ -90,14 +90,8 @@
     </string>
 
     <string name="Log_in">Log in</string>
-    <string name="Signup">Aanmelden</string>
     <string name="save">opslaan</string>
-    <string name="No_Acc"><u>Heb je geen account? Registreer hier!</u></string>
-    <string name="have_Acc"><u>Heb je al een account? Meld je hier aan!</u></string>
     <string name="enter_displayname">Voer de weergavenaam in</string>
-    <string name="insert_pic">Tik op de camera om een profielfoto te kiezen</string>
-    <string name="email_verified">email geverifieerd</string>
-    <string name="email_NotVerified">Email niet geverifieerd (klik hier om te verifiëren)</string>
     <string name="email_sent">Verificatie email verzonden</string>
     <string name="displayname_empt">Naam vereist</string>
     <string name="prof_updated">Profiel geüpdatet</string>
@@ -112,7 +106,6 @@
     <string name="lang_page">U bevindt zich al in het taalkeuzescherm</string>
     <string name="user_page">U bevindt zich al in \'Gebruikershelp\'</string>
 
-    <string name="comment_heading">opmerkingen : </string>
     <string name="comment_here">Voer hier je reactie in</string>
     <string name="comment_desc">opmerking pictogram</string>
     <string name="part_image">deel afbeelding</string>
@@ -144,6 +137,26 @@
     <string name="manutext">Fahrzeughersteller</string>
     <string name="modeltext">Fahrzeugmodell</string>
     <string name="regtext">Fahrzeugregistrierung</string>
+
+    <string name="insert_pic"><b><u>Tik op de camera om een profielfoto te kiezen: </u></b></string>
+    <string name="Signup"><b><u>Aanmelden</u></b></string>
+    <string name="No_Acc"><b><u>Heb je geen account? Registreer hier!</u></b></string>
+    <string name="have_Acc"><b><u>Heb je al een account? Meld je hier aan!</u></b></string>
+    <string name="vehicles"><b><u>Fahrzeug Bild: </u></b></string>
+    <string name="email_NotVerified"><b><u>Email niet geverifieerd (klik hier om te verifiëren)</u></b></string>
+    <string name="userpost"><b><u>Benutzer Beiträge: </u></b></string>
+    <string name="comment_heading"><b><u>opmerkingen: </u></b></string>
+    <string name="FAQUser"><b><u>FAQs und Benutzerhilfe: </u></b></string>
+    <string name="email_verified"><b><u>email geverifieerd</u></b></string>
+
+    <string name="enterdesc"><b><u>Bitte geben Sie das Bild und die Beschreibung unten ein: </u></b></string>
+    <string name="make">Automarke: </string>
+    <string name="model2">Fahrzeugmodell: </string>
+    <string name="vehreg">Fahrzeugnummer: </string>
+    <string name="veh_dets"><b><u>Bitte geben Sie die Fahrzeugdetails unten ein: </u></b></string>
+    <string name="ent_below">Bitte geben Sie das Passwort ein</string>
+    <string name="pass_protect">Die nächsten Seiten sind Passwortgeschützt</string>
+    <string name="continueon">Fortsetzen</string>
 
 </resources>
 

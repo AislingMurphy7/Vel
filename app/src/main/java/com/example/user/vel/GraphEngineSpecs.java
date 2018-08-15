@@ -281,11 +281,11 @@ public class GraphEngineSpecs extends Activity implements
         //Prints to console first
         System.out.println("Using key: " + key);
         System.out.println("Setting Engine Load: " + vehicleData.getEngineLoad());
-        //Adds new entrys to the arrayList and converts the string into a float
+        //Adds new entries to the arrayList and converts the string into a float
         engineloadList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineLoad())));
 
         System.out.println("Setting Throttle Position: " + vehicleData.getThrottlePosition());
-        //Adds new entrys to the arrayList and converts the string into a float
+        //Adds new entries to the arrayList and converts the string into a float
         throttlePositionList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getThrottlePosition())));
 
         //Change the chart when changes occurs

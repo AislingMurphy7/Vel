@@ -48,7 +48,7 @@ public class GraphEngineRPM extends Activity implements
 
     private LineChart chart;
 
-    //Array to hold Mass Airflow data from Firebase
+    //Array to hold Mass Airflow data from FireBase
     ArrayList<Entry> engineRPMlist = new ArrayList<>();
 
     //Variables
@@ -186,7 +186,7 @@ public class GraphEngineRPM extends Activity implements
 
         chart.setData(data);
 
-        //Calls the downloadDatt()
+        //Calls the downloadData()
         downloadData();
         //Change the chart when a change occurs
         chart.notifyDataSetChanged();

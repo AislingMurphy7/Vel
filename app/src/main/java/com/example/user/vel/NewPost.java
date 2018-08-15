@@ -93,6 +93,7 @@ public class NewPost extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                //They have to then crop the image to fit the application
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
                         .setMinCropResultSize(512, 512)

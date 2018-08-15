@@ -136,7 +136,7 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
             @Override
             public void onClick(View v)
             {
-                //The collection within FireBase is accessed and the like/dislike isi recorded
+                //The collection within FireBase is accessed and the like/dislike is recorded
                 firebaseFirestore.collection("Parts/" + PostID + "/Likes").document(currentUserID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
                 {
                     @Override

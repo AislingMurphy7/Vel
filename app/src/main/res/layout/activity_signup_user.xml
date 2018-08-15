@@ -22,7 +22,6 @@
     <ImageView
         android:id="@+id/vel"
         android:paddingTop="70sp"
-        android:paddingBottom="40sp"
         android:contentDescription="@string/imagedesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_width="300dp"
         android:layout_gravity="center_horizontal"
+        android:singleLine="true"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
@@ -49,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:hint="@string/prompt_password"
+        android:singleLine="true"
         android:textColorHint="#FFFFFF"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"

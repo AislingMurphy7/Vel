@@ -31,6 +31,21 @@
         app:srcCompat="@drawable/action_add_web">
     </android.support.design.widget.FloatingActionButton>
 
+    <TextView
+        android:id="@+id/post_label"
+        android:paddingTop="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:paddingBottom="20dp"
+        android:text="@string/userpost"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent">
+    </TextView>
+
     <FrameLayout
         android:id="@+id/main_container"
         android:layout_width="0dp"
@@ -39,7 +54,7 @@
         app:layout_constraintBottom_toTopOf="@+id/add_post_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/post_label">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/parts_list_view"

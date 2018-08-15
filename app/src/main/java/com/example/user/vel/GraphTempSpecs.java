@@ -69,8 +69,8 @@ public class GraphTempSpecs extends Activity implements
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-            }
-        });
+            }//End onClick()
+        });//End setPositiveButton()
 
         AlertDialog.Builder builder3 = new AlertDialog.Builder(GraphTempSpecs.this);
         builder3.setCancelable(true);
@@ -91,11 +91,11 @@ public class GraphTempSpecs extends Activity implements
 
         builder3.setPositiveButton(GraphTempSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
+            public void onClick(DialogInterface dialog, int which)
+            {
 
-            }
-        });
-
+            }//End onClick()
+        });//End setPositiveButton()
 
         AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphTempSpecs.this);
         builder2.setCancelable(true);
@@ -207,13 +207,13 @@ public class GraphTempSpecs extends Activity implements
 
         chart.setData(data);
 
-        //Calls the downloadDatt()
+        //Calls the downloadData()
         downloadData();
         //Change the chart when a change occurs
         chart.notifyDataSetChanged();
     }//End onCreate
 
-    //Downloads Data from Firebase
+    //Downloads Data from FireBase
     private void downloadData()
     {
         //ArrayAdapter
@@ -273,7 +273,7 @@ public class GraphTempSpecs extends Activity implements
 
         //Prints to console first
         System.out.println("setting Intake Air Temp: " + vehicleData.getIntakeAirTemperature());
-        //Adds new entrys to the arrayList and converts the string into a float
+        //Adds new entries to the arrayList and converts the string into a float
         airIntakeTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getIntakeAirTemperature())));
 
         //Change the chart when changes occurs

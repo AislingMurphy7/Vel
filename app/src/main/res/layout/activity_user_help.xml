@@ -21,13 +21,27 @@
         xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
+        android:paddingBottom="80dp"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="20dp"
         android:orientation="vertical"
         android:background="#c70039"
         tools:context="com.example.user.vel.UserHelp">
+
+        <TextView
+            android:id="@+id/vehicle_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="55dp"
+            android:paddingTop="20sp"
+            android:text="@string/FAQUser"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold">
+        </TextView>
 
             <com.ms.square.android.expandabletextview.ExpandableTextView
                 xmlns:android="http://schemas.android.com/apk/res/android"

@@ -2,6 +2,7 @@ package com.example.user.vel;
 
 public class Comments
 {
+    //Variables
     private String message, user_id;
 
     //Empty Constructor

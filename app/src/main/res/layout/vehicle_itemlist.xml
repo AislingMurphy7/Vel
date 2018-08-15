@@ -14,15 +14,17 @@
         android:id="@+id/main_post"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -45,17 +47,17 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/username"
-                android:textStyle="bold"
                 android:textColor="#c70039"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/user_image"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:contentDescription="@string/part_image"
                 android:id="@+id/post_image"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:layout_marginTop="10dp"
+                android:contentDescription="@string/part_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -65,46 +67,88 @@
             </ImageView>
 
             <TextView
+                android:id="@+id/make"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/make"
+                android:textColor="#c70039"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/post_image"
+                app:layout_constraintVertical_bias="0.15">
+            </TextView>
+
+            <TextView
                 android:id="@+id/vehicle_make"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/manutext"
                 android:textColor="#c70039"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/make"
+                app:layout_constraintTop_toBottomOf="@+id/post_image"
+                app:layout_constraintVertical_bias="0.0">
+            </TextView>
+
+            <TextView
+                android:id="@+id/model"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/model2"
+                android:textColor="#c70039"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/post_image" >
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_make"
+                app:layout_constraintVertical_bias="0.0">
             </TextView>
 
             <TextView
                 android:id="@+id/vehicle_model"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/modeltext"
                 android:textColor="#c70039"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/model"
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_make"
+                app:layout_constraintVertical_bias="0.0">
+            </TextView>
+
+            <TextView
+                android:id="@+id/reg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingBottom="20dp"
+                android:text="@string/vehreg"
+                android:textColor="#c70039"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vehicle_make" >
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_model"
+                app:layout_constraintVertical_bias="1.0">
             </TextView>
 
             <TextView
                 android:id="@+id/vehicle_reg"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="36dp"
                 android:layout_marginTop="16dp"
-                android:paddingBottom="15dp"
+                android:paddingBottom="20dp"
                 android:text="@string/regtext"
                 android:textColor="#c70039"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/vehicle_model" >
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/reg"
+                app:layout_constraintTop_toBottomOf="@+id/vehicle_model"
+                app:layout_constraintVertical_bias="0.0">
             </TextView>
 
         </android.support.constraint.ConstraintLayout>

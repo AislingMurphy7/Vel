@@ -195,20 +195,20 @@ public class GraphEngineAirflow extends Activity implements
         chart.notifyDataSetChanged();
     }//End onCreate
 
-    //Downloads Data from Firebase
+    //Downloads Data from FireBase
     private void downloadData()
     {
         //ArrayAdapter
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_engine_airflow);
 
-        //Connecting into table "VehicleData" on the Firebase database
+        //Connecting into table "VehicleData" on the FireBase database
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("VehicleData");
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
         {
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey)
             {
-                //Holds the Datasnapshot value of the database as type String
+                //Holds the DataSnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
                 //Prints values to console to prove the download is working
                 System.out.println("getmassAirflowRate: " + Objects.requireNonNull(vehicleData).getMassAirflowRate());

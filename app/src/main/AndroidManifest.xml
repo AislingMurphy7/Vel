@@ -45,7 +45,8 @@
         <activity android:name=".Welcome_Page" />
         <activity android:name=".Homepage" />
         <activity android:name=".VehicleList" />
-        <activity android:name=".NewVehicle"/>
+        <activity android:name=".NewVehicle" />
+        <activity android:name=".PasswordProtected" />
     </application>
 
 </manifest>

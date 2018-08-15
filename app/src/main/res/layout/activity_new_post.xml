@@ -19,6 +19,20 @@
     tools:context=".NewPost"
     android:paddingTop="60dp">
 
+    <TextView
+        android:id="@+id/infopost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="@string/enterdesc"
+        android:textColor="#FFFFFF"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </TextView>
+
     <ImageView
         android:id="@+id/new_post_image"
         android:contentDescription="@string/part_image"
@@ -28,7 +42,7 @@
         app:srcCompat="@drawable/post_placeholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/infopost" >
     </ImageView>
 
     <EditText

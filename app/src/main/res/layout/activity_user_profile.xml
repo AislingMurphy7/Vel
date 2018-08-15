@@ -34,15 +34,16 @@
             android:id="@+id/prof_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="@string/insert_pic"
-            android:textAlignment="center"
             android:paddingTop="40dp"
-            android:paddingBottom="50dp"
+            android:paddingBottom="30dp"
             android:textSize="20sp"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">   </TextView>
+            app:layout_constraintTop_toTopOf="parent">
+        </TextView>
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView"
@@ -78,6 +79,7 @@
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF"
             android:textSize="20sp"
+            android:singleLine="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

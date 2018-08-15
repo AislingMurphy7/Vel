@@ -7,8 +7,9 @@ package com.example.user.vel;
     be no issue of pulling data from the database
  */
 
-public class VehicleLog extends VehiclePostID{
-
+public class VehicleLog extends VehiclePostID
+{
+    //Variables
     private String make, model, reg, image_thumb, image_url, user_id;
 
     //Empty constructor
@@ -58,4 +59,5 @@ public class VehicleLog extends VehiclePostID{
     {
         return user_id;
     }//End getUser_id()
-}
+
+}//End VehicleLog

@@ -89,14 +89,8 @@
     </string>
 
     <string name="Log_in">S\'identifier</string>
-    <string name="Signup">S\'inscrire</string>
     <string name="save">enregistrer</string>
-    <string name="No_Acc"><u>Vous n'avez pas de compte? Inscrivez-vous ici!</u></string>
-    <string name="have_Acc"><u>Vous avez déjà un compte? Se connecter ici!</u></string>
     <string name="enter_displayname">Entrez le nom d\'affichage</string>
-    <string name="insert_pic">Appuyez sur l\'appareil photo pour choisir une photo de profil</string>
-    <string name="email_verified">Le courriel verifié</string>
-    <string name="email_NotVerified">Le courriel non vérifié (Cliquez ici pour vérifier)</string>
     <string name="email_sent">Le courriel  de vérification a été envoyé</string>
     <string name="displayname_empt">Nom requis</string>
     <string name="prof_updated">Profil mis à jour</string>
@@ -110,7 +104,6 @@
     <string name="lang_page">Vous êtes déjà dans l\'écran de sélection de la langue</string>
     <string name="user_page">Vous êtes déjà dans \'Aide utilisateur\'</string>
 
-    <string name="comment_heading">commentaires : </string>
     <string name="comment_here">Entrez votre commentaire ici</string>
     <string name="comment_desc">icône de commentaire</string>
     <string name="part_image">image de la pièce</string>
@@ -142,5 +135,25 @@
     <string name="manutext">constructeur</string>
     <string name="modeltext">modèle</string>
     <string name="regtext">l\'immatriculation</string>
+
+    <string name="insert_pic"><b><u>Appuyez sur l\'appareil photo pour choisir une photo de profil: </u></b></string>
+    <string name="Signup"><b><u>S\'inscrire</u></b></string>
+    <string name="No_Acc"><b><u>Vous n'avez pas de compte? Inscrivez-vous ici!</u></b></string>
+    <string name="have_Acc"><b><u>Vous avez déjà un compte? Se connecter ici!</u></b></string>
+    <string name="vehicles"><b><u>Véhicule: </u></b></string>
+    <string name="email_NotVerified"><b><u>Le courriel non vérifié (Cliquez ici pour vérifier)</u></b></string>
+    <string name="userpost"><b><u>Messages de l\'utilisateur:: </u></b></string>
+    <string name="comment_heading">Commentaires: </string>
+    <string name="FAQUser"><b><u>FAQ et aide utilisateur: </u></b></string>
+    <string name="email_verified"><b><u>Le courriel verifié</u></b></string>
+
+    <string name="enterdesc"><b><u>Veuillez saisir l'image et la description ci-dessous: </u></b></string>
+    <string name="make">Véhicule Marque: </string>
+    <string name="model2">Modèle de véhicule: </string>
+    <string name="vehreg">Numéro de véhicule: </string>
+    <string name="veh_dets"><b><u>Veuillez entrer les détails du véhicule ci-dessous: </u></b></string>
+    <string name="ent_below">Veuillez entrer le mot de passe ci-dessous: </string>
+    <string name="pass_protect">Les pages suivantes sont protégées par mot de passe</string>
+    <string name="continueon">Continuer</string>
 
 </resources>

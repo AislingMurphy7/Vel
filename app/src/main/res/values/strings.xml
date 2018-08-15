@@ -91,14 +91,8 @@
     </string>
 
     <string name="Log_in">Login</string>
-    <string name="Signup">Sign Up</string>
     <string name="save">Save</string>
-    <string name="No_Acc"><u>Don\'t have an account? Sign up here!</u></string>
-    <string name="have_Acc"><u>Already have an account? Sign in here!</u></string>
     <string name="enter_displayname">Enter Display name</string>
-    <string name="insert_pic">Tap on the camera to choose a profile picture</string>
-    <string name="email_verified">Email Verified</string>
-    <string name="email_NotVerified">Email not Verified (Click here to Verify)</string>
     <string name="email_sent">Verification Email Sent</string>
     <string name="displayname_empt">Name Required</string>
     <string name="prof_updated">Profile Updated</string>
@@ -112,7 +106,6 @@
     <string name="lang_page">You are already in the language selection screen</string>
     <string name="user_page">You are already in \'User Help\'</string>
 
-    <string name="comment_heading">Comments : </string>
     <string name="comment_here">Enter your Comment here</string>
     <string name="comment_desc">Comment icon</string>
     <string name="part_image">Part image</string>
@@ -144,5 +137,25 @@
     <string name="manutext">Manufacturer</string>
     <string name="modeltext">Model</string>
     <string name="regtext">Registration</string>
+
+    <string name="insert_pic"><b><u>Tap on the camera to choose a profile picture: </u></b></string>
+    <string name="Signup">Create Account</string>
+    <string name="No_Acc"><b><u>Don\'t have an account? Sign up here!</u></b></string>
+    <string name="have_Acc"><b><u>Already have an account? Sign in here!</u></b></string>
+    <string name="vehicles"><b><u>Vehicles: </u></b></string>
+    <string name="email_NotVerified"><b><u>Email not Verified (Click here to Verify)</u></b></string>
+    <string name="userpost"><b><u>User Posts: </u></b></string>
+    <string name="comment_heading"><b><u>Comments: </u></b></string>
+    <string name="FAQUser"><b><u>FAQs and User help: </u></b></string>
+    <string name="email_verified"><b><u>Email Verified</u></b></string>
+
+    <string name="enterdesc"><b><u>Please enter image and description below: </u></b></string>
+    <string name="make">Vehicle Make: </string>
+    <string name="model2">Vehicle Model: </string>
+    <string name="vehreg">Vehicle Reg: </string>
+    <string name="veh_dets"><b><u>Please enter vehicle details below: </u></b></string>
+    <string name="ent_below">Please enter the password below </string>
+    <string name="pass_protect">The next pages are Password protected</string>
+    <string name="continueon">Continue</string>
 
 </resources>

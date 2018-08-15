@@ -24,7 +24,6 @@
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:paddingTop="70sp"
-         android:paddingBottom="40sp"
          android:contentDescription="@string/imagedesc"
          android:src="@drawable/vel"
          android:layout_gravity="center">
@@ -37,6 +36,7 @@
         android:paddingTop="30sp"
         android:layout_gravity="center_horizontal"
         android:hint="@string/prompt_email"
+        android:singleLine="true"
         android:inputType="textEmailAddress"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
@@ -49,6 +49,7 @@
         android:layout_width="300dp"
         android:layout_gravity="center_horizontal"
         android:hint="@string/prompt_password"
+        android:singleLine="true"
         android:textColorHint="#FFFFFF"
         android:textColor="#FFFFFF"
         android:inputType="textPassword"

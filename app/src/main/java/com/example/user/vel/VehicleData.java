@@ -9,6 +9,7 @@ package com.example.user.vel;
 
 public class VehicleData
 {
+    //Variables
     private String deviceTime;
     private String coolantTemperature;
     private String engineLoad;

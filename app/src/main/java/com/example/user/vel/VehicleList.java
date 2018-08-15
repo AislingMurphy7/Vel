@@ -209,6 +209,5 @@ public class VehicleList extends AppCompatActivity
         }//End if()
 
         return super.onOptionsItemSelected(item);
-
     }//End onOptionsItemSelected()
 }//End VehicleList()

@@ -1,6 +1,7 @@
 package com.example.user.vel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,7 +37,8 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vehicle_itemlist, parent, false);
         context = parent.getContext();
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -47,7 +49,6 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull final Vehicle_adapter.ViewHolder holder, int position)
     {
-
         holder.setIsRecyclable(false);
 
         String make_data = vehicle_list.get(position).getMake();
@@ -78,6 +79,14 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
                 }//End if()
             }//End onComplete()
         });//End OnCompleteListener()
+
+        holder.VehicleImageview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PasswordProtected.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -154,6 +163,5 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
 
             Glide.with(context).applyDefaultRequestOptions(placeOption).load(image).into(PostUserImage);
         }//End setUserData()
-
     }//End ViewHolder()
-}
+}//End Vehicle_Adapter()
