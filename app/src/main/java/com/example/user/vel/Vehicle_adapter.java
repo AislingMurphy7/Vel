@@ -1,5 +1,12 @@
 package com.example.user.vel;
 
+/*
+    This class looks after the recyclerView for the vehicles.
+    in this class data is written and retrieved from FireBase
+    as well as displayed in the application for the user to view
+    using ViewHolder
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -30,8 +37,10 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
     //FireBase variables
     private FirebaseFirestore firebaseFirestore;
 
+    //Class receives List from VehicleLog class
     Vehicle_adapter(List<VehicleLog> vehicle_list)
     {
+        //Variable is set to what was received from VehicleLog class
         this.vehicle_list = vehicle_list;
     }//End Vehicle_adapter()
 
@@ -39,39 +48,51 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
+        //Inflate the layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vehicle_itemlist, parent, false);
         context = parent.getContext();
+
+        //Get FireBase reference
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         return new Vehicle_adapter.ViewHolder(view);
-    }
+    }//End ViewHolder()
 
     @Override
     public void onBindViewHolder(@NonNull final Vehicle_adapter.ViewHolder holder, int position)
     {
         holder.setIsRecyclable(false);
 
+        //Receive and set the make_data
         String make_data = vehicle_list.get(position).getMake();
         holder.setMakeText(make_data);
 
+        //Receive and set the model_data
         String model_data = vehicle_list.get(position).getModel();
         holder.setModelText(model_data);
 
+        //Receive and set the reg_data
         String reg_data = vehicle_list.get(position).getReg();
         holder.setRegText(reg_data);
 
+        //Receive and set the image and thumbnail data
         String image_url = vehicle_list.get(position).getImage_url();
         String thumbUri = vehicle_list.get(position).getImage_thumb();
         holder.setVehicleImage(image_url, thumbUri);
 
+        //Receive the user data from FireBase
         String user_id = vehicle_list.get(position).getUser_id();
+        //Retrieves data from FireStore
         firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
         {
             @Override
+            //When process is complete
             public void onComplete(@NonNull Task<DocumentSnapshot> task)
             {
+                //If the process is successful
                 if(task.isSuccessful())
                 {
+                    //Gathers data from FireBase and sets within the app
                     String userName = task.getResult().getString("name");
                     String userImage = task.getResult().getString("image");
                     holder.setUserData(userName, userImage);
@@ -80,21 +101,29 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
             }//End onComplete()
         });//End OnCompleteListener()
 
-        holder.VehicleImageview.setOnClickListener(new View.OnClickListener() {
+        //If user taps on vehicle image
+        holder.VehicleImageview.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                //The user is redirected to the vehicles data
                 Intent intent = new Intent(context, PasswordProtected.class);
                 context.startActivity(intent);
-            }
-        });
-    }
+            }//End onClick()
+        });//End setOnClickListener()
+    }//End onBindViewHolder()
 
     @Override
-    public int getItemCount() {
+    //Retrieves the amount of items
+    public int getItemCount()
+    {
         return vehicle_list.size();
-    }
+    }//End getItemCount()
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder
+    {
+        //Declare the view
         private View mView;
 
         //XML variables
@@ -142,12 +171,13 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
             //XML variable
             VehicleImageview = mView.findViewById(R.id.post_image);
 
+            //Sets the placeholder image
             RequestOptions requestOptions = new RequestOptions();
+            //Loads the images and placeholder from FireBase into the page
             Glide.with(context).applyDefaultRequestOptions(requestOptions).load(downloadUri).thumbnail(
                     Glide.with(context).load(thumbUri)
             ).into(VehicleImageview);
         }//End setPartImage()
-
 
         //Sets the username and image
         public void setUserData(String name, String image)
@@ -159,8 +189,10 @@ public class Vehicle_adapter extends RecyclerView.Adapter<Vehicle_adapter.ViewHo
             //Sets username
             PostUserName.setText(name);
 
+            //Sets the placeholder image
             RequestOptions placeOption = new RequestOptions();
 
+            //Loads the images and placeholder from FireBase into the page
             Glide.with(context).applyDefaultRequestOptions(placeOption).load(image).into(PostUserImage);
         }//End setUserData()
     }//End ViewHolder()

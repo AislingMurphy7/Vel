@@ -50,6 +50,7 @@ public class CommentsActivity extends AppCompatActivity
     //FireBase variables
     private FirebaseFirestore firebaseFirestore;
 
+    //Hold the post ID na the Current user ID
     private String Post_ID;
     private String current_id;
 
@@ -89,16 +90,21 @@ public class CommentsActivity extends AppCompatActivity
                     @Override
                     public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e)
                     {
+                        //If not empty
                         if (!documentSnapshots.isEmpty())
                         {
-
+                            //If there is changes made to the document
                             for (DocumentChange doc : documentSnapshots.getDocumentChanges())
                             {
-
+                                //If the data is added
                                 if (doc.getType() == DocumentChange.Type.ADDED)
                                 {
+                                    //Document is gathered and passed to Comments class
                                     Comments comments = doc.getDocument().toObject(Comments.class);
+                                    //Adds the comment to the commentList
                                     commentsList.add(comments);
+
+                                    //Changes when data is changed
                                     commentsAdapter.notifyDataSetChanged();
                                 }//End if()
                             }//End for()
@@ -115,14 +121,17 @@ public class CommentsActivity extends AppCompatActivity
                 //The comment is read into message variable
                 String message = comment.getText().toString();
 
-                //If the variable is not empty
+                //If the message is not empty
                 if(!message.isEmpty())
                 {
+                    //Create a Map with key: String, Value: String
                     Map<String, Object> commentMap = new HashMap<>();
+                    //Data is stored inside the HashMap()
                     commentMap.put("message", message);
                     commentMap.put("user_id", current_id);
                     commentMap.put("timestamp", FieldValue.serverTimestamp());
 
+                    //Accesses the collection on FireBase
                     firebaseFirestore.collection("Parts/" + Post_ID + "/Comments").add(commentMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>()
                     {
                         @Override

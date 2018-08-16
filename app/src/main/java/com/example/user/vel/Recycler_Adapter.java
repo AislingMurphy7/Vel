@@ -1,5 +1,12 @@
 package com.example.user.vel;
 
+/*
+    This class looks after the recyclerView for the posts.
+    in this class data is written and retrieved from FireBase
+    as well as displayed in the application for the user to view
+    using ViewHolder
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -41,8 +48,10 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
     private FirebaseFirestore firebaseFirestore;
     private FirebaseAuth mAuth;
 
+    //Class receives List from PostLog class
     Recycler_Adapter(List<PostLog> part_list)
     {
+        //Variable is set to what was received from PostLog class
         this.part_list = part_list;
     }//End Recycler_Adapter()
 
@@ -50,8 +59,11 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
+        //Inflate the layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_itemlist, parent, false);
         context = parent.getContext();
+
+        //Instantiate the FireBase variables
         firebaseFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
@@ -63,59 +75,76 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
     {
         holder.setIsRecyclable(false);
 
+        //PartsPostID is retrieved
         final String PostID = part_list.get(position).PartsPostID;
+        //Signed in User is retrieved
         final String currentUserID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
+        //Receive and set the desc_data
         String desc_data = part_list.get(position).getDesc();
         holder.setDescText(desc_data);
 
+        //Receive and set the image and thumbnail data
         String image_url = part_list.get(position).getImage_url();
         String thumbUri = part_list.get(position).getImage_thumb();
         holder.setPartImage(image_url, thumbUri);
 
+        //Receive the user data from FireBase
         String user_id = part_list.get(position).getUser_id();
+        //Retrieves data from FireStore
         firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
         {
             @Override
+            //When process is complete
             public void onComplete(@NonNull Task<DocumentSnapshot> task)
             {
+                //If the process is successful
                 if(task.isSuccessful())
                 {
+                    //Gathers data from FireBase and sets within the app
                     String userName = task.getResult().getString("name");
                     String userImage = task.getResult().getString("image");
                     holder.setUserData(userName, userImage);
-
                 }//End if()
             }//End onComplete()
         });//End OnCompleteListener()
 
+        //Takes timestamp and converts to a long value of time
         long millisec = part_list.get(position).getTimestamp().getTime();
+        //Date and time is re-formatted
         String dateString = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date(millisec));
+        //Set the time on the page
         holder.setTime(dateString);
 
+        //Accesses the collection in real-time so pages will change when liked/disliked
         firebaseFirestore.collection("Parts/" + PostID + "/Likes").addSnapshotListener(new EventListener<QuerySnapshot>()
         {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e)
             {
+                //If not empty, there is likes
                 if(!documentSnapshots.isEmpty())
                 {
+                    //Retrieves the number of likes
                     int count = documentSnapshots.size();
+                    //Sets the count number
                     holder.updateLikesCount(count);
                 }//End if()
+                //There are no likes
                 else {
+                    //Sets the count to 0
                     holder.updateLikesCount(0);
                 }//End else()
             }//End onEvent()
         });//End EventListener()
 
-        //Creates/Access the collection onf FireBase for the Likes
+        //Accesses the collection in real-time so pages will change when liked/disliked
         firebaseFirestore.collection("Parts/" + PostID + "/Likes").document(currentUserID).addSnapshotListener(new EventListener<DocumentSnapshot>()
         {
             @Override
             public void onEvent(DocumentSnapshot documentSnapshot, FirebaseFirestoreException e)
             {
-                //If the like button is unliked
+                //If the like button is un-liked
                 if(documentSnapshot.exists())
                 {
                     //The image is set to grey heart
@@ -143,14 +172,19 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
                     //When the process is complete
                     public void onComplete(@NonNull Task<DocumentSnapshot> task)
                     {
+                        //If data does not exist
                         if(!task.getResult().exists())
                         {
+                            //Create a Map with key: String, Value: Object
                             Map<String, Object> likesMap = new HashMap<>();
+                            //Data is stored inside the HashMap()
                             likesMap.put("timestamp", FieldValue.serverTimestamp());
 
+                            //The collection within FireBase is accessed and like is set
                             firebaseFirestore.collection("Parts/" + PostID + "/Likes").document(currentUserID).set(likesMap);
                         }//End if()
                         else {
+                            //The collection within FireBase is accessed and like is deleted
                             firebaseFirestore.collection("Parts/" + PostID + "/Likes").document(currentUserID).delete();
                         }//End else()
                     }//End onComplete()
@@ -158,17 +192,23 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
             }//End onClick()
         });//End OnClickListener()
 
+        //Accesses the collection in real-time when the posts are commented on
         firebaseFirestore.collection("Parts/" + PostID + "/Comments").addSnapshotListener(new EventListener<QuerySnapshot>()
         {
             @Override
             public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e)
             {
+                //If not empty
                 if(!documentSnapshots.isEmpty())
                 {
+                    //Number of comments is retrieved
                     int count = documentSnapshots.size();
+                    //Set the number of comments
                     holder.updateCommentCount(count);
                 }//End if()
+                //If is empty
                 else {
+                    //Sets count to 0
                     holder.updateCommentCount(0);
                 }//End else()
             }//End onEvent()
@@ -197,6 +237,7 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
+        //Declare the view
         private View mView;
 
         //XML variables
@@ -234,7 +275,9 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
             //XML variable
             PartImageview = mView.findViewById(R.id.post_image);
 
+            //Sets the placeholder image
             RequestOptions requestOptions = new RequestOptions();
+            //Loads the images and placeholder from FireBase into the page
             Glide.with(context).applyDefaultRequestOptions(requestOptions).load(downloadUri).thumbnail(
                     Glide.with(context).load(thumbUri)
             ).into(PartImageview);
@@ -258,8 +301,10 @@ public class Recycler_Adapter extends RecyclerView.Adapter<Recycler_Adapter.View
             //Sets username
             PostUserName.setText(name);
 
+            //Sets the placeholder image
             RequestOptions placeOption = new RequestOptions();
 
+            //Loads the image and placeholder from FireBase into the page
             Glide.with(context).applyDefaultRequestOptions(placeOption).load(image).into(PostUserImage);
         }//End setUserData()
 

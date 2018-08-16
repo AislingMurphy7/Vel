@@ -19,6 +19,13 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+/*
+    This class looks after the recyclerView for the comments.
+    in this class data is written and retrieved from FireBase
+    as well as displayed in the application for the user to view
+    using ViewHolder
+ */
+
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder>
 {
 
@@ -29,8 +36,10 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     //FireBase Variable
     private FirebaseFirestore firebaseFirestore;
 
+    //Class receives List from Comments class
     CommentsAdapter(List<Comments> commentsList)
     {
+        //Variable is set to what was received from Comments class
         this.commentsList = commentsList;
     }//End CommentsAdapter()
 
@@ -38,9 +47,13 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     @Override
     public CommentsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
     {
+        //Inflate the layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_itemlist, parent, false);
         context = parent.getContext();
+
+        //Get FireBase reference
         firebaseFirestore = FirebaseFirestore.getInstance();
+
         return new CommentsAdapter.ViewHolder(view);
     }//End onCreateViewHolder()
 
@@ -49,17 +62,22 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     {
         holder.setIsRecyclable(false);
 
+        //Receive and set the commentMessage
         String commentMessage = commentsList.get(position).getMessage();
         holder.setComment_message(commentMessage);
 
+        //Receive the user data from FireBase
         String user_id = commentsList.get(position).getUser_id();
+        //Retrieves data from FireStore
         firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
         {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task)
             {
+                //If the process is successful
                 if(task.isSuccessful())
                 {
+                    //Gathers data from FireBase and sets within the app
                     String userName = task.getResult().getString("name");
                     String userImage = task.getResult().getString("image");
                     holder.setUserData(userName, userImage);
@@ -85,6 +103,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
+        //Declare the view
         private View mView;
 
         //XML variables
@@ -117,8 +136,9 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
             //Sets username
             CommentUsername.setText(userName);
 
+            //Sets the placeholder image
             RequestOptions placeOption = new RequestOptions();
-
+            //Loads the images and placeholder from FireBase into the page
             Glide.with(context).applyDefaultRequestOptions(placeOption).load(userImage).into(CommentImage);
         }//End setUserData()
     }//End ViewHolder()

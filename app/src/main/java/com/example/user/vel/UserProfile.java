@@ -108,8 +108,10 @@ public class UserProfile extends AppCompatActivity {
                         //Set the username
                         editText.setText(name);
 
+                        //Sets the placeholder image
                         RequestOptions options = new RequestOptions();
 
+                        //Loads the image and placeholder from FireBase into the page
                         Glide.with(UserProfile.this).setDefaultRequestOptions(options).load(image).into(imageView);
                     }//End if()
 
@@ -221,18 +223,25 @@ public class UserProfile extends AppCompatActivity {
 
     private void storeFirestore(@NonNull Task<UploadTask.TaskSnapshot> task, String displayname)
     {
+        //Declare variable
         Uri download_uri;
 
+        //Check if the download URI is still stored
         if(task != null)
         {
+            //Download URI is present
             download_uri = task.getResult().getDownloadUrl();
         }//End if()
         else{
+            //Download URI is set to image
             download_uri = uriProfileImage;
         }//End else()
 
+        //Create a Map with key: String, Value: String
         Map<String, String> userMap = new HashMap<>();
+        //Data is stored inside the HashMap()
         userMap.put("name", displayname);
+        //toString converts URI to a string
         userMap.put("image", download_uri.toString());
 
         //The collection within FireBase is accessed
@@ -260,11 +269,11 @@ public class UserProfile extends AppCompatActivity {
                     Toast.makeText(UserProfile.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
                 }//End else()
 
-                //ProgessBar is set to invisible
+                //ProgressBar is set to invisible
                 progressbar.setVisibility(View.INVISIBLE);
             }//End onComplete()
         });//End OnCompleteListener()
-    }//End storeFirestore()
+    }//End storeFireStore()
 
     //Allows the user is picking an image
     private void ImagePick()
@@ -313,28 +322,32 @@ public class UserProfile extends AppCompatActivity {
     }//End if()
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
 
-        /*
-          If the const value is = to requestcode
-          result code is = to result_ok
-          if the data is not null
-         */
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+        //If the const value is equal ro the requestCode
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
+        {
+            //The results will be gathered from the URI
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-
+            //If the resultCode is equal
+            if (resultCode == RESULT_OK)
+            {
+                //Results are returned as a URI and set to variable
                 uriProfileImage = result.getUri();
+                //Set the imageView to the new image
                 imageView.setImageURI(uriProfileImage);
-
                 isChanged = true;
-
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+            }//End if()
+            //If the resultCode has an error
+            else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
+            {
+                //Error exception is created
                 Exception error = result.getError();
-            }
-        }
-    }
+            }//End else if()
+        }//End if()
+    }//End onActivityResult()
 
     //Function creates the dropdown toolbar menu
     public boolean onCreateOptionsMenu(Menu menu)

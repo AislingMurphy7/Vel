@@ -158,22 +158,28 @@ public class NewVehicle extends AppCompatActivity
                                     e.printStackTrace();
                                 }//End catch()
 
+                                //Gets the data from the ImageView as bytes
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                                 byte[] thumb_data = baos.toByteArray();
 
+                                //Uploads the data to the appropriate place on FireBase
                                 UploadTask uploadTask = storageReference
                                         .child("vehicle_images/thumbs").child(rand_name + ".jpg").putBytes(thumb_data);
 
+                                //If upload is a success
                                 uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
                                 {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                                     {
 
+                                        //Gets download URI and changes to a string
                                         String download_thumUri = Objects.requireNonNull(taskSnapshot.getDownloadUrl()).toString();
 
+                                        //Create a Map with key: String, Value: Object
                                         Map<String, Object> vehicleMap =  new HashMap<>();
+                                        //Data is stored inside the HashMap()
                                         vehicleMap.put("image_url", downloadUri);
                                         vehicleMap.put("image_thumb", download_thumUri);
                                         vehicleMap.put("make", make);
@@ -182,6 +188,7 @@ public class NewVehicle extends AppCompatActivity
                                         vehicleMap.put("user_id", current_user);
                                         vehicleMap.put("timestamp", FieldValue.serverTimestamp());
 
+                                        //New data is added to FireStore
                                         firebaseFirestore.collection("Vehicles").add(vehicleMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>()
                                         {
                                             @Override
@@ -242,17 +249,23 @@ public class NewVehicle extends AppCompatActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //If the const value is equal ro the requestCode
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
         {
+            //The results will be gathered from the URI
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            //If the resultCode is equal
             if (resultCode == RESULT_OK)
             {
+                //Results are returned as a URI and set to variable
                 vehicleImage = result.getUri();
+                //Set the imageView to the new image
                 newVehicleImage.setImageURI(vehicleImage);
-
             }//End if()
+            //If the resultCode has an error
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
             {
+                //Error message is displayed to the user informing them of the issue
                 Toast.makeText(NewVehicle.this, "Application Error", Toast.LENGTH_LONG).show();
             }//End else if()
         }//End if()

@@ -99,12 +99,16 @@ public class PostList extends AppCompatActivity
                 @Override
                 public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e)
                 {
+                    //If there is changes made to the document
                     for (DocumentChange doc : documentSnapshots.getDocumentChanges())
                     {
+                        //If the data is added
                         if (doc.getType() == DocumentChange.Type.ADDED)
                         {
                             String PostID = doc.getDocument().getId();
+                            //Document is gathered and passed to PostLog class with the PostID
                             PostLog partLogs = doc.getDocument().toObject(PostLog.class).withId(PostID);
+                            //Adds the post to the part_list
                             part_list.add(partLogs);
 
                             //Changes when data is changed
@@ -151,6 +155,7 @@ public class PostList extends AppCompatActivity
                             finish();
                         }//End if()
                     }//End if()
+
                     //If not successful
                     else
                     {

@@ -28,6 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/*
+    This class handles the 'vehicles' of the app.
+    This class displays all the vehicles with data
+    posted by other users.
+    The user can add vehicles via this page as well
+ */
+
 public class VehicleList extends AppCompatActivity
 {
     //Declare FireBase variables
@@ -91,12 +98,16 @@ public class VehicleList extends AppCompatActivity
                 @Override
                 public void onEvent(QuerySnapshot documentSnapshots, FirebaseFirestoreException e)
                 {
+                    //If there is changes made to the document
                     for (DocumentChange doc : documentSnapshots.getDocumentChanges())
                     {
+                        //If the data is added
                         if (doc.getType() == DocumentChange.Type.ADDED)
                         {
                             String VehicleID = doc.getDocument().getId();
+                            //Document is gathered and passed to VehicleLog class with the VehicleID
                             VehicleLog vehicleLog = doc.getDocument().toObject(VehicleLog.class).withId(VehicleID);
+                            //Adds the post to the vehicle_list
                             vehicle_list.add(vehicleLog);
 
                             //Changes when data is changed

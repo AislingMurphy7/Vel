@@ -152,28 +152,35 @@ public class NewPost extends AppCompatActivity
                                     e.printStackTrace();
                                 }//End catch()
 
+                                //Gets the data from the ImageView as bytes
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 compressedImageFile.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                                 byte[] thumb_data = baos.toByteArray();
 
+                                //Uploads the data to the appropriate place on FireBase
                                 UploadTask uploadTask = storageReference
                                         .child("part_images/thumbs").child(rand_name + ".jpg").putBytes(thumb_data);
 
+                                //If upload is a success
                                 uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
                                 {
                                     @Override
                                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                                     {
 
+                                        //Gets download URI and changes to a string
                                         String download_thumUri = Objects.requireNonNull(taskSnapshot.getDownloadUrl()).toString();
 
+                                        //Create a Map with key: String, Value: Object
                                         Map<String, Object> partMap =  new HashMap<>();
+                                        //Data is stored inside the HashMap()
                                         partMap.put("image_url", downloadUri);
                                         partMap.put("image_thumb", download_thumUri);
                                         partMap.put("desc", desc);
                                         partMap.put("user_id", current_user);
                                         partMap.put("timestamp", FieldValue.serverTimestamp());
 
+                                        //New data is added to FireStore
                                         firebaseFirestore.collection("Parts").add(partMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>()
                                         {
                                             @Override
@@ -234,15 +241,20 @@ public class NewPost extends AppCompatActivity
     {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //If the const value is equal ro the requestCode
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE)
         {
+            //The results will be gathered from the URI
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            //If the resultCode is equal
             if (resultCode == RESULT_OK)
             {
+                //Results are returned as a URI and set to variable
                 partImage = result.getUri();
+                //Set the imageView to the new image
                 newPartImage.setImageURI(partImage);
-
             }//End if()
+            //If the resultCode has an error
             else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE)
             {
                 //Error message is displayed to the user informing them of the issue
