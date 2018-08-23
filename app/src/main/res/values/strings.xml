@@ -153,8 +153,8 @@
     <string name="make">Vehicle Make: </string>
     <string name="model2">Vehicle Model: </string>
     <string name="vehreg">Vehicle Reg: </string>
-    <string name="veh_dets"><b><u>Please enter vehicle details below: </u></b></string>
-    <string name="ent_below">Please enter the password below </string>
+    <string name="veh_dets"><b><u>Please enter vehicle details and a secure password below: </u></b></string>
+    <string name="ent_below">Please enter the specific password below </string>
     <string name="pass_protect">The next pages are Password protected</string>
     <string name="continueon">Continue</string>
 

@@ -10,7 +10,7 @@ package com.example.user.vel;
 public class VehicleLog extends VehiclePostID
 {
     //Variables
-    private String make, model, reg, image_thumb, image_url, user_id;
+    private String make, model, reg, image_thumb, image_url, user_id, password, con_password;
 
     //Empty constructor
     public VehicleLog()
@@ -19,7 +19,7 @@ public class VehicleLog extends VehiclePostID
     }//End PostLog()
 
     //Constructor
-    public VehicleLog(String make, String model, String reg, String image_thumb, String image_url, String user_id)
+    public VehicleLog(String make, String model, String reg, String image_thumb, String image_url, String user_id, String password, String con_password)
     {
         this.model = model;
         this.make = make;
@@ -27,9 +27,27 @@ public class VehicleLog extends VehiclePostID
         this.image_thumb = image_thumb;
         this.image_url = image_url;
         this.user_id = user_id;
+        this.password = password;
+        this.con_password = con_password;
     }//End PostLog()
 
     //Getters and setters
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getCon_password() {
+        return con_password;
+    }
+
+    public void setCon_password(String con_password) {
+        this.con_password = con_password;
+    }
+
     public String getMake()
     {
         return make;

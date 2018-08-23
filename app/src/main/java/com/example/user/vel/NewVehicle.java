@@ -54,6 +54,8 @@ public class NewVehicle extends AppCompatActivity
     private EditText vehicleMake;
     private EditText vehicleModel;
     private EditText vehicleReg;
+    private EditText password;
+    private EditText con_password;
     private ProgressBar progressBar;
 
     //Image variable
@@ -90,6 +92,8 @@ public class NewVehicle extends AppCompatActivity
         vehicleReg =  findViewById(R.id.new_vehicle_reg);
         Button vehicleAdd = findViewById(R.id.save_btn);
         progressBar = findViewById(R.id.progressbar);
+        password = findViewById(R.id.password);
+        con_password = findViewById(R.id.con_password);
 
         //When the user taps on the image
         newVehicleImage.setOnClickListener(new View.OnClickListener()
@@ -116,9 +120,11 @@ public class NewVehicle extends AppCompatActivity
                 final String make = vehicleMake.getText().toString();
                 final String model = vehicleModel.getText().toString();
                 final String reg = vehicleReg.getText().toString();
+                final String pass = password.getText().toString();
+                final String con_pass = con_password.getText().toString();
 
                 //If the description and image is not empty
-                if(!TextUtils.isEmpty(make) &&  !TextUtils.isEmpty(model) && !TextUtils.isEmpty(reg) && vehicleImage != null)
+                if(!TextUtils.isEmpty(make) &&  !TextUtils.isEmpty(model) && !TextUtils.isEmpty(reg) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(con_pass) && vehicleImage != null)
                 {
                     //Set progressbar to visible
                     progressBar.setVisibility(View.VISIBLE);
@@ -187,6 +193,8 @@ public class NewVehicle extends AppCompatActivity
                                         vehicleMap.put("reg", reg);
                                         vehicleMap.put("user_id", current_user);
                                         vehicleMap.put("timestamp", FieldValue.serverTimestamp());
+                                        vehicleMap.put("password", pass);
+                                        vehicleMap.put("con_password", con_pass);
 
                                         //New data is added to FireStore
                                         firebaseFirestore.collection("Vehicles").add(vehicleMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>()
