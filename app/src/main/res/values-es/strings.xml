@@ -157,4 +157,12 @@
     <string name="pass_protect">Las siguientes páginas están protegidas con contraseña</string>
     <string name="continueon">Continuar</string>
 
+    <string name="enter_pass">Ingrese una contraseña</string>
+    <string name="enter_engine">Ingrese el tamaño del motor de los vehículos</string>
+    <string name="confirm">Confirmar contraseña</string>
+    <string name="veh_make">Marca del vehículo</string>
+    <string name="veh_model">Modelo de vehículo</string>
+    <string name="veh_reg">Registro de Vehículo</string>
+    <string name="veh_engine">tamaño del motor del vehículo</string>
+
 </resources>

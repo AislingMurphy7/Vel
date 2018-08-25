@@ -107,7 +107,7 @@ public class LoginUser extends Activity implements View.OnClickListener
         //Sets the progressbar to visible on screen
         progressbar.setVisibility(View.VISIBLE);
 
-        //Logging user in viz information stored in FireBase
+        //Logging user in via information stored in FireBase
         mAuth.signInWithEmailAndPassword(email, password)
                 //Detects the completion
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>()

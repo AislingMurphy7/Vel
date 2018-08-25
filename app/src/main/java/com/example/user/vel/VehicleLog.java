@@ -7,75 +7,103 @@ package com.example.user.vel;
     be no issue of pulling data from the database
  */
 
-public class VehicleLog extends VehiclePostID
+public class VehicleLog
 {
     //Variables
-    private String make, model, reg, image_thumb, image_url, user_id, password, con_password;
+    private String Make;
+    private String Model;
+    private String Reg;
+    private String Engine;
+    private String Password;
+    private String Confirmed_Password;
+    private String Image;
 
-    //Empty constructor
+    //Constructor
+    public VehicleLog(String make, String model, String reg, String image, String engine, String password, String confirmed_Password)
+    {
+        Make = make;
+        Model = model;
+        Reg = reg;
+        Engine = engine;
+        Image = image;
+        Password = password;
+        Confirmed_Password = confirmed_Password;
+    }//End VehicleLog()
+
+    //Empty constructor()
     public VehicleLog()
     {
 
-    }//End PostLog()
+    }//End VehicleLog()
 
-    //Constructor
-    public VehicleLog(String make, String model, String reg, String image_thumb, String image_url, String user_id, String password, String con_password)
+    //Getters and Setters
+    public String getEngine()
     {
-        this.model = model;
-        this.make = make;
-        this.reg = reg;
-        this.image_thumb = image_thumb;
-        this.image_url = image_url;
-        this.user_id = user_id;
-        this.password = password;
-        this.con_password = con_password;
-    }//End PostLog()
+        return Engine;
+    }//End getEngine()
 
-    //Getters and setters
-    public String getPassword() {
-        return password;
-    }
+    public void setEngine(String engine)
+    {
+        Engine = engine;
+    }//End setEngine()
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public String getImage()
+    {
+        return Image;
+    }//End getImage()
 
-    public String getCon_password() {
-        return con_password;
-    }
-
-    public void setCon_password(String con_password) {
-        this.con_password = con_password;
-    }
+    public void setImage(String image)
+    {
+        Image = image;
+    }//End setImage()
 
     public String getMake()
     {
-        return make;
+        return Make;
     }//End getMake()
+
+    public void setMake(String make)
+    {
+        Make = make;
+    }//End setMake()
 
     public String getModel()
     {
-        return model;
+        return Model;
     }//End getModel()
+
+    public void setModel(String model)
+    {
+        Model = model;
+    }//End setModel()
 
     public String getReg()
     {
-        return reg;
+        return Reg;
     }//End getReg()
 
-    public String getImage_thumb()
+    public void setReg(String reg)
     {
-        return image_thumb;
-    }//End getImage_thumb()
+        Reg = reg;
+    }//End setReg()
 
-    public String getImage_url()
+    public String getPassword()
     {
-        return image_url;
-    }//End getImage_url()
+        return Password;
+    }//End getPassword()
 
-    public String getUser_id()
+    public void setPassword(String password)
     {
-        return user_id;
-    }//End getUser_id()
+        Password = password;
+    }//End setPassword()
 
+    public String getConfirmed_Password()
+    {
+        return Confirmed_Password;
+    }//End getConfirmed_Password()
+
+    public void setConfirmed_Password(String confirmed_Password)
+    {
+        Confirmed_Password = confirmed_Password;
+    }//End setConfirmed_Password()
 }//End VehicleLog

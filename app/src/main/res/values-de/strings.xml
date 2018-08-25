@@ -158,5 +158,13 @@
     <string name="pass_protect">Die nächsten Seiten sind Passwortgeschützt</string>
     <string name="continueon">Fortsetzen</string>
 
+    <string name="enter_pass">Geben Sie ein Passwort ein</string>
+    <string name="enter_engine">Geben Sie die Motorgröße des Fahrzeugs ein</string>
+    <string name="confirm">Bestätige das Passwort</string>
+    <string name="veh_make">Automarke</string>
+    <string name="veh_model">Fahrzeugmodell</string>
+    <string name="veh_reg">Kfz-Zulassung</string>
+    <string name="veh_engine">Fahrzeugmotorgröße</string>
+
 </resources>
 

@@ -3,122 +3,179 @@ package com.example.user.vel;
 /*
     This class is used as a step of security for the
     vehicles data stored within the app. Each vehicles
-    data is password protected with the password belonging
-    to the user
+    data is password protected with the password which
+    is set by the composer of the post
  */
+
 import android.content.Intent;
-import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.theartofdev.edmodo.cropper.CropImage;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
 public class PasswordProtected extends AppCompatActivity
 {
-    //Declare FireBase object
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore firebaseFirestore;
-    private boolean isChanged = false;
-
-    private String user_id;
+    //Declaring XML variables
     private ImageView imageView;
-    private Uri uriImage;
-    private Button cont;
-    public EditText ent_pass;
+    private TextView vehicle_make, vehicle_model, vehicle_reg, vehicle_engine;
+    private EditText ent_pass;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         //Sets the layout according to the XML file
         setContentView(R.layout.activity_password_protected);
 
-        //Instantiate FireBase
-        mAuth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
-
+        //XML variables
+        vehicle_engine = findViewById(R.id.engine);
+        vehicle_reg = findViewById(R.id.reg);
+        vehicle_model = findViewById(R.id.model);
+        vehicle_make = findViewById(R.id.make);
         imageView = findViewById(R.id.image);
-        cont = findViewById(R.id.cont);
+
+        Button cont = findViewById(R.id.cont);
         ent_pass = findViewById(R.id.editTextPassword);
 
+        //FireBase Real-time Database
+        DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("Vehicles");
 
+        //Gathers the unique key of each record in the database
+        String vehicle_key = Objects.requireNonNull(getIntent().getExtras()).getString("Vehicle_id");
 
-
-        firebaseFirestore.collection("Vehicles").document("dNH7sMf5Y311ReBfgAyq").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        //Retrieves all the required values from FireBase database
+        databaseRef.child(Objects.requireNonNull(vehicle_key)).addValueEventListener(new ValueEventListener()
+        {
             @Override
-            //When the process is complete
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                //If process is successful
-                if (task.isSuccessful()) {
-                    //If the record exists
-                    if (task.getResult().exists()) {
-                        //images are recorded
-                        String image = task.getResult().getString("image_url");
+            //When the data changes the data will be retrieved
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                String reg = (String) dataSnapshot.child("Reg").getValue();
+                String model = (String) dataSnapshot.child("Model").getValue();
+                String make = (String) dataSnapshot.child("Make").getValue();
+                String engine = (String) dataSnapshot.child("Engine").getValue();
+                String image = (String) dataSnapshot.child("Image").getValue();
 
-                        uriImage = Uri.parse(image);
+                //Data is set and displayed on screen to the user
+                vehicle_engine.setText(engine);
+                vehicle_reg.setText(reg);
+                vehicle_model.setText(model);
+                vehicle_make.setText(make);
+                //Displays the image
+                Glide.with(PasswordProtected.this).load(image).into(imageView);
+            }//End onDataChange()
 
-                        //Sets the placeholder image
-                        RequestOptions options = new RequestOptions();
+            @Override
+            public void onCancelled(DatabaseError databaseError)
+            {
+                Toast.makeText(PasswordProtected.this, "Database Error!", Toast.LENGTH_LONG).show();
+            }//End onCancelled
+        });//End ValueEventListener()
 
-                        //Loads the image and placeholder from FireBase into the page
-                        Glide.with(PasswordProtected.this).setDefaultRequestOptions(options).load(image).into(imageView);
-                    }//End if()
-                }//End if()
-                //If the record doesn't exist
-                else
-                {
-                    //Error message is displayed to the user
-                    String error = task.getException().getMessage();
-                    Toast.makeText(PasswordProtected.this, "Data retrieve Error: " + error, Toast.LENGTH_LONG).show();
-                }//End else()
-            }
-        });
-
+        //
+        //
+        //
+        //
         cont.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                final String enter_pass = ent_pass.getText().toString();
+                String email = null;
+                final String enter_pass = ent_pass.getText().toString().trim();
 
-                firebaseFirestore.collection("Vehicles").document("dNH7sMf5Y311ReBfgAyq").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        //If process is successful
-                        if (task.isSuccessful()) {
-                            //If the record exists
-                            if (task.getResult().exists()) {
-                                //images are recorded
-                                String pass = task.getResult().getString("password");
-                                if (enter_pass == pass) {
-                                    Intent intent = new Intent(PasswordProtected.this, Homepage.class);
-                                    startActivity(intent);
-                                }
-                            } else {
-                                Toast.makeText(PasswordProtected.this, "ERROR", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    }
-                });
+                //If the email EditText is empty
+                if(enter_pass.isEmpty())
+                {
+                    //An error message is displayed
+                    ent_pass.setError(getText(R.string.pass_empt));
+                    //Show error
+                    ent_pass.requestFocus();
+                    return;
+                }//End if()
+
+                //If the password length is less than six
+                if(enter_pass.length()<6)
+                {
+                    //An error message is displayed
+                    ent_pass.setError(getText(R.string.mini_length));
+                    //Show error
+                    ent_pass.requestFocus();
+                    return;
+                }//End if()
+
             }
         });
-
     }
+    //
+    //
+    //
+    //
+    //
+
+    //Function creates the dropdown toolbar menu
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.options, menu);
+        return super.onCreateOptionsMenu(menu);
+    }//End onCreateOptionsMenu()
+
+    //If one of the options from the dropdown menu is selected the following will occur
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        //Variable to hold id of selected menu option
+        int option_id = item.getItemId();
+        //If the home option is selected
+        if (option_id == R.id.action_home)
+        {
+            //The user will be informed they are already in the home page
+            Toast.makeText(PasswordProtected.this, R.string.options_page, Toast.LENGTH_LONG).show();
+        }//End if()
+
+        //If the help option is selected
+        if (option_id == R.id.action_help)
+        {
+            //The user will be re-directed to help screen
+            Intent help_intent = new Intent(PasswordProtected.this, UserHelp.class);
+            startActivity(help_intent);
+        }//End if()
+
+        //If the profile option is selected
+        if (option_id == R.id.action_prof)
+        {
+            //The user will be re-directed to profile screen
+            Intent help_intent = new Intent(PasswordProtected.this, UserProfile.class);
+            startActivity(help_intent);
+        }//End if()
+
+        //If the exit option is selected
+        if (option_id == R.id.action_exit)
+        {
+            //The app will close
+            Intent exit_intent = new Intent(Intent.ACTION_MAIN);
+            exit_intent.addCategory(Intent.CATEGORY_HOME);
+            exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(exit_intent);
+            finish();
+            System.exit(0);
+        }//End if()
+
+        return super.onOptionsItemSelected(item);
+    }//End onOptionsItemSelected()
 
 
 }//End PasswordProtected()
