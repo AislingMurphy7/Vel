@@ -82,8 +82,7 @@ public class UserHelp extends AppCompatActivity
             exit_intent.addCategory(Intent.CATEGORY_HOME);
             exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(exit_intent);
-            finish();
-            System.exit(0);
+            android.os.Process.killProcess(android.os.Process.myPid());
         }//End if()
 
         return super.onOptionsItemSelected(item);
