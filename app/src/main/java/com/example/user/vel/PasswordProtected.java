@@ -32,7 +32,7 @@ public class PasswordProtected extends AppCompatActivity
 {
     //Declaring XML variables
     private ImageView imageView;
-    private TextView vehicle_make, vehicle_model, vehicle_reg, vehicle_engine;
+    private TextView vehicle_make, vehicle_model;
     private EditText ent_pass;
 
     @Override
@@ -43,8 +43,6 @@ public class PasswordProtected extends AppCompatActivity
         setContentView(R.layout.activity_password_protected);
 
         //XML variables
-        vehicle_engine = findViewById(R.id.engine);
-        vehicle_reg = findViewById(R.id.reg);
         vehicle_model = findViewById(R.id.model);
         vehicle_make = findViewById(R.id.make);
         imageView = findViewById(R.id.image);
@@ -65,15 +63,11 @@ public class PasswordProtected extends AppCompatActivity
             //When the data changes the data will be retrieved
             public void onDataChange(DataSnapshot dataSnapshot)
             {
-                String reg = (String) dataSnapshot.child("Reg").getValue();
                 String model = (String) dataSnapshot.child("Model").getValue();
                 String make = (String) dataSnapshot.child("Make").getValue();
-                String engine = (String) dataSnapshot.child("Engine").getValue();
                 String image = (String) dataSnapshot.child("Image").getValue();
 
                 //Data is set and displayed on screen to the user
-                vehicle_engine.setText(engine);
-                vehicle_reg.setText(reg);
                 vehicle_model.setText(model);
                 vehicle_make.setText(make);
                 //Displays the image
