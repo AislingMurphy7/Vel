@@ -47,6 +47,7 @@
         <activity android:name=".VehicleList" />
         <activity android:name=".NewVehicle" />
         <activity android:name=".PasswordProtected" />
+        <activity android:name=".DataDisplay" />
     </application>
 
 </manifest>

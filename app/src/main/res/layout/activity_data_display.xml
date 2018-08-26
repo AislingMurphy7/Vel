@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    This XML file designs the layout for the 'DataDisplay.class'
+    This XML file defines four 'Buttons' that redirects the
+    user to different graph pages linked to this page.
+-->
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#c70039">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="150dp"
+        android:orientation="vertical"
+        android:background="#c70039"
+        tools:context=".DataDisplay">
+
+        <ImageView
+            android:id="@+id/vel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/imagedesc"
+            android:paddingBottom="40sp"
+            android:paddingStart="20sp"
+            android:paddingEnd="0dp"
+            android:paddingTop="50sp"
+            android:src="@drawable/vel">
+        </ImageView>
+
+        <Button
+            android:id="@+id/mass_air"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/mass_air"
+            android:textColor="#c70039">
+        </Button>
+
+        <Button
+            android:id="@+id/engine_temps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/temp_specs"
+            android:textColor="#c70039">
+        </Button>
+
+        <Button
+            android:id="@+id/engine_throttle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/throttle_load"
+            android:textColor="#c70039">
+        </Button>
+
+        <Button
+            android:id="@+id/RPM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/RPM"
+            android:textColor="#c70039">
+        </Button>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+</ScrollView>
