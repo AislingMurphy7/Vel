@@ -8,8 +8,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -107,38 +109,6 @@ public class GraphEngineSpecs extends Activity implements
             }//End onClick()
         });//End setPositiveButton()
 
-         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-          for the engine rpm and throttle position information retrieved from the database*/
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineSpecs.this);
-        builder2.setCancelable(true);
-
-        //Setting the title and message from the string.xml
-        builder2.setTitle(GraphEngineSpecs.this.getString(R.string.IMPORTANT));
-        builder2.setMessage(GraphEngineSpecs.this.getString(R.string.throttle_load_info));
-
-        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder2.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-                dialog.cancel();
-                Intent intent = new Intent(GraphEngineSpecs.this, Homepage.class);
-                startActivity(intent);
-            }//End onClick()
-        });//End setNegativeButton()
-
-        builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-
-            }//End onClick()
-        });//End setPositiveButton()
-
-        //Show the Dialogs on screen
-        builder2.show();
         builder3.show();
         builder.show();
 
@@ -226,6 +196,50 @@ public class GraphEngineSpecs extends Activity implements
         downloadData();
         //Change the chart when a change occurs
         chart.notifyDataSetChanged();
+
+        //XML button
+        Button checkD = findViewById(R.id.checkdata);
+
+        //If the user taps the button
+        checkD.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+                for the Mass Airflow rate information retrieved from the database*/
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineSpecs.this);
+                builder2.setCancelable(true);
+
+                //Setting the title and message from the string.xml
+                builder2.setTitle(GraphEngineSpecs.this.getString(R.string.IMPORTANT));
+                builder2.setMessage(GraphEngineSpecs.this.getString(R.string.airflow_info));
+
+                //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+                builder2.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton)
+                    {
+                        dialog.cancel();
+                        Intent intent = new Intent(GraphEngineSpecs.this, Homepage.class);
+                        startActivity(intent); }//End onClick()
+                });//End setNegativeButton()
+
+                //If the user taps Ok
+                builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+
+                    }//End onClick()
+                });//End setPositiveButton()
+
+                //Show the Dialogs on screen
+                builder2.show();
+            }//End onClick()
+        });//End OnClickListener()
     }//End onCreate
 
     private void downloadData()
@@ -235,6 +249,7 @@ public class GraphEngineSpecs extends Activity implements
 
         //Connecting into table "VehicleData" on the Firebase database
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("VehicleData");
+
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
         {
@@ -242,36 +257,44 @@ public class GraphEngineSpecs extends Activity implements
             {
                 //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
+
                 //Prints values to console to prove the download is working
                 System.out.println("getEngineLoad: " + Objects.requireNonNull(vehicleData).getEngineLoad());
                 System.out.println("getThrottlePosition: " + vehicleData.getThrottlePosition());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
+
                 //Converting value to integer
                 setData(Integer.parseInt(dataSnapshot.getKey()), vehicleData);
+
                 //Will refresh app when the data changes in the database
                 arrayAdapter.notifyDataSetChanged();
             }//End onChildAdded()
+
             //Will run when data within the database is changed/edited
             public void onChildChanged(DataSnapshot dataSnapshot, String s)
             {
 
             }//End onChildChanged()
+
             //Will run when data within the database is removed
             public void onChildRemoved(DataSnapshot dataSnapshot)
             {
 
             }//End onChildRemoved()
+
             //Will run when data within the database is moved to different location
             public void onChildMoved(DataSnapshot dataSnapshot, String s)
             {
 
             }//End onChildMoved()
+
             //Will run when any sort of error occurs
             public void onCancelled(DatabaseError databaseError)
             {
 
             }//End onCancelled()
+
         });//End addChildEventListener()
     }//End DownloadData()
 
@@ -281,6 +304,7 @@ public class GraphEngineSpecs extends Activity implements
         //Prints to console first
         System.out.println("Using key: " + key);
         System.out.println("Setting Engine Load: " + vehicleData.getEngineLoad());
+
         //Adds new entries to the arrayList and converts the string into a float
         engineloadList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineLoad())));
 
@@ -292,6 +316,7 @@ public class GraphEngineSpecs extends Activity implements
         set1.notifyDataSetChanged();
         data.notifyDataChanged();
         this.chart.notifyDataSetChanged();
+
         //Redisplay chart
         chart.invalidate();
     }//End setData()

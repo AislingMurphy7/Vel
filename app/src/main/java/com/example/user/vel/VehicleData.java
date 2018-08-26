@@ -7,7 +7,9 @@ package com.example.user.vel;
     be no issue of pulling data from the database
  */
 
-public class VehicleData
+public class
+
+VehicleData
 {
     //Variables
     private String deviceTime;

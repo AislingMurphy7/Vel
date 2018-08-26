@@ -2,7 +2,8 @@
 
 <!--
     XML for coolant temperature and air intake temperature graph used in the GraphTempSpecs.class.
-    This implements the mikephil graph API
+    This implements the mikephil graph API and a button to view the data
+    irregularities
 -->
 
 <LinearLayout
@@ -14,9 +15,23 @@
     android:background="#c70039"
     tools:context="com.example.user.vel.GraphTempSpecs">
 
+    <Button
+        android:id="@+id/checkdata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="7dp"
+        android:backgroundTint="#FFFFFF"
+        android:clickable="true"
+        android:text="@string/check_irreg"
+        android:textColor="#c70039"
+        android:focusable="true">
+    </Button>
+
     <com.github.mikephil.charting.charts.LineChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="20dp"
         android:id="@+id/linechart">
     </com.github.mikephil.charting.charts.LineChart>
 

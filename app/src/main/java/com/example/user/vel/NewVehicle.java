@@ -86,7 +86,8 @@ public class NewVehicle extends AppCompatActivity
         //When user selects the 'Add' button
         vehicleAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 StartPosting();
             }
         });
@@ -105,39 +106,79 @@ public class NewVehicle extends AppCompatActivity
         final String engine = engineSize.getText().toString().trim();
         final String con_pass = con_password.getText().toString().trim();
 
+        //If the password length is less than six
+        if(con_pass.length()<6)
+        {
+            //An error message is displayed
+            con_password.setError(getText(R.string.mini_length));
+            //Show error
+            con_password.requestFocus();
+        }//End if()
+
+        //If the password length is less than six
+        if(pass.length()<6)
+        {
+            //An error message is displayed
+            password.setError(getText(R.string.mini_length));
+            //Show error
+            password.requestFocus();
+        }//End if()
+
         //If the description and image is not empty
         if(!TextUtils.isEmpty(make) &&  !TextUtils.isEmpty(model) && !TextUtils.isEmpty(reg) &&
-                !TextUtils.isEmpty(engine) && !TextUtils.isEmpty(pass) && !TextUtils.isEmpty(con_pass) && vehicleImage != null) {
+                !TextUtils.isEmpty(engine) && !TextUtils.isEmpty(pass) &&
+                !TextUtils.isEmpty(con_pass) && vehicleImage != null)
+        {
+            //if pass equals the confirm password
+            if (pass.equals(con_pass))
+            {
+                //Only when user has entered information will the progress be shown
+                progress.show();
 
-            //Only when user has entered information will the progress be shown
-            progress.show();
+                //File path of the 'vehicle_images' where the image is saved to in FireBase
+                StorageReference filePath = storageRef.child("vehicle_images").child(vehicleImage.getLastPathSegment());
 
-            //File path of the 'vehicle_images' where the image is saved to in FireBase
-            StorageReference filePath = storageRef.child("vehicle_images").child(vehicleImage.getLastPathSegment());
-
-            filePath.putFile(vehicleImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                filePath.putFile(vehicleImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>()
                 {
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
+                    {
+                        Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
-                    DatabaseReference newpost = databaseRef.push();
+                        //Data is sent to FireBase
+                        DatabaseReference newpost = databaseRef.push();
 
-                    newpost.child("Make").setValue(make);
-                    newpost.child("Model").setValue(model);
-                    newpost.child("Reg").setValue(reg);
-                    newpost.child("Password").setValue(pass);
-                    newpost.child("Engine").setValue(engine);
-                    newpost.child("Confirmed_Password").setValue(con_pass);
-                    newpost.child("Image").setValue(Objects.requireNonNull(downloadUrl).toString());
+                        //Values are set
+                        newpost.child("Make").setValue(make);
+                        newpost.child("Model").setValue(model);
+                        newpost.child("Reg").setValue(reg);
+                        newpost.child("Password").setValue(pass);
+                        newpost.child("Engine").setValue(engine);
+                        newpost.child("Confirmed_Password").setValue(con_pass);
+                        newpost.child("Image").setValue(Objects.requireNonNull(downloadUrl).toString());
 
-                    progress.dismiss();
+                        //Progress dialog is dismissed
+                        progress.dismiss();
 
-                    startActivity(new Intent(NewVehicle.this, VehicleList.class));
-                }
-            });
-        }
-    }
+                        //User is redirected to the next screen
+                        startActivity(new Intent(NewVehicle.this, VehicleList.class));
+                    }//End onSuccess()
+                });//End OnSuccessListener()
+            }//End if()
+
+            //If pass and confirmed password don't match
+            if (!pass.equals(con_pass))
+            {
+                //User is notified of the issue
+                Toast.makeText(getApplicationContext(), "Passwords must match", Toast.LENGTH_LONG).show();
+            }//End if()
+        }//End if()
+        //If any field is empty
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Fields can not be left empty", Toast.LENGTH_LONG).show();
+        }//End else()
+    }//End StartPosting()
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -164,21 +205,6 @@ public class NewVehicle extends AppCompatActivity
             }//End else if()
         }//End if()
     }//End onActivityResult()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //Function creates the dropdown toolbar menu
     public boolean onCreateOptionsMenu(Menu menu)
