@@ -3,6 +3,7 @@ package com.example.user.vel;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,10 @@ public class DataDisplay extends AppCompatActivity
         //Sets the layout according to the XML file
         setContentView(R.layout.activity_data_display);
 
+        Intent intent = getIntent();
+        final String vehicle_key = intent.getStringExtra("Vehicle_id");
+        Log.d(vehicle_key, "DATA DISPLAY ");
+
         //XML variables
         Button mass_air = findViewById(R.id.mass_air);
         Button engine_load = findViewById(R.id.engine_throttle);
@@ -37,6 +42,7 @@ public class DataDisplay extends AppCompatActivity
             {
                 //The user is redirected to view the data
                 Intent intent = new Intent(DataDisplay.this, GraphEngineAirflow.class);
+                intent.putExtra("Vehicle_id", vehicle_key);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
@@ -48,6 +54,7 @@ public class DataDisplay extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(DataDisplay.this, GraphTempSpecs.class);
+                intent.putExtra("Vehicle_id", vehicle_key);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
@@ -59,6 +66,7 @@ public class DataDisplay extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(DataDisplay.this, GraphEngineSpecs.class);
+                intent.putExtra("Vehicle_id", vehicle_key);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
@@ -68,6 +76,7 @@ public class DataDisplay extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DataDisplay.this, GraphEngineRPM.class);
+                intent.putExtra("Vehicle_id", vehicle_key);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()

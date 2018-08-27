@@ -56,6 +56,7 @@ public class PasswordProtected extends AppCompatActivity
 
         //Gathers the unique key of each record in the database
         String vehicle_key = Objects.requireNonNull(getIntent().getExtras()).getString("Vehicle_id");
+        Log.d(vehicle_key,"PASS PROTECT");
 
         //Retrieves all the required values from FireBase database
         databaseRef.child(Objects.requireNonNull(vehicle_key)).addValueEventListener(new ValueEventListener()
@@ -94,7 +95,7 @@ public class PasswordProtected extends AppCompatActivity
                 final DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("Vehicles");
 
                 //Gathers the unique key of each record in the database
-                String vehicle_key = Objects.requireNonNull(getIntent().getExtras()).getString("Vehicle_id");
+                final String vehicle_key = Objects.requireNonNull(getIntent().getExtras()).getString("Vehicle_id");
 
                 //Retrieves all the required values from FireBase database
                 databaseRef.child(Objects.requireNonNull(vehicle_key)).addValueEventListener(new ValueEventListener() {
@@ -113,6 +114,7 @@ public class PasswordProtected extends AppCompatActivity
                         {
                             //The sure will be allowed to view the vehicles data
                             Intent intent = new Intent(PasswordProtected.this, DataDisplay.class);
+                            intent.putExtra("Vehicle_id", vehicle_key);
                             startActivity(intent);
                         }//End if()
                         //If they are not equal

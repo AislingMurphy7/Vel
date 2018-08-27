@@ -1,11 +1,16 @@
 package com.example.user.vel;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -51,6 +56,8 @@ public class GraphEngineAirflow extends Activity implements
 
     private LineChart chart;
 
+    private ProgressDialog progress;
+
     //Array to hold Mass Airflow data from Firebase
     ArrayList<Entry> engineAirflow = new ArrayList<>();
 
@@ -59,6 +66,7 @@ public class GraphEngineAirflow extends Activity implements
     LineData data;
 
     protected void onCreate(Bundle savedInstanceState) {
+
 
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
           for the Mass Airflow rate information*/
@@ -174,66 +182,103 @@ public class GraphEngineAirflow extends Activity implements
             @Override
             public void onClick(View v)
             {
-                /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-                for the Mass Airflow rate information retrieved from the database*/
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineAirflow.this);
-                builder2.setCancelable(true);
+                progress = new ProgressDialog(GraphEngineAirflow.this);
+                progress.setMax(100);
+                progress.setMessage("Checking...");
+                progress.setTitle("Checking Vehicle data");
+                progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                progress.show();
 
-                //Setting the title and message from the string.xml
-                builder2.setTitle(GraphEngineAirflow.this.getString(R.string.IMPORTANT));
-                builder2.setMessage(GraphEngineAirflow.this.getString(R.string.airflow_info));
-
-                //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-                builder2.setNegativeButton(GraphEngineAirflow.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
-                {
+                new Thread(new Runnable() {
                     @Override
-                    public void onClick(DialogInterface dialog, int whichButton)
-                    {
-                        dialog.cancel();
-                        Intent intent = new Intent(GraphEngineAirflow.this, DataDisplay.class);
-                        startActivity(intent); }//End onClick()
-                });//End setNegativeButton()
+                    public void run() {
+                        try
+                        {
+                            while (progress.getProgress() <= progress.getMax())
+                            {
+                                Thread.sleep(200);
+                                handler.sendMessage(handler.obtainMessage());
+                                if (progress.getProgress() == progress.getMax())
+                                {
+                                    progress.dismiss();
+                                    progress.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
-                //If the user taps Ok
-                builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            showAlertDialog();
+                                        }
+                                    });
+                                }
 
-                    }//End onClick()
-                });//End setPositiveButton()
-
-                //Show the Dialogs on screen
-                builder2.show();
+                            }
+                        }catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
             }//End onClick()
+            @SuppressLint("HandlerLeak")
+            Handler handler = new Handler()
+            {
+                public void handleMessage (Message msg)
+                {
+                    super.handleMessage(msg);
+                    progress.incrementProgressBy(3);
+                }
+            };
         });//End OnClickListener()
     }//End onCreate
+
+    public void showAlertDialog()
+    {
+        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+                for the Mass Airflow rate information retrieved from the database*/
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineAirflow.this);
+        builder2.setCancelable(true);
+
+        //Setting the title and message from the string.xml
+        builder2.setTitle(GraphEngineAirflow.this.getString(R.string.IMPORTANT));
+        builder2.setMessage(GraphEngineAirflow.this.getString(R.string.airflow_info));
+
+        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+        builder2.setNegativeButton(GraphEngineAirflow.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                dialog.cancel();
+                Intent intent = new Intent(GraphEngineAirflow.this, DataDisplay.class);
+                startActivity(intent); }//End onClick()
+        });//End setNegativeButton()
+
+        //If the user taps Ok
+        builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+
+            }//End onClick()
+        });//End setPositiveButton()
+
+        //Show the Dialogs on screen
+        builder2.show();
+    }
 
     //Downloads Data from FireBase
     private void downloadData()
     {
-        /*
-
-            //FireBase Real-time Database
-            DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference().child("Vehicles");
-
-            //Gathers the unique key of each record in the database
-            String vehicle_key = Objects.requireNonNull(getIntent().getExtras()).getString("Vehicle_id");
-
-            //Connecting into table "VehicleData" on the FireBase database
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference("Vehicles").child(vehicle_key).child("Vehicle data");
-
-
-        */
-
-
 
         //ArrayAdapter
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_engine_airflow);
 
+        Intent intent = getIntent();
+        final String vehicle_key = intent.getStringExtra("Vehicle_id");
+        Log.d(vehicle_key, "AIRFLOW");
+
         //Connecting into table "VehicleData" on the FireBase database
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("VehicleData");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Vehicles").child(vehicle_key).child("VehiclesData");
 
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()

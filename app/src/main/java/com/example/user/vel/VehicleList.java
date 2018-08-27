@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,6 +80,7 @@ public class VehicleList extends AppCompatActivity
             {
                 //Get the unique identifier for each record in the database
                 final String vehicle_key = getRef(position).getKey();
+                Log.d(vehicle_key, "VEHICLE LIST");
 
                 //Gathers the data
                 viewHolder.setMakeText(model.getMake());

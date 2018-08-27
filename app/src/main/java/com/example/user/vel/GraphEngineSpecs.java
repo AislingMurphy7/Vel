@@ -1,11 +1,15 @@
 package com.example.user.vel;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -45,11 +49,16 @@ import java.util.Objects;
  */
 
 public class GraphEngineSpecs extends Activity implements
-        OnChartGestureListener, OnChartValueSelectedListener {
+        OnChartGestureListener, OnChartValueSelectedListener
+{
 
     private static final String TAG = "GraphEngineSpecs";
 
+    //Declaring the chart
     private LineChart chart;
+
+    //Declaring progress dialog
+    private ProgressDialog progress;
 
     //Arrays to hold engine load and throttle position from Firebase
     ArrayList<Entry> engineloadList = new ArrayList<>();
@@ -59,8 +68,8 @@ public class GraphEngineSpecs extends Activity implements
     LineDataSet set1, set2;
     LineData data;
 
-    protected void onCreate(Bundle savedInstanceState) {
-
+    protected void onCreate(Bundle savedInstanceState)
+    {
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
           for the Engineload information*/
         AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineSpecs.this);
@@ -206,49 +215,115 @@ public class GraphEngineSpecs extends Activity implements
             @Override
             public void onClick(View v)
             {
-                /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-                for the Mass Airflow rate information retrieved from the database*/
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineSpecs.this);
-                builder2.setCancelable(true);
+                //ProgressDialog will appear stating that the data is being checked
+                progress = new ProgressDialog(GraphEngineSpecs.this);
+                progress.setMax(100);
+                progress.setMessage("Checking...");
+                progress.setTitle("Checking Vehicle data");
+                progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                progress.show();
 
-                //Setting the title and message from the string.xml
-                builder2.setTitle(GraphEngineSpecs.this.getString(R.string.IMPORTANT));
-                builder2.setMessage(GraphEngineSpecs.this.getString(R.string.airflow_info));
-
-                //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-                builder2.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+                new Thread(new Runnable()
                 {
                     @Override
-                    public void onClick(DialogInterface dialog, int whichButton)
+                    //When running
+                    public void run()
                     {
-                        dialog.cancel();
-                        Intent intent = new Intent(GraphEngineSpecs.this, DataDisplay.class);
-                        startActivity(intent); }//End onClick()
-                });//End setNegativeButton()
+                        try
+                        {
+                            //Whilst the progress dialog is less than or equal to the max
+                            while (progress.getProgress() <= progress.getMax())
+                            {
+                                //Dialog will pause
+                                Thread.sleep(200);
 
-                //If the user taps Ok
-                builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
+                                //Handler will retrieve the message of increments
+                                handler.sendMessage(handler.obtainMessage());
 
-                    }//End onClick()
-                });//End setPositiveButton()
+                                //If the progress dialog is equal to the max
+                                if (progress.getProgress() == progress.getMax())
+                                {
+                                    //progressDialog will be shut
+                                    progress.dismiss();
+                                    //The AlertDialog will be opened
+                                    progress.setOnDismissListener(new DialogInterface.OnDismissListener() {
 
-                //Show the Dialogs on screen
-                builder2.show();
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog)
+                                        {
+                                            showAlertDialog();
+                                        }//End onDismiss()
+                                    });//End OnDismissListener()
+                                }//End if()
+                            }//End while()
+                        }//End try()
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }//End catch()
+                    }//End run()
+                }).start();
             }//End onClick()
+            @SuppressLint("HandlerLeak")
+            Handler handler = new Handler()
+            {
+                public void handleMessage (Message msg)
+                {
+                    super.handleMessage(msg);
+                    //Sets the value to increment by 3
+                    progress.incrementProgressBy(3);
+                }//End handleMessage()
+            };//End Handler()
         });//End OnClickListener()
     }//End onCreate
+
+    public void showAlertDialog()
+    {
+        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+                for the Mass Airflow rate information retrieved from the database*/
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineSpecs.this);
+        builder2.setCancelable(true);
+
+        //Setting the title and message from the string.xml
+        builder2.setTitle(GraphEngineSpecs.this.getString(R.string.IMPORTANT));
+        builder2.setMessage(GraphEngineSpecs.this.getString(R.string.airflow_info));
+
+        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+        builder2.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                dialog.cancel();
+                Intent intent = new Intent(GraphEngineSpecs.this, DataDisplay.class);
+                startActivity(intent); }//End onClick()
+        });//End setNegativeButton()
+
+        //If the user taps Ok
+        builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+
+            }//End onClick()
+        });//End setPositiveButton()
+
+        //Show the Dialogs on screen
+        builder2.show();
+    }//End showAlertDialog
 
     private void downloadData()
     {
         //ArrayAdapter
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_temp_specs);
 
-        //Connecting into table "VehicleData" on the Firebase database
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("VehicleData");
+        Intent intent = getIntent();
+        final String vehicle_key = intent.getStringExtra("Vehicle_id");
+        Log.d(vehicle_key, "ENGINE SPECS");
+
+        //Connecting into table "VehicleData" on the FireBase database
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Vehicles").child(vehicle_key).child("VehiclesData");
 
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
@@ -406,5 +481,4 @@ public class GraphEngineSpecs extends Activity implements
     {
         Log.i(TAG, "onNothingSelected: ");
     }//End()
-
-}
+}//End GraphEngineSpecs()
