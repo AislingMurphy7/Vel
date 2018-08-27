@@ -2,7 +2,6 @@ package com.example.user.vel;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -75,7 +74,7 @@ public class GraphEngineAirflow extends Activity implements
         {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineAirflow.this, Homepage.class);
+                Intent intent = new Intent(GraphEngineAirflow.this, DataDisplay.class);
                 startActivity(intent);
             }//End onClick()
         });//End setNegativeButton()
@@ -191,7 +190,7 @@ public class GraphEngineAirflow extends Activity implements
                     public void onClick(DialogInterface dialog, int whichButton)
                     {
                         dialog.cancel();
-                        Intent intent = new Intent(GraphEngineAirflow.this, Homepage.class);
+                        Intent intent = new Intent(GraphEngineAirflow.this, DataDisplay.class);
                         startActivity(intent); }//End onClick()
                 });//End setNegativeButton()
 
@@ -289,7 +288,7 @@ public class GraphEngineAirflow extends Activity implements
         System.out.println("Using key: " + key);
         System.out.println("Setting Mass Intake Airflow Rate: " + vehicleData.getMassAirflowRate());
 
-        //Adds new entrys to the arrayList and converts the string into a float
+        //Adds new entries to the arrayList and converts the string into a float
         engineAirflow.add(new Entry(key + 2, Float.parseFloat(vehicleData.getMassAirflowRate())));
 
         //Change the chart when changes occurs

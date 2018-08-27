@@ -78,11 +78,7 @@ public class UserHelp extends AppCompatActivity
         if (option_id == R.id.action_exit)
         {
             //The app will close
-            Intent exit_intent = new Intent(Intent.ACTION_MAIN);
-            exit_intent.addCategory(Intent.CATEGORY_HOME);
-            exit_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(exit_intent);
-            android.os.Process.killProcess(android.os.Process.myPid());
+            finishAffinity();
         }//End if()
 
         return super.onOptionsItemSelected(item);
