@@ -29,8 +29,8 @@
         <activity android:name=".SetupELM" />
         <activity android:name=".UserHelp" />
         <activity android:name=".LanguageSelect" />
-        <activity android:name=".GraphTempSpecs" />
-        <activity android:name=".GraphEngineSpecs" />
+        <activity android:name=".GraphIntakeAir" />
+        <activity android:name=".GraphEngineLoad" />
         <activity android:name=".GraphEngineRPM" />
         <activity android:name=".GraphEngineAirflow" />
         <activity android:name=".LoginUser" />
@@ -48,6 +48,8 @@
         <activity android:name=".NewVehicle" />
         <activity android:name=".PasswordProtected" />
         <activity android:name=".DataDisplay" />
+        <activity android:name=".GraphCoolantTemp" />
+        <activity android:name=".GraphThrottlePosition"></activity>
     </application>
 
 </manifest>

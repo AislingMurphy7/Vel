@@ -49,13 +49,24 @@
         </Button>
 
         <Button
-            android:id="@+id/engine_temps"
+            android:id="@+id/intake_temps"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="7dp"
             android:backgroundTint="#FFFFFF"
-            android:text="@string/temp_specs"
+            android:text="@string/intake"
+            android:textColor="#c70039">
+        </Button>
+
+        <Button
+            android:id="@+id/cool_temps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/coolant"
             android:textColor="#c70039">
         </Button>
 
@@ -66,7 +77,18 @@
             android:layout_gravity="center_horizontal"
             android:layout_margin="7dp"
             android:backgroundTint="#FFFFFF"
-            android:text="@string/throttle_load"
+            android:text="@string/throttle"
+            android:textColor="#c70039">
+        </Button>
+
+        <Button
+            android:id="@+id/Engine_Load"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="7dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="@string/load"
             android:textColor="#c70039">
         </Button>
 

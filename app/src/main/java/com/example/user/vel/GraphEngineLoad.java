@@ -41,18 +41,18 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /*
-    This class is used to graph the Data for the "Air Intake Temperature" and the "Coolant Temperature" which
+    This class is used to graph the Data for the "Engine load" and the "Throttle position" which
     is retrieved from the Database. This retrieves the data from the database which is stored on
     Firebase. This data is then used to plot the data on a LineChart. Alert Dialogs Pop up before
     the graph appears and explains the data to the user, as well as stating if the data recorded is
     normal readings or if there are variances present
  */
 
-public class GraphTempSpecs extends Activity implements
+public class GraphEngineLoad extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener
 {
 
-    private static final String TAG = "GraphTempSpecs";
+    private static final String TAG = "GraphEngineLoad";
 
     //Declaring the chart
     private LineChart chart;
@@ -60,51 +60,26 @@ public class GraphTempSpecs extends Activity implements
     //Declaring progress dialog
     private ProgressDialog progress;
 
-    //Array to hold Mass Airflow data from FireBase
-    ArrayList<Entry> coolantTemperatureList = new ArrayList<>();
-    ArrayList<Entry> airIntakeTemperatureList = new ArrayList<>();
+    //Arrays to hold engine load and throttle position from Firebase
+    ArrayList<Entry> engineloadList = new ArrayList<>();
 
     //Variables
-    LineDataSet set1, set2;
+    LineDataSet set1;
     LineData data;
 
     protected void onCreate(Bundle savedInstanceState)
     {
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-          for the Temp specs information*/
-        AlertDialog.Builder builder = new AlertDialog.Builder(GraphTempSpecs.this);
+          for the Engineload information*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineLoad.this);
         builder.setCancelable(true);
 
         //Setting the title and message from the string.xml
-        builder.setTitle(GraphTempSpecs.this.getString(R.string.engine_coolant_title));
-        builder.setMessage(GraphTempSpecs.this.getString(R.string.engine_coolant_def));
+        builder.setTitle(GraphEngineLoad.this.getString(R.string.engine_load_title));
+        builder.setMessage(GraphEngineLoad.this.getString(R.string.engine_load_def));
 
-        builder.setPositiveButton(GraphTempSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+        builder.setPositiveButton(GraphEngineLoad.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }//End onClick()
-        });//End setPositiveButton()
-
-        AlertDialog.Builder builder3 = new AlertDialog.Builder(GraphTempSpecs.this);
-        builder3.setCancelable(true);
-
-        //Setting the title and message from the string.xml
-        builder3.setTitle(GraphTempSpecs.this.getString(R.string.engine_air_intake_title));
-        builder3.setMessage(GraphTempSpecs.this.getString(R.string.engine_air_intake_def));
-
-        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder3.setNegativeButton(GraphTempSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.cancel();
-                Intent intent = new Intent(GraphTempSpecs.this, DataDisplay.class);
-                startActivity(intent);
-            }//End onClick()
-        });//End setNegativeButton()
-
-        builder3.setPositiveButton(GraphTempSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
@@ -112,19 +87,19 @@ public class GraphTempSpecs extends Activity implements
             }//End onClick()
         });//End setPositiveButton()
 
-        builder3.show();
         builder.show();
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_graph_temp_specs);
+        setContentView(R.layout.activity_graph_enginespec);
 
+        //XML reference
         chart = findViewById(R.id.linechart);
 
         //Listens for on chart taps
-        chart.setOnChartGestureListener(GraphTempSpecs.this);
-        chart.setOnChartValueSelectedListener(GraphTempSpecs.this);
+        chart.setOnChartGestureListener(GraphEngineLoad.this);
+        chart.setOnChartValueSelectedListener(GraphEngineLoad.this);
 
         //Enable touch gestures
         chart.setTouchEnabled(true);
@@ -166,35 +141,26 @@ public class GraphTempSpecs extends Activity implements
         XAxis x = chart.getXAxis();
         x.setTextSize(13f);
         x.setValueFormatter(new MyXAxisValueFormatter(vals));
-        x.setGranularity(1);
+        x.setGranularity(2);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
 
         //Adding value to arrays as system will crash without
-        coolantTemperatureList.add(new Entry(0, 0));
-        coolantTemperatureList.add(new Entry(1, 0));
-        airIntakeTemperatureList.add(new Entry(0, 0));
-        airIntakeTemperatureList.add(new Entry(1, 0));
+        engineloadList.add(new Entry(0, 0));
+        engineloadList.add(new Entry(1, 0));
 
         //Setting the lines
-        set1 = new LineDataSet(coolantTemperatureList, "Coolant Temp ");
+        set1 = new LineDataSet(engineloadList, "Engine Load ");
         set1.setFillAlpha(110);
         set1.setColor(Color.RED);
         set1.setLineWidth(3f);
         set1.setValueTextSize(10f);
         set1.setValueTextColor(Color.BLACK);
 
-        set2 = new LineDataSet(airIntakeTemperatureList, "Air Intake Temp ");
-        set2.setFillAlpha(110);
-        set2.setColor(Color.BLUE);
-        set2.setLineWidth(3f);
-        set2.setValueTextSize(10f);
-        set2.setValueTextColor(Color.BLACK);
-
-        data = new LineData(set1, set2);
+        data = new LineData(set1);
 
         chart.setData(data);
 
-        //Calls the downloadData()
+        //Calls the downloadDatt()
         downloadData();
         //Change the chart when a change occurs
         chart.notifyDataSetChanged();
@@ -209,7 +175,7 @@ public class GraphTempSpecs extends Activity implements
             public void onClick(View v)
             {
                 //ProgressDialog will appear stating that the data is being checked
-                progress = new ProgressDialog(GraphTempSpecs.this);
+                progress = new ProgressDialog(GraphEngineLoad.this);
                 progress.setMax(100);
                 progress.setMessage("Checking...");
                 progress.setTitle("Checking Vehicle data");
@@ -274,26 +240,26 @@ public class GraphTempSpecs extends Activity implements
     {
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphTempSpecs.this);
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineLoad.this);
         builder2.setCancelable(true);
 
         //Setting the title and message from the string.xml
-        builder2.setTitle(GraphTempSpecs.this.getString(R.string.IMPORTANT));
-        builder2.setMessage(GraphTempSpecs.this.getString(R.string.airflow_info));
+        builder2.setTitle(GraphEngineLoad.this.getString(R.string.IMPORTANT));
+        builder2.setMessage(GraphEngineLoad.this.getString(R.string.airflow_info));
 
         //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder2.setNegativeButton(GraphTempSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+        builder2.setNegativeButton(GraphEngineLoad.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int whichButton)
             {
                 dialog.cancel();
-                Intent intent = new Intent(GraphTempSpecs.this, DataDisplay.class);
+                Intent intent = new Intent(GraphEngineLoad.this, DataDisplay.class);
                 startActivity(intent); }//End onClick()
         });//End setNegativeButton()
 
         //If the user taps Ok
-        builder2.setPositiveButton(GraphTempSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+        builder2.setPositiveButton(GraphEngineLoad.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
@@ -304,9 +270,8 @@ public class GraphTempSpecs extends Activity implements
 
         //Show the Dialogs on screen
         builder2.show();
-    }//End showAlertDialog()
+    }//End showAlertDialog
 
-    //Downloads Data from FireBase
     private void downloadData()
     {
         //ArrayAdapter
@@ -314,7 +279,7 @@ public class GraphTempSpecs extends Activity implements
 
         Intent intent = getIntent();
         final String vehicle_key = intent.getStringExtra("Vehicle_id");
-        Log.d(vehicle_key, "ENGINE TEMPS");
+        Log.d(vehicle_key, "ENGINE SPECS");
 
         //Connecting into table "VehicleData" on the FireBase database
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Vehicles").child(vehicle_key).child("VehiclesData");
@@ -322,16 +287,14 @@ public class GraphTempSpecs extends Activity implements
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
         {
-            //Will run when the app is started and when there is data added to the database
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey)
             {
-                //Holds the DataSnapshot value of the database as type String
+                //Holds the Datasnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
 
                 //Prints values to console to prove the download is working
-                System.out.println("getCoolantTemperature: " + Objects.requireNonNull(vehicleData).getCoolantTemperature());
-                System.out.println("getIntakeAirTemperature: " + vehicleData.getIntakeAirTemperature());
-                System.out.println("prevChildKey: " + prevChildKey);
+                System.out.println("getEngineLoad: " + Objects.requireNonNull(vehicleData).getEngineLoad());
+                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
 
                 //Converting value to integer
@@ -364,6 +327,7 @@ public class GraphTempSpecs extends Activity implements
             {
 
             }//End onCancelled()
+
         });//End addChildEventListener()
     }//End DownloadData()
 
@@ -372,15 +336,10 @@ public class GraphTempSpecs extends Activity implements
     {
         //Prints to console first
         System.out.println("Using key: " + key);
-        System.out.println("Setting CoolantTemperature: " + vehicleData.getCoolantTemperature());
+        System.out.println("Setting Engine Load: " + vehicleData.getEngineLoad());
 
-        //Adds new entrys to the arrayList and converts the string into a float
-        coolantTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getCoolantTemperature())));
-
-        //Prints to console first
-        System.out.println("setting Intake Air Temp: " + vehicleData.getIntakeAirTemperature());
         //Adds new entries to the arrayList and converts the string into a float
-        airIntakeTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getIntakeAirTemperature())));
+        engineloadList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineLoad())));
 
         //Change the chart when changes occurs
         set1.notifyDataSetChanged();
@@ -457,7 +416,6 @@ public class GraphTempSpecs extends Activity implements
     }//End()
 
     @Override
-    //Sends log message if action is performed
     public void onChartTranslate(MotionEvent me, float dX, float dY)
     {
         Log.i(TAG, "onChartTranslate: dX" + dX + "dY" + dY);
@@ -477,4 +435,4 @@ public class GraphTempSpecs extends Activity implements
     {
         Log.i(TAG, "onNothingSelected: ");
     }//End()
-}//End GraphTempSpecs()
+}//End GraphEngineLoad()

@@ -42,10 +42,12 @@
 
     <string name="FAQ6"><b><u>What is the Engine Air Temperature sensor?</u></b> \n\nThis sensor monitors the temperature of the air entering the engine.</string>
 
-    <string name="temp_specs">Engine Temperatures</string>
-    <string name="throttle_load">Engine / Throttle load data</string>
+    <string name="intake">Intake Air Temperatures</string>
+    <string name="coolant">Coolant Temperatures</string>
     <string name="RPM">Engine RPM</string>
     <string name="mass_air">Mass Airflow Rate data</string>
+    <string name="throttle">Throttle Position</string>
+    <string name="load">Engine Load"</string>
 
     <string name="engine_rpm_def"> Engine RPM is defined as: Revolutions per minute. \nThis measures how fast
     a vehicle is operating by measuring how many times the crankshaft does a full rotation. </string>

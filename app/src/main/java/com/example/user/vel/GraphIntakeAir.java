@@ -38,21 +38,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /*
-    This class is used to graph the Data for the "Engine load" and the "Throttle position" which
+    This class is used to graph the Data for the "Air Intake Temperature" and the "Coolant Temperature" which
     is retrieved from the Database. This retrieves the data from the database which is stored on
     Firebase. This data is then used to plot the data on a LineChart. Alert Dialogs Pop up before
     the graph appears and explains the data to the user, as well as stating if the data recorded is
     normal readings or if there are variances present
  */
 
-public class GraphEngineSpecs extends Activity implements
+public class GraphIntakeAir extends Activity implements
         OnChartGestureListener, OnChartValueSelectedListener
 {
 
-    private static final String TAG = "GraphEngineSpecs";
+    private static final String TAG = "GraphIntakeAir";
 
     //Declaring the chart
     private LineChart chart;
@@ -60,57 +59,25 @@ public class GraphEngineSpecs extends Activity implements
     //Declaring progress dialog
     private ProgressDialog progress;
 
-    //Arrays to hold engine load and throttle position from Firebase
-    ArrayList<Entry> engineloadList = new ArrayList<>();
-    ArrayList<Entry> throttlePositionList = new ArrayList<>();
+    //Array to hold data from FireBase
+    ArrayList<Entry> airIntakeTemperatureList = new ArrayList<>();
 
     //Variables
-    LineDataSet set1, set2;
+    LineDataSet set2;
     LineData data;
 
     protected void onCreate(Bundle savedInstanceState)
     {
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-          for the Engineload information*/
-        AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineSpecs.this);
-        builder.setCancelable(true);
-
-        //Setting the title and message from the string.xml
-        builder.setTitle(GraphEngineSpecs.this.getString(R.string.engine_load_title));
-        builder.setMessage(GraphEngineSpecs.this.getString(R.string.engine_load_def));
-
-        builder.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-
-            }//End onClick()
-        });//End setPositiveButton()
-
-        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-          for the throttle position information*/
-        AlertDialog.Builder builder3 = new AlertDialog.Builder(GraphEngineSpecs.this);
+          for the Temp specs information*/
+        AlertDialog.Builder builder3 = new AlertDialog.Builder(GraphIntakeAir.this);
         builder3.setCancelable(true);
 
         //Setting the title and message from the string.xml
-        builder3.setTitle(GraphEngineSpecs.this.getString(R.string.engine_throttle_title));
-        builder3.setMessage(GraphEngineSpecs.this.getString(R.string.engine_throttle_def));
+        builder3.setTitle(GraphIntakeAir.this.getString(R.string.engine_air_intake_title));
+        builder3.setMessage(GraphIntakeAir.this.getString(R.string.engine_air_intake_def));
 
-        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder3.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-                dialog.cancel();
-                Intent intent = new Intent(GraphEngineSpecs.this, DataDisplay.class);
-                startActivity(intent);
-            }//End onClick()
-        });//End setNegativeButton()
-
-        builder3.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-        {
+        builder3.setPositiveButton(GraphIntakeAir.this.getString(R.string.Ok), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
@@ -119,19 +86,17 @@ public class GraphEngineSpecs extends Activity implements
         });//End setPositiveButton()
 
         builder3.show();
-        builder.show();
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //Sets the layout according to the XML file
-        setContentView(R.layout.activity_graph_enginespec);
+        setContentView(R.layout.activity_graph_coolant_temp);
 
-        //XML reference
         chart = findViewById(R.id.linechart);
 
         //Listens for on chart taps
-        chart.setOnChartGestureListener(GraphEngineSpecs.this);
-        chart.setOnChartValueSelectedListener(GraphEngineSpecs.this);
+        chart.setOnChartGestureListener(GraphIntakeAir.this);
+        chart.setOnChartValueSelectedListener(GraphIntakeAir.this);
 
         //Enable touch gestures
         chart.setTouchEnabled(true);
@@ -150,7 +115,7 @@ public class GraphEngineSpecs extends Activity implements
         //Setting YAxis
         YAxis left = chart.getAxisLeft();
         left.setAxisMinimum(0f);
-        left.setAxisMaximum(100f);
+        left.setAxisMaximum(120f);
         left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
 
@@ -173,35 +138,26 @@ public class GraphEngineSpecs extends Activity implements
         XAxis x = chart.getXAxis();
         x.setTextSize(13f);
         x.setValueFormatter(new MyXAxisValueFormatter(vals));
-        x.setGranularity(2);
+        x.setGranularity(1);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
 
         //Adding value to arrays as system will crash without
-        engineloadList.add(new Entry(0, 0));
-        engineloadList.add(new Entry(1, 0));
-        throttlePositionList.add(new Entry(0, 0));
-        throttlePositionList.add(new Entry(1, 0));
+        airIntakeTemperatureList.add(new Entry(0, 0));
+        airIntakeTemperatureList.add(new Entry(1, 0));
 
         //Setting the lines
-        set1 = new LineDataSet(engineloadList, "Engine Load ");
-        set1.setFillAlpha(110);
-        set1.setColor(Color.RED);
-        set1.setLineWidth(3f);
-        set1.setValueTextSize(10f);
-        set1.setValueTextColor(Color.BLACK);
-
-        set2 = new LineDataSet(throttlePositionList, "Throttle Position ");
+        set2 = new LineDataSet(airIntakeTemperatureList, "Air Intake Temp ");
         set2.setFillAlpha(110);
         set2.setColor(Color.BLUE);
         set2.setLineWidth(3f);
         set2.setValueTextSize(10f);
         set2.setValueTextColor(Color.BLACK);
 
-        data = new LineData(set1, set2);
+        data = new LineData(set2);
 
         chart.setData(data);
 
-        //Calls the downloadDatt()
+        //Calls the downloadData()
         downloadData();
         //Change the chart when a change occurs
         chart.notifyDataSetChanged();
@@ -216,7 +172,7 @@ public class GraphEngineSpecs extends Activity implements
             public void onClick(View v)
             {
                 //ProgressDialog will appear stating that the data is being checked
-                progress = new ProgressDialog(GraphEngineSpecs.this);
+                progress = new ProgressDialog(GraphIntakeAir.this);
                 progress.setMax(100);
                 progress.setMessage("Checking...");
                 progress.setTitle("Checking Vehicle data");
@@ -281,26 +237,26 @@ public class GraphEngineSpecs extends Activity implements
     {
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineSpecs.this);
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphIntakeAir.this);
         builder2.setCancelable(true);
 
         //Setting the title and message from the string.xml
-        builder2.setTitle(GraphEngineSpecs.this.getString(R.string.IMPORTANT));
-        builder2.setMessage(GraphEngineSpecs.this.getString(R.string.airflow_info));
+        builder2.setTitle(GraphIntakeAir.this.getString(R.string.IMPORTANT));
+        builder2.setMessage(GraphIntakeAir.this.getString(R.string.airflow_info));
 
         //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder2.setNegativeButton(GraphEngineSpecs.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+        builder2.setNegativeButton(GraphIntakeAir.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int whichButton)
             {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineSpecs.this, DataDisplay.class);
+                Intent intent = new Intent(GraphIntakeAir.this, DataDisplay.class);
                 startActivity(intent); }//End onClick()
         });//End setNegativeButton()
 
         //If the user taps Ok
-        builder2.setPositiveButton(GraphEngineSpecs.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+        builder2.setPositiveButton(GraphIntakeAir.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
@@ -311,8 +267,9 @@ public class GraphEngineSpecs extends Activity implements
 
         //Show the Dialogs on screen
         builder2.show();
-    }//End showAlertDialog
+    }//End showAlertDialog()
 
+    //Downloads Data from FireBase
     private void downloadData()
     {
         //ArrayAdapter
@@ -320,7 +277,7 @@ public class GraphEngineSpecs extends Activity implements
 
         Intent intent = getIntent();
         final String vehicle_key = intent.getStringExtra("Vehicle_id");
-        Log.d(vehicle_key, "ENGINE SPECS");
+        Log.d(vehicle_key, "ENGINE TEMPS");
 
         //Connecting into table "VehicleData" on the FireBase database
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Vehicles").child(vehicle_key).child("VehiclesData");
@@ -328,14 +285,14 @@ public class GraphEngineSpecs extends Activity implements
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
         {
+            //Will run when the app is started and when there is data added to the database
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey)
             {
-                //Holds the Datasnapshot value of the database as type String
+                //Holds the DataSnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
 
                 //Prints values to console to prove the download is working
-                System.out.println("getEngineLoad: " + Objects.requireNonNull(vehicleData).getEngineLoad());
-                System.out.println("getThrottlePosition: " + vehicleData.getThrottlePosition());
+                System.out.println("getIntakeAirTemperature: " + vehicleData.getIntakeAirTemperature());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
 
@@ -369,7 +326,6 @@ public class GraphEngineSpecs extends Activity implements
             {
 
             }//End onCancelled()
-
         });//End addChildEventListener()
     }//End DownloadData()
 
@@ -377,18 +333,12 @@ public class GraphEngineSpecs extends Activity implements
     private void setData(int key, VehicleData vehicleData)
     {
         //Prints to console first
-        System.out.println("Using key: " + key);
-        System.out.println("Setting Engine Load: " + vehicleData.getEngineLoad());
-
+        System.out.println("setting Intake Air Temp: " + vehicleData.getIntakeAirTemperature());
         //Adds new entries to the arrayList and converts the string into a float
-        engineloadList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineLoad())));
-
-        System.out.println("Setting Throttle Position: " + vehicleData.getThrottlePosition());
-        //Adds new entries to the arrayList and converts the string into a float
-        throttlePositionList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getThrottlePosition())));
+        airIntakeTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getIntakeAirTemperature())));
 
         //Change the chart when changes occurs
-        set1.notifyDataSetChanged();
+        set2.notifyDataSetChanged();
         data.notifyDataChanged();
         this.chart.notifyDataSetChanged();
 
@@ -462,6 +412,7 @@ public class GraphEngineSpecs extends Activity implements
     }//End()
 
     @Override
+    //Sends log message if action is performed
     public void onChartTranslate(MotionEvent me, float dX, float dY)
     {
         Log.i(TAG, "onChartTranslate: dX" + dX + "dY" + dY);
@@ -481,4 +432,4 @@ public class GraphEngineSpecs extends Activity implements
     {
         Log.i(TAG, "onNothingSelected: ");
     }//End()
-}//End GraphEngineSpecs()
+}//End GraphIntakeAir()

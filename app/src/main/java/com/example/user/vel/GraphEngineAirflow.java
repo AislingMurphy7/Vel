@@ -125,7 +125,7 @@ public class GraphEngineAirflow extends Activity implements
         //Setting YAxis
         YAxis left = chart.getAxisLeft();
         left.setAxisMinimum(0f);
-        left.setAxisMaximum(50f);
+        left.setAxisMaximum(10f);
         left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
 

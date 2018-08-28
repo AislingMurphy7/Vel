@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    XML for coolant temperature and air intake temperature graph used in the GraphTempSpecs.class.
+    XML for coolant temperature and air intake temperature graph used in the GraphIntakeAir.class.
     This implements the mikephil graph API and a button to view the data
     irregularities
 -->
@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#c70039"
-    tools:context="com.example.user.vel.GraphTempSpecs">
+    tools:context="com.example.user.vel.GraphIntakeAir">
 
     <Button
         android:id="@+id/checkdata"

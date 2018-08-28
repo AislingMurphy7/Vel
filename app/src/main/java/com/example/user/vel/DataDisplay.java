@@ -30,9 +30,11 @@ public class DataDisplay extends AppCompatActivity
 
         //XML variables
         Button mass_air = findViewById(R.id.mass_air);
-        Button engine_load = findViewById(R.id.engine_throttle);
+        Button engine_load = findViewById(R.id.Engine_Load);
         Button engine_RPM = findViewById(R.id.RPM);
-        Button engine_temps = findViewById(R.id.engine_temps);
+        Button cool_temp = findViewById(R.id.cool_temps);
+        Button engine_temps = findViewById(R.id.engine_throttle);
+        Button intake_temp = findViewById(R.id.intake_temps);
 
         //If the Engine mass airflow button is tapped
         mass_air.setOnClickListener(new View.OnClickListener()
@@ -53,19 +55,31 @@ public class DataDisplay extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(DataDisplay.this, GraphTempSpecs.class);
+                Intent intent = new Intent(DataDisplay.this, GraphThrottlePosition.class);
                 intent.putExtra("Vehicle_id", vehicle_key);
                 startActivity(intent);
             }//End onClick()
         });//End OnClickListener()
 
-        //If the Engine throttle load button is tapped
+        //If the Engine load button is tapped
         engine_load.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(DataDisplay.this, GraphEngineSpecs.class);
+                Intent intent = new Intent(DataDisplay.this, GraphEngineLoad.class);
+                intent.putExtra("Vehicle_id", vehicle_key);
+                startActivity(intent);
+            }//End onClick()
+        });//End OnClickListener()
+
+        //If the coolant temp button is tapped
+        cool_temp.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(DataDisplay.this, GraphCoolantTemp.class);
                 intent.putExtra("Vehicle_id", vehicle_key);
                 startActivity(intent);
             }//End onClick()
@@ -76,6 +90,16 @@ public class DataDisplay extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DataDisplay.this, GraphEngineRPM.class);
+                intent.putExtra("Vehicle_id", vehicle_key);
+                startActivity(intent);
+            }//End onClick()
+        });//End OnClickListener()
+
+        //If the Engine RPM button is tapped
+        intake_temp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DataDisplay.this, GraphIntakeAir.class);
                 intent.putExtra("Vehicle_id", vehicle_key);
                 startActivity(intent);
             }//End onClick()

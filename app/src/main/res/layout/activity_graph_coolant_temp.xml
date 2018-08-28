@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <!--
-    XML for the Engine load and Throttle position graph used in the GraphEngineLoad.class
+    XML for Mass airflow rate graph used in the GraphCoolantTrmp.class.
     This implements the mikephil graph API and a button to view the data
     irregularities
 -->
@@ -13,7 +13,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#c70039"
-    tools:context=".GraphEngineLoad">
+    tools:context=".GraphCoolantTemp">
 
     <Button
         android:id="@+id/checkdata"
@@ -29,10 +29,10 @@
     </Button>
 
     <com.github.mikephil.charting.charts.LineChart
-        android:layout_width="match_parent"
+        android:id="@+id/linechart"
         android:layout_margin="20dp"
-        android:layout_height="match_parent"
-        android:id="@+id/linechart">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     </com.github.mikephil.charting.charts.LineChart>
 
 </LinearLayout>

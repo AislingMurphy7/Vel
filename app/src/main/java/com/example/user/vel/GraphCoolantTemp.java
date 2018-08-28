@@ -1,15 +1,15 @@
 package com.example.user.vel;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,17 +40,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Objects;
 
-/*
-    This class is used to graph the Data for the "Engine RPM" which
-    is retrieved from the Database. This retrieves the data from the database which is stored on
-    Firebase. This data is then used to plot the data on a LineChart. Alert Dialogs Pop up before
-    the graph appears and explains the data to the user, as well as stating if the data recorded is
-    normal readings or if there are variances present
- */
-public class GraphEngineRPM extends Activity implements
-        OnChartGestureListener, OnChartValueSelectedListener
-{
-    private static final String TAG = "GraphEngineRPM";
+public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestureListener, OnChartValueSelectedListener {
+    private static final String TAG = "GraphCoolantTemps";
 
     //Declaring the chart
     private LineChart chart;
@@ -59,55 +50,44 @@ public class GraphEngineRPM extends Activity implements
     private ProgressDialog progress;
 
     //Array to hold Mass Airflow data from FireBase
-    ArrayList<Entry> engineRPMlist = new ArrayList<>();
+    ArrayList<Entry> coolantTemperatureList = new ArrayList<>();
 
     //Variables
     LineDataSet set1;
     LineData data;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-          for the Engine RPM information*/
-        AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineRPM.this);
+          for the Temp specs information*/
+        AlertDialog.Builder builder = new AlertDialog.Builder(GraphCoolantTemp.this);
         builder.setCancelable(true);
 
         //Setting the title and message from the string.xml
-        builder.setTitle(GraphEngineRPM.this.getString(R.string.engine_rpm_title));
-        builder.setMessage(GraphEngineRPM.this.getString(R.string.engine_rpm_def));
+        builder.setTitle(GraphCoolantTemp.this.getString(R.string.engine_coolant_title));
+        builder.setMessage(GraphCoolantTemp.this.getString(R.string.engine_coolant_def));
 
-        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder.setNegativeButton(GraphEngineRPM.this.getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.cancel();
-                Intent intent = new Intent(GraphEngineRPM.this, DataDisplay.class);
-                startActivity(intent);
-            }//End onClick()
-        });//End setNegativeButton()
-
-        builder.setPositiveButton(GraphEngineRPM.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+        builder.setPositiveButton(GraphCoolantTemp.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
+            public void onClick(DialogInterface dialog, int which) {
+
             }//End onClick()
         });//End setPositiveButton()
 
         builder.show();
 
         super.onCreate(savedInstanceState);
-        //Sets the layout according to the XML file
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_graph_engine_rpm);
+        //Sets the layout according to the XML file
+        setContentView(R.layout.activity_graph_coolant_temp);
 
-        //XML reference
         chart = findViewById(R.id.linechart);
 
         //Listens for on chart taps
-        chart.setOnChartGestureListener(GraphEngineRPM.this);
-        chart.setOnChartValueSelectedListener(GraphEngineRPM.this);
+        chart.setOnChartGestureListener(GraphCoolantTemp.this);
+        chart.setOnChartValueSelectedListener(GraphCoolantTemp.this);
 
         //Enable touch gestures
         chart.setTouchEnabled(true);
@@ -125,9 +105,8 @@ public class GraphEngineRPM extends Activity implements
 
         //Setting YAxis
         YAxis left = chart.getAxisLeft();
-        left.setAxisMinimum(20);
         left.setAxisMinimum(0f);
-        left.setAxisMaximum(3000f);
+        left.setAxisMaximum(250f);
         left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
 
@@ -136,7 +115,7 @@ public class GraphEngineRPM extends Activity implements
 
         chart.getAxisRight().setEnabled(false);
 
-        //Value String
+        //Value string
         String[] vals = new String[] {"0s", "1s", "2s", "3s", "4s", "5s", "6s", "7s", "8s", "9s", "10s", "11s"};
 
         //Legend object
@@ -153,12 +132,12 @@ public class GraphEngineRPM extends Activity implements
         x.setGranularity(1);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-        //Adding value to array as system will crash without
-        engineRPMlist.add(new Entry(0, 0));
-        engineRPMlist.add(new Entry(1, 0));
+        //Adding value to arrays as system will crash without
+        coolantTemperatureList.add(new Entry(0, 0));
+        coolantTemperatureList.add(new Entry(1, 0));
 
-        //Setting the line
-        set1 = new LineDataSet(engineRPMlist, "Engine RPM ");
+        //Setting the lines
+        set1 = new LineDataSet(coolantTemperatureList, "Coolant Temp ");
         set1.setFillAlpha(110);
         set1.setColor(Color.RED);
         set1.setLineWidth(3f);
@@ -184,7 +163,7 @@ public class GraphEngineRPM extends Activity implements
             public void onClick(View v)
             {
                 //ProgressDialog will appear stating that the data is being checked
-                progress = new ProgressDialog(GraphEngineRPM.this);
+                progress = new ProgressDialog(GraphCoolantTemp.this);
                 progress.setMax(100);
                 progress.setMessage("Checking...");
                 progress.setTitle("Checking Vehicle data");
@@ -214,8 +193,8 @@ public class GraphEngineRPM extends Activity implements
                                     //progressDialog will be shut
                                     progress.dismiss();
                                     //The AlertDialog will be opened
-                                    progress.setOnDismissListener(new DialogInterface.OnDismissListener()
-                                    {
+                                    progress.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
                                         @Override
                                         public void onDismiss(DialogInterface dialog)
                                         {
@@ -249,26 +228,26 @@ public class GraphEngineRPM extends Activity implements
     {
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineRPM.this);
+        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphCoolantTemp.this);
         builder2.setCancelable(true);
 
         //Setting the title and message from the string.xml
-        builder2.setTitle(GraphEngineRPM.this.getString(R.string.IMPORTANT));
-        builder2.setMessage(GraphEngineRPM.this.getString(R.string.airflow_info));
+        builder2.setTitle(GraphCoolantTemp.this.getString(R.string.IMPORTANT));
+        builder2.setMessage(GraphCoolantTemp.this.getString(R.string.airflow_info));
 
         //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder2.setNegativeButton(GraphEngineRPM.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+        builder2.setNegativeButton(GraphCoolantTemp.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int whichButton)
             {
                 dialog.cancel();
-                Intent intent = new Intent(GraphEngineRPM.this, DataDisplay.class);
+                Intent intent = new Intent(GraphCoolantTemp.this, DataDisplay.class);
                 startActivity(intent); }//End onClick()
         });//End setNegativeButton()
 
         //If the user taps Ok
-        builder2.setPositiveButton(GraphEngineRPM.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+        builder2.setPositiveButton(GraphCoolantTemp.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialog, int which)
@@ -285,11 +264,11 @@ public class GraphEngineRPM extends Activity implements
     private void downloadData()
     {
         //ArrayAdapter
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_engine_rpm);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_temp_specs);
 
         Intent intent = getIntent();
         final String vehicle_key = intent.getStringExtra("Vehicle_id");
-        Log.d(vehicle_key, "ENGINE RPM");
+        Log.d(vehicle_key, "ENGINE TEMPS");
 
         //Connecting into table "VehicleData" on the FireBase database
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Vehicles").child(vehicle_key).child("VehiclesData");
@@ -297,13 +276,14 @@ public class GraphEngineRPM extends Activity implements
         //ChildEventListener allows child events to be listened for
         database.addChildEventListener(new ChildEventListener()
         {
+            //Will run when the app is started and when there is data added to the database
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey)
             {
-                //Holds the Datasnapshot value of the database as type String
+                //Holds the DataSnapshot value of the database as type String
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
 
                 //Prints values to console to prove the download is working
-                System.out.println("getEngineRPM: " + Objects.requireNonNull(vehicleData).getEngineRPM());
+                System.out.println("getCoolantTemperature: " + Objects.requireNonNull(vehicleData).getCoolantTemperature());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
 
@@ -340,14 +320,15 @@ public class GraphEngineRPM extends Activity implements
         });//End addChildEventListener()
     }//End DownloadData()
 
+    //Function sets the data on the graph
     private void setData(int key, VehicleData vehicleData)
     {
         //Prints to console first
         System.out.println("Using key: " + key);
-        System.out.println("Setting EngineRPM: " + vehicleData.getEngineRPM());
+        System.out.println("Setting CoolantTemperature: " + vehicleData.getCoolantTemperature());
 
         //Adds new entrys to the arrayList and converts the string into a float
-        engineRPMlist.add(new Entry(key + 2, Float.parseFloat(vehicleData.getEngineRPM())));
+        coolantTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getCoolantTemperature())));
 
         //Change the chart when changes occurs
         set1.notifyDataSetChanged();
@@ -410,6 +391,7 @@ public class GraphEngineRPM extends Activity implements
     }//End()
 
     @Override
+    //Sends log message if action is performed
     public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY)
     {
         Log.i(TAG, "onChartFling: veloX: " + velocityX + "veloY" + velocityY);
@@ -423,6 +405,7 @@ public class GraphEngineRPM extends Activity implements
     }//End()
 
     @Override
+    //Sends log message if action is performed
     public void onChartTranslate(MotionEvent me, float dX, float dY)
     {
         Log.i(TAG, "onChartTranslate: dX" + dX + "dY" + dY);
@@ -442,4 +425,5 @@ public class GraphEngineRPM extends Activity implements
     {
         Log.i(TAG, "onNothingSelected: ");
     }//End()
-}//End GraphEngineRPM
+
+}//End GraphIntakeAir()
