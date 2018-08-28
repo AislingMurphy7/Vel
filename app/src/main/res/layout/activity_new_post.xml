@@ -21,8 +21,9 @@
 
     <TextView
         android:id="@+id/infopost"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:paddingBottom="20dp"
         android:text="@string/enterdesc"
         android:textColor="#FFFFFF"

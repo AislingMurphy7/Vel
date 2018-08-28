@@ -15,11 +15,10 @@ public class VehicleLog
     private String Reg;
     private String Engine;
     private String Password;
-    private String Confirmed_Password;
     private String Image;
 
     //Constructor
-    public VehicleLog(String make, String model, String reg, String image, String engine, String password, String confirmed_Password)
+    public VehicleLog(String make, String model, String reg, String image, String engine, String password)
     {
         Make = make;
         Model = model;
@@ -27,7 +26,6 @@ public class VehicleLog
         Engine = engine;
         Image = image;
         Password = password;
-        Confirmed_Password = confirmed_Password;
     }//End VehicleLog()
 
     //Empty constructor()
@@ -97,13 +95,4 @@ public class VehicleLog
         Password = password;
     }//End setPassword()
 
-    public String getConfirmed_Password()
-    {
-        return Confirmed_Password;
-    }//End getConfirmed_Password()
-
-    public void setConfirmed_Password(String confirmed_Password)
-    {
-        Confirmed_Password = confirmed_Password;
-    }//End setConfirmed_Password()
 }//End VehicleLog

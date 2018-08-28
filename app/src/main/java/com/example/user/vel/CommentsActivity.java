@@ -22,6 +22,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -83,8 +84,11 @@ public class CommentsActivity extends AppCompatActivity
         comments_list.setLayoutManager(new LinearLayoutManager(this));
         comments_list.setAdapter(commentsAdapter);
 
+        //The posts will be displayed in ascending order depending on the timestamp attached
+        Query firstquery = firebaseFirestore.collection("Parts/" + Post_ID + "/Comments").orderBy("timestamp", Query.Direction.ASCENDING);
+
         //Creates/accesses the collection for storing comments on FireBase
-        firebaseFirestore.collection("Parts/" + Post_ID + "/Comments")
+        firstquery
                 .addSnapshotListener(CommentsActivity.this, new EventListener<QuerySnapshot>()
                 {
                     @Override

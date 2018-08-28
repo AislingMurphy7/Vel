@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -182,6 +181,7 @@ public class GraphEngineAirflow extends Activity implements
             @Override
             public void onClick(View v)
             {
+                //ProgressDialog will appear stating that the data is being checked
                 progress = new ProgressDialog(GraphEngineAirflow.this);
                 progress.setMax(100);
                 progress.setMessage("Checking...");
@@ -189,33 +189,43 @@ public class GraphEngineAirflow extends Activity implements
                 progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
                 progress.show();
 
-                new Thread(new Runnable() {
+                new Thread(new Runnable()
+                {
                     @Override
+                    //When running
                     public void run() {
                         try
                         {
+                            //Whilst the progress dialog is less than or equal to the max
                             while (progress.getProgress() <= progress.getMax())
                             {
+                                //Dialog will pause
                                 Thread.sleep(200);
+
+                                //Handler will retrieve the message of increments
                                 handler.sendMessage(handler.obtainMessage());
+
+                                //If the progress dialog is equal to the max
                                 if (progress.getProgress() == progress.getMax())
                                 {
                                     progress.dismiss();
-                                    progress.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
+                                    //The AlertDialog will be opened
+                                    progress.setOnDismissListener(new DialogInterface.OnDismissListener()
+                                    {
                                         @Override
-                                        public void onDismiss(DialogInterface dialog) {
+                                        public void onDismiss(DialogInterface dialog)
+                                        {
                                             showAlertDialog();
-                                        }
-                                    });
-                                }
-
-                            }
-                        }catch (Exception e)
+                                        }//End onDismiss()
+                                    });//End OnDismissListener()
+                                }//End if()
+                            }//End while()
+                        }//End try()
+                        catch (Exception e)
                         {
                             e.printStackTrace();
-                        }
-                    }
+                        }//End catch()
+                    }//End run()
                 }).start();
             }//End onClick()
             @SuppressLint("HandlerLeak")
@@ -224,9 +234,10 @@ public class GraphEngineAirflow extends Activity implements
                 public void handleMessage (Message msg)
                 {
                     super.handleMessage(msg);
+                    //Sets the value to increment by 3
                     progress.incrementProgressBy(3);
-                }
-            };
+                }//End handleMessage()
+            };//End Handler()
         });//End OnClickListener()
     }//End onCreate
 

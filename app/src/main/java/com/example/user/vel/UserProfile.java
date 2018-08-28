@@ -36,7 +36,6 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -73,7 +72,7 @@ public class UserProfile extends AppCompatActivity {
         firebaseFirestore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        user_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+        user_id = mAuth.getCurrentUser().getUid();
 
         //XML variables
         editText = findViewById(R.id.editTextDisplayName);
@@ -121,7 +120,7 @@ public class UserProfile extends AppCompatActivity {
                 else
                 {
                     //Error message is displayed to the user
-                    String error = Objects.requireNonNull(task.getException()).getMessage();
+                    String error = task.getException().getMessage();
                     Toast.makeText(UserProfile.this, "Data retrieve Error: " + error, Toast.LENGTH_LONG).show();
                 }//End else()
 
@@ -176,7 +175,7 @@ public class UserProfile extends AppCompatActivity {
                                 else {
 
                                     //Error message is displayed to the user
-                                    String error = Objects.requireNonNull(task.getException()).getMessage();
+                                    String error = task.getException().getMessage();
                                     Toast.makeText(UserProfile.this, "Image Error: " + error, Toast.LENGTH_LONG).show();
 
                                     //ProgressBar is set to invisible
@@ -228,15 +227,21 @@ public class UserProfile extends AppCompatActivity {
         Uri download_uri;
 
         //Check if the download URI is still stored
-        //Download URI is present
-        download_uri = task.getResult().getDownloadUrl();
+        if(task != null)
+        {
+            //Download URI is present
+            download_uri = task.getResult().getDownloadUrl();
+        }//End if()
+        else{
+            //Download URI is set to image
+            download_uri = uriProfileImage;
+        }//End else()
 
         //Create a Map with key: String, Value: String
         Map<String, String> userMap = new HashMap<>();
         //Data is stored inside the HashMap()
         userMap.put("name", displayname);
-        //toString converts URI to a string
-        userMap.put("image", Objects.requireNonNull(download_uri).toString());
+        userMap.put("image", download_uri.toString());
 
         //The collection within FireBase is accessed
         firebaseFirestore.collection("Users").document(user_id).set(userMap).addOnCompleteListener(new OnCompleteListener<Void>()
@@ -259,15 +264,15 @@ public class UserProfile extends AppCompatActivity {
                 else {
 
                     //Error message is displayed to the user
-                    String error = Objects.requireNonNull(task.getException()).getMessage();
+                    String error = task.getException().getMessage();
                     Toast.makeText(UserProfile.this, "FireStore Error: " + error, Toast.LENGTH_LONG).show();
                 }//End else()
 
-                //ProgressBar is set to invisible
+                //ProgessBar is set to invisible
                 progressbar.setVisibility(View.INVISIBLE);
             }//End onComplete()
         });//End OnCompleteListener()
-    }//End storeFireStore()
+    }//End storeFirestore()
 
     //Allows the user is picking an image
     private void ImagePick()
@@ -286,7 +291,7 @@ public class UserProfile extends AppCompatActivity {
         final FirebaseUser user = mAuth.getCurrentUser();
 
         //If the users email has been verified via email
-        if (Objects.requireNonNull(user).isEmailVerified())
+        if (user.isEmailVerified())
         {
             //Message is displayed
             textView.setText(R.string.email_verified);
@@ -381,7 +386,6 @@ public class UserProfile extends AppCompatActivity {
         //If the exit option is selected
         if (option_id == R.id.action_exit)
         {
-            //The app will close
             finishAffinity();
         }//End if()
 

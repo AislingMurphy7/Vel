@@ -23,8 +23,8 @@
         android:orientation="vertical"
         android:background="#c70039"
         android:paddingBottom="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         tools:context="com.example.user.vel.SetupELM">
 
         <ImageView
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitStart"
-            android:paddingTop="20sp"
+            android:paddingTop="17sp"
             android:src="@drawable/vel"
             android:layout_gravity="center">
         </ImageView>
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:text="@string/ElmSet">
         </TextView>
 
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:text="@string/instruct">
         </TextView>
 

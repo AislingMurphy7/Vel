@@ -125,6 +125,7 @@ public class GraphEngineRPM extends Activity implements
 
         //Setting YAxis
         YAxis left = chart.getAxisLeft();
+        left.setAxisMinimum(20);
         left.setAxisMinimum(0f);
         left.setAxisMaximum(1500f);
         left.setTextSize(13f);

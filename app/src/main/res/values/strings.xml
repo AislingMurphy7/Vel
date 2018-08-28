@@ -20,7 +20,7 @@
     <string name="ElmSet"><b><u>ELM-327 Setup</u></b></string>
     <string name="instruct"><b><u><i>Step 1</i></u></b> \nPlug adapter into OBD-II 16-pin port. \n\n<b><u><i>Step 2</i></u></b> \nEnsure green light flashes on adapter.
                         \n\n<b><u><i>Step 3</i></u></b> \nStart car engine. \n\n<b><u><i>Step 4</i></u></b> \nNavigate to settings on Android device: Settings > Bluetooth > Adapter Name > Pair devices.
-                        \n\n<b><u><i>Step 5</i></u></b> \nNavigate to settings within app: Settings > Select adapter name from list.</string>
+                        \n\n<b><u><i>Step 5</i></u></b> \nNavigate to settings within app: \nSettings > Select adapter name from list.</string>
 
     <string name="FAQ"><b><u>Does My Car have OBD-II?</u></b> \n\nAll 1996 and newer vehicles, both petrol and diesel fuel passenger vehicles. The vehicles are required to have OBD-II systems. To verify that your
         vehicle is equipped with OBD II, you can look for the words "OBD II" on the emission control information label attached to the underside of the vehicle hood</string>
