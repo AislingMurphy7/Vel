@@ -54,8 +54,10 @@ public class GraphEngineAirflow extends Activity implements
 {
     private static final String TAG = "GraphEngineAirflow";
 
+    //Declaring the chart
     private LineChart chart;
 
+    //Declaring progress dialog
     private ProgressDialog progress;
 
     //Array to hold Mass Airflow data from Firebase
@@ -65,11 +67,16 @@ public class GraphEngineAirflow extends Activity implements
     LineDataSet set1;
     LineData data;
 
-    protected void onCreate(Bundle savedInstanceState) {
+    // Lowest value rendered on graph
+    float lowestGraphedValue = 0;
 
+    // Highest value rendered on graph
+    float highestGraphedValue = 0;
 
+    protected void onCreate(Bundle savedInstanceState)
+    {
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-          for the Mass Airflow rate information*/
+          for the engine Airflow information*/
         AlertDialog.Builder builder = new AlertDialog.Builder(GraphEngineAirflow.this);
         builder.setCancelable(true);
 
@@ -123,28 +130,9 @@ public class GraphEngineAirflow extends Activity implements
         //Background color
         chart.setBackgroundColor(Color.WHITE);
 
-        //Sets upper limitLine on graph
-        LimitLine upper = new LimitLine(5f, "Reading too High");
-        upper.setLineWidth(1f);
-        upper.setLineColor(Color.BLACK);
-        upper.enableDashedLine(10f,10f, 10f);
-        upper.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        upper.setTextSize(15f);
-
-        //Sets lower limitLine on graph
-        LimitLine lower = new LimitLine(2f, "Reading too Low");
-        lower.setLineWidth(1f);
-        lower.setLineColor(Color.BLACK);
-        lower.enableDashedLine(10f,10f, 0f);
-        lower.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        lower.setTextSize(15f);
-
         //Setting YAxis
         YAxis left = chart.getAxisLeft();
-        left.addLimitLine(upper);
-        left.addLimitLine(lower);
         left.setAxisMinimum(0f);
-        left.setDrawLimitLinesBehindData(false);
         left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
 
@@ -234,7 +222,7 @@ public class GraphEngineAirflow extends Activity implements
                                         @Override
                                         public void onDismiss(DialogInterface dialog)
                                         {
-                                            showAlertDialog();
+                                            showAlertDialogs();
                                         }//End onDismiss()
                                     });//End OnDismissListener()
                                 }//End if()
@@ -260,46 +248,85 @@ public class GraphEngineAirflow extends Activity implements
         });//End OnClickListener()
     }//End onCreate
 
-    public void showAlertDialog()
+    public void showAlertDialogs()
     {
-        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+        if(this.highestGraphedValue > 5)
+        {
+            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+          for the engine Airflow information retrieved from the database*/
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineAirflow.this);
+            builder2.setCancelable(true);
+
+            //Setting the title and message from the string.xml
+            //Setting the title and message from the string.xml
+            builder2.setTitle(GraphEngineAirflow.this.getString(R.string.MassAirflowHigh));
+            builder2.setMessage(GraphEngineAirflow.this.getString(R.string.MassAirflowHigh_instruct));
+
+            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+            builder2.setNegativeButton(GraphEngineAirflow.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    dialog.cancel();
+                    Intent intent = new Intent(GraphEngineAirflow.this, DataDisplay.class);
+                    startActivity(intent); }//End onClick()
+            });//End setNegativeButton()
+
+            //If the user taps Ok
+            builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+
+                }//End onClick()
+            });//End setPositiveButton()
+
+            //Show the Dialogs on screen
+            builder2.show();
+        }//End if()
+
+        if(this.lowestGraphedValue < 4)
+        {
+            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineAirflow.this);
-        builder2.setCancelable(true);
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineAirflow.this);
+            builder2.setCancelable(true);
 
-        //Setting the title and message from the string.xml
-        builder2.setTitle(GraphEngineAirflow.this.getString(R.string.IMPORTANT));
-        builder2.setMessage(GraphEngineAirflow.this.getString(R.string.airflow_info));
+            //Setting the title and message from the string.xml
+            builder2.setTitle(GraphEngineAirflow.this.getString(R.string.MassAirflowLow));
+            builder2.setMessage(GraphEngineAirflow.this.getString(R.string.MassAirflowLow_instruct));
 
-        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder2.setNegativeButton(GraphEngineAirflow.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton)
+            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+            builder2.setNegativeButton(GraphEngineAirflow.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
             {
-                dialog.cancel();
-                Intent intent = new Intent(GraphEngineAirflow.this, DataDisplay.class);
-                startActivity(intent); }//End onClick()
-        });//End setNegativeButton()
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    dialog.cancel();
+                    Intent intent = new Intent(GraphEngineAirflow.this, DataDisplay.class);
+                    startActivity(intent); }//End onClick()
+            });//End setNegativeButton()
 
-        //If the user taps Ok
-        builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
+            //If the user taps Ok
+            builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
             {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.cancel();
+                }//End onClick()
+            });//End setPositiveButton()
 
-            }//End onClick()
-        });//End setPositiveButton()
-
-        //Show the Dialogs on screen
-        builder2.show();
+            //Show the Dialogs on screen
+            builder2.show();
+        }
     }
 
     //Downloads Data from FireBase
     private void downloadData()
     {
-
         //ArrayAdapter
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,R.layout.activity_graph_engine_airflow);
 
@@ -363,8 +390,20 @@ public class GraphEngineAirflow extends Activity implements
         System.out.println("Using key: " + key);
         System.out.println("Setting Mass Intake Airflow Rate: " + vehicleData.getMassAirflowRate());
 
+        float graphValue = Float.parseFloat(vehicleData.getIntakeAirTemperature());
+
+        if( (this.lowestGraphedValue == 0) || graphValue < this.lowestGraphedValue)
+        {
+            this.lowestGraphedValue = graphValue;
+        }
+
+        if( (this.highestGraphedValue == 0) || graphValue > this.highestGraphedValue)
+        {
+            this.highestGraphedValue = graphValue;
+        }
+
         //Adds new entries to the arrayList and converts the string into a float
-        engineAirflow.add(new Entry(key + 2, Float.parseFloat(vehicleData.getMassAirflowRate())));
+        engineAirflow.add(new Entry(key + 2, graphValue));
 
         //Change the chart when changes occurs
         set1.notifyDataSetChanged();

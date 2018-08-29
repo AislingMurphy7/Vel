@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -39,6 +38,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /*
     This class is used to graph the Data for the "Air Intake Temperature" and the "Coolant Temperature" which
@@ -66,6 +66,12 @@ public class GraphIntakeAir extends Activity implements
     //Variables
     LineDataSet set2;
     LineData data;
+
+    // Lowest value rendered on graph
+    float lowestGraphedValue = 0;
+
+    // Highest value rendered on graph
+    float highestGraphedValue = 0;
 
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -113,27 +119,8 @@ public class GraphIntakeAir extends Activity implements
         //Background color
         chart.setBackgroundColor(Color.WHITE);
 
-        //Sets upper limitLine on graph
-        LimitLine upper = new LimitLine(110f, "Reading too High");
-        upper.setLineWidth(1f);
-        upper.setLineColor(Color.BLACK);
-        upper.enableDashedLine(10f,10f, 10f);
-        upper.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        upper.setTextSize(15f);
-
-        //Sets lower limitLine on graph
-        LimitLine lower = new LimitLine(25f, "Reading too Low");
-        lower.setLineWidth(1f);
-        lower.setLineColor(Color.BLACK);
-        lower.enableDashedLine(10f,10f, 0f);
-        lower.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        lower.setTextSize(15f);
-
         //Setting YAxis
         YAxis left = chart.getAxisLeft();
-        left.addLimitLine(upper);
-        left.addLimitLine(lower);
-        left.setDrawLimitLinesBehindData(false);
         left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
 
@@ -225,7 +212,7 @@ public class GraphIntakeAir extends Activity implements
                                         @Override
                                         public void onDismiss(DialogInterface dialog)
                                         {
-                                            showAlertDialog();
+                                            showAlertDialogs();
                                         }//End onDismiss()
                                     });//End OnDismissListener()
                                 }//End if()
@@ -251,40 +238,79 @@ public class GraphIntakeAir extends Activity implements
         });//End OnClickListener()
     }//End onCreate
 
-    public void showAlertDialog()
+    public void showAlertDialogs()
     {
-        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+        if(this.highestGraphedValue > 10)
+        {
+            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphIntakeAir.this);
-        builder2.setCancelable(true);
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphIntakeAir.this);
+            builder2.setCancelable(true);
 
-        //Setting the title and message from the string.xml
-        builder2.setTitle(GraphIntakeAir.this.getString(R.string.IMPORTANT));
-        builder2.setMessage(GraphIntakeAir.this.getString(R.string.airflow_info));
+            //Setting the title and message from the string.xml
+            builder2.setTitle(GraphIntakeAir.this.getString(R.string.NormalValues));
+            builder2.setMessage(GraphIntakeAir.this.getString(R.string.NormalValInstruct));
 
-        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder2.setNegativeButton(GraphIntakeAir.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton)
+            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+            builder2.setNegativeButton(GraphIntakeAir.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
             {
-                dialog.cancel();
-                Intent intent = new Intent(GraphIntakeAir.this, DataDisplay.class);
-                startActivity(intent); }//End onClick()
-        });//End setNegativeButton()
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    dialog.cancel();
+                    Intent intent = new Intent(GraphIntakeAir.this, DataDisplay.class);
+                    startActivity(intent); }//End onClick()
+            });//End setNegativeButton()
 
-        //If the user taps Ok
-        builder2.setPositiveButton(GraphIntakeAir.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
+            //If the user taps Ok
+            builder2.setPositiveButton(GraphIntakeAir.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
             {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.cancel();
+                }//End onClick()
+            });//End setPositiveButton()
 
-            }//End onClick()
-        });//End setPositiveButton()
+            //Show the Dialogs on screen
+            builder2.show();
+        }//End if()
 
-        //Show the Dialogs on screen
-        builder2.show();
+        if(this.lowestGraphedValue < 100)
+        {
+                        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+                for the Mass Airflow rate information retrieved from the database*/
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphIntakeAir.this);
+            builder2.setCancelable(true);
+
+            //Setting the title and message from the string.xml
+            builder2.setTitle(GraphIntakeAir.this.getString(R.string.NormalValues));
+            builder2.setMessage(GraphIntakeAir.this.getString(R.string.NormalValInstruct));
+
+            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+            builder2.setNegativeButton(GraphIntakeAir.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    dialog.cancel();
+                    Intent intent = new Intent(GraphIntakeAir.this, DataDisplay.class);
+                    startActivity(intent); }//End onClick()
+            });//End setNegativeButton()
+
+            //If the user taps Ok
+            builder2.setPositiveButton(GraphIntakeAir.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.cancel();
+                }//End onClick()
+            });//End setPositiveButton()
+
+            //Show the Dialogs on screen
+            builder2.show();
+        }
     }//End showAlertDialog()
 
     //Downloads Data from FireBase
@@ -310,7 +336,7 @@ public class GraphIntakeAir extends Activity implements
                 VehicleData vehicleData = dataSnapshot.getValue(VehicleData.class);
 
                 //Prints values to console to prove the download is working
-                System.out.println("getIntakeAirTemperature: " + vehicleData.getIntakeAirTemperature());
+                System.out.println("getIntakeAirTemperature: " + Objects.requireNonNull(vehicleData).getIntakeAirTemperature());
                 System.out.println("prevChildKey: " + prevChildKey);
                 System.out.println("data.key" + dataSnapshot.getKey());
 
@@ -353,7 +379,21 @@ public class GraphIntakeAir extends Activity implements
         //Prints to console first
         System.out.println("setting Intake Air Temp: " + vehicleData.getIntakeAirTemperature());
         //Adds new entries to the arrayList and converts the string into a float
-        airIntakeTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getIntakeAirTemperature())));
+
+        float graphValue = Float.parseFloat(vehicleData.getIntakeAirTemperature());
+
+        if( (this.lowestGraphedValue == 0) || graphValue < this.lowestGraphedValue)
+        {
+            this.lowestGraphedValue = graphValue;
+        }
+
+        if( (this.highestGraphedValue == 0) || graphValue > this.highestGraphedValue)
+        {
+            this.highestGraphedValue = graphValue;
+        }
+
+        //Adds new entries to the arrayList and converts the string into a float
+        airIntakeTemperatureList.add(new Entry(key + 2, graphValue));
 
         //Change the chart when changes occurs
         set2.notifyDataSetChanged();

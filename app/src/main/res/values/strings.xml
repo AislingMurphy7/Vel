@@ -169,4 +169,43 @@
     <string name="veh_engine">vehicle engine size</string>
 
     <string name="check_irreg">Check data for irregularities</string>
+
+    <string name="AirIntakeBelowThreshold">value is too low</string>
+    <string name="AirIntakeBelowThreshold_instructions">Instructions for value below </string>
+
+    <string name="AirIntakeAboveThreshold">value is too High</string>
+    <string name="AirIntakeAboveThreshold_instructions">Instructions for value above</string>
+
+    <string name="CoolantTemperatureThresholdLow">Coolant Temperature is too low!</string>
+    <string name="CoolantTemperatureThreshold_instructionsLow">The the normal operating engine
+        temperature is in a range of 195 to 220 degrees Fahrenheit.\n REASON:\n1. Defective
+        thermostat staying open.\n 2. Defective coolant fan temperature switch.\n\nSOLUTIONS:\n1.
+        Remove, test and replace thermostat. \n2. Replace, test and replacecoolant fan switch</string>
+
+    <string name="CoolantTemperatureThresholdHigh">Coolant Temperature is too high!</string>
+    <string name="CoolantTemperatureThreshold_instructionsHigh">The the normal operating engine
+        temperature is in a range of 195 to 220 degrees Fahrenheit.\n REASON:\n1. Low coolant
+        temperature.\n 2. Defective coolant fan.\n 3. Failure in Head Gasket \n\nSOLUTIONS:\n1.
+        Fill coolant bottle located in the engine bay with coolant \n2. Replace, test and replace
+        coolant fan. \n3. Seek professional help immediately</string>
+
+    <string name="MassAirflowLow">Mass Airflow Reading is too low</string>
+    <string name="MassAirflowLow_instruct">A Mass Airflow sensor Reading should be a straight value.\n
+        REASON: 1. Mass Airflow sensor maybe be dirty. \n\nSOLUTION: 1.Sensor can be cleaned,
+        however they are easily broken. Replacement is recommended</string>
+
+    <string name="MassAirflowHigh">Mass Airflow Reading is too low</string>
+    <string name="MassAirflowHigh_instruct">A Mass Airflow sensor Reading should be a straight value.\n
+        REASON: 1. Mass Airflow sensor maybe be dirty. \n\nSOLUTION: 1.Sensor can be cleaned,
+        however they are easily broken. Replacement is recommended</string>
+
+    <string name="EngineLoadLow">Engine Load is low</string>
+    <string name="EngineLoadIntsrutLow">Low Engine Load means there is not enough torque
+        for the demand.\nREASON:\n 1. Clogged Air Filter.\n 2. Bad Air Filter.\n
+        3. Low Compression \nSOLUTION:\n 1. Replace the fuel filter. These can not be
+        cleaned.\n 2. Remove and clean air filter. Replace is
+        recommended.\n 3. A compression test is required, Contact a professional mechanic. </string>
+
+    <string name="NormalValues">Recorded values are normal</string>
+    <string name="NormalValInstruct">There is no issues found with these values</string>
 </resources>

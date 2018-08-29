@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -41,7 +40,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestureListener, OnChartValueSelectedListener {
+public class GraphCoolantTemp extends AppCompatActivity implements
+        OnChartGestureListener, OnChartValueSelectedListener
+{
     private static final String TAG = "GraphCoolantTemps";
 
     //Declaring the chart
@@ -57,11 +58,17 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
     LineDataSet set1;
     LineData data;
 
+    // Lowest value rendered on graph
+    float lowestGraphedValue = 0;
+
+    // Highest value rendered on graph
+    float highestGraphedValue = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-          for the Temp specs information*/
+          for the coolant temperature information*/
         AlertDialog.Builder builder = new AlertDialog.Builder(GraphCoolantTemp.this);
         builder.setCancelable(true);
 
@@ -72,8 +79,9 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
         builder.setPositiveButton(GraphCoolantTemp.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
         {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-
+            public void onClick(DialogInterface dialog, int which)
+            {
+                dialog.dismiss();
             }//End onClick()
         });//End setPositiveButton()
 
@@ -104,28 +112,8 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
         //Background color
         chart.setBackgroundColor(Color.WHITE);
 
-        //Sets upper limitLine on graph
-        LimitLine upper = new LimitLine(220, "Reading too High");
-        upper.setLineWidth(1f);
-        upper.setLineColor(Color.BLACK);
-        upper.enableDashedLine(10f,10f, 10f);
-        upper.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        upper.setTextSize(15f);
-
-        //Sets lower limitLine on graph
-        LimitLine lower = new LimitLine(80f, "Reading too Low");
-        lower.setLineWidth(1f);
-        lower.setLineColor(Color.BLACK);
-        lower.enableDashedLine(10f,10f, 0f);
-        lower.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
-        lower.setTextSize(15f);
-
-
         //Setting YAxis
         YAxis left = chart.getAxisLeft();
-        left.addLimitLine(upper);
-        left.addLimitLine(lower);
-        left.setDrawLimitLinesBehindData(false);
         left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
 
@@ -217,7 +205,7 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
                                         @Override
                                         public void onDismiss(DialogInterface dialog)
                                         {
-                                            showAlertDialog();
+                                            showAlertDialogs();
                                         }//End onDismiss()
                                     });//End OnDismissListener()
                                 }//End if()
@@ -243,40 +231,115 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
         });//End OnClickListener()
     }//End onCreate
 
-    public void showAlertDialog()
+    public void showAlertDialogs()
     {
-        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+        if(this.highestGraphedValue < 220 && this.lowestGraphedValue > 190)
+        {
+            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphCoolantTemp.this);
-        builder2.setCancelable(true);
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphCoolantTemp.this);
+            builder2.setCancelable(true);
 
-        //Setting the title and message from the string.xml
-        builder2.setTitle(GraphCoolantTemp.this.getString(R.string.IMPORTANT));
-        builder2.setMessage(GraphCoolantTemp.this.getString(R.string.airflow_info));
+            //Setting the title and message from the string.xml
+            builder2.setTitle(GraphCoolantTemp.this.getString(R.string.NormalValues));
+            builder2.setMessage(GraphCoolantTemp.this.getString(R.string.NormalValInstruct));
 
-        //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-        builder2.setNegativeButton(GraphCoolantTemp.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton)
+            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+            builder2.setNegativeButton(GraphCoolantTemp.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
             {
-                dialog.cancel();
-                Intent intent = new Intent(GraphCoolantTemp.this, DataDisplay.class);
-                startActivity(intent); }//End onClick()
-        });//End setNegativeButton()
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    dialog.cancel();
+                    Intent intent = new Intent(GraphCoolantTemp.this, DataDisplay.class);
+                    startActivity(intent); }//End onClick()
+            });//End setNegativeButton()
 
-        //If the user taps Ok
-        builder2.setPositiveButton(GraphCoolantTemp.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
+            //If the user taps Ok
+            builder2.setPositiveButton(GraphCoolantTemp.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
             {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.cancel();
+                }//End onClick()
+            });//End setPositiveButton()
 
-            }//End onClick()
-        });//End setPositiveButton()
+            //Show the Dialogs on screen
+            builder2.show();
+        }//End if()
 
-        //Show the Dialogs on screen
-        builder2.show();
+        if(this.highestGraphedValue > 220)
+        {
+            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+                for the Mass Airflow rate information retrieved from the database*/
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphCoolantTemp.this);
+            builder2.setCancelable(true);
+
+            //Setting the title and message from the string.xml
+            builder2.setTitle(GraphCoolantTemp.this.getString(R.string.CoolantTemperatureThresholdHigh));
+            builder2.setMessage(GraphCoolantTemp.this.getString(R.string.CoolantTemperatureThreshold_instructionsHigh));
+
+            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+            builder2.setNegativeButton(GraphCoolantTemp.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    dialog.cancel();
+                    Intent intent = new Intent(GraphCoolantTemp.this, DataDisplay.class);
+                    startActivity(intent); }//End onClick()
+            });//End setNegativeButton()
+
+            //If the user taps Ok
+            builder2.setPositiveButton(GraphCoolantTemp.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.cancel();
+                }//End onClick()
+            });//End setPositiveButton()
+
+            //Show the Dialogs on screen
+            builder2.show();
+        }//End if()
+
+        if(this.lowestGraphedValue < 190)
+        {
+            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+             for the Mass Airflow rate information retrieved from the database*/
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphCoolantTemp.this);
+            builder2.setCancelable(true);
+
+            //Setting the title and message from the string.xml
+            builder2.setTitle(GraphCoolantTemp.this.getString(R.string.CoolantTemperatureThresholdLow));
+            builder2.setMessage(GraphCoolantTemp.this.getString(R.string.CoolantTemperatureThreshold_instructionsLow));
+
+            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+            builder2.setNegativeButton(GraphCoolantTemp.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    dialog.cancel();
+                    Intent intent = new Intent(GraphCoolantTemp.this, DataDisplay.class);
+                    startActivity(intent); }//End onClick()
+            });//End setNegativeButton()
+
+            //If the user taps Ok
+            builder2.setPositiveButton(GraphCoolantTemp.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.cancel();
+                }//End onClick()
+            });//End setPositiveButton()
+
+            //Show the Dialogs on screen
+            builder2.show();
+        }
     }//End showAlertDialog()
 
     //Downloads Data from FireBase
@@ -346,8 +409,20 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
         System.out.println("Using key: " + key);
         System.out.println("Setting CoolantTemperature: " + vehicleData.getCoolantTemperature());
 
-        //Adds new entrys to the arrayList and converts the string into a float
-        coolantTemperatureList.add(new Entry(key + 2, Float.parseFloat(vehicleData.getCoolantTemperature())));
+        float coolantTemperature = Float.parseFloat(vehicleData.getCoolantTemperature());
+
+        if( (this.lowestGraphedValue == 0) || coolantTemperature < this.lowestGraphedValue)
+        {
+            this.lowestGraphedValue = coolantTemperature;
+        }
+
+        if( (this.highestGraphedValue == 0) || coolantTemperature > this.highestGraphedValue)
+        {
+            this.highestGraphedValue = coolantTemperature;
+        }
+
+        //Adds new entries to the arrayList and converts the string into a float
+        coolantTemperatureList.add(new Entry(key + 2, coolantTemperature));
 
         //Change the chart when changes occurs
         set1.notifyDataSetChanged();
