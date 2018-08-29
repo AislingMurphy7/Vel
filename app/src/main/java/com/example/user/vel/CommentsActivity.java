@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,7 +69,10 @@ public class CommentsActivity extends AppCompatActivity
 
         //Retrieving current ID from FireBase
         current_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+        Log.d("CURRENT ID FOR COMMENTS", current_id);
+
         Post_ID = getIntent().getStringExtra("Post_ID");
+        Log.d("POST ID FOR COMMENTS: ", Post_ID);
 
         //XML Variables
         comment = findViewById(R.id.comment_field);

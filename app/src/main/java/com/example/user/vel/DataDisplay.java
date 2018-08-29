@@ -26,7 +26,7 @@ public class DataDisplay extends AppCompatActivity
 
         Intent intent = getIntent();
         final String vehicle_key = intent.getStringExtra("Vehicle_id");
-        Log.d(vehicle_key, "DATA DISPLAY ");
+        Log.d("VEH_KEY - DATADISPLAY: ", vehicle_key);
 
         //XML variables
         Button mass_air = findViewById(R.id.mass_air);

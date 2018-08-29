@@ -56,7 +56,7 @@ public class PasswordProtected extends AppCompatActivity
 
         //Gathers the unique key of each record in the database
         String vehicle_key = Objects.requireNonNull(getIntent().getExtras()).getString("Vehicle_id");
-        Log.d(vehicle_key,"PASS PROTECT");
+        Log.d("VEH KEY - PASS PROTECT", vehicle_key);
 
         //Retrieves all the required values from FireBase database
         databaseRef.child(Objects.requireNonNull(vehicle_key)).addValueEventListener(new ValueEventListener()

@@ -3,6 +3,7 @@ package com.example.user.vel;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,8 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
 
         //Receive the user data from FireBase
         String user_id = commentsList.get(position).getUser_id();
+        Log.d("USER ID FOR COMMENTS: ", user_id);
+
         //Retrieves data from FireStore
         firebaseFirestore.collection("Users").document(user_id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>()
         {

@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -101,12 +102,30 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
         chart.setPinchZoom(true);
 
         //Background color
-        chart.setBackgroundColor(Color.LTGRAY);
+        chart.setBackgroundColor(Color.WHITE);
+
+        //Sets upper limitLine on graph
+        LimitLine upper = new LimitLine(220, "Reading too High");
+        upper.setLineWidth(1f);
+        upper.setLineColor(Color.BLACK);
+        upper.enableDashedLine(10f,10f, 10f);
+        upper.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        upper.setTextSize(15f);
+
+        //Sets lower limitLine on graph
+        LimitLine lower = new LimitLine(80f, "Reading too Low");
+        lower.setLineWidth(1f);
+        lower.setLineColor(Color.BLACK);
+        lower.enableDashedLine(10f,10f, 0f);
+        lower.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        lower.setTextSize(15f);
+
 
         //Setting YAxis
         YAxis left = chart.getAxisLeft();
-        left.setAxisMinimum(0f);
-        left.setAxisMaximum(250f);
+        left.addLimitLine(upper);
+        left.addLimitLine(lower);
+        left.setDrawLimitLinesBehindData(false);
         left.setTextSize(13f);
         left.enableGridDashedLine(10f, 10f, 0f);
 
@@ -268,7 +287,7 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
 
         Intent intent = getIntent();
         final String vehicle_key = intent.getStringExtra("Vehicle_id");
-        Log.d(vehicle_key, "ENGINE TEMPS");
+        Log.d("VEH_KEY - COOLANT TEMPS", vehicle_key);
 
         //Connecting into table "VehicleData" on the FireBase database
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Vehicles").child(vehicle_key).child("VehiclesData");
@@ -357,62 +376,6 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
 
     @Override
     //Sends log message if action is performed
-    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture)
-    {
-        Log.i(TAG, "onChartGestureStart: X:" + me.getX() + "Y:" + me.getY());
-    }//End()
-
-    @Override
-    //Sends log message if action is performed
-    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture)
-    {
-        Log.i(TAG, "onChartGestureEnd: " + lastPerformedGesture);
-    }//End()
-
-    @Override
-    //Sends log message if action is performed
-    public void onChartLongPressed(MotionEvent me)
-    {
-        Log.i(TAG, "onChartLongPressed: ");
-    }//End()
-
-    @Override
-    //Sends log message if action is performed
-    public void onChartDoubleTapped(MotionEvent me)
-    {
-        Log.i(TAG, "onChartDoubleTapped: ");
-    }//End()
-
-    @Override
-    //Sends log message if action is performed
-    public void onChartSingleTapped(MotionEvent me)
-    {
-        Log.i(TAG, "onChartSingleTapped: ");
-    }//End()
-
-    @Override
-    //Sends log message if action is performed
-    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY)
-    {
-        Log.i(TAG, "onChartFling: veloX: " + velocityX + "veloY" + velocityY);
-    }//End()
-
-    @Override
-    //Sends log message if action is performed
-    public void onChartScale(MotionEvent me, float scaleX, float scaleY)
-    {
-        Log.i(TAG, "onChartScale: ScaleX: " + scaleX + "ScaleY: " + scaleY);
-    }//End()
-
-    @Override
-    //Sends log message if action is performed
-    public void onChartTranslate(MotionEvent me, float dX, float dY)
-    {
-        Log.i(TAG, "onChartTranslate: dX" + dX + "dY" + dY);
-    }//End()
-
-    @Override
-    //Sends log message if action is performed
     public void onValueSelected(Entry e, Highlight h)
     {
         Log.i(TAG, "onValueSelected: " + e.toString());
@@ -420,10 +383,47 @@ public class GraphCoolantTemp extends AppCompatActivity implements OnChartGestur
     }//End()
 
     @Override
-    //Sends log message if action is performed
-    public void onNothingSelected()
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture)
     {
-        Log.i(TAG, "onNothingSelected: ");
     }//End()
 
+    @Override
+    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture)
+    {
+    }//End()
+
+    @Override
+    public void onChartLongPressed(MotionEvent me)
+    {
+    }//End()
+
+    @Override
+    public void onChartDoubleTapped(MotionEvent me)
+    {
+    }//End()
+
+    @Override
+    public void onChartSingleTapped(MotionEvent me)
+    {
+    }//End()
+
+    @Override
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY)
+    {
+    }//End()
+
+    @Override
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY)
+    {
+    }//End()
+
+    @Override
+    public void onChartTranslate(MotionEvent me, float dX, float dY)
+    {
+    }//End()
+
+    @Override
+    public void onNothingSelected()
+    {
+    }//End()
 }//End GraphIntakeAir()
