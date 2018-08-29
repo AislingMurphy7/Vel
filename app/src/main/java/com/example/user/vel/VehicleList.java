@@ -80,7 +80,7 @@ public class VehicleList extends AppCompatActivity
             {
                 //Get the unique identifier for each record in the database
                 final String vehicle_key = getRef(position).getKey();
-                Log.d(vehicle_key, "VEHICLE LIST");
+                Log.d("VEH KEY - VEHICLE LIST", vehicle_key);
 
                 //Gathers the data
                 viewHolder.setMakeText(model.getMake());
