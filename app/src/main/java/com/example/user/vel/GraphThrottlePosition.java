@@ -260,7 +260,7 @@ public class GraphThrottlePosition extends AppCompatActivity implements OnChartG
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-
+                    dialog.dismiss();
                 }//End onClick()
             });//End setPositiveButton()
 

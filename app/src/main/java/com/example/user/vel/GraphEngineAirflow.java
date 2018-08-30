@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -44,7 +43,7 @@ import java.util.Objects;
 /*
     This class is used to graph the Data for the "Mass Airflow Rate" which
     is retrieved from the Database. This retrieves the data from the database which is stored on
-    Firebase. This data is then used to plot the data on a LineChart. Alert Dialogs Pop up before
+    FireBase. This data is then used to plot the data on a LineChart. Alert Dialogs Pop up before
     the graph appears and explains the data to the user, as well as stating if the data recorded is
     normal readings or if there are variances present
  */
@@ -94,11 +93,12 @@ public class GraphEngineAirflow extends Activity implements
             }//End onClick()
         });//End setNegativeButton()
 
-        builder.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+        {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-
+                dialog.dismiss();
             }//End onClick()
         });//End setPositiveButton()
 
@@ -174,8 +174,9 @@ public class GraphEngineAirflow extends Activity implements
 
         chart.setData(data);
 
-        //Calls the downloadDatt()
+        //Calls the downloadData()
         downloadData();
+
         //Change the chart when a change occurs
         chart.notifyDataSetChanged();
 
@@ -250,14 +251,14 @@ public class GraphEngineAirflow extends Activity implements
 
     public void showAlertDialogs()
     {
-        if(this.highestGraphedValue > 5)
+        //If a value goes above 15
+        if(this.highestGraphedValue > 15)
         {
             /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
           for the engine Airflow information retrieved from the database*/
             AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineAirflow.this);
             builder2.setCancelable(true);
 
-            //Setting the title and message from the string.xml
             //Setting the title and message from the string.xml
             builder2.setTitle(GraphEngineAirflow.this.getString(R.string.MassAirflowHigh));
             builder2.setMessage(GraphEngineAirflow.this.getString(R.string.MassAirflowHigh_instruct));
@@ -279,7 +280,7 @@ public class GraphEngineAirflow extends Activity implements
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-
+                    dialog.dismiss();
                 }//End onClick()
             });//End setPositiveButton()
 
@@ -287,6 +288,7 @@ public class GraphEngineAirflow extends Activity implements
             builder2.show();
         }//End if()
 
+        //If value is lee=ss than 4
         if(this.lowestGraphedValue < 4)
         {
             /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
@@ -321,8 +323,45 @@ public class GraphEngineAirflow extends Activity implements
 
             //Show the Dialogs on screen
             builder2.show();
-        }
-    }
+        }//End if()
+
+        //If value is lee=ss than 4
+        if(this.lowestGraphedValue > 4 && this.highestGraphedValue < 15)
+        {
+            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+                for the Mass Airflow rate information retrieved from the database*/
+            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineAirflow.this);
+            builder2.setCancelable(true);
+
+            //Setting the title and message from the string.xml
+            builder2.setTitle(GraphEngineAirflow.this.getString(R.string.NormalValues));
+            builder2.setMessage(GraphEngineAirflow.this.getString(R.string.NormalValInstruct));
+
+            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
+            builder2.setNegativeButton(GraphEngineAirflow.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
+                    dialog.cancel();
+                    Intent intent = new Intent(GraphEngineAirflow.this, DataDisplay.class);
+                    startActivity(intent); }//End onClick()
+            });//End setNegativeButton()
+
+            //If the user taps Ok
+            builder2.setPositiveButton(GraphEngineAirflow.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.cancel();
+                }//End onClick()
+            });//End setPositiveButton()
+
+            //Show the Dialogs on screen
+            builder2.show();
+        }//End if()
+    }//End ShowAlertDialogs
 
     //Downloads Data from FireBase
     private void downloadData()
@@ -355,6 +394,7 @@ public class GraphEngineAirflow extends Activity implements
 
                 //Will refresh app when the data changes in the database
                 arrayAdapter.notifyDataSetChanged();
+
             }//End onChildAdded()
 
             //Will run when data within the database is changed/edited
@@ -390,20 +430,20 @@ public class GraphEngineAirflow extends Activity implements
         System.out.println("Using key: " + key);
         System.out.println("Setting Mass Intake Airflow Rate: " + vehicleData.getMassAirflowRate());
 
-        float graphValue = Float.parseFloat(vehicleData.getIntakeAirTemperature());
+        float massAirflow = Float.parseFloat(vehicleData.getMassAirflowRate());
 
-        if( (this.lowestGraphedValue == 0) || graphValue < this.lowestGraphedValue)
+        if( (this.lowestGraphedValue == 0) || massAirflow < this.lowestGraphedValue)
         {
-            this.lowestGraphedValue = graphValue;
+            this.lowestGraphedValue = massAirflow;
         }
 
-        if( (this.highestGraphedValue == 0) || graphValue > this.highestGraphedValue)
+        if( (this.highestGraphedValue == 0) || massAirflow > this.highestGraphedValue)
         {
-            this.highestGraphedValue = graphValue;
+            this.highestGraphedValue = massAirflow;
         }
 
         //Adds new entries to the arrayList and converts the string into a float
-        engineAirflow.add(new Entry(key + 2, graphValue));
+        engineAirflow.add(new Entry(key + 2, massAirflow));
 
         //Change the chart when changes occurs
         set1.notifyDataSetChanged();

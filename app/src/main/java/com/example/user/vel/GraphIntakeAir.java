@@ -240,7 +240,7 @@ public class GraphIntakeAir extends Activity implements
 
     public void showAlertDialogs()
     {
-        if(this.highestGraphedValue > 10)
+        if(this.highestGraphedValue < 90)
         {
             /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
@@ -248,8 +248,8 @@ public class GraphIntakeAir extends Activity implements
             builder2.setCancelable(true);
 
             //Setting the title and message from the string.xml
-            builder2.setTitle(GraphIntakeAir.this.getString(R.string.NormalValues));
-            builder2.setMessage(GraphIntakeAir.this.getString(R.string.NormalValInstruct));
+            builder2.setTitle(GraphIntakeAir.this.getString(R.string.EngineIntake));
+            builder2.setMessage(GraphIntakeAir.this.getString(R.string.EngineIntake_dif));
 
             //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
             builder2.setNegativeButton(GraphIntakeAir.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
@@ -276,7 +276,7 @@ public class GraphIntakeAir extends Activity implements
             builder2.show();
         }//End if()
 
-        if(this.lowestGraphedValue < 100)
+        if(this.lowestGraphedValue < 100 && this.highestGraphedValue > 90)
         {
                         /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/

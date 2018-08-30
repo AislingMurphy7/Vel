@@ -89,7 +89,7 @@ public class GraphEngineLoad extends Activity implements
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
-
+                dialog.dismiss();
             }//End onClick()
         });//End setPositiveButton()
 
@@ -164,7 +164,7 @@ public class GraphEngineLoad extends Activity implements
 
         chart.setData(data);
 
-        //Calls the downloadDatt()
+        //Calls the downloadData()
         downloadData();
         //Change the chart when a change occurs
         chart.notifyDataSetChanged();
@@ -243,7 +243,7 @@ public class GraphEngineLoad extends Activity implements
     public void showAlertDialog()
     {
 
-        if(lowestGraphedValue < 40)
+        if(lowestGraphedValue < 20)
         {
             /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
@@ -382,20 +382,20 @@ public class GraphEngineLoad extends Activity implements
         System.out.println("Using key: " + key);
         System.out.println("Setting Engine Load: " + vehicleData.getEngineLoad());
 
-        float graphValue = Float.parseFloat(vehicleData.getIntakeAirTemperature());
+        float EngineLoad = Float.parseFloat(vehicleData.getEngineLoad());
 
-        if( (this.lowestGraphedValue == 0) || graphValue < this.lowestGraphedValue)
+        if( (this.lowestGraphedValue == 0) || EngineLoad < this.lowestGraphedValue)
         {
-            this.lowestGraphedValue = graphValue;
+            this.lowestGraphedValue = EngineLoad;
         }
 
-        if( (this.highestGraphedValue == 0) || graphValue > this.highestGraphedValue)
+        if( (this.highestGraphedValue == 0) || EngineLoad > this.highestGraphedValue)
         {
-            this.highestGraphedValue = graphValue;
+            this.highestGraphedValue = EngineLoad;
         }
 
         //Adds new entries to the arrayList and converts the string into a float
-        engineloadList.add(new Entry(key + 2, graphValue));
+        engineloadList.add(new Entry(key + 2, EngineLoad));
 
         //Change the chart when changes occurs
         set1.notifyDataSetChanged();

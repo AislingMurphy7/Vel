@@ -279,13 +279,13 @@ public class GraphEngineRPM extends Activity implements
                 @Override
                 public void onClick(DialogInterface dialog, int which)
                 {
-
+                    dialog.dismiss();
                 }//End onClick()
             });//End setPositiveButton()
 
             //Show the Dialogs on screen
             builder2.show();
-        }
+        }//End if()
 
         if(this.lowestGraphedValue < 800)
         {
@@ -321,7 +321,7 @@ public class GraphEngineRPM extends Activity implements
 
             //Show the Dialogs on screen
             builder2.show();
-        }
+        }//End if()
     }//End showAlertDialog()
 
     //Downloads Data from FireBase
@@ -389,7 +389,7 @@ public class GraphEngineRPM extends Activity implements
         System.out.println("Using key: " + key);
         System.out.println("Setting EngineRPM: " + vehicleData.getEngineRPM());
 
-        float graphValue = Float.parseFloat(vehicleData.getIntakeAirTemperature());
+        float graphValue = Float.parseFloat(vehicleData.getEngineRPM());
 
         if( (this.lowestGraphedValue == 0) || graphValue < this.lowestGraphedValue)
         {
