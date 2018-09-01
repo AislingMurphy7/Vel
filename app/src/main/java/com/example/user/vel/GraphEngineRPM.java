@@ -251,6 +251,7 @@ public class GraphEngineRPM extends Activity implements
 
     public void showAlertDialogs()
     {
+        
         if(this.highestGraphedValue > 100 && this.lowestGraphedValue < 4000)
         {
             /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
