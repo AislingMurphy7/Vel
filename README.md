@@ -42,7 +42,7 @@ Select "Create a new Virtual device" located at bottom of the window.
 "Virtual Device Configuration" will open.
 Click "Phone" option from the Category column > select preferred device > Next
 
-Next select/download the preferred System Image. (!!Marshmallow recommended!!) > Next
+Next select/download the preferred System Image. (!!Marshmallow or Lollipop recommended!!) > Next
 
 Next verify the configuration displayed is correct > select a name for the device > Finish
 (!!This may take several minutes to build!!)
