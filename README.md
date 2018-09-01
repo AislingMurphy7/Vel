@@ -2,8 +2,8 @@
 
 VéL is an Android application which provides the user with specific information concerning a vehicles performance. 
 It will monitor specific sensors located within the engine bay. From the information gathered from the sensors graphs will be drawn up 
-to show the variances in the values, it will also send alert dialogs to the user, to information them if the values are classed as
-normal or not normal, resulting in a possible issue with the engine
+to show the variances in the values, it will also send alert dialogs to the user, to inform them if the values are classed as
+normal or not normal, resulting in a possible issue with the engine.
 
 ### Getting Started
 
