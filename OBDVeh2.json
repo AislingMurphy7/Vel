@@ -1,0 +1,73 @@
+[ {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:02:01",
+  "engineLoad" : "84.3",
+  "engineRPM" : "2673",
+  "intakeAirTemperature" : "96",
+  "massAirflowRate" : "14.4",
+  "throttlePosition" : "51.8"
+}, {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:03:01",
+  "engineLoad" : "82.7",
+  "engineRPM" : "2701",
+  "intakeAirTemperature" : "96",
+  "massAirflowRate" : "14.4",
+  "throttlePosition" : "48.6"
+}, {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:04:01",
+  "engineLoad" : "81.2",
+  "engineRPM" : "2480",
+  "intakeAirTemperature" : "96",
+  "massAirflowRate" : "14.2",
+  "throttlePosition" : "25.5"
+}, {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:05:01",
+  "engineLoad" : "44.3",
+  "engineRPM" : "2102",
+  "intakeAirTemperature" : "96",
+  "massAirflowRate" : "11",
+  "throttlePosition" : "16.1"
+}, {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:06:01",
+  "engineLoad" : "24.3",
+  "engineRPM" : "2065",
+  "intakeAirTemperature" : "98",
+  "massAirflowRate" : "5.9",
+  "throttlePosition" : "13.7"
+}, {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:07:01",
+  "engineLoad" : "20.4",
+  "engineRPM" : "2079",
+  "intakeAirTemperature" : "98",
+  "massAirflowRate" : "4.5",
+  "throttlePosition" : "13.7"
+}, {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:08:01",
+  "engineLoad" : "33.7",
+  "engineRPM" : "2015",
+  "intakeAirTemperature" : "98",
+  "massAirflowRate" : "4.2",
+  "throttlePosition" : "18"
+}, {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:09:01",
+  "engineLoad" : "40.8",
+  "engineRPM" : "2020",
+  "intakeAirTemperature" : "98",
+  "massAirflowRate" : "6.1",
+  "throttlePosition" : "24.7"
+}, {
+  "coolantTemperature" : "204",
+  "deviceTime" : "2:17:01",
+  "engineLoad" : "57.7",
+  "engineRPM" : "2048",
+  "intakeAirTemperature" : "98",
+  "massAirflowRate" : "7.8",
+  "throttlePosition" : "20"
+} ]
