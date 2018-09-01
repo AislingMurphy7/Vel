@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -251,7 +250,7 @@ public class GraphEngineRPM extends Activity implements
 
     public void showAlertDialogs()
     {
-        
+
         if(this.highestGraphedValue > 100 && this.lowestGraphedValue < 4000)
         {
             /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
