@@ -371,7 +371,7 @@ public class GraphThrottlePosition extends AppCompatActivity implements OnChartG
         System.out.println("Using key: " + key);
         System.out.println("Setting Throttle Position: " + vehicleData.getThrottlePosition());
 
-        float graphValue = Float.parseFloat(vehicleData.getIntakeAirTemperature());
+        float graphValue = Float.parseFloat(vehicleData.getThrottlePosition());
 
         if( (this.lowestGraphedValue == 0) || graphValue < this.lowestGraphedValue)
         {

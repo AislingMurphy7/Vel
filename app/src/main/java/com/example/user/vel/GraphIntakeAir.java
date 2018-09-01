@@ -278,7 +278,7 @@ public class GraphIntakeAir extends Activity implements
 
         if(this.lowestGraphedValue < 100 && this.highestGraphedValue > 90)
         {
-                        /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
+            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
             AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphIntakeAir.this);
             builder2.setCancelable(true);

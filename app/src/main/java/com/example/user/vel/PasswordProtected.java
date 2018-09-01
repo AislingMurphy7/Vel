@@ -121,7 +121,7 @@ public class PasswordProtected extends AppCompatActivity
                         else
                         {
                             //User is notified that the passwords don't match
-                            Toast.makeText(getApplicationContext(),"PASSWORD DONT MATCH", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"Password does not match!", Toast.LENGTH_LONG).show();
                         }//End else()
                     }//End onDataChange()
 

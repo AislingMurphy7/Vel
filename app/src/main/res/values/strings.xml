@@ -54,27 +54,21 @@
     <string name="engine_rpm_title">Engine RPM definition</string>
     <string name="cancel">Cancel</string>
     <string name="IMPORTANT">DATA MESSAGE</string>
-    <string name="rpm_info">Data received from database show: \nEngine RPM is: NORMAL</string>
     <string name="engine_airflow_def">The Mass Airflow Rate is the rate of air entering an engine. \nThis is needed to
         balance and deliver the correct fuel mass (or amount) to an engine.</string>
     <string name="engine_airflow_title">Engine Mass Airflow Rate definition</string>
-    <string name="airflow_info">Data received from database show: \nMass Airflow Rate is: NORMAL</string>
     <string name="engine_coolant_title">Coolant Temperature definition</string>
     <string name="engine_air_intake_def">The Air Intake Temperature sensor monitors the temperature of the air
-    entering the engine. \nThis reading is required to estimate air density so it can balance air/fuel mixture.</string>
-    <string name="engine_coolant_def">Coolant is a liquid required within a vehicles engine. \nIt absorbs
-    heat from the engine to avoid overheating to prevent damage. \nIf the coolant temperature rises this means that
+    entering the engine. \n\nThis reading is required to estimate air density so it can balance air/fuel mixture.</string>
+    <string name="engine_coolant_def">Coolant is a liquid required within a vehicles engine. \n\nIt absorbs
+    heat from the engine to avoid overheating to prevent damage. \n\nIf the coolant temperature rises this means that
     there is a possibility that the engine is:\n \n1) Overheating \n2) Coolant levels are low</string>
     <string name="engine_air_intake_title">Air Intake Temperature definition</string>
-    <string name="coolant_airintake_info">Data received from database show: \nEngine Coolant Temperature is:
-        NORMAL \nAir Intake Temperature is: NORMAL</string>
     <string name="engine_load_title">Engine Load definition</string>
-    <string name="engine_load_def">The MAP sensor reads the engine load. \nEngine load is the amount of vacuum in the intake
+    <string name="engine_load_def">Engine load is the amount of vacuum in the intake
     manifold. \nThe reading drops when the throttle is open (when vehicle is accelerating)</string>
     <string name="engine_throttle_title">Throttle position definition</string>
     <string name="engine_throttle_def">Throttle Position sensor monitors the throttle position of a vehicle</string>
-    <string name="throttle_load_info">Data received from database show: \nEngine Load is:
-        NORMAL \nThrottle position is: NORMAL</string>
 
     <string name="home">Home</string>
     <string name="help">Help</string>
@@ -172,10 +166,10 @@
 
     <string name="CoolantTemperatureThresholdLow">Coolant Temperature is too low!</string>
     <string name="CoolantTemperatureThreshold_instructionsLow">The the normal operating engine
-        temperature is in a range of 195 to 220 degrees Fahrenheit.\n REASON:\n1. Defective
-        thermostat staying open.\n 2. Defective coolant fan temperature switch.\n\nSOLUTIONS:\n1.
+        temperature is in a range of 195 to 220 degrees Fahrenheit.\n\nREASON:\n1. Defective
+        thermostat staying open.\n2. Defective coolant fan temperature switch.\n\nSOLUTIONS:\n1.
         Remove, test and replace thermostat. \n2. Replace, test and replace coolant fan switch.
-        \n\n Always contact a qualified
+        \n\nAlways contact a qualified
         mechanic before attempting self maintenance.</string>
 
     <string name="CoolantTemperatureThresholdHigh">Coolant Temperature is too high!</string>
@@ -208,10 +202,10 @@
         mechanic before attempting self maintenance.</string>
 
     <string name="EngineIntake">Intake Air Temperature is not consistent</string>
-    <string name="EngineIntake_dif"> Intake Air Temperature needs to be consistent for the
+    <string name="EngineIntake_dif">Intake Air Temperature needs to be consistent for the
         engine to run at optimal capasity. There is many reason why there may be an
         inconsistency. Contacting a mechanic is highly recommended in this case.
-        \n\n Always contact a qualified
+        \n\nAlways contact a qualified
         mechanic before attempting self maintenance.
     </string>
 

@@ -251,43 +251,7 @@ public class GraphEngineRPM extends Activity implements
 
     public void showAlertDialogs()
     {
-        if(this.highestGraphedValue > 2000)
-        {
-            /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
-                for the Mass Airflow rate information retrieved from the database*/
-            AlertDialog.Builder builder2 = new AlertDialog.Builder(GraphEngineRPM.this);
-            builder2.setCancelable(true);
-
-            //Setting the title and message from the string.xml
-            builder2.setTitle(GraphEngineRPM.this.getString(R.string.NormalValues));
-            builder2.setMessage(GraphEngineRPM.this.getString(R.string.NormalValInstruct));
-
-            //When the user selects the Cancel button the page will redirect back to the VehicleSpec page
-            builder2.setNegativeButton(GraphEngineRPM.this.getString(R.string.cancel), new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialog, int whichButton)
-                {
-                    dialog.cancel();
-                    Intent intent = new Intent(GraphEngineRPM.this, DataDisplay.class);
-                    startActivity(intent); }//End onClick()
-            });//End setNegativeButton()
-
-            //If the user taps Ok
-            builder2.setPositiveButton(GraphEngineRPM.this.getString(R.string.Ok), new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialog, int which)
-                {
-                    dialog.dismiss();
-                }//End onClick()
-            });//End setPositiveButton()
-
-            //Show the Dialogs on screen
-            builder2.show();
-        }//End if()
-
-        if(this.lowestGraphedValue < 800)
+        if(this.highestGraphedValue > 100 && this.lowestGraphedValue < 4000)
         {
             /*This creates an Alert dialog on this screen, it also sets it so the user can cancel the message
                 for the Mass Airflow rate information retrieved from the database*/
